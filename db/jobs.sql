@@ -1,8 +1,8 @@
--- Table: public.jobs
+-- Table: jobs
 
--- DROP TABLE public.jobs;
+-- DROP TABLE jobs;
 
-CREATE TABLE public.jobs
+CREATE TABLE jobs
 (
     jobs_id bigint NOT NULL DEFAULT nextval('jobs_jobs_id_seq'::regclass),
     "clientId" bigint NOT NULL,
@@ -20,11 +20,11 @@ CREATE TABLE public.jobs
     "sixtyMinuteParkService" character varying(3) COLLATE pg_catalog."default",
     CONSTRAINT jobs_pkey PRIMARY KEY (jobs_id),
     CONSTRAINT "animalId" FOREIGN KEY (jobs_id)
-        REFERENCES public.animals ("animalId") MATCH SIMPLE
+        REFERENCES animals ("animalId") MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT "clientId" FOREIGN KEY (jobs_id)
-        REFERENCES public.clients ("clientId") MATCH SIMPLE
+        REFERENCES clients ("clientId") MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
 )
@@ -33,4 +33,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public.jobs
+ALTER TABLE jobs

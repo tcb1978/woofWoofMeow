@@ -1,8 +1,8 @@
--- Table: public."daysAvailable"
+-- Table: "daysAvailable"
 
--- DROP TABLE public."daysAvailable";
+-- DROP TABLE "daysAvailable";
 
-CREATE TABLE public."daysAvailable"
+CREATE TABLE "daysAvailable"
 (
     "daysAvailable_id" bigint NOT NULL DEFAULT nextval('"daysAvailable_daysAvailable_id_seq"'::regclass),
     "caregiverId" bigint NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE public."daysAvailable"
     am_pm character varying(4) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT "daysAvailable_pkey" PRIMARY KEY ("daysAvailable_id"),
     CONSTRAINT "caregiverId" FOREIGN KEY ("daysAvailable_id")
-        REFERENCES public.caregivers ("caregiverId") MATCH SIMPLE
+        REFERENCES caregivers ("caregiverId") MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
 )
@@ -22,4 +22,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public."daysAvailable"
+ALTER TABLE "daysAvailable"

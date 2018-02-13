@@ -1,8 +1,8 @@
--- Table: public.reviews
+-- Table: reviews
 
--- DROP TABLE public.reviews;
+-- DROP TABLE reviews;
 
-CREATE TABLE public.reviews
+CREATE TABLE reviews
 (
     review_id bigint NOT NULL DEFAULT nextval('reviews_review_id_seq'::regclass),
     "clientId" bigint NOT NULL,
@@ -11,11 +11,11 @@ CREATE TABLE public.reviews
     rating character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT reviews_pkey PRIMARY KEY (review_id),
     CONSTRAINT "caregiverId" FOREIGN KEY (review_id)
-        REFERENCES public.caregivers ("caregiverId") MATCH SIMPLE
+        REFERENCES caregivers ("caregiverId") MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT "clientId" FOREIGN KEY (review_id)
-        REFERENCES public.clients ("clientId") MATCH SIMPLE
+        REFERENCES clients ("clientId") MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )
@@ -24,4 +24,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public.reviews
+ALTER TABLE reviews
