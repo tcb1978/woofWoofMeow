@@ -8,11 +8,11 @@ import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 class CareGiver extends Component {
     render () {
         return (
-            <Aux>
+            <div>
                 <Walklist />
                 <Calendar />
                 <Route path="/update-message" component={ UpdateMessage }/>
-            </Aux>
+            </div>
         )
     }
 };

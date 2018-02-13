@@ -1,11 +1,10 @@
 import React from 'react';
-import Aux from '../../hoc/Aux';
 
 const Services = (props) => {
     return (
-        <Aux>
+        <div>
             { props.children }
-        </Aux>
+        </div>
     )
 };
 

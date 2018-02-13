@@ -2,9 +2,9 @@ import React from 'react';
 import Aux from '../../hoc/Aux';
 
 const Calendar = (props) => (
-    <Aux>
+    <div>
         { props.children }
-    </Aux>
+    </div>
 )
 
 export default Calendar;
