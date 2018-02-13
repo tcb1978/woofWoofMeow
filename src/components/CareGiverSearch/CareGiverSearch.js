@@ -1,10 +1,11 @@
 import React from 'react';
+import Aux from '../../hoc/Aux';
 
 const CareGiverSearch = (props) => {
     return (
-        <div>
-            { props.children }
-        </div>
+        <Aux>
+            
+        </Aux>
     )
 }
 
