@@ -2,9 +2,9 @@ import React from 'react';
 
 const UpdateMessage = (props) => {
     return (
-        <div>
-            
-        </div>
+        <Aux>
+            { props.children }
+        </Aux>
     )
 }
 
