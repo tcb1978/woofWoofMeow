@@ -1,6 +1,7 @@
 import React from 'react';
 import About from '../../components/About/About';
-import About from '../../components/Services/Services';
+import Services from '../../components/Services/Services';
+import Aux from '../../hoc/Aux';
 
 export const Layout = (props) => {
     return(
