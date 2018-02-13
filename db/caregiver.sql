@@ -1,8 +1,8 @@
--- Table: caregivers
+-- Table: public.caregivers
 
--- DROP TABLE caregivers;
+-- DROP TABLE public.caregivers;
 
-CREATE TABLE caregivers
+CREATE TABLE public.caregivers
 (
     "caregiverId" bigint NOT NULL DEFAULT nextval('"caregivers_caregiverId_seq"'::regclass),
     "firstName" character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -16,6 +16,8 @@ CREATE TABLE caregivers
     avatar character varying(200) COLLATE pg_catalog."default" NOT NULL,
     longitude character varying(100) COLLATE pg_catalog."default" NOT NULL,
     latitude character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(100) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT caregivers_pkey PRIMARY KEY ("caregiverId")
 )
 WITH (
@@ -23,4 +25,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE caregivers
+ALTER TABLE public.caregivers

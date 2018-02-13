@@ -1,8 +1,8 @@
--- Table: clients
+-- Table: public.clients
 
--- DROP TABLE clients;
+-- DROP TABLE public.clients;
 
-CREATE TABLE clients
+CREATE TABLE public.clients
 (
     "clientId" bigint NOT NULL DEFAULT nextval('"clients_clientId_seq"'::regclass),
     "firstName" character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -16,6 +16,8 @@ CREATE TABLE clients
     avatar character varying(25) COLLATE pg_catalog."default" NOT NULL,
     longitude character varying(100) COLLATE pg_catalog."default" NOT NULL,
     latitude character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(100) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT clients_pkey PRIMARY KEY ("clientId")
 )
 WITH (
@@ -23,4 +25,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE clients
+ALTER TABLE public.clients
