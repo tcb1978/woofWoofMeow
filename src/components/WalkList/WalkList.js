@@ -3,9 +3,9 @@ import Aux from '../../hoc/Aux';
 
 const WalkList = (props) => {
     return (
-        <Aux>
+        <div>
             { props.children }
-        </Aux>
+        </div>
     )
 }
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 const Signin = (props) => {
     return (
-        <Aux>
+        <div>
             { props.children }
-        </Aux>
+        </div>
     )
 };
 
