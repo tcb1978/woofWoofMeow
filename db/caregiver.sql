@@ -1,8 +1,8 @@
--- Table: public.caregivers
+-- Table: caregivers
 
--- DROP TABLE public.caregivers;
+-- DROP TABLE caregivers;
 
-CREATE TABLE public.caregivers
+CREATE TABLE caregivers
 (
     "caregiverId" bigint NOT NULL DEFAULT nextval('"caregivers_caregiverId_seq"'::regclass),
     "firstName" character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -25,4 +25,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public.caregivers
+ALTER TABLE caregivers

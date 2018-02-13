@@ -1,8 +1,8 @@
--- Table: public.clients
+-- Table: clients
 
--- DROP TABLE public.clients;
+-- DROP TABLE clients;
 
-CREATE TABLE public.clients
+CREATE TABLE clients
 (
     "clientId" bigint NOT NULL DEFAULT nextval('"clients_clientId_seq"'::regclass),
     "firstName" character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -25,4 +25,4 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public.clients
+ALTER TABLE clients
