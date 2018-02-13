@@ -3,7 +3,9 @@ import Aux from '../../hoc/Aux';
 
 const Services = (props) => {
     return (
-        <Aux>Hello from Services.js</Aux>
+        <Aux>
+            Hello from Services.js
+        </Aux>
     )
 };
 

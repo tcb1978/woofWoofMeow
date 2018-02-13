@@ -12,7 +12,7 @@ class CareGiver extends Component {
             <Aux>
                 <Walklist />
                 <Calendar />
-                <Route path="/update-message" component={ UpdateMessage }/>
+                <Route path="/update-message" component={ UpdateMessage } />
             </Aux>
         )
     }
