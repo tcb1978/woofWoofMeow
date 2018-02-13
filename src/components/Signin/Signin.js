@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const Signin = (props) => {
-    return(
-        <Aux>
-            {props.children}
-        </Aux>
+const Signin = (props) => {
+    return (
+        <div>
+            
+        </div>
     )
 };
 
-export default Signin
+export default Signin;

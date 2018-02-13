@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export const UpdateMessage = (props) => {
-    return(
+const UpdateMessage = (props) => {
+    return (
         <div>
-            {props.children}
+            
         </div>
     )
 }
 
-export default UpdateMessage
+export default UpdateMessage;

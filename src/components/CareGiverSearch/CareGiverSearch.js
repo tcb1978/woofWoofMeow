@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Aux from '../../hoc/Aux';
 
-export const CareGiverSearch = (props) => {
-    return(
-        <div>
-            {props.children}
-        </div>
+const CareGiverSearch = (props) => {
+    return (
+        <Aux>
+            { props.children }
+        </Aux>
     )
 }
 
-export default CareGiverSearch
+export default CareGiverSearch;

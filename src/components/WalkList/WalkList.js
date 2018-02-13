@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Aux from '../../hoc/Aux';
 
-export const WalkList = (props) => {
-    return(
-        <div>
-            {props.children}
-        </div>
+const WalkList = (props) => {
+    return (
+        <Aux>
+            { props.children }
+        </Aux>
     )
 }
 
-export default WalkList
+export default WalkList;

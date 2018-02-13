@@ -3,7 +3,7 @@ import About from '../../components/About/About';
 import Services from '../../components/Services/Services';
 import Aux from '../../hoc/Aux';
 
-export const Layout = (props) => {
+const Layout = (props) => {
     return(
         <Aux>
             <About />
@@ -12,4 +12,4 @@ export const Layout = (props) => {
     )
 }
 
-export default Layout
+export default Layout;
