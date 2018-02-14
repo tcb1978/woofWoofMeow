@@ -1,21 +1,14 @@
-DROP TABLE IF EXISTS animal
-CREATE TABLE IF NOT EXISTS animal (
-    animal_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    name VARCHAR (100) NOT NULL,
-    age VARCHAR (100) NOT NULL,
-    weight VARCHAR (3) NOT NULL,
-    sex VARCHAR (7) NOT NULL
-);
---SELECT * FROM animal
---ORDER BY animal_id ASC
+DROP TABLE IF EXISTS users, animal, jobs, review, caregiver_availability CASCADE;
+-- DROP TABLE IF EXISTS caregiver_availability;
+-- DROP TABLE IF EXISTS reviews;
+-- DROP TABLE IF EXISTS animal;
+-- DROP TABLE IF EXISTS jobs;
 
-DROP TABLE IF EXISTS users
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
-    firstName VARCHAR (100) NOT NULL,
-    lasttName VARCHAR (100) NOT NULL,
-    streetAddress VARCHAR (100) NOT NULL,
+    first_name VARCHAR (100) NOT NULL,
+    last_name VARCHAR (100) NOT NULL,
+    street_address VARCHAR (100) NOT NULL,
     state VARCHAR (50) NOT NULL,
     city VARCHAR (50) NOT NULL,
     zip VARCHAR (25) NOT NULL,
@@ -24,12 +17,30 @@ CREATE TABLE IF NOT EXISTS users (
     avatar VARCHAR (200) NOT NULL,
     title VARCHAR (50) NOT NULL,
     longitude VARCHAR (100) NOT NULL,
-    latitude VARCHAR (100) NOT NULL
+    latitude VARCHAR (100) NOT NULL,
+    password VARCHAR (100) NOT NULL
 );
---SELECT * FROM client
---ORDER BY user_id ASC
 
-DROP TABLE IF EXISTS caregiver_availability
+INSERT INTO users
+(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, longitude, latitude, password)
+VALUES
+('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '-118.390856', '34.095567', '1');
+
+CREATE TABLE IF NOT EXISTS animal (
+    animal_id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL,
+    breed VARCHAR (100) NOT NULL,
+    age VARCHAR (100) NOT NULL,
+    weight VARCHAR (7) NOT NULL,
+    sex VARCHAR (7) NOT NULL,
+    user_id INTEGER NOT NULL
+);
+
+INSERT INTO animal
+(name, breed, age, weight, sex, user_id)
+VALUES
+('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 1);
+
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -40,10 +51,7 @@ CREATE TABLE IF NOT EXISTS caregiver_availability (
     end_time VARCHAR (10) NOT NULL,
     am_pm VARCHAR (5) NOT NULL
 );
---SELECT * FROM caregiver_availability
---ORDER BY caregiver_availability_id ASC
 
-DROP TABLE IF EXISTS jobs
 CREATE TABLE IF NOT EXISTS jobs (
     job_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -59,19 +67,13 @@ CREATE TABLE IF NOT EXISTS jobs (
     thirty_minute_service VARCHAR (3) NOT NULL,
     sixty_minute_service VARCHAR (3) NOT NULL,
     sixty_minute_park_service VARCHAR (3) NOT NULL
-
-
 );
---SELECT * FROM jobs
---ORDER BY job_id ASC
 
-DROP TABLE IF EXISTS reviews
+
 CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     message VARCHAR (1000) NOT NULL,
     rating VARCHAR (100) NOT NULL,
-    job_id INTEGER NOT NULL,
+    job_id INTEGER NOT NULL
 );
---SELECT * FROM reviews
---ORDER BY review_id ASC
