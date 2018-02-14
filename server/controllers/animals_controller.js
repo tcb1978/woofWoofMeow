@@ -23,7 +23,7 @@ module.exports = {
     console.log(req.params);
     console.log(req.body);
 
-    db.get_animal([ id ])
+    db.get_animals_by_user([ id ])
       .then( (animals) => res.status(200).json(animals) )
       .catch( (error) => res.status(500).send(error) )
   },
@@ -34,24 +34,30 @@ module.exports = {
     console.log(req.params);
     console.log(req.body);
 
-    db.get_animal([ id ])
+    // Later 1 is gonna session user id
+    db.get_animal([ id, 1 ])
       .then( (animal) => res.status(200).json(animal) )
       .catch( (error) => res.status(500).send(error) )
   },
 
   update: (req, res, next) => {
     const db = req.app.get('db');
+    const { id } = req.params;
+    const { name } = req.body;
 
-    db.update_animal([])
-      .then( () => res.status(200).send() )
-      .catch( () => res.status(500).send() )
+    // Later 1 is gonna session user id
+    db.update_animal([ name, id, 1 ])
+      .then( (animal) => res.status(200).json(animal) )
+      .catch( (error) => res.status(500).send(error) )
   },
 
   destroy: (req, res, next) => {
     const db = req.app.get('db');
+    const { id } = req.params;
 
-    db.delete_animal([])
-      .then( () => res.status(200).send() )
-      .catch( () => res.status(500).send() )
+    // Later 1 is gonna session user id
+    db.delete_animal([ id, 1 ])
+      .then( () => res.status(200).send('deleted') )
+      .catch( (error) => res.status(500).send(error) )
   }
 }

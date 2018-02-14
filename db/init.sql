@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS animals (
     age VARCHAR (100) NOT NULL,
     weight VARCHAR (7) NOT NULL,
     sex VARCHAR (7) NOT NULL,
-    user_id INTEGER NOT NULL
+    user_id INTEGER REFERENCES users (user_id) NOT NULL
 );
 
 INSERT INTO animals
@@ -41,7 +41,7 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER REFERENCES users (user_id) NOT NULL,
     month INTEGER NOT NULL,
     day INTEGER NOT NULL,
     year INTEGER NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS caregiver_availability (
 
 CREATE TABLE IF NOT EXISTS jobs (
     job_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER REFERENCES users (user_id) NOT NULL,
     comments VARCHAR (100),
     month INTEGER NOT NULL,
     day INTEGER NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     begin_time VARCHAR (10) NOT NULL,
     end_time VARCHAR (10) NOT NULL,
     am_pm VARCHAR (5) NOT NULL,
-    animal_id INTEGER NOT NULL,
+    animal_id INTEGER REFERENCES animals (animal_id) NOT NULL,
     request_status VARCHAR (3) NOT NULL,
     thirty_minute_service VARCHAR (3) NOT NULL,
     sixty_minute_service VARCHAR (3) NOT NULL,
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS jobs (
 
 CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER REFERENCES users (user_id) NOT NULL,
     message VARCHAR (1000) NOT NULL,
     rating VARCHAR (100) NOT NULL,
-    job_id INTEGER NOT NULL
+    job_id INTEGER REFERENCES jobs (job_id) NOT NULL
 );
