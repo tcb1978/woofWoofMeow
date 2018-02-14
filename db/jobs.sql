@@ -4,29 +4,29 @@
 
 CREATE TABLE jobs
 (
-    jobs_id bigint NOT NULL DEFAULT nextval('jobs_jobs_id_seq'::regclass),
-    "clientId" bigint NOT NULL,
-    comments bit varying(1000),
+    job_id bigint NOT NULL DEFAULT nextval('jobs_job_id_seq'::regclass),
+    user_id bigint NOT NULL,
+    comments character varying(1000) COLLATE pg_catalog."default" NOT NULL,
     month integer NOT NULL,
     day integer NOT NULL,
-    year integer NOT NULL,
-    "beginTime" character varying(10) COLLATE pg_catalog."default" NOT NULL,
-    "endTime" character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    begin_time character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    end_time character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    animal_id bigint NOT NULL,
     am_pm character varying(4) COLLATE pg_catalog."default" NOT NULL,
-    "animalId" bigint NOT NULL,
-    "requestStatus" character varying(3) COLLATE pg_catalog."default" NOT NULL,
-    "thirtyMinuteService" character varying(3) COLLATE pg_catalog."default",
-    "sixtyMinuteService" character varying(3) COLLATE pg_catalog."default",
-    "sixtyMinuteParkService" character varying(3) COLLATE pg_catalog."default",
-    CONSTRAINT jobs_pkey PRIMARY KEY (jobs_id),
-    CONSTRAINT "animalId" FOREIGN KEY (jobs_id)
-        REFERENCES animals ("animalId") MATCH SIMPLE
+    request_status character varying(5) COLLATE pg_catalog."default" NOT NULL,
+    year integer NOT NULL,
+    "    thirty_minute_service" character varying(10) COLLATE pg_catalog."default",
+    sixty_minute_service character varying(10) COLLATE pg_catalog."default",
+    sixty_minute_park_service character varying(10) COLLATE pg_catalog."default",
+    CONSTRAINT jobs_pkey PRIMARY KEY (job_id),
+    CONSTRAINT animal_id FOREIGN KEY (job_id)
+        REFERENCES animal (animal_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    CONSTRAINT "clientId" FOREIGN KEY (jobs_id)
-        REFERENCES clients ("clientId") MATCH SIMPLE
+    CONSTRAINT user_id FOREIGN KEY (job_id)
+        REFERENCES users (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        ON DELETE CASCADE
 )
 WITH (
     OIDS = FALSE

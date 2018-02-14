@@ -1,24 +1,25 @@
--- Table: animals
+-- Table: animal
 
--- DROP TABLE animals;
+-- DROP TABLE animal;
 
-CREATE TABLE animals
+CREATE TABLE animal
 (
-    "animalId" bigint NOT NULL DEFAULT nextval('"animals_animalId_seq"'::regclass),
-    "clientId" bigint NOT NULL,
-    name character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    age character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    weight character varying(3) COLLATE pg_catalog."default" NOT NULL,
-    sex character varying(7) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT animals_pkey PRIMARY KEY ("animalId"),
-    CONSTRAINT "clientId" FOREIGN KEY ("animalId")
-        REFERENCES clients ("clientId") MATCH SIMPLE
+    animal_id bigint NOT NULL DEFAULT nextval('animal_animal_id_seq'::regclass),
+    name character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    breed character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    age character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    weight character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    sex character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    user_id bigint NOT NULL,
+    CONSTRAINT animal_pkey PRIMARY KEY (animal_id),
+    CONSTRAINT user_id FOREIGN KEY (animal_id)
+        REFERENCES users (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        ON DELETE CASCADE
 )
 WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
 
-ALTER TABLE animals
+ALTER TABLE animal
