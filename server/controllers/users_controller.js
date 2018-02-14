@@ -56,6 +56,12 @@ module.exports = {
   },
 
   getOne: (req, res, next) => {
-    
+    const db = req.app.get('db');
+    const { id } = req.params
+    console.log(req.body);
+
+    db.get_user([id])
+      .then(user => { res.status(200).json(user) })
+      .catch(error => { res.status(500).json(error) })
   }
 }
