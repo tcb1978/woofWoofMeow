@@ -25,7 +25,7 @@ app.use( session({
 
 // Controllers
 const users_controller = require('./controllers/users_controller');
-const clients_controller = require('./controllers/clients_controller');
+const petowners_controller = require('./controllers/petowners_controller');
 const caregivers_controller = require ('./controllers/caregivers_controller');
 const animals_controller = require ('./controllers/animals_controller');
 const availability_controller = require ('./controllers/availability_controller');
@@ -39,10 +39,10 @@ app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
 app.get('/user/:id', users_controller.getOne);
 
-// Clients management
-app.get('/clients', clients_controller.getAll);
-app.get('/client/:id', clients_controller.getOne);
-app.delete('/delete/client/:id', clients_controller.destroy);
+// Petowners management
+app.get('/petowners', petowners_controller.getAll);
+app.get('/petowner/:id', petowners_controller.getOne);
+app.delete('/delete/petowner/:id', petowners_controller.destroy);
 
 // Caregivers management
 app.get('/caregivers', caregivers_controller.getAll);
