@@ -13,6 +13,16 @@ const app = express();
 
 app.use( bodyParser.json() );
 
+// Session initialization
+app.use( session({
+  secret: process.env.SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    maxAge: 200 * 1000
+  }
+}) );
+
 // Controllers
 const users_controller = require('./controllers/users_controller');
 const clients_controller = require('./controllers/clients_controller');
