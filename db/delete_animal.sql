@@ -1,1 +1,1 @@
-DELETE FROM animal WHERE animal_id = $1;
+DELETE FROM animals WHERE animal_id = $1;

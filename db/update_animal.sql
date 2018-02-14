@@ -1,1 +1,1 @@
-UPDATE animal SET name = $2 WHERE animal_id = $1;
+UPDATE animals SET name = $2 WHERE animal_id = $1;

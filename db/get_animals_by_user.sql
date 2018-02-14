@@ -1,2 +1,2 @@
-SELECT * FROM animal
+SELECT * FROM animals
 WHERE user_id = $1;

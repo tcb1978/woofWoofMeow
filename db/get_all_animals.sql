@@ -1,1 +1,1 @@
-SELECT * FROM animal;
+SELECT * FROM animals;
