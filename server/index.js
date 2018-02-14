@@ -5,7 +5,9 @@ const massive = require('massive');
 require('dotenv').config();
 
 // Connecting our .env variable
-massive( process.env.CONNECTION_STRING ).then( db => app.set('db', db) );
+massive( process.env.CONNECTION_STRING )
+  .then( db => app.set('db', db) )
+  .catch( (error) => console.log(error));
 
 const app = express();
 

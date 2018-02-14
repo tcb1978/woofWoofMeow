@@ -17,6 +17,7 @@ CREATE TABLE users
     title character varying(50) COLLATE pg_catalog."default" NOT NULL,
     longitude character varying(20) COLLATE pg_catalog."default" NOT NULL,
     latitude character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(200) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (user_id)
 )
 WITH (
