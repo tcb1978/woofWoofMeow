@@ -1,8 +1,4 @@
-DROP TABLE IF EXISTS users, animal, jobs, review, caregiver_availability CASCADE;
--- DROP TABLE IF EXISTS caregiver_availability;
--- DROP TABLE IF EXISTS reviews;
--- DROP TABLE IF EXISTS animal;
--- DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS users, animals, jobs, review, caregiver_availability CASCADE;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
@@ -21,12 +17,14 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR (100) NOT NULL
 );
 
+
 INSERT INTO users
 (first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, longitude, latitude, password)
 VALUES
 ('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '-118.390856', '34.095567', '1');
 
-CREATE TABLE IF NOT EXISTS animal (
+
+CREATE TABLE IF NOT EXISTS animals (
     animal_id SERIAL PRIMARY KEY,
     name VARCHAR (100) NOT NULL,
     breed VARCHAR (100) NOT NULL,
@@ -36,7 +34,7 @@ CREATE TABLE IF NOT EXISTS animal (
     user_id INTEGER NOT NULL
 );
 
-INSERT INTO animal
+INSERT INTO animals
 (name, breed, age, weight, sex, user_id)
 VALUES
 ('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 1);

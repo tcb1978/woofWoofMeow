@@ -52,7 +52,7 @@ app.delete('/delete/caregiver/:id', caregivers_controller.destroy);
 // Animals management
 app.post('/animal', animals_controller.create);
 app.get('/animals', animals_controller.getAll);
-app.get('/animals/:user', animals_controller.getUserAnimals);
+app.get('/animals/:id', animals_controller.getUserAnimals);
 app.get('/animal/:id', animals_controller.getOne);
 app.put('/update/animal/:id', animals_controller.update);
 app.delete('/delete/animal/:id', animals_controller.destroy);

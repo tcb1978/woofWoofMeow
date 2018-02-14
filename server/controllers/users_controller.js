@@ -24,7 +24,7 @@ module.exports = {
   login: (req, res, next) => {
     const db = req.app.get('db');
     const { email, password } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     db.get_user([email]) // need to create this sql file
       // we get the user whose email is matched with out request
       .then(users => {
@@ -57,7 +57,7 @@ module.exports = {
 
   getOne: (req, res, next) => {
     const db = req.app.get('db');
-    const { id } = req.params
+    const { id } = req.params;
     console.log(req.body);
 
     db.get_user([id])
