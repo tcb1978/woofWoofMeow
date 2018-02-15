@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router';
-import Aux from '../../hoc/Aux';
-import axios from 'axios';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import Aux from '../../hoc/Aux'
+import axios from 'axios'
 
 class AnimalInfo extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             fireRedirect: false,
             name: '',
@@ -114,8 +114,8 @@ class AnimalInfo extends Component {
                     <Redirect to={'/'} />
                 )}
             </Aux>
-        );
+        )
     }
 }
 
-export default AnimalInfo;
+export default AnimalInfo
