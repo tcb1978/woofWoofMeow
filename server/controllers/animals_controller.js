@@ -14,7 +14,7 @@ module.exports = {
 
     db.get_all_animals([])
       .then( (animals) => res.status(200).send(animals) )
-      .catch( () => res.status(500).send() )
+      .catch( (error) => res.status(500).send(error) )
   },
 
   getUserAnimals: (req, res, next) => {

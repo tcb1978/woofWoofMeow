@@ -75,7 +75,7 @@ app.get('/job/:id', jobs_controller.getOne);
 // Reviews management
 app.post('/review', reviews_controller.create);
 app.get('/reviews', reviews_controller.getAll);
-app.get('/reviews/:client', reviews_controller.getReviewsForCaregiver);
+app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver);
 
 const port = process.env.PORT || 3050;
 app.listen( port, () => console.log(`Listening on port: ${port}`) );

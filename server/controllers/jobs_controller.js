@@ -21,6 +21,7 @@ module.exports = {
     const db = req.app.get('db');
     const { id } = req.params;
 
+    // Later 1 is gonna session user id
     db.get_job([ id, 1 ])
       .then( (job) => res.status(200).json(job) )
       .catch( (error) => res.status(500).send(error) )
