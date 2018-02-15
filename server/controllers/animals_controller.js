@@ -4,7 +4,7 @@ module.exports = {
     const { name, breed, age, weight, sex, user_id  } = req.body;
     console.log(req.body);
 
-    db.create_animal([ name, breed, age, weight, sex, user_id ])
+    db.create_animal([ name, breed, age, weight, sex, 1 ])
       .then( (animal) => res.status(200).json(animal) )
       .catch( (error) => res.status(500).send(error) )
   },
