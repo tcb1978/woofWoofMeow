@@ -60,7 +60,7 @@ app.delete('/delete/animal/:id', animals_controller.destroy);
 // Availability management
 app.post('/create/available', availability_controller.create);
 app.get('/available', availability_controller.getAll);
-app.put('/update/available', availability_controller.update);
+app.put('/update/available/:id', availability_controller.update);
 
 // Booking management
 app.post('/create/booked', bookings_controller.create);
