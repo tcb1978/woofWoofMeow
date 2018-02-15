@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
-import axios from 'axios'
+import axios from 'axios';
 
 class UserInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
+            fireRedirect: false, 
             first_name: '',
             last_name: '',
             street_address: '',
@@ -16,22 +18,22 @@ class UserInfo extends Component {
             phone: '',
             password: '',
             passwordCheck: '',
-            avatar: 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116',
-            longitude: 'asdfa',
-            latitude: 'asdfasd',
+            avatar:'',
+            longitude: null,
+            latitude: null,
             title: 'pet owner'
 
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleFirstNameSubmit = this.handleFirstNameSubmit.bind(this);
-        this.handleLastNameSubmit = this.handleLastNameSubmit.bind(this);
-        this.handleStreetAddressSubmit = this.handleStreetAddressSubmit.bind(this);
-        this.handleCitySubmit = this.handleCitySubmit.bind(this);
-        this.handleStateSubmit = this.handleStateSubmit.bind(this);
-        this.handleZipSubmit = this.handleZipSubmit.bind(this);
-        this.handlePhoneSubmit = this.handlePhoneSubmit.bind(this);
-        this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleFirstNameSubmit = this.handleFirstNameSubmit.bind(this);
+        // this.handleLastNameSubmit = this.handleLastNameSubmit.bind(this);
+        // this.handleStreetAddressSubmit = this.handleStreetAddressSubmit.bind(this);
+        // this.handleCitySubmit = this.handleCitySubmit.bind(this);
+        // this.handleStateSubmit = this.handleStateSubmit.bind(this);
+        // this.handleZipSubmit = this.handleZipSubmit.bind(this);
+        // this.handlePhoneSubmit = this.handlePhoneSubmit.bind(this);
+        // this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
     }
 
     handleSubmit(event) {
@@ -56,10 +58,14 @@ class UserInfo extends Component {
                 longitude,
                 latitude,
                 password
-            })
-                .catch(
+            }).then(
+                this.setState({
+                    fireRedirect: true
+                })
+            )
+            .catch(
                 (error) => (console.log(error))
-                )
+            )
         }
     }
 
@@ -165,6 +171,8 @@ class UserInfo extends Component {
     }
 
     render() {
+        // const { from } = this.props.location.state || '/'
+        const { fireRedirect } = this.state
         return (
             <Aux>
                 <form onSubmit={ (event) => this.handleSubmit(event)}>
@@ -206,6 +214,9 @@ class UserInfo extends Component {
                     
                     <input type="submit" value="Submit"  />
                 </form>
+                {fireRedirect && (
+                    <Redirect to={'/'} />
+                )}
             </Aux>
         );
     }
