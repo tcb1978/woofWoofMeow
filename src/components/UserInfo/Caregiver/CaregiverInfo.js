@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import Aux from '../../hoc/Aux';
+import Aux from '../../../hoc/Aux';
 import axios from 'axios';
 
-class AnimalInfo extends Component {
+class CaregiverInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,13 +51,22 @@ class AnimalInfo extends Component {
         return (
             <Aux>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <label>
-                        First Name:<text type="text" placeholder="first name" onChange={(event) => this.handlePersonalDescriptionSubmit(event)} />
-                    </label>
+                    
+                    <label>About Yourself: </label>
 
-                    <label>
-                        How many miles proximety to you would you like to work?<input type="text" placeholder="last name" onChange={(event) => this.handleHowManyMilesProximitySubmit(event)} />
-                    </label>
+                    <textarea name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handlePersonalDescriptionSubmit(event)} />
+
+                    <label>How many miles proximety from your home would you like to work?</label>
+                    
+                    <select
+                        type="text"
+                        placeholder="last name"
+                        onChange={(event) => this.handleHowManyMilesProximitySubmit(event)}>
+                        <option value="3">3</option>
+                        <option value="3">5</option>
+                        <option value="7">7</option>
+                        <option value="10">10</option>
+                    </select>
 
                     <input type="submit" value="Submit" />
                 </form>
@@ -69,4 +78,4 @@ class AnimalInfo extends Component {
     }
 }
 
-export default AnimalInfo;
+export default CaregiverInfo;
