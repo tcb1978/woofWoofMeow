@@ -65,7 +65,7 @@ app.put('/update/available/:id', availability_controller.update);
 // Booking management
 app.post('/create/booked', bookings_controller.create);
 app.get('/booked', bookings_controller.getAll);
-app.put('/update/booked', bookings_controller.update);
+app.put('/update/booked/:id', bookings_controller.update);
 
 // Jobs management
 app.post('/job', jobs_controller.create);
