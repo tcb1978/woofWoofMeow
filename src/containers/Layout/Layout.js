@@ -4,13 +4,14 @@ import Services from '../../components/Services/Services';
 import Aux from '../../hoc/Aux';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import DogInfo from '../../components/UserInfo/AnimalInfo';
-import CaregiverInfo from '../../components/UserInfo/Caregiver/CaregiverInfo'
+import CaregiverInfo from '../../components/UserInfo/CaregiverInfo/CaregiverInfo';
+import Signin from '../../components/Signin/Signin';
+import routes from '../../routes/routes';
 
 const Layout = (props) => {
     return(
         <Aux>
-            <UserInfo />
-            <CaregiverInfo />
+            { routes }
         </Aux>
     )
 }

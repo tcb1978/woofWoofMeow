@@ -3,17 +3,18 @@ import { Route } from 'react-router-dom';
 import Walklist from '../../../components/WalkList/WalkList';
 import Calendar from '../../../components/Calendar/Calendar';
 import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
-import Aux from '../../hoc/Aux'
+import Aux from '../../../hoc/Aux';
 
 
 class CareGiver extends Component {
     render () {
         return (
-            <Aux>
+            <div>
                 <Walklist />
                 <Calendar />
                 <Route path="/update-message" component={ UpdateMessage } />
-            </Aux>
+                <div>ha caregiver!</div>
+            </div>
         )
     }
 };

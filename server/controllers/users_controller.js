@@ -34,9 +34,24 @@ module.exports = {
           bcrypt.compare(password, users[0].password).then(passwordMatch => {
             if (passwordMatch) {
               // if there is any match open the session and send status 200
-              // req.session.user = { email: users[0].email };
-              // res.status(200).json({ user: req.session.user });
-              res.status(200).json( users );
+              req.session.user = {
+                first_name: users[0].first_name,
+                last_name: users[0].last_name,
+                street_address: users[0].street_address,
+                state: users[0].state,
+                city: users[0].city,
+                zip: users[0].zip,
+                email: users[0].email,
+                phone: users[0].phone,
+                avatar: users[0].avatar,
+                title: users[0].title,
+                longitude: users[0].longitude,
+                latitude: users[0].latitude,
+                about_message: users[0].about_message,
+                proximity_defenition: users[0].proximity_defenition
+              };
+              res.status(200).json({ user: req.session.user });
+              // res.status(200).json( users );
             } else {
               res.status(401).json({ message: 'Wrong password' })
             }

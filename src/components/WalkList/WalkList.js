@@ -1,11 +1,10 @@
 import React from 'react';
-import Aux from '../../hoc/Aux';
 
 const WalkList = (props) => {
     return (
-        <Aux>
+        <div>
             
-        </Aux>
+        </div>
     )
 }
 
