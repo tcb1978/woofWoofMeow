@@ -12,17 +12,17 @@ CREATE TABLE IF NOT EXISTS users (
     phone VARCHAR (25) NOT NULL,
     avatar VARCHAR (200) NOT NULL,
     title VARCHAR (50) NOT NULL,
+    password VARCHAR (100) NOT NULL,
     longitude VARCHAR (100) NOT NULL,
     latitude VARCHAR (100) NOT NULL,
-    password VARCHAR (100) NOT NULL
+    about_message VARCHAR (1000) NOT NULL,
+    proximity_defenition VARCHAR (10) NOT NULL
 );
 
-
 INSERT INTO users
-(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, longitude, latitude, password)
+(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_defenition)
 VALUES
-('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '-118.390856', '34.095567', '1');
-
+('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', 'bla');
 
 CREATE TABLE IF NOT EXISTS animals (
     animal_id SERIAL PRIMARY KEY,
@@ -38,6 +38,7 @@ INSERT INTO animals
 (name, breed, age, weight, sex, user_id)
 VALUES
 ('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 1);
+
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
@@ -66,7 +67,6 @@ CREATE TABLE IF NOT EXISTS jobs (
     sixty_minute_service VARCHAR (3) NOT NULL,
     sixty_minute_park_service VARCHAR (3) NOT NULL
 );
-
 
 CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,

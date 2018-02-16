@@ -38,16 +38,17 @@ app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
 app.get('/user/:id', users_controller.getOne);
+app.get('/users', users_controller.getAll);
+app.put('/update/user', users_controller.update)
+app.delete('/delete/user/:id', users_controller.destroy);
 
 // Petowners management
 app.get('/petowners', petowners_controller.getAll);
 app.get('/petowner/:id', petowners_controller.getOne);
-app.delete('/delete/petowner/:id', petowners_controller.destroy);
 
 // Caregivers management
 app.get('/caregivers', caregivers_controller.getAll);
 app.get('/caregiver/:id', caregivers_controller.getOne);
-app.delete('/delete/caregiver/:id', caregivers_controller.destroy);
 
 // Animals management
 app.post('/animal', animals_controller.create);
@@ -71,6 +72,7 @@ app.put('/update/booked/:id', bookings_controller.update);
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
 app.get('/job/:id', jobs_controller.getOne);
+app.delete('/delete/job/:id', jobs_controller.destroy);
 
 // Reviews management
 app.post('/review', reviews_controller.create);
