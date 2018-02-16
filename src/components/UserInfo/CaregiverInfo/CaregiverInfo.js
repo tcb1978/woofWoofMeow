@@ -16,19 +16,33 @@ class CaregiverInfo extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        const { avatar, proximity_defenition, about_message } = this.state
-        axios.post('', {
-            avatar, 
-            proximity_defenition, 
-            about_message
-        }).then(
-            this.setState({
-                avatar: avatar,
-                proximity_defenition: proximity_defenition,
-                about_message: about_message
-            })
-            )
-            .catch((error) => (console.log(error)))
+        axios.get('/user/1').then(user => {
+            const { first_name, last_name, street_address, state, city, zip, email, phone, title, longitude, latitude, password} = user.data[0]
+            const { avatar, proximity_defenition, about_message} = this.state
+            axios.put('/update/user', {
+                first_name,
+                last_name,
+                street_address,
+                state,
+                city,
+                zip,
+                email,
+                phone,
+                avatar,
+                title,
+                longitude,
+                latitude,
+                password,
+                proximity_defenition,
+                about_message
+            }).then(
+                this.setState({
+                    avatar: avatar,
+                    proximity_defenition: proximity_defenition,
+                    about_message: about_message
+            })).catch((error) => (console.log(error)))
+
+        })
     }
 
     handleChange(event) {
@@ -69,7 +83,7 @@ class CaregiverInfo extends Component {
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="form-group">
                         Upload an image of yourself. Pictures with your furry friends are best!!
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleAvatarUploadSubmit(event)} />
+                        <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleAvatarUploadSubmit(event)} />
                     </div>
                     <div className="form-group">
                         Include a descritprion about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!! 
@@ -88,6 +102,7 @@ class CaregiverInfo extends Component {
                             <option value="10">10</option>
                         </select>
                     </div>
+                    
                     {/*<Calandar />*/}
 
                     <input className="form-control btn btn-primary mb-2" type="submit" value="Submit" />
