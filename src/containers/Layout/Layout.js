@@ -9,8 +9,7 @@ import CaregiverInfo from '../../components/UserInfo/Caregiver/CaregiverInfo'
 const Layout = (props) => {
     return(
         <Aux>
-            
-            <CaregiverInfo />
+
         </Aux>
     )
 }

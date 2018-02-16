@@ -102,6 +102,7 @@ class CaregiverInfo extends Component {
                             <option value="10">10</option>
                         </select>
                     </div>
+                    
                     {/*<Calandar />*/}
 
                     <input className="form-control btn btn-primary mb-2" type="submit" value="Submit" />
