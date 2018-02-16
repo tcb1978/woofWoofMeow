@@ -176,43 +176,41 @@ class UserInfo extends Component {
         return (
             <Aux>
                 <form onSubmit={ (event) => this.handleSubmit(event)}>
-                    <label>
-                        First Name:<input type="text" placeholder="first name" onChange={  (event) => this.handleFirstNameSubmit(event)} />
-                    </label>
-
-                    <label>
-                        Last Name:<input type="text" placeholder="last name" onChange={ (event) => this.handleLastNameSubmit(event)} />
-                    </label>
-
-                    <label>
-                        Street Address:<input type="text" placeholder="street address" onChange={ (event) => this.handleStreetAddressSubmit(event)} />
-                    </label>
-
-                    <label>
-                        City:<input type="text" placeholder="city" onChange={ (event) => this.handleCitySubmit(event)} />
-                    </label>
-
-                    <label>
-                        State:<input type="text" placeholder="state" onChange={ (event) => this.handleStateSubmit(event)} />
-                    </label>
-
-                    <label>
-                        Zip:<input type="text" placeholder="zip" onChange={ (event) => this.handleZipSubmit(event)} />
-                    </label>
-
-                    <label>
-                        Phone:<input type="text"  placeholder="phone" onChange={ (event) => this.handlePhoneSubmit(event)} />
-                    </label>
-
-                    <label>
-                        Email:<input type="text"  placeholder="email" onChange={ (event) => this.handleEmailSubmit(event)} />
-                    </label>
-
-                    <input type="password" placeholder={this.state.password} placeholder="password" required onChange={(event) => this.handlePassword(event)}/>
-                    
-                    <input type="password" placeholder={this.state.passwordCheck} placeholder="password confirm" required onChange={(event) => this.handlePasswordCheck(event)} />
-                    
-                    <input type="submit" value="Submit"  />
+                    <div className="form-group">
+                        First Name:<input className="form-control" type="text" onChange={(event) => this.handleFirstNameSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Last Name:<input className="form-control" type="text" onChange={ (event) => this.handleLastNameSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Street Address:<input className="form-control" type="text" onChange={ (event) => this.handleStreetAddressSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        City:<input className="form-control" type="text" onChange={ (event) => this.handleCitySubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        State:<input className="form-control" type="text" onChange={ (event) => this.handleStateSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Zip:<input className="form-control" type="text" onChange={ (event) => this.handleZipSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Phone:<input className="form-control" type="text" onChange={ (event) => this.handlePhoneSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Email:<input className="form-control" type="text" onChange={ (event) => this.handleEmailSubmit(event)} />
+                    </div>
+                    <div className="form-group">
+                        Create Password:
+                        <input className="form-control"  type="password" required onChange={(event) => this.handlePassword(event)}/>
+                    </div>
+                    <div className="form-group">
+                        Confirm Password:
+                        <input className="form-control"  type="password" required onChange={(event) => this.handlePasswordCheck(event)} />
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control btn btn-primary mb-2"  type="submit" value="Submit"  />
+                    </div>
                 </form>
                 {fireRedirect && (
                     <Redirect to={'/'} />
