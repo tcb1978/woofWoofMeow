@@ -69,7 +69,7 @@ class CaregiverInfo extends Component {
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="form-group">
                         Upload an image of yourself. Pictures with your furry friends are best!!
-                        <input className="form-control-file" id="exampleFormControlFile1" type="text" placeholder="personal image" onChange={(event) => this.handleAvatarUploadSubmit(event)} />
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleAvatarUploadSubmit(event)} />
                     </div>
                     <div className="form-group">
                         Include a descritprion about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!! 
