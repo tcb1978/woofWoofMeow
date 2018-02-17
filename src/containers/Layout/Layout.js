@@ -5,6 +5,7 @@ import Aux from '../../hoc/Aux';
 import './Layout.css'
 // import Signup from '../../components/Signup/Signup';
 // import Signin from '../../components/Signin/Signin';
+import Scroll from 'react-scroll-to-element';
 
 const Layout = (props) => {
     return(
@@ -12,8 +13,8 @@ const Layout = (props) => {
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
-                    <a href="#_About">About </a>
-                    <a href="#_Services">Services </a>
+                    <Scroll type="id" element="_About">About </Scroll>
+                    <Scroll type="id" element="_Services">Services </Scroll>
                     <Link to="/signup">Sign Up </Link>
                     <Link to="/signin">Sign In </Link>
                 </div>
@@ -123,9 +124,9 @@ const Layout = (props) => {
                         <div className="col-xs-12 col-sm-4">
                             <ul>
                                 <li><h2>Info</h2></li>
-                                <li><a href="#_About" >About</a> </li>
-                                <li><a href="#_Services" >Services</a> </li>
-                                <li><a href="#_HowItWorks" >How It works</a> </li>
+                                <li><Scroll type="id" element="_About">About </Scroll></li>
+                                <li><Scroll type="id" element="_Services">Services </Scroll></li>
+                                <li><Scroll type="id" element="_HowItWorks" >How It works</Scroll></li>
                             </ul>
                         </div>
                         <div className="col-xs-12 col-sm-4">
