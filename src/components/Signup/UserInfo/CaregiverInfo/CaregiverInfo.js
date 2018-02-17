@@ -22,22 +22,24 @@ class CaregiverInfo extends Component {
             <Aux>
                 <div className="container" >
                     <div className="row">
-                        <div className="col-xs-12">
-                            <label className="form-group">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
                                 Upload an image of yourself. Pictures with your furry friends are best!!
-                                <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} />
-                            </label>
+                            </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-6">
+                            <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} />
                         </div>
                         <div className="col-xs-12">
-                            <label className="form-group">
+                            <div className="form-group">
                                 Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!
                                 <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
-                            </label>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-xs-12" >
-                            <label className="form-group">
+                            <div className="form-group">
                                 How many miles proximity from your home would you like to work? Consider commute times. Can you arrive in a reasonable window according to your appointments? Each appointment allows for a 60 minute window before and after the suggested scheduling time.
                                 <select
                                     className="form-control"
@@ -49,7 +51,7 @@ class CaregiverInfo extends Component {
                                     <option value="7">7</option>
                                     <option value="10">10</option>
                                 </select>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>

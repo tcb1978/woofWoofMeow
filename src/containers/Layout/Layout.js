@@ -117,9 +117,6 @@ const Layout = (props) => {
                 </div>
             </section>
             <div className="finallyGetStarted"><Link to="/" className="btn-yellow  border-radius">Get started</Link></div>
-
-            { props.children }
-
             <footer>
                 <div className="container">
                     <div className="row">
