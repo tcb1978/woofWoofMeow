@@ -108,11 +108,11 @@ class CaregiverInfo extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-12 col-md-6">
+                            <div className="col-xs-12 col-sm-6">
                                 <div className="form-group">
                                     Include a descritprion about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!
                                 </div>
-                                <div className="col-xs-12 col-md-6">
+                                <div className="col-xs-12 col-sm-6">
                                     <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handlePersonalDescriptionSubmit(event)} />
                                 </div>
                             </div>
