@@ -1,0 +1,66 @@
+/* @import 'styles/_colors.scss'; // assuming a styles directory under src/
+@import 'nprogress/nprogress'; // importing a css file from the nprogress node module */
+
+
+/*
+  *Color Variables
+  * #517CF7;
+  * #7EB9FF;
+  * #FECD44;
+  * #FFF357;
+*/
+
+$blue: #517CF7;
+$lightBlue: #7EB9FF;
+$orange: #FECD44;
+$yellow: #FFF357;
+
+$grey: #808080;
+$darkGrey: #666666;
+$blueGrey: #E9EDF3;
+$white: #FFFF;
+
+
+$calendarGreen: #D6FFC8;
+$calendarPink: #FFECEC;
+
+
+
+
+body {
+  // margin: 15px;
+  // padding: 15px;
+  font-family: sans-serif;
+  color: $grey;
+
+  a {
+    text-decoration: none;
+    color: $grey;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      color: $darkGrey;
+    }
+    &:active {
+      text-decoration: none;
+      color: $darkGrey;
+    }
+    &:focus {
+      text-decoration: none;
+      color: $darkGrey;
+    }
+  }
+
+}
+
+ul {
+  list-style: none;
+}
+
+.border-radius {
+  border-radius: 10px;
+}
+
+.center {
+  text-align: center;
+}

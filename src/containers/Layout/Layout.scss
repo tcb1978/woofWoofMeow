@@ -1,0 +1,281 @@
+/*Navbar*/
+
+.Nav {
+    padding: 15px;
+    margin: 15px;
+    line-height: 2rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    .NavLeft {
+        font-size: 32px;
+    }
+    .NavRight {
+        a {
+            padding: 0em 1em 0em 1em;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .Nav {
+        padding: 0 0;
+        display: block;
+        line-height: 1.5;
+        .NavLeft,
+        .NavRight {
+            text-align: center;
+        }
+    }
+}
+
+/*Navbar*/
+
+/*Get Started*/
+
+section.GetStarted {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background: url(/static/media/1-Main-Page_img-1.4ac1113f.png) no-repeat 0 0 transparent;
+    min-width: 100%;
+    height: 75vh;
+    background-size: cover;
+    div.Find {
+        width: 66%;
+        margin: 0 auto;
+        h1 {
+            font-weight: 700;
+            font-size: -webkit-xxx-large;
+            color: #fff;
+            text-align: justify;
+            margin: 150px 0px 60px;
+            top: 10px;
+            position: initial;
+        }
+        div {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            div.border {
+                min-width: 40%;
+                border: 3px solid #fff;
+                .borderContainer {
+                    width: 100%;
+                    height: 8em;
+                    background: #7EB9FF;
+                    opacity: 0.10;
+                }
+            }
+            a {
+                width: 40%;
+                text-align: center;
+                span {
+                    color: #fff;
+                    font-size: 1.5em;
+                    font-weight: 300;
+                    bottom: 3.25em;
+                    position: relative;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    section.GetStarted {
+        div.Find {
+            div {
+                div.border {
+                    display: none;
+                }
+                a {
+                    padding: 10px;
+                    box-sizing: border-box;
+                    border: 1px solid #fff;
+                    border-radius: 5px;
+                    &:hover {
+                        border: 2px solid #fff;
+                    }
+                    &:focus {
+                        border: 2px solid #fff;
+                    }
+                    &:active {
+                        border: 2px solid #fff;
+                    }
+                    span {
+                        font-size: 14px;
+                        bottom: 0;
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Get Started*/
+
+/*Get Started*/
+
+section.About {
+    padding: 60px 0 60px 0;
+    height: auto;
+    div {
+        width: 80%;
+        margin: 0 auto;
+        h1 {
+            padding: 0px 0 30px 0;
+            text-align: center;
+            font-weight: 700;
+        }
+    }
+}
+
+/*Get Started*/
+
+/*Services*/
+
+.DogParkBackground {
+    background: url('../../assets/img/1-Main-Page_img-2.png') no-repeat 0 0 transparent;
+    min-width: 100%;
+    height: 50vh;
+    background-size: cover;
+}
+
+section.Services {
+    height: 45vh;
+    h1 {
+        text-align: center;
+        padding: 60px 0px 60px 0px;
+        font-weight: 700;
+    }
+    .Cards {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-evenly;
+        .Card {
+            display: flex;
+            flex-flow: column;
+            h2 {
+                font-weight: 700;
+            }
+            .Icon {
+                width: 15rem;
+                height: 15rem;
+                border: 1px solid;
+                margin: 0 auto;
+                border-radius: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    section.Services {
+        height: auto;
+        .Cards {
+            display: block;
+            .Card {
+                h2 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+/*Services*/
+
+/*How It Works*/
+
+section.HowItWorks {
+        height: auto;
+        margin-top: 70px;
+        background: #f4f4f4;
+    h1 {
+        text-align: center;
+        padding: 60px 0px 60px 0px;
+        font-weight: 700;
+    }
+    .Instructions {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-evenly;
+        .Instruction {
+            display: flex;
+            flex-flow: column;
+
+            h2 {
+                font-weight: 700;
+                border-bottom: 4px solid #7eb9ff;
+                text-align: center;
+            }
+
+            .FlowChart {
+                text-align: center;
+                display: flex;
+                flex-flow: column;
+
+                p {
+                    font-size: 1.25em;
+                    font-weight: 100;
+                    color: #404040;
+                }
+            }
+        }
+        .divider {
+            width: 2px;
+            border: 1px solid #bfbfbf;
+        }
+    }
+    @media (max-width: 414px) {
+        section.HowItWorks {
+            .Instructions {
+                display: block;
+                .Instruction {
+                    h2 {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+/*How It Works*/
+
+/*Finally Getting Started Button*/
+div.finallyGetStarted {
+    height: auto;
+    display: flex;
+    flex-flow: column-reverse;
+}
+
+.btn-yellow {
+    background-color: #fecd44;
+    padding: 1em 3em;
+    margin: 0 auto;
+    font-size: 30px;
+    color: #fff;
+    vertical-align: middle;
+    margin-bottom: 25px;
+}
+/*Finally Getting Started Button*/
+
+/*Footer*/
+footer {
+    height: auto;
+    background-color: #959595;
+    color: #ffff;
+
+    a {
+        color: #fff;
+    }
+
+    li {
+        text-align: left;
+    }
+}
+
