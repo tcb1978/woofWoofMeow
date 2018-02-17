@@ -2,23 +2,37 @@ const bcrypt = require ('bcrypt');
 const saltRound = 12;
 
 module.exports = {
+  // register: (req, res, next) => {
+  //   const db = req.app.get('db');
+  //   console.log(req.body);
+  //   // const {first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_defenition} = req.body;
+  //   const { title } = req.body
+  //   bcrypt.hash(password, saltRound)
+  //   .then(hashedPassword => {
+  //     // need to create this sql file
+  //     db.create_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity_defenition ])
+  //     .then((user) => {
+  //       // req.session.user = { email };
+  //       // res.json({ user: req.session.user });
+  //       res.status(200).json(user)
+  //     }).catch((error) => {
+  //       console.log('error ', error);
+  //       res.status(500).json({ message: 'Something bad happened!' })
+  //     })
+  //   })
+  //   .catch( (error) => res.status(500).send(error) )
+  // },
+
   register: (req, res, next) => {
     const db = req.app.get('db');
-    const {first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_defenition} = req.body;
-    bcrypt.hash(password, saltRound)
-    .then(hashedPassword => {
-      // need to create this sql file
-      db.create_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity_defenition ])
+    const { title } = req.body;
+    console.log(title);
+    
+    db.create_user_with_title([ title ])
       .then((user) => {
-        // req.session.user = { email };
-        // res.json({ user: req.session.user });
         res.status(200).json(user)
-      }).catch((error) => {
-        console.log('error ', error);
-        res.status(500).json({ message: 'Something bad happened!' })
       })
-    })
-    .catch( (error) => res.status(500).send(error) )
+      .catch(error => res.status(500).send(error))
   },
 
   login: (req, res, next) => {

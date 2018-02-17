@@ -34,6 +34,7 @@ const jobs_controller = require ('./controllers/jobs_controller');
 const reviews_controller = require ('./controllers/reviews_controller');
 
 // Users management
+// app.post('/register', users_controller.register);
 app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);

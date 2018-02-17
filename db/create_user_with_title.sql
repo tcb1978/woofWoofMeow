@@ -1,0 +1,5 @@
+INSERT INTO users
+(title)
+VALUES
+($1)
+RETURNING *;
