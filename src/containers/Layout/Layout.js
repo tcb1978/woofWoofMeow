@@ -1,27 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import About from '../../components/About/About';
-import Services from '../../components/Services/Services';
+// import { Link } from 'react-router-dom'
 import Aux from '../../hoc/Aux';
-import UserInfo from '../../components/UserInfo/UserInfo';
-import DogInfo from '../../components/UserInfo/AnimalInfo';
-<<<<<<< HEAD
-import CaregiverInfo from '../../components/UserInfo/CaregiverInfo/CaregiverInfo';
-import Signin from '../../components/Signin/Signin';
 import routes from '../../routes/routes';
-=======
-import CaregiverInfo from '../../components/UserInfo/Caregiver/CaregiverInfo'
 import './Layout.css'
 
 
->>>>>>> landingpageproduction
 
 const Layout = (props) => {
     return(
         <Aux>
-<<<<<<< HEAD
             { routes }
-=======
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
@@ -161,7 +149,6 @@ const Layout = (props) => {
                     </div>
                 </div>
             </footer>
->>>>>>> landingpageproduction
         </Aux>
     )
 }
