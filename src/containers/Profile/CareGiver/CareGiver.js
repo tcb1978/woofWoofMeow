@@ -6,7 +6,7 @@ import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 import Aux from '../../../hoc/Aux';
 
 
-class CareGiver extends Component {
+class Caregiver extends Component {
     render () {
         return (
             <div>
@@ -19,4 +19,4 @@ class CareGiver extends Component {
     }
 };
 
-export default CareGiver;
+export default Caregiver;

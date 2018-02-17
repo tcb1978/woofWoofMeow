@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import Petowner from './Petowner/Petowner';
-import CareGiver from './CareGiver/CareGiver';
+import Caregiver from './Caregiver/Caregiver';
 import { connect } from 'react-redux';
 import { login } from '../../redux/ducks/reducer';
 
@@ -11,7 +11,7 @@ class Profile extends Component {
       <Aux>
         { this.props.user.title === 'petowner'
           ? <Petowner/>
-          : <CareGiver/>
+          : <Caregiver/>
         }
       </Aux>
     );

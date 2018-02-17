@@ -6,12 +6,10 @@ import './Layout.css'
 // import Signup from '../../components/Signup/Signup';
 import Signin from '../../components/Signin/Signin';
 
-
-
 const Layout = (props) => {
     return(
         <Aux>
-            { routes }
+            {/* { routes } */}
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
