@@ -9,7 +9,7 @@ import Scroll from 'react-scroll-to-element';
 
 const Layout = (props) => {
     return(
-        <div>
+        <Aux>
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
@@ -149,7 +149,7 @@ const Layout = (props) => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </Aux>
     )
 }
 

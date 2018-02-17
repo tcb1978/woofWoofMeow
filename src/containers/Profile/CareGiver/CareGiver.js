@@ -4,6 +4,7 @@ import Walklist from '../../../components/WalkList/WalkList';
 import Calendar from '../../../components/Calendar/Calendar';
 import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 import Aux from '../../../hoc/Aux';
+import './Caregiver.css'
 
 
 class Caregiver extends Component {
