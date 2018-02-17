@@ -22,21 +22,40 @@ class AnimalInfo extends Component {
     render() {
         return (
             <Aux>
-                <label className="form-group">
-                    Name:<input type="text" placeholder="name" onChange={(event) => this.handleChange("animal_name", event)} />
-                </label>
-                <label className="form-group">
-                    Breed:<input type="text" placeholder="breed" onChange={(event) => this.handleChange("breed", event)} />
-                </label>
-                <label className="form-group">
-                    Age:<input type="text" placeholder="age" onChange={(event) => this.handleChange("age", event)} />
-                </label>
-                <label className="form-group">
-                    Weight:<input type="text" placeholder="weight" onChange={(event) => this.handleChange("weight", event)} />
-                </label>
-                <label className="form-group">
-                    Sex:<input type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
-                </label>
+                <div className="container">
+                    <h1>Animal</h1>
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Animal Name:<input className="form-control" type="text" placeholder="name" onChange={(event) => this.handleChange("animal_name", event)} />
+                            </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Breed:<input className="form-control" type="text" placeholder="breed" onChange={(event) => this.handleChange("breed", event)} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Age:<input className="form-control" type="text" placeholder="age" onChange={(event) => this.handleChange("age", event)} />
+                            </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Weight:<input className="form-control" type="text" placeholder="weight" onChange={(event) => this.handleChange("weight", event)} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Aux>
         )
     }

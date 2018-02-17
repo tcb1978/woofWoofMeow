@@ -100,46 +100,90 @@ class Signup extends Component {
         return (
             <Aux>
                 <form onSubmit={ (event) => this.handleSubmit(event)}>
-                    <label className="form-group">
-                        First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} />
-                    </label>
-                    <label className="form-group">
-                        Last Name:<input className="form-control" type="text" onChange={ (event) => this.handleChange("last_name", event)} />
-                    </label>
-                    <label className="form-group">
-                        Street Address:<input className="form-control" type="text" onChange={ (event) => this.handleChange("street_address", event)} />
-                    </label>
-                    <label className="form-group">
-                        City:<input className="form-control" type="text" onChange={ (event) => this.handleChange("city", event)} />
-                    </label>
-                    <label className="form-group">
-                        State:<input className="form-control" type="text" onChange={ (event) => this.handleChange("state", event)} />
-                    </label>
-                    <label className="form-group">
-                        Zip:<input className="form-control" type="text" onChange={ (event) => this.handleChange("zip", event)} />
-                    </label>
-                    <label className="form-group">
-                        Phone:<input className="form-control" type="text" onChange={ (event) => this.handleChange("phone", event)} />
-                    </label>
-                    <label className="form-group">
-                        Email:<input className="form-control" type="text" onChange={ (event) => this.handleChange("email", event)} />
-                    </label>
-                    <label className="form-group">
-                        Create Password:
-                        <input className="form-control"  type="password" required onChange={(event) => this.handleChange("password", event)}/>
-                    </label>
-                    <label className="form-group">
-                        Confirm Password:
-                        <input className="form-control"  type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} />
-                    </label>
+                    <div className="container">
+                        <h1>Personal Information</h1>
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Last Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("last_name", event)} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Street Address:<input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} />
+                                </div>                            
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    City:<input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    State:<input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Zip:<input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Phone:<input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Email:<input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Create Password:
+                                    <input className="form-control" type="password" required onChange={(event) => this.handleChange("password", event)} />
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <div className="form-group">
+                                    Confirm Password:
+                                    <input className="form-control" type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
 
                     { this.props.user.title === 'petowner'
                     ? <AnimalInfo />
                     : <CaregiverInfo/>}
 
-                    <label className="form-group">
-                        <input className="form-control btn btn-primary mb-2"  type="submit" value="Submit"  />
-                    </label>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <div className="form-group">
+                                    <input className="form-control btn btn-primary mb-2" type="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 
                 {fireRedirect && (

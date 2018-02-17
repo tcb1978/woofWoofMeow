@@ -1,22 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Aux from '../../hoc/Aux';
-import routes from '../../routes/routes';
+// import routes from '../../routes/routes';
 import './Layout.css'
 // import Signup from '../../components/Signup/Signup';
-import Signin from '../../components/Signin/Signin';
+// import Signin from '../../components/Signin/Signin';
 
 const Layout = (props) => {
     return(
-        <Aux>
-            {/* { routes } */}
+        <div>
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
                     <a href="#_About">About </a>
                     <a href="#_Services">Services </a>
-                    <Link to="/">Sign up </Link>
-                    <Link to="/">Login </Link>
+                    <Link to="/signup">Sign Up </Link>
+                    <Link to="/signin">Sign In </Link>
                 </div>
             </nav>
 
@@ -117,7 +116,10 @@ const Layout = (props) => {
                     </div>
                 </div>
             </section>
-            <div className="finallyGetStarted"><Link to="/" class="btn-yellow  border-radius">Get started</Link></div>
+            <div className="finallyGetStarted"><Link to="/" className="btn-yellow  border-radius">Get started</Link></div>
+
+            { props.children }
+
             <footer>
                 <div className="container">
                     <div className="row">
@@ -149,7 +151,7 @@ const Layout = (props) => {
                     </div>
                 </div>
             </footer>
-        </Aux>
+        </div>
     )
 }
 
