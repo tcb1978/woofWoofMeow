@@ -1,8 +1,10 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Aux from '../../hoc/Aux';
 import routes from '../../routes/routes';
 import './Layout.css'
+// import Signup from '../../components/Signup/Signup';
+import Signin from '../../components/Signin/Signin';
 
 
 
@@ -13,10 +15,10 @@ const Layout = (props) => {
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
-                    <a href="/">About </a>
-                    <a href="/">Services </a>
-                    <a href="/">Sign up </a>
-                    <a href="/">Login </a>
+                    <a href="#_About">About </a>
+                    <a href="#_Services">Services </a>
+                    <Link to="/">Sign up </Link>
+                    <Link to="/">Login </Link>
                 </div>
             </nav>
 
@@ -34,7 +36,7 @@ const Layout = (props) => {
                 </div>
             </section>
 
-            <section className="About">
+            <section className="About" id="_About">
                 <div>
                     <h1>About</h1>
                     <p>Doggo ipsum lotsa pats waggy wags boof doggo, wow very biscit. Smol borking doggo with a long snoot for pats length boy pats blep, lotsa pats what a nice floof. Long doggo snoot ruff woofer h*ck shooberino, woofer clouds doge doggo, borkdrive stop it fren heckin borking doggo. Very jealous pupper wow such tempt fat boi doggo ur givin me a spook, pupperino doing me a frighten. Long water shoob blop heck, aqua doggo. Doggo smol borking doggo with a long snoot for pats fat boi what a nice floof maximum borkdrive dat tungg tho, aqua doggo thicc long water shoob heckin good boys and girls. Boofers ur givin me a spook sub woofer length boy smol borking doggo with a long snoot for pats floofs, heckin good boys and girls borkf heckin angery woofer doing me a frighten.</p>
@@ -44,7 +46,7 @@ const Layout = (props) => {
 
             <div className="DogParkBackground"></div>
 
-            <section className="Services">
+            <section className="Services" id="_Services">
                 <h1>Services</h1>
                 <div className="Cards">
                     <div className="Card">
@@ -59,7 +61,7 @@ const Layout = (props) => {
                 
             </section>
 
-            <section className="HowItWorks">
+            <section className="HowItWorks" id="_HowItWorks">
                 <h1>How It Works</h1>
                 <div className="Instructions">
                     <div className="Instruction">
@@ -117,16 +119,16 @@ const Layout = (props) => {
                     </div>
                 </div>
             </section>
-            <div className="finallyGetStarted"><a href="#" class="btn-yellow  border-radius">Get started</a></div>
+            <div className="finallyGetStarted"><Link to="/" class="btn-yellow  border-radius">Get started</Link></div>
             <footer>
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12 col-sm-4">
                             <ul>
                                 <li><h2>Info</h2></li>
-                                <li><a href="/" >About</a> </li>
-                                <li><a href="/" >Services</a> </li>
-                                <li><a href="/" >How It works</a> </li>
+                                <li><a href="#_About" >About</a> </li>
+                                <li><a href="#_Services" >Services</a> </li>
+                                <li><a href="#_HowItWorks" >How It works</a> </li>
                             </ul>
                         </div>
                         <div className="col-xs-12 col-sm-4">
