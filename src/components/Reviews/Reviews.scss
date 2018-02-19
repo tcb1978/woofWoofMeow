@@ -1,0 +1,57 @@
+.ReviewsContainer {
+    padding-bottom: 60px;
+    background-color: #eceff3;
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
+
+    h1 {
+        margin: 0 auto;
+        padding: 30px 0 30px 0;
+    }
+
+    .ReviewDisplay {
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 5px;
+        background-color: transparent;
+
+        .ReviewRow {
+            width: 80%;
+            margin: 0 auto;
+            height: auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 5px;
+
+            .DogBoneRating {
+                display: flex;
+                flex-direction: row;
+                padding: 10px 0;
+
+                .date {
+                    font-size: large;
+                    font-weight: 100;
+                    padding: 10px 0;
+                }
+
+                .bone {
+                    background: url('../../assets/img/icon-bone.png')no-repeat 0 0 transparent;
+                    width: 20px;
+                    height: 20px;
+                    background-size: contain;
+                }
+                .bone-empty {
+                    background: url('../../assets/img/icon-bone_empty.png')no-repeat 0 0 transparent;
+                    width: 20px;
+                    height: 20px;
+                    background-size: contain;
+                }
+            }
+        }
+    }
+}

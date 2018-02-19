@@ -23,7 +23,6 @@ class Caregiver extends Component {
                 <History />
                 <Reviews />
                 <Route path="/update-message" component={ UpdateMessage } />
-                <div>ha caregiver!</div>
             </Aux>
         )
     }
