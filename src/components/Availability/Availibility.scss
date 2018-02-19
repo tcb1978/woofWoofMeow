@@ -2,4 +2,148 @@
     display: flex;
     flex-flow: column;
     height: auto;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+
+    h1 {
+        margin: 0 auto;
+        padding-bottom: 30px;
+    }
+
+    .WeekLongCalendar {
+        
+        .WeekdayHeader {
+            display: flex;
+            flex-direction: inherit;
+            .Times {
+                width: 16.285714%;
+                display: flex;
+                flex-flow: column;
+
+                .Day {
+                    color: #fff;
+                    padding: 5px;
+                    background: #7eb9ff;
+                    box-sizing: border-box;
+                    display: flex;
+
+                    span {
+                        margin: auto;
+                        font-size: 2rem;
+                    }
+                }
+
+                .border-left {
+                    border-left: 1px solid #989898;
+                }
+
+                .border-bottom {
+                    border-bottom: 1px solid #989898;
+                }
+
+                .border-right {
+                    border-right: 1px solid #989898;
+                }
+
+                .left-radius {
+                    border-radius: 5px 0 0 0;
+                }
+
+                .right-radius {
+                    border-radius: 0 5px 0 0;
+                }
+
+                .bottom-left-radius {
+                    border-radius: 0 0 0 5px;
+                }
+
+                .bottom-right-radius {
+                    border-radius: 0 0 5px 0;
+                }
+
+                div {
+                    border-top: transparent;
+                    display: flex;
+                    flex-flow: column;
+                    position: relative;
+                    bottom: 5px;
+                    padding: 10%;
+
+                    span {
+                        margin: auto;
+                        font-size: 100%;
+                        line-height: 2;
+                        font-weight: 100;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .Availablity {
+    
+        .WeekLongCalendar {
+
+            .WeekdayHeader {
+                    display: inherit;
+                    flex-direction: inherit;
+
+                .Times {
+                    width: 100%;
+                    
+                    .Day {
+                        
+                        span {
+                            
+                        }
+                    }
+
+                    .border-left {
+                        border-left: none;
+                    }
+
+                    .border-bottom {
+                        border-bottom: none;
+                    }
+
+                    .border-right {
+                        border-right: none;
+                    }
+
+                    .border {
+                        border-right: 1px solid #989898;
+                        border-bottom: 1px solid #989898;
+                        border-left: 1px solid #989898;
+                    }
+
+                    .left-radius {
+                        border-radius: 0;
+                    }
+
+                    .right-radius {
+                        border-radius: 0;
+                    }
+
+                    .tab-radius {
+                        border-radius: 5px 5px 0 0 ;
+                    }
+
+                    .mobile-radius {
+                        border-radius: 0 0 5px 5px;
+                    }
+
+
+                    div {
+                        
+                        span {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,200 @@
+.JobsContainer {
+    width: 100%;
+    height: auto;
+    background-color: #7eb9ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    padding-bottom: 30px;
+
+    h1 {
+        color: #fff;
+        margin: 0 auto;
+        padding: 30px 0 30px 0;
+    }
+
+    .JobsDropDown {
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 10px 10px 10px 10px;
+        background: #dbdbdb;
+        box-sizing: border-box;
+        border: 2px solid #dbdbdb;
+
+        .tab {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-around;
+            padding: 2% 0%;
+            box-sizing: border-box;
+            margin-bottom: 2px;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .paw {
+            background: url('../../assets/img/icon-paw.png')no-repeat 0 0 transparent;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+        }
+
+        .jobCheckIn {
+            color: #fff;
+            padding: 0 20px 0 20px;
+            border: none;
+            box-sizing: border-box;
+            background: #fecd44;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .Checkin {
+            .AvatarDisplay {
+                    display: flex;
+                    flex-flow: inherit;
+                    justify-content: inherit;
+                    padding: 30px 0 30px 0;
+                    margin-bottom: 30px;
+
+                .AnimalAvatar {
+                    margin: 0 auto;
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 100%;
+                    background-color: #fff;
+                    display: flex;
+                    flex-flow: column-reverse;
+
+                    span {
+                        margin: 0 auto;
+                        top: 30px;
+                        position: relative;
+                        font-size: 2rem;
+                    }
+                }
+            }
+            .TodaysService {
+                width: 30%;
+                padding: 10px 0;
+                margin: auto;
+                display: flex;
+                flex-direction: inherit;
+                justify-content: center;
+                background: #fff;
+                margin-bottom: 30px;
+                border-radius: 5px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                font-size: 4rem;
+
+                .ServiceLength {
+                    color: #6aa6ef;
+                    padding: 0 10px;
+                }
+            }
+
+            .AddressContact {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-around;
+                font-size: 25px;
+                font-weight: 100;
+                padding-bottom: 30px;
+
+                h1 {
+                    color: #595857;
+                    padding: 0px 0;
+                }
+
+                .Address,
+                .OwnerPhone {
+                    
+                    div {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .Cancel {
+                width: 80%;
+                margin: 0 auto;
+                display: flex;
+
+                .cancel-text {
+                    border-radius: 5px 0px 0px 5px;
+                    border: 1px solid #fff;
+                }
+
+                .submit-cancel {
+                    bottom: 18px;
+                    position: relative;
+                    padding: 13px;
+                    border-radius: 0 5px 5px 0;
+                    border: none;
+                    background-color: #6AA6EF;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .JobsContainer {
+
+        .JobsDropDown {
+
+            .tab {
+                display: flex;
+                justify-content: inherit;
+                flex-flow: column;
+
+                .paw,
+                .day,
+                .time {
+                    margin: 0 auto;
+                }
+
+                .jobCheckIn {
+                    width: 60%;
+                    margin: 0 auto;
+                }
+            }
+
+            .Checkin {
+                display: flex;
+                flex-flow: column;
+                
+                .AvatarDisplay {
+                   
+                    .AnimalAvatar {
+                        width: 12rem;
+                        height: 12rem;
+                        margin: 0 auto 45px auto;
+                    }
+                }
+                .TodaysService {
+                    width: 80%;
+                    padding: 0;
+                    font-size: 3rem;
+                }
+                .AddressContact {
+                        padding: 30px;
+                        font-size: 15px;
+
+                    .OwnerPhone {
+                        font-size: 15px;
+                    }
+                }
+                .Cancel {
+                    
+                    textarea.cancel-text {
+                        max-width: 155px;
+                    }
+                }
+            }
+        }
+    }
+}

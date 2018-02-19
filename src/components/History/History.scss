@@ -1,0 +1,173 @@
+.HistoryContainer {
+    padding-bottom: 60px;
+    display: flex;
+    flex-flow: column;
+    justify-content: inherit; 
+    width: 80%;
+    margin: auto;
+    height: auto;
+    h1 {
+        padding: 30px 0 30px 0;
+        margin: 0 auto;
+    }
+    .HistoryDropDown {
+        border: 2px solid #5fa8ff;
+        border-radius: 5px;
+
+        .tab {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-around;
+            box-sizing: border-box;
+            padding: 10px 10px;
+            border-bottom: 2px solid #dedddc;
+
+            .avatar {
+                width: 6rem;
+                height: 6rem;
+                background-color: #5fa8ff;
+                border-radius: 100%;
+                position: relative;
+                top: 0rem;
+                right: 5rem;
+            }
+        }
+
+        .AppontmentHistory {
+            background-color: #e9edf3;
+
+            .AvatarDisplay {
+                    padding: 30px 0 30px 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+
+                .AnimalAvatar {
+                    width: 12rem;
+                    height: 12rem;
+                    margin-bottom: 45px;
+                    background-color: #fff;
+                    border-radius: 100%;
+                    display: flex;
+                    flex-flow: column-reverse;
+
+                    span {
+                        margin: 0 auto;
+                        top: 30px;
+                        position: relative;
+                        font-size: 2rem;
+                    }
+                }
+            }
+            .TodaysService {
+                width: 30%;
+                padding: 10px 0;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                background: #fff;
+                margin-bottom: 30px;
+                border-radius: 5px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                font-size: 4rem;
+
+                .ServiceLength {
+                    color: #6aa6ef;
+                    padding: 0 10px;
+                }
+            }
+            .AddressContact {
+                display: flex;
+                flex-flow: inherit;
+                justify-content: space-around;
+                font-size: 25px;
+                font-weight: 100;
+                padding-bottom: 30px;
+                h1 {
+                    color: #595857;
+                    padding: 0px 0;
+                }
+
+                .Address,
+                .OwnerPhone {
+                    div {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .HistoryContainer {
+        
+        h1 {
+            
+        }
+        .HistoryDropDown {
+            
+            .tab {
+                display: flex;
+                flex-flow: column;
+                justify-content: inherit;
+
+                .avatar,
+                .day,
+                .time {
+                    right: 0;
+                    margin: 0 auto;
+                }
+            }
+            .AppontmentHistory {
+                display: flex;
+                flex-flow: column;
+
+                .AvatarDisplay {
+                    display: flex;
+                    flex-flow: inherit;
+                    justify-content: inherit;
+                    padding: 30px 0 30px 0;
+                    margin-bottom: 30px;
+
+                    .AnimalAvatar {
+                            width: 12rem;
+                            height: 12rem;
+                            margin: 0 auto 45px auto;
+                        span {
+                            margin: 0 auto;
+                            top: 30px;
+                            position: relative;
+                            font-size: 2rem;
+                        }
+                    }
+                }
+                .TodaysService {
+                    width: 80%;
+                    padding: 0;
+                    font-size: 3rem;
+
+                    .ServiceLength {
+                        
+                    }
+                }
+                .AddressContact {
+                    padding: 30px;
+                    font-size: 15px;
+
+                    h1 {
+                        
+                    }
+                    .Address,
+                    .OwnerPhone {
+                        div {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

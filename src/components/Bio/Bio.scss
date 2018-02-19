@@ -1,5 +1,5 @@
 .Landscape {
-    background: url(/static/media/header-bkgd-HighElmsPark.39311d0d.JPG) no-repeat 0% 35% transparent;
+    background: url('../../assets/img/header-bkgd-HighElmsPark.JPG') no-repeat 0% 35% transparent;
     width: 100%;
     height: 30vh;
     background-size: cover;
@@ -42,5 +42,8 @@
         }
     }
 
-
+    .UserBio {
+        width: 80%;
+        margin: auto;
+    }
 }
