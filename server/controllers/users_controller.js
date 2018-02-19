@@ -1,5 +1,7 @@
+require('dotenv').config();
 const bcrypt = require ('bcrypt');
 const saltRound = 12;
+const axios = require('axios');
 
 module.exports = {
   // register: (req, res, next) => {
@@ -26,9 +28,7 @@ module.exports = {
   register: (req, res, next) => {
     const db = req.app.get('db');
     const { title } = req.body;
-    console.log('title ->', title);
-    // console.log(req);
-    // console.log(req.session);
+    // console.log('title ->', title);
     
     db.create_user_with_title([ title ])
       .then( user => {
@@ -66,7 +66,7 @@ module.exports = {
         // checking if there is any user with this email
         if (users.length) {
           // comparing the password we have from the form and from the database
-          bcrypt.compare(password, users[0].password).then(passwordMatch => {
+          bcrypt.compare(password, users[0].password).then( passwordMatch => {
             if (passwordMatch) {
               // if there is any match open the session and send status 200
               req.session.user = {
@@ -138,19 +138,32 @@ module.exports = {
   update: (req, res, next) => {
     const db = req.app.get('db');
     console.log('req.body ', req.body);
-    const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition, user_id } = req.body;
+    // we'll change longitude and latitude later so we need to declare it with let
+    let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition, user_id } = req.body;
     
-    if (title === 'caregiver') {
-      db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition, user_id ])
-        .then( (user) => res.status(200).json(user) )
-        .catch( (error) => res.status(500).send(error))
-    } else {
-        db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, null, title, password, null, null, null, null, user_id ])
-          .then( (user) => res.status(200).json(user) )
-          .catch( (error) => res.status(500).send(error))
-    }
+    // getting longitude and latitude from api request based on zip code
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
+      .then( (response) => {
+        // changing values of longitude and latitude from req.body
+        longitude = response.data.coord.lon
+        latitude = response.data.coord.lat
+        // making hashed password
+        bcrypt.hash(password, saltRound)
+        .then(hashedPassword => {
+          if (title === 'caregiver') {
+            db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity_definition, user_id ])
+              .then( (user) => res.status(200).json(user) )
+              .catch( (error) => res.status(500).send(error))
+          } else {
+              db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, null, title, hashedPassword, longitude, latitude, null, null, user_id ])
+                .then( (user) => res.status(200).json(user) )
+                .catch( (error) => res.status(500).send(error))
+          }
+        })
+        .catch( error => res.status(500).send(error) )
+      })
+      .catch( (error) => res.status(500).send(error))
   },
-
 
   destroy: (req, res, next) => {
     const db = req.app.get('db');
@@ -163,5 +176,22 @@ module.exports = {
     db.delete_user([ id ])
       .then( () => res.status(200).json('deleted') )
       .catch( (error) => res.status(500).send(error) );
+  },
+
+  getAddress: (req, res, next) => {
+    const db = req.app.get('db');
+    let zip = '85004';
+    
+
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
+      .then( (response) => {
+        temp.push({ zip: response.data.coord })
+        let lon1 = response.data.coord.lon
+        let lat1 = response.data.coord.lat
+        console.log(lon1, lat1);
+        console.log(temp);
+        res.json(response.data)
+      })
+      .catch( (error) => console.log(error))
   }
 }

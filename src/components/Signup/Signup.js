@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
-// import CaregiverInfo from './UserInfo/CaregiverInfo/CaregiverInfo';
-// import AnimalInfo from './UserInfo/AnimalInfo/AnimalInfo';
 import { login } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
 
@@ -73,28 +71,6 @@ class Signup extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { user_id, first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity_definition, animal_name, breed, age, weight, sex } = this.state;
-        console.log('user_id ', user_id);
-        console.log('first_name ', first_name);
-        console.log('last_name ', last_name);
-        console.log('street_address ', street_address);
-        console.log('state ', state);
-        console.log('city ', city);
-        console.log('zip ', zip);
-        console.log('email ', email);
-        console.log('phone ', phone);
-        console.log('avatar ', avatar);
-        console.log('title ', title);
-        console.log('password ', password);
-        console.log('passwordCheck ', passwordCheck);
-        console.log('longitude ', longitude);
-        console.log('latitude ', latitude);
-        console.log('about_message ', about_message);
-        console.log('proximity_definition ', proximity_definition);
-        console.log('animal_name ', animal_name);
-        console.log('breed ', breed);
-        console.log('age ', age);
-        console.log('weight ', weight);
-        console.log('sex ', sex);
 
         // console.log(password, passwordCheck);
         if (password !== passwordCheck) {
@@ -125,7 +101,8 @@ class Signup extends Component {
                 if (title === 'petowner') {
                     axios.post('/animal', {
                         animal_name, breed, age, weight, sex, user_id
-                    }).then( animal => {
+                    })
+                    .then( animal => {
                         console.log(animal);
                     })
                     .catch(error => console.log(error))
