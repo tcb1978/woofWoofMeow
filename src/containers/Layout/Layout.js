@@ -28,8 +28,8 @@ const Layout = (props) => {
                         <div className="border border-radius"><div className="borderContainer"></div></div>
                     </div>
                     <div>
-                        <Link to="/signup/petowner" params={{title: 'petowner'}} className=""><span>Find Caretaker</span></Link>
-                        <Link to="/signup/caregiver" params={{title: 'caregiver'}} className=""><span>Become Caretaker</span></Link>
+                        <Link to="/signup/petowner" className="border border-radius"><span>Find Caretaker</span></Link>
+                        <Link to="/signup/caregiver" className="border border-radius"><span>Become Caretaker</span></Link>
                     </div>
                 </div>
             </section>
@@ -49,11 +49,11 @@ const Layout = (props) => {
                 <div className="Cards">
                     <div className="Card">
                         <h2>30 - 90 minute walks</h2>
-                        <div className="Icon"></div>
+                        <div className="Icon DogWalk"></div>
                     </div>
-                        <div className="Card">
-                            <h2>Walks to the dog park</h2>
-                        <div className="Icon"></div>
+                    <div className="Card">
+                        <h2>Walks to the dog park</h2>
+                        <div className="Icon DogPark"></div>
                     </div>
                 </div>
                 
@@ -144,8 +144,11 @@ const Layout = (props) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row sellCookies">
                         <h2 className="center">We Also Sell Cookies</h2>
+                    </div>
+                    <div className="row copyright">
+                        <h2 className="center">© All rights reserved</h2>
                     </div>
                 </div>
             </footer>
