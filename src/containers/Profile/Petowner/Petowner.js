@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Aux from '../../../hoc/Aux'
 
 export default class Petowner extends Component {
   render() {
     return (
-      <div>haha petowner!</div>
+      <Aux>haha petowner!</Aux>
     );
   }
 }
