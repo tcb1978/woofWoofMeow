@@ -12,7 +12,7 @@ class Availability extends Component {
                         <div className="WeekdayHeader">
                             <div className="Times">
                                 <label className="Day left-radius tab-radius"><span>Monday</span></label>
-                                <div className="border-left border-bottom border mobile-radius">
+                                <div className="border-left border-bottom border mobile-radius bottom-left-radius">
                                     <span classNames="hours">6:00-2:00</span>
                                     <span classNames="am-pm">AM</span>
                                 </div>
@@ -54,7 +54,7 @@ class Availability extends Component {
                             </div>
                             <div className="Times">
                                 <label className="Day right-radius tab-radius"><span>Sunday</span></label>
-                                <div className="border-left border-bottom border-right border mobile-radius">
+                                <div className="border-left border-bottom border-right border bottom-right-radius mobile-radius">
                                     <span classNames="hours">6:00-2:00</span>
                                     <span classNames="am-pm">AM</span>
                                 </div>

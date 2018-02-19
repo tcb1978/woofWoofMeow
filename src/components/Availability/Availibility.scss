@@ -4,9 +4,11 @@
     height: auto;
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 30px;
 
     h1 {
         margin: 0 auto;
+        padding-bottom: 30px;
     }
 
     .WeekLongCalendar {
@@ -33,15 +35,15 @@
                 }
 
                 .border-left {
-                    border-left: 1px solid grey;
+                    border-left: 1px solid #989898;
                 }
 
                 .border-bottom {
-                    border-bottom: 1px solid grey;
+                    border-bottom: 1px solid #989898;
                 }
 
                 .border-right {
-                    border-right: 1px solid grey;
+                    border-right: 1px solid #989898;
                 }
 
                 .left-radius {
@@ -50,6 +52,14 @@
 
                 .right-radius {
                     border-radius: 0 5px 0 0;
+                }
+
+                .bottom-left-radius {
+                    border-radius: 0 0 0 5px;
+                }
+
+                .bottom-right-radius {
+                    border-radius: 0 0 5px 0;
                 }
 
                 div {
@@ -104,9 +114,9 @@
                     }
 
                     .border {
-                        border-right: 1px solid grey;
-                        border-bottom: 1px solid grey;
-                        border-left: 1px solid grey;
+                        border-right: 1px solid #989898;
+                        border-bottom: 1px solid #989898;
+                        border-left: 1px solid #989898;
                     }
 
                     .left-radius {
