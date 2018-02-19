@@ -51,10 +51,26 @@ class Signin extends Component {
     render() {
         return (
             <Aux>
-                <div>
-                    <input placeholder="email" onChange={ (e) => this.setState({ email: e.target.value }) }/>
-                    <input placeholder="password" type="password" onChange={ (e) => this.setState({ password: e.target.value }) }/>
-                    <button onClick={this.login}>Log in</button>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Email:
+                                <input className="form-control" placeholder="email" onChange={(e) => this.setState({ email: e.target.value })} />
+                            </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group">
+                                Password:
+                                <input className="form-control" placeholder="password" type="password" onChange={(e) => this.setState({ password: e.target.value })} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <button className="form-control btn btn-primary mb-2" onClick={this.login}>Log in</button>
+                        </div>
+                    </div>
                 </div>
             </Aux>
         )
