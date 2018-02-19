@@ -7,7 +7,7 @@ class CaregiverInfo extends Component {
         super(props)
         this.state = {
             avatar: '',
-            proximity_defenition : 0,
+            proximity_definition : 0,
             about_message: ''
         }
     }
@@ -45,7 +45,7 @@ class CaregiverInfo extends Component {
                                     className="form-control"
                                     type="text"
                                     placeholder="last name"
-                                    onChange={(event) => this.handleChange("proximity_defenition", event)}>
+                                    onChange={(event) => this.handleChange("proximity_definition", event)}>
                                     <option value="3">3</option>
                                     <option value="3">5</option>
                                     <option value="7">7</option>

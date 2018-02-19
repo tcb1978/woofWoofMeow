@@ -14,8 +14,8 @@ const Layout = (props) => {
                 <div className="NavRight">
                     <a href="#_About">About </a>
                     <a href="#_Services">Services </a>
-                    <Link to="/signup">Sign Up </Link>
-                    <Link to="/signin">Sign In </Link>
+                    <Link to="/signup">Sign Up</Link>
+                    <Link to="/signin">Sign In</Link>
                 </div>
             </nav>
 
@@ -27,8 +27,8 @@ const Layout = (props) => {
                         <div className="border border-radius"><div className="borderContainer"></div></div>
                     </div>
                     <div>
-                        <a href="/" className=""><span>Find Caretaker</span></a>
-                        <a href="/" className=""><span>Become Caretaker</span></a>
+                        <Link to="/signup/petowner" params={{title: 'petowner'}} className=""><span>Find Caretaker</span></Link>
+                        <Link to="/signup/caregiver" params={{title: 'caregiver'}} className=""><span>Become Caretaker</span></Link>
                     </div>
                 </div>
             </section>

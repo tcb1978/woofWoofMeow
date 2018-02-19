@@ -22,7 +22,7 @@ class UserInfo extends Component {
             title: '',
             longitude: '',
             latitude: '',
-            proximity_defenition : 0,
+            proximity_definition : 0,
             about_message: '',
             animal_name: '',
             breed: '',
@@ -34,9 +34,9 @@ class UserInfo extends Component {
 
     handleSubmit = (event) =>  {
         event.preventDefault();
-        const { name, breed, age, weight, sex, user_id } = this.state;
+        const { animal_name, breed, age, weight, sex, user_id } = this.state;
         axios.post('/animal', {
-            name, breed, age, weight, sex, user_id
+            animal_name, breed, age, weight, sex, user_id
         })
         .then( //request => {console.log(request)}
             this.setState({
@@ -96,9 +96,9 @@ class UserInfo extends Component {
 
     handleHowManyMilesProximitySubmit(event) {
         event.preventDefault()
-        const proximity_defenition = event.target.value
+        const proximity_definition = event.target.value
         this.setState({
-            proximity_defenition: proximity_defenition
+            proximity_definition: proximity_definition
         })
     }
 

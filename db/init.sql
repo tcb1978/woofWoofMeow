@@ -1,32 +1,33 @@
 DROP TABLE IF EXISTS users, animals, jobs, review, caregiver_availability CASCADE;
 
+
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
-    first_name VARCHAR (100) NOT NULL,
-    last_name VARCHAR (100) NOT NULL,
-    street_address VARCHAR (100) NOT NULL,
-    state VARCHAR (50) NOT NULL,
-    city VARCHAR (50) NOT NULL,
-    zip VARCHAR (25) NOT NULL,
-    email VARCHAR (100) NOT NULL,
-    phone VARCHAR (25) NOT NULL,
-    avatar VARCHAR (200) NOT NULL,
+    first_name VARCHAR (100),
+    last_name VARCHAR (100),
+    street_address VARCHAR (100),
+    state VARCHAR (50),
+    city VARCHAR (50),
+    zip VARCHAR (25),
+    email VARCHAR (100),
+    phone VARCHAR (25),
+    avatar VARCHAR (200),
     title VARCHAR (50) NOT NULL,
-    password VARCHAR (100) NOT NULL,
-    longitude VARCHAR (100) NOT NULL,
-    latitude VARCHAR (100) NOT NULL,
-    about_message VARCHAR (1000) NOT NULL,
-    proximity_defenition VARCHAR (10) NOT NULL
+    password VARCHAR (100),
+    longitude VARCHAR (100),
+    latitude VARCHAR (100),
+    about_message VARCHAR (1000),
+    proximity_definition VARCHAR (10)
 );
 
 INSERT INTO users
-(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_defenition)
+(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition)
 VALUES
 ('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', 'bla');
 
 CREATE TABLE IF NOT EXISTS animals (
     animal_id SERIAL PRIMARY KEY,
-    name VARCHAR (100) NOT NULL,
+    animal_name VARCHAR (100) NOT NULL,
     breed VARCHAR (100) NOT NULL,
     age VARCHAR (100) NOT NULL,
     weight VARCHAR (7) NOT NULL,
@@ -35,10 +36,9 @@ CREATE TABLE IF NOT EXISTS animals (
 );
 
 INSERT INTO animals
-(name, breed, age, weight, sex, user_id)
+(animal_name, breed, age, weight, sex, user_id)
 VALUES
 ('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 1);
-
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,

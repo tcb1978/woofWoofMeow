@@ -1,10 +1,10 @@
 module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
-    const { name, breed, age, weight, sex, user_id  } = req.body;
+    const { animal_name, breed, age, weight, sex, user_id  } = req.body;
     console.log(req.body);
 
-    db.create_animal([ name, breed, age, weight, sex, 1 ])
+    db.create_animal([ animal_name, breed, age, weight, sex, user_id ])
       .then( (animal) => res.status(200).json(animal) )
       .catch( (error) => res.status(500).send(error) )
   },
@@ -43,10 +43,10 @@ module.exports = {
   update: (req, res, next) => {
     const db = req.app.get('db');
     const { id } = req.params;
-    const { name } = req.body;
+    const { animal_name } = req.body;
 
     // Later 1 is gonna session user id
-    db.update_animal([ name, id, 1 ])
+    db.update_animal([ animal_name, id, 1 ])
       .then( (animal) => res.status(200).json(animal) )
       .catch( (error) => res.status(500).send(error) )
   },

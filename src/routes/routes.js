@@ -12,7 +12,8 @@ export default (
   <Switch>
     <Route exact path="/" component={ Layout }/>
     <Route path="/signin" component={ Signin }/>
-    <Route path="/signup" component={ Signup }/>
+    <Route path="/signup/petowner" component={ Signup }/>
+    <Route path="/signup/caregiver" component={ Signup }/>
     <Route path="/profile" component={ Profile }/>
   </Switch>
 )
