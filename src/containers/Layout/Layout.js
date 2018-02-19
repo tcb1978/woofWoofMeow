@@ -13,17 +13,10 @@ const Layout = (props) => {
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
                 <div className="NavRight">
-<<<<<<< HEAD
-                    <a href="#_About">About </a>
-                    <a href="#_Services">Services </a>
-                    <Link to="/signup">Sign Up</Link>
-                    <Link to="/signin">Sign In</Link>
-=======
                     <Scroll type="id" element="_About">About </Scroll>
                     <Scroll type="id" element="_Services">Services </Scroll>
                     <Link to="/signup">Sign Up </Link>
                     <Link to="/signin">Sign In </Link>
->>>>>>> 97abc97f56321c9286dba288d7d4a004cdd9bbc6
                 </div>
             </nav>
 
