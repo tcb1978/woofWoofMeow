@@ -97,7 +97,7 @@
 
             .AddressContact {
                 display: flex;
-                flex-flow: inherit;
+                flex-flow: row;
                 justify-content: space-around;
                 font-size: 25px;
                 font-weight: 100;
@@ -143,20 +143,26 @@
 
 @media (max-width: 414px) {
     .JobsContainer {
-        
-        h1 {}
+
         .JobsDropDown {
 
             .tab {
-                display: block;
+                display: flex;
                 justify-content: inherit;
+                flex-flow: column;
+
+                .paw,
+                .day,
+                .time {
+                    margin: 0 auto;
+                }
+
+                .jobCheckIn {
+                    width: 60%;
+                    margin: 0 auto;
+                }
             }
-            .paw {
-            
-            }
-            .jobCheckIn {
-            
-            }
+
             .Checkin {
                 display: flex;
                 flex-flow: column;
@@ -164,22 +170,15 @@
                 .AvatarDisplay {
                    
                     .AnimalAvatar {
-                            width: 12rem;
-                            height: 12rem;
-                            margin-bottom: 45px;
-                        span {
-                            
-                        }
+                        width: 12rem;
+                        height: 12rem;
+                        margin: 0 auto 45px auto;
                     }
                 }
                 .TodaysService {
-                            width: 80%;
-                            padding: 0;
-                            font-size: 3rem;
-
-                    .ServiceLength {
-                        
-                    }
+                    width: 80%;
+                    padding: 0;
+                    font-size: 3rem;
                 }
                 .AddressContact {
                         padding: 30px;
