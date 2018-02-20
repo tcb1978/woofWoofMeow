@@ -118,7 +118,7 @@ class PetBio extends Component {
                                         </ul>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
-                                        <div>minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                        <div>{this.state.about_message}</div>
                                     </div>
                                 </div>
                             </div>
