@@ -100,6 +100,28 @@ class Requests extends Component {
                                     <div class="WalkOrPark">   walk</div>
                                 </div>
                             </div>
+                            <div className="status-row">
+                                <div className="avatar"></div>
+                                <div className="name">Mark</div>
+                                <div className="date">
+                                    <date>January 10</date>
+                                </div>
+                                <div className="StartFinish">
+                                    <div className="Start"><time className="">1:28pm- </time></div>
+                                    <div className="Finish"><time className="">     2:28pm</time></div>
+                                </div>
+                            </div>
+                            <div className="status-row">
+                                <div className="avatar"></div>
+                                <div className="name">Mark</div>
+                                <div className="date">
+                                    <date>January 10</date>
+                                </div>
+                                <div className="StartFinish">
+                                    <div className="Start"><time className="">1:28pm- </time></div>
+                                    <div className="Finish"><time className="">     2:28pm</time></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
