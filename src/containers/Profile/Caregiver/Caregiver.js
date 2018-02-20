@@ -3,10 +3,10 @@ import { Route } from 'react-router-dom';
 import Bio from '../../../components/Bio/Bio';
 import Availability from '../../../components/Caregiver/Availability/Availability';
 import Calendar from '../../../components/Caregiver/Calendar/Calendar';
-import Jobs from '../../../components/Caregiver/Caregiver/Jobs/Jobs';
-import History from '../../../components/Caregiver/History/History';
+import Jobs from '../../../components/Caregiver/Jobs/Jobs';
+import History from '../../../components/History/History';
 import Reviews from '../../../components/Caregiver/Reviews/Reviews';
-import UpdateMessage from '../../../components/Caregiver/UpdateMessage/UpdateMessage';
+import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 import Aux from '../../../hoc/Aux';
 import './Caregiver.css';
 

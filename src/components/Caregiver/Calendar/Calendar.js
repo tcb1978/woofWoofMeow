@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Calendar.css';
-import arrowLeft from '../../assets/img/arrow_left.png';
-import arrowRight from '../../assets/img/arrow_right.png';
+import arrowLeft from '../../../assets/img/arrow_left.png';
+import arrowRight from '../../../assets/img/arrow_right.png';
 // Components
 import AvailableTimes from './AvailableTimes/AvailableTimes';
 

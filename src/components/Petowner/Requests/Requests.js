@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../../hoc/Aux';
 import './Requests.css';
-import History from '../../components/History/History'
+import History from '../../History/History';
 
 class Requests extends Component {
     render () {

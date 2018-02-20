@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Aux from '../../hoc/Aux';
+import Aux from '../../../hoc/Aux';
 import './CareGiverSearch.css';
 
 
