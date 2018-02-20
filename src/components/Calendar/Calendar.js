@@ -120,12 +120,12 @@ class Calendar extends Component {
         console.log( selectedDay );
 
         return (
-            <div className="calendar">
+            <div className="calendar panel">
                 <div className="container">
 
                     <h1>Calendar</h1>
 
-                    <div className="layout">
+                    <div className="calendar-layout">
                         <div className="months">
                             <div className="arrow" onClick={ () => this.handleMonthChange('left') }><img src={ arrowLeft } alt="left arrow"/></div>
                             <div className="month">{ months[mm] } { yyyy }</div>
@@ -145,9 +145,10 @@ class Calendar extends Component {
                             </div>
                             )) }
                         </div>
+                        <AvailableTimes months={months} days={days} day={selectedDay} />
                     </div>
                     
-                    <AvailableTimes months={months} days={days} day={selectedDay} />
+                    
                 </div>
             </div>
         )
