@@ -6,6 +6,7 @@ import Signup from '../components/Signup/Signup';
 import Petowner from '../containers/Profile/Petowner/Petowner';
 import Caregiver from '../containers/Profile/Caregiver/Caregiver';
 import Profile from '../containers/Profile/Profile';
+import Chat from '../components/Chat/Chat';
 
 
 export default (
@@ -15,5 +16,6 @@ export default (
     <Route path="/signup/petowner" component={ Signup }/>
     <Route path="/signup/caregiver" component={ Signup }/>
     <Route path="/profile" component={ Profile }/>
+    <Route path="/chat" component={ Chat }/>
   </Switch>
 )
