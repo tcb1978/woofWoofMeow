@@ -83,9 +83,9 @@ class PetBio extends Component {
                             <i className="UserEdit fas fa-edit"></i>
                         </div>
                         <div className="AvatarDisplay">
-                            <div className="AnimalAvatar">{this.state.}<span>{this.state.animal_name}</span></div>
-                            <div className="AnimalAvatar">{this.state.}<span>{this.state.animal_name}</span></div>
-                            <div className="AnimalAvatar">{this.state.}<span>{this.state.animal_name}</span></div>
+                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
+                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
+                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
                         </div>
                     </div>
                     <div className="PetBioDropDown">
