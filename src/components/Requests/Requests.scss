@@ -1,0 +1,163 @@
+.StatusContainer {
+
+    .RequestsContainer,
+    .InterestedContainer,
+    .MessageMapContainer {
+        padding-bottom: 30px;
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+
+        h1 {
+            padding: 30px 0;
+            margin: 0 auto;
+            font-weight: 100;
+        }
+
+        .status-row {
+            font-size: x-large;
+            font-weight: 100;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 2px;
+            padding: 15px 30px;
+
+            .avatar {
+                width: 5rem;
+                height: 5rem;
+                border: 1px solid grey;
+                border-radius: 100%;
+            }
+
+            .name,
+            .date,
+            .space-around {
+                display: flex;
+                flex-flow: column;
+                justify-content: space-around;
+
+                .cancel {
+                    color: #fff;
+                    background-color: #337ab7;
+                    border-color: #2e6da4;
+                    max-height: 40px;
+                }
+
+                .message {
+                    color: #fff;
+                    background-color: #fecd44;
+                    border-color: #fecd44;
+                    max-height: 40px;
+                }
+            }
+        }
+    }
+
+    .RequestsContainer {
+        background-color: #eceff3;
+    }
+
+    .InterestedContainer {
+        background-color: #fff;
+        .status-row {
+            border-bottom: 2px solid #eceff3;
+            border-radius: 0px;
+        }
+    }
+
+    .MessageMapContainer {
+        background-color: #7eb9ff;
+        
+        h1 {
+            color: #fff;
+        }
+
+        .Details {
+            background: #fff;
+            width: 80%;
+            height: auto;
+            margin: auto;
+            display: flex;
+            flex-flow: column;
+            border-radius: 5px;
+            padding: 15px 30px;
+
+            h3 {
+                margin: 0 auto;
+                color: #7eb9ff;
+                font-weight: 100;
+            }
+
+            .StartFinish {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-around;
+            }
+
+            .Start,
+            .Finish {
+                display: flex;
+                flex-flow: inherit;
+
+                time {
+                    color: #fff;
+                    background-color: #eceff3;
+                    border-color: #eceff3;
+                    max-height: 40px;
+                    color: #424140;
+                    font-size: x-large;
+                    font-weight: 100;
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: space-around;
+                    position: relative;
+                    bottom: .5em;
+                    left: 1em;
+                }
+            }
+            
+        }
+    }
+
+    .all-rights-reserved {
+        background-color: #959595;
+        color: #fff;
+        padding: 5px;
+        display: flex;
+
+        span {
+            margin: 0 auto; 
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .StatusContainer .RequestsContainer .status-row,
+    .StatusContainer .InterestedContainer .status-row,
+    .StatusContainer .MessageMapContainer .status-row {
+        display: flex;
+        flex-flow: column;
+
+        .avatar,
+        .name,
+        .date,
+        .space-around,
+         {
+            margin: 0 auto;
+        }
+    }
+    .StatusContainer .MessageMapContainer .Details .StartFinish {
+        flex-flow: column;
+    }
+    .StatusContainer .MessageMapContainer .Details .Start time,
+    .StatusContainer .MessageMapContainer .Details .Finish time {
+        bottom: inherit;
+        left: inherit;
+    }
+}
