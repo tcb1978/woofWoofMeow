@@ -43,7 +43,7 @@ class Calendar extends Component {
             monthOffset: 0,
             daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDate() % 7 - (date.getDay() + 1)) : -1
         });
-        // daysOffet is need to offset the days the days in the calendar so the days start at the right date
+        // daysOffet is needed to offset the days of each month in the calendar, so the date starts on the right day
         // The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
         // If it's not, the offset will be the difference between the days remaining and current day
         // The default offset is -1, and 7 is used because there's 7 days in a week
@@ -51,8 +51,11 @@ class Calendar extends Component {
 
     handleMonthChange ( direction ) {
         const date = new Date();
+        // The month is set to a different month depending on the offset
         date.setMonth( date.getMonth() + this.state.monthOffset );
+        // The default day of the month is the first day of the month
         date.setDate( 1 );
+        // The number of days in the month
         const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
         if ( direction === 'right' ) {
@@ -87,18 +90,18 @@ class Calendar extends Component {
 
     render () {
         const months = [
-            { month: "January", days: 31 },
-            { month: "Feburary", days: 28 },
-            { month: "March", days: 31 },
-            { month: "April", days: 30 },
-            { month: "May", days: 31 },
-            { month: "June", days: 30 },
-            { month: "July", days: 31 },
-            { month: "August", days: 31 },
-            { month: "September", days: 30 },
-            { month: "October", days: 31 },
-            { month: "November", days: 30 },
-            { month: "December", days: 31 }
+            "January",
+            "Feburary",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
         ];
         const days = [
             "Sunday", 
@@ -120,7 +123,7 @@ class Calendar extends Component {
         
         // The indexes for the month, day of the month, and day of the week
         // daysOffset offsets the month's days to start on the right day. -1 is the start.
-        const { mm, dd, day, daysOffset } = this.state;
+        const { mm, dd, day, numOfDays, daysOffset } = this.state;
 
         for ( let i = 0; i < weeks.length; i++ ) { 
             for ( let j = 0; j < days.length; j++ ) {
@@ -128,7 +131,7 @@ class Calendar extends Component {
                 const dayIndex = j + (i * 7);
                 
                 // If the dayIndex is within the specific month's range of days it will have a number
-                if ( dayIndex > daysOffset && dayIndex <= (months[mm].days + daysOffset) ) {
+                if ( dayIndex > daysOffset && dayIndex <= (numOfDays + daysOffset) ) {
                     monthDays[dayIndex] = dayIndex - daysOffset;
                 } else {
                     monthDays[dayIndex] = '-';
@@ -138,12 +141,6 @@ class Calendar extends Component {
                 weeks[i][j] = monthDays[dayIndex];
             }
         }
-        
-        // console.log( 'Year: ',  this.state.yyyy );
-        // console.log( 'Month: ',  this.state.mm);
-        // console.log( 'Day: ', this.state.dd );
-        // console.log( 'Number of Days: ', this.state.numOfDays );
-        // console.log( 'Month offset amount: ', this.state.monthOffset );
 
         return (
             <div className="calendar">
