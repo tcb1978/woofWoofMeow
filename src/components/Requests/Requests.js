@@ -95,9 +95,9 @@ class Requests extends Component {
                                     <div className="AnimalAvatar"><span>Dog's Name</span></div>
                                     <div className="AnimalAvatar"><span>Dog's Name</span></div>
                                 </div>
-                                <div class="TodaysService">
-                                    <div class="ServiceLength">30 min </div>
-                                    <div class="WalkOrPark">   walk</div>
+                                <div className="TodaysService">
+                                    <div className="ServiceLength">30 min </div>
+                                    <div className="WalkOrPark">   walk</div>
                                 </div>
                             </div>
                             <div className="status-row">
