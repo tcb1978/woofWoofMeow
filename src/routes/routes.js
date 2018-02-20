@@ -19,5 +19,6 @@ export default (
     <Route path="/profile" component={ Profile }/>
     <Route path="/chat" component={ Chat }/>
     <Route path="/update-message" component={UpdateMessage} />
+    <Route path="/caregiver" component={ Caregiver }/>
   </Switch>
 )

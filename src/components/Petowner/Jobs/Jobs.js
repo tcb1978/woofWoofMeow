@@ -44,7 +44,7 @@ const checkin_appointment = <div className="Checkin">
                             <div className="time"><h3>2:30pm - 3:00pm</h3></div>
                             <button className="btn jobCheckIn">Check In</button>
                         </div>
-                        <div clasName="Appontment tab">
+                        <div className="Appontment tab">
                             {checkin_appointment}
                         </div>
                         <div className="Appointment tab">
