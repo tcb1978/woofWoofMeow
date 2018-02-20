@@ -93,7 +93,7 @@ class Calendar extends Component {
         const weeks = [new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length),new Array(days.length)];
         const calendarDays = new Array(weeks.length * days.length);
         
-        const { yyyy, mm, dd, day, numOfDays, daysOffset, selectedDay } = this.state;
+        const { yyyy, mm, dd, day, numOfDays, daysOffset, currentDay, selectedDay, } = this.state;
 
         for ( let i = 0; i < weeks.length; i++ ) { 
             for ( let j = 0; j < days.length; j++ ) {
@@ -140,7 +140,7 @@ class Calendar extends Component {
                             { weeks.map( (week, i) => (
                             <div key={i} className="week">
                                 { week.map( (day, j) => (
-                                <div key={j} className={`day-block ${!day ? 'blueGrey': 'white'}`} onClick={() => day ? this.selectDay(yyyy,mm,day) : null}>{ day }</div> 
+                                <div key={j} className={`day-block ${!day ? 'blueGrey': 'white'} ${currentDay.yyyy === yyyy && currentDay.mm === mm && currentDay.dd === day ? 'blueNum' : ''}`} onClick={() => day ? this.selectDay(yyyy,mm,day) : null}>{ day }</div> 
                                 )) }
                             </div>
                             )) }
