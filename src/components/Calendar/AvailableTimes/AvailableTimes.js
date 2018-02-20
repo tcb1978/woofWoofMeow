@@ -4,10 +4,13 @@ import './AvailableTimes.css';
 class AvailableTimes extends Component {
     constructor () {
         super();
-        this.state = { }
+        this.state = { 
+            times: {}
+        }
     }
 
     render () {
+        const { months, days, day } = this.props;
         return (
             <div className="available-times">
                 <div className="container">
@@ -15,8 +18,8 @@ class AvailableTimes extends Component {
                     {/* <h3>Available Times</h3> */}
 
                     <div className="month-day">
-                        <div className="day">Wednesday</div>
-                        <div className="date">January 9, 2018</div>
+                        <div className="day">{ days[day.day] }</div>
+                        <div className="date">{`${months[day.mm]} ${day.dd}, ${day.yyyy}`}</div>
                     </div>
 
                     <ul>

@@ -17,7 +17,8 @@ class Calendar extends Component {
             monthOffset: 0,
             daysOffset: -1,
             week: 0,
-            chosenDay: {}
+            currentDay: {},
+            selectedDay: {}
         }
     }
 
@@ -30,17 +31,19 @@ class Calendar extends Component {
         const day = date.getDay();
         const numOfDays = new Date(yyyy, mm + 1, 0).getDate();
 
-        // daysOffet is needed to offset the days of each month in the calendar, so the date starts on the right day
-        // The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
-        // If it's not, the offset will be the difference between the days remaining and current day
-        // The default offset is -1, and 7 is used because there's 7 days in a week
+        /* daysOffet is needed to offset the days of each month in the calendar, so the date starts on the right day
+        The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
+        If it's not, the offset will be the difference between the days remaining and current day
+        The default offset is -1, and 7 is used because there's 7 days in a week. */
         this.setState({ 
             yyyy: yyyy,
             dd: dd,
             mm: mm,
             day: day,
             numOfDays: numOfDays,
-            daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDate() % 7 - (date.getDay() + 1)) : -1
+            daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDate() % 7 - (date.getDay() + 1)) : -1,
+            currentDay: { yyyy, dd, mm, day },
+            selectedDay: { yyyy, dd, mm, day }
         });
     }
 
@@ -77,10 +80,11 @@ class Calendar extends Component {
     }
 
     selectDay ( yyyy, mm, dd ) {
-        console.log(`${yyyy}-${mm+1}-${dd}`);
-        this.setState({
-            chosenDay: { yyyy, mm, dd }
-        });
+        const date = new Date();
+        // The full year set to month currently being viewed. This allows me to get the day of the month
+        date.setFullYear( yyyy, mm, dd );
+        // selectedDay is set to an object containing the date and the day of the week.
+        this.setState({ selectedDay: { yyyy, mm, dd, day: date.getDay() } });
     }
 
     render () {
@@ -89,7 +93,7 @@ class Calendar extends Component {
         const weeks = [new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length),new Array(days.length)];
         const calendarDays = new Array(weeks.length * days.length);
         
-        const { yyyy, mm, dd, day, numOfDays, daysOffset } = this.state;
+        const { yyyy, mm, dd, day, numOfDays, daysOffset, selectedDay } = this.state;
 
         for ( let i = 0; i < weeks.length; i++ ) { 
             for ( let j = 0; j < days.length; j++ ) {
@@ -107,13 +111,13 @@ class Calendar extends Component {
                 weeks[i][j] = calendarDays[dayIndex];
             }
         }
-        // console.log( this.state.monthOffset );
+        console.log( this.state.monthOffset );
         // console.log('yyyy: ', yyyy);
         // console.log('mm: ', months[mm]);
         // console.log('dd: ', dd);
         // console.log('Day: ', days[day]);
         // console.log('Number of Days: ', numOfDays);
-        console.log( this.state.chosenDay );
+        console.log( selectedDay );
 
         return (
             <div className="calendar">
@@ -143,7 +147,7 @@ class Calendar extends Component {
                         </div>
                     </div>
                     
-                    <AvailableTimes />
+                    <AvailableTimes months={months} days={days} day={selectedDay} />
                 </div>
             </div>
         )
