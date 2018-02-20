@@ -15,8 +15,9 @@ class Calendar extends Component {
             day: 0,
             numOfDays: 0,
             monthOffset: 0,
-            week: 0,
             daysOffset: -1,
+            week: 0,
+            chosenDay: {}
         }
     }
 
@@ -29,30 +30,29 @@ class Calendar extends Component {
         const day = date.getDay();
         const numOfDays = new Date(yyyy, mm + 1, 0).getDate();
 
+        // daysOffet is needed to offset the days of each month in the calendar, so the date starts on the right day
+        // The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
+        // If it's not, the offset will be the difference between the days remaining and current day
+        // The default offset is -1, and 7 is used because there's 7 days in a week
         this.setState({ 
             yyyy: yyyy,
             dd: dd,
             mm: mm,
             day: day,
             numOfDays: numOfDays,
-            monthOffset: 0,
             daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDate() % 7 - (date.getDay() + 1)) : -1
         });
-        // daysOffet is needed to offset the days of each month in the calendar, so the date starts on the right day
-        // The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
-        // If it's not, the offset will be the difference between the days remaining and current day
-        // The default offset is -1, and 7 is used because there's 7 days in a week
     }
 
     handleMonthChange ( direction ) {
         const date = new Date();
         // The month is set to a different month depending on the offset
-        date.setMonth( date.getMonth() + this.state.monthOffset );
+        date.setMonth( date.getMonth() + 1 + this.state.monthOffset );
         // The default day of the month is the first day of the month
         date.setDate( 1 );
         // The number of days in the month
         const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-
+        console.log( this.state.monthOffset );
         if ( direction === 'right' ) {
             this.setState(prevState => ({ 
                 yyyy: date.getFullYear(),
@@ -63,8 +63,7 @@ class Calendar extends Component {
                 monthOffset: prevState.monthOffset + 1,
                 daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDay() - (date.getDate() % 7)) : 0
             }));
-        }
-        if ( direction === 'left' ) {
+        } else {
             this.setState(prevState => ({
                 yyyy: date.getFullYear(),
                 mm: date.getMonth(),
@@ -75,6 +74,13 @@ class Calendar extends Component {
                 daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDay() - (date.getDate() % 7)) : 0
             }));
         }
+    }
+
+    selectDay ( yyyy, mm, dd ) {
+        console.log(`${yyyy}-${mm+1}-${dd}`);
+        this.setState({
+            chosenDay: { yyyy, mm, dd }
+        });
     }
 
     render () {
@@ -97,10 +103,17 @@ class Calendar extends Component {
                     calendarDays[dayIndex] = '';
                 }
 
-                // The days in the weeks are given right date number
+                // Each day in the calendar is given the right date number
                 weeks[i][j] = calendarDays[dayIndex];
             }
         }
+        // console.log( this.state.monthOffset );
+        // console.log('yyyy: ', yyyy);
+        // console.log('mm: ', months[mm]);
+        // console.log('dd: ', dd);
+        // console.log('Day: ', days[day]);
+        // console.log('Number of Days: ', numOfDays);
+        console.log( this.state.chosenDay );
 
         return (
             <div className="calendar">
@@ -123,7 +136,7 @@ class Calendar extends Component {
                             { weeks.map( (week, i) => (
                             <div key={i} className="week">
                                 { week.map( (day, j) => (
-                                <div key={j} className={`day-block ${!day ? 'blueGrey': 'white'}`}>{ day }</div> 
+                                <div key={j} className={`day-block ${!day ? 'blueGrey': 'white'}`} onClick={() => day ? this.selectDay(yyyy,mm,day) : null}>{ day }</div> 
                                 )) }
                             </div>
                             )) }
