@@ -9,6 +9,7 @@ class Profile extends Component {
   render() {
     return (
       <Aux>
+
         {/*
           { this.props.user.title === 'petowner'
           ? <Petowner/>

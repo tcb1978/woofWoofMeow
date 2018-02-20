@@ -1,0 +1,87 @@
+.calendar .container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    // background-color: pink;
+
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .layout {
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        background-color: rgb(212, 255, 192);
+
+        .months {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            width: 100%;
+            background-color: #7EB9FF;
+            .month {
+                flex: 2;
+                text-align: center;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                // background-color: rgb(201, 192, 255);
+            }
+            .arrow {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .arrow > img {
+                max-width: 25%;
+                max-height: 30px;
+                // background-color: rgb(255, 240, 192);
+            }
+        }
+
+        .days {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 1px;
+            background-color: rgb(235, 235, 235);
+            .darkGrey { background-color: rgb(235, 235, 235) }
+            .lightGrey { background-color: rgb(245, 245, 245) }
+            .day {
+                flex: 1;
+                padding: 3px 0;
+                text-align: center;
+                // background-color: #E9EDF3;
+            }
+        }
+
+        .weeks {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid rgb(185, 190, 199);
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            background-color: rgb(192, 255, 247);
+            .week {
+                display: flex;
+                width: 100%;
+                .blueGrey { background-color: #E9EDF3 }
+                .white { background-color: white }
+                .blueNum { color: #517CF7 }
+                .day-block {
+                    flex: 1;
+                    height: 50px;
+                    padding-left: 4px;
+                    box-sizing: border-box;
+                    outline: 1px solid rgb(167, 172, 180);
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
