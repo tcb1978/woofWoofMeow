@@ -15,7 +15,7 @@ class CareGiverSearch extends Component {
                             <TabList>
                                 <Tab>Proximity</Tab>
                                 <Tab>Time</Tab>
-                                <Tab><i class="fas fa-search"></i></Tab>
+                                <Tab><i className="fas fa-search"></i></Tab>
                             </TabList>
 
                             <TabPanel>
