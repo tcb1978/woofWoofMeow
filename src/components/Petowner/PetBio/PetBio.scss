@@ -91,10 +91,11 @@
             .PetBioDropDownHeader {
 
                 .Avatar {
-                    width: 12rem;
-                    height: 12rem;
-                    border: 1px solid;
-                    border-radius: 100%;
+                    img {
+                        width: 12rem;
+                        height: 12rem;
+                        border-radius: 100%;
+                    }
                 }
                 .Name {
                     display: flex;
@@ -113,11 +114,6 @@
                     font-weight: 100;
                     border-bottom: 2px solid #cccbcb;
                     line-height: 2;
-
-                    span {
-                        font-size: x-large;
-                        padding: 0 6rem;
-                    }
                 }
             }
             div {
