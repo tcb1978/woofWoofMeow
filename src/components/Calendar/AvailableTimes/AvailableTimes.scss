@@ -1,5 +1,47 @@
-.availableTimes {
+.available-times {
     display: flex;
     width: 100%;
-    background-color: rgb(210, 255, 210);
+    // background-color: rgb(210, 255, 210);
+    .container {
+        width: 100%;
+    }
+
+    .month-day {
+        display: flex;
+        // background-color: rgb(255, 241, 215);
+        div {
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            // border: 1px dashed gray;
+        }
+        .day {
+            font-size: 18px;
+            color: #7EB9FF;
+        }
+        .date {
+            font-size: 14px;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        // background-color: rgb(215, 232, 255);
+        li {
+            border-top: 1px solid #bbbbbb;
+            // background-color: rgb(255, 215, 223);
+        }
+        .time {
+            font-size: 15px;
+        }
+    }
+
+    ul > li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+    }
 }
