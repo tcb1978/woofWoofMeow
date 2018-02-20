@@ -1,0 +1,77 @@
+.calendar .container {
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    background-color: pink;
+
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .layout {
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: rgb(212, 255, 192);
+
+        .months {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            width: 100%;
+            background-color: #7EB9FF;
+            .month {
+                flex: 2;
+                text-align: center;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                // background-color: rgb(201, 192, 255);
+            }
+            .arrow {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .arrow > img {
+                max-width: 25%;
+                max-height: 30px;
+                // background-color: rgb(255, 240, 192);
+            }
+        }
+
+        .days {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .day {
+                flex: 1;
+                text-align: center;
+                outline: 1px solid gray;
+                background-color: rgb(192, 230, 255);
+            }
+        }
+
+        .weeks {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid gray;
+            background-color: rgb(192, 255, 247);
+            .week {
+                display: flex;
+                width: 100%;
+                .day-block {
+                    flex: 1;
+                    width: 50px;
+                    height: auto;
+                    outline: 1px solid gray;
+                    background-color: rgb(255, 240, 192);
+                }
+            }
+        }
+    }
+}
