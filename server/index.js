@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
+// const socket = require('socket.io');
 require('dotenv').config();
 
 // Connecting our .env variable
@@ -81,4 +82,14 @@ app.get('/reviews', reviews_controller.getAll);
 app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver);
 
 const port = process.env.PORT || 3050;
-app.listen( port, () => console.log(`Listening on port: ${port}`) );
+const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
+
+// io = socket(server);
+
+// io.on('connection', (socket) => {
+//   console.log(socket.id);
+//   // listens for the message 
+//   socket.on('SEND_MESSAGE', function(data){
+//     io.emit('RECEIVE_MESSAGE', data);
+//   })
+// });
