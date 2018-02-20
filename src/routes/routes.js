@@ -18,10 +18,7 @@ export default (
     <Route path="/signup/caregiver" component={ Signup }/>
     <Route path="/profile" component={ Profile }/>
     <Route path="/chat" component={ Chat }/>
-<<<<<<< HEAD
     <Route path="/update-message" component={UpdateMessage} />
-=======
     <Route path="/caregiver" component={ Caregiver }/>
->>>>>>> caregiver
   </Switch>
 )

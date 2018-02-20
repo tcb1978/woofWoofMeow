@@ -39,11 +39,7 @@ CREATE TABLE IF NOT EXISTS animals (
 INSERT INTO animals
 (animal_name, breed, age, weight, sex, animal_avatar, user_id)
 VALUES
-<<<<<<< HEAD
-('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 'https://ibb.co/bRxU2c', 1);
-=======
 ('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 'https://image.ibb.co/cLyDTH/mia.jpg', 1);
->>>>>>> caregiver
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
