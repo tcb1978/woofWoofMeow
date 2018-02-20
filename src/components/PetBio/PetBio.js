@@ -28,7 +28,8 @@ class PetBio extends Component {
             animal_name: '',
             breed: '',
             sex: '',
-            weight: ''
+            weight: '',
+            animal_avatar : ''
         }
     }
 
@@ -57,7 +58,7 @@ class PetBio extends Component {
             })
             axios.get(`/animal/${user_id}`).then(response => {
 
-                const { age, animal_id, animal_name, breed, sex, user_id, weight } = response.data[0]
+                const { age, animal_id, animal_name, breed, sex, user_id, weight, animal_avatar } = response.data[0]
                 
                 this.setState({
                     age: age,
@@ -65,7 +66,8 @@ class PetBio extends Component {
                     animal_name: animal_name,
                     breed: breed,
                     sex: sex,
-                    weight: weight
+                    weight: weight,
+                    animal_avatar: animal_avatar
                 })
             })
         }).catch(error => console.log(error))
@@ -83,9 +85,18 @@ class PetBio extends Component {
                             <i className="UserEdit fas fa-edit"></i>
                         </div>
                         <div className="AvatarDisplay">
-                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
-                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
-                            <div className="AnimalAvatar"><span>{this.state.animal_name}</span></div>
+                            <div className="AnimalAvatar">
+                                <img src={this.state.animal_avatar} />
+                                <span>{this.state.animal_name}</span>
+                            </div>
+                            <div className="AnimalAvatar">
+                                <img src={this.state.animal_avatar} />
+                                <span>{this.state.animal_name}</span>
+                            </div>
+                            <div className="AnimalAvatar">
+                                <img src={this.state.animal_avatar} />
+                                <span>{this.state.animal_name}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="PetBioDropDown">

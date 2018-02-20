@@ -61,14 +61,14 @@
 
             .AnimalAvatar {
                 margin: 0 auto;
-                width: 12rem;
-                height: 12rem;
-                border-radius: 100%;
-                background-color: #fff;
                 display: flex;
-                flex-flow: column-reverse;
-                box-sizing: border-box;
-                border: 2px solid grey;
+                flex-flow: column;
+                    
+                img {
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 100%;
+                }
 
                 span{
                     margin: 0 auto;
