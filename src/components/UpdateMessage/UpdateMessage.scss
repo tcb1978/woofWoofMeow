@@ -31,19 +31,19 @@
                 font-size: x-large;
             }
 
-            .petwoner-name {
+            .reciever-name {
                 font-size: larger;
             }
 
             span,
-            .petwoner-name {
+            .reciever-name {
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
                 font-weight: bold;
             }
 
-            .caregiver {
+            .sender {
                 display: flex;
                 flex-direction: row;
                 justify-content: baseline;
@@ -58,7 +58,7 @@
                     margin-right: 15px;
                 }
 
-                .caregiver-name {
+                .sender-name {
                     display: flex;
                     flex-flow: column;
                     justify-content: center;

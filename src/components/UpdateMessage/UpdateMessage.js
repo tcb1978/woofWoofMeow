@@ -9,12 +9,12 @@ const UpdateMessage = (props) => {
                 <h1>Update</h1>
                 <div className="widget">
                     <div className="widget-upper">
-                        <div className="caregiver">
+                        <div className="sender">
                             <div className="avatar"></div>
-                            <div className="caregiver-name">Mark</div>
+                            <div className="sender-name">Mark</div>
                         </div>
                         <span><i class="fas fa-caret-right"></i></span>
-                        <div className="petwoner-name">Jennifer</div>
+                        <div className="reciever-name">Jennifer</div>
                     </div>
                     <div className="take-a-picture">
                         <span><i class="fas fa-camera"></i></span>
