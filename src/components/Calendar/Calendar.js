@@ -42,13 +42,6 @@ class Calendar extends Component {
         // The ternary checks if the current date in the current week ( % remaining days ) is not equal to to the current day
         // If it's not, the offset will be the difference between the days remaining and current day
         // The default offset is -1, and 7 is used because there's 7 days in a week
-
-        console.log( 'Date: ', date );
-        console.log( 'year: ', yyyy );
-        console.log( 'Month: ', mm );
-        console.log( 'Day of the Month: ', dd );
-        console.log( 'Day: ', day );
-        console.log( 'Number of Days: ', numOfDays );
     }
 
     handleMonthChange ( direction ) {
@@ -82,12 +75,6 @@ class Calendar extends Component {
                 daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDay() - (date.getDate() % 7)) : 0
             }));
         }
-        console.log( 'Date: ', date );
-        console.log( 'Year: ',  date.getFullYear() );
-        console.log( 'Month: ',  date.getMonth() );
-        console.log( 'Day: ', date.getDay() );
-        console.log( 'Number of Days: ', numOfDays );
-        console.log( 'Remaining Days', date.getDate() );
     }
 
     render () {
