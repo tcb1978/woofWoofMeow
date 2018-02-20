@@ -72,7 +72,34 @@ class Requests extends Component {
                                 <div className="Start">Start: <time className="btn">1:28pm</time></div>
                                 <div className="Finish">Finish: <time className="btn">2:28pm</time></div>
                             </div>
-                            <div className="GoogleMap"></div>
+                            <div className="GoogleMap">This is a Google Map</div>
+                        </div>
+                    </div>
+                    <div className="HistoryContainer">
+                        <h1>History</h1>
+                        <div className="history-wrapper">
+                            <div className="status-row">
+                                <div className="avatar"></div>
+                                <div className="name">Mark</div>
+                                <div className="date">
+                                    <date>January 10</date>
+                                </div>
+                                <div className="StartFinish">
+                                    <div className="Start"><time className="">1:28pm- </time></div>
+                                    <div className="Finish"><time className="">     2:28pm</time></div>
+                                </div>
+                            </div>
+                            <div className="HistoryDropDown">
+                                <div className="AvatarDisplay">
+                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
+                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
+                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
+                                </div>
+                                <div class="TodaysService">
+                                    <div class="ServiceLength">30 min </div>
+                                    <div class="WalkOrPark">   walk</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>

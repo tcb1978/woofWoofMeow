@@ -2,7 +2,8 @@
 
     .RequestsContainer,
     .InterestedContainer,
-    .MessageMapContainer {
+    .MessageMapContainer,
+    .HistoryContainer {
         padding-bottom: 30px;
         height: auto;
         width: 100%;
@@ -121,7 +122,94 @@
                     left: 1em;
                 }
             }
-            
+            .GoogleMap {
+                padding: 15px 0 15px 0;
+                width: 100%;
+                border: 2px solid #7eb9ff;
+                border-radius: 5px;
+                margin-top: 15px;
+                height: auto;
+            }
+        }
+    }
+
+    .HistoryContainer {
+
+        .history-wrapper {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+            border: 2px solid #7eb9ff;
+            border-radius: 5px;
+            background-color: #e1e3e5;
+
+            .status-row {
+                
+                width: 100%;
+
+                .avatar {}
+
+                .name {}
+
+                .date {}
+
+                .StartFinish {
+                    padding: 1.5% 0;
+                    font-size: large;
+                    display: flex;
+                }
+            }
+
+            .HistoryDropDown {
+                border: none;
+                background: #e9edf3;
+                padding: 0 0 30px 0;
+
+                .AvatarDisplay {
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: space-around;
+                    padding: 30px 0 60px 0;
+
+                    .AnimalAvatar {
+                        width: 12rem;
+                        height: 12rem;
+                        border-radius: 100%;
+                        border: 1px solid;
+                        display: flex;
+                        flex-direction: column-reverse;                        
+
+                        span {
+                            margin: 0 auto;
+                            font-size: 2rem;
+                            position: relative;
+                            top: 3rem;
+                        }
+                    }
+                    
+                }
+
+                .TodaysService {
+                    width: 30%;
+                    padding: 10px 0;
+                    margin: auto;
+                    display: flex;
+                    flex-direction: inherit;
+                    justify-content: center;
+                    background: #fff;
+                    margin-bottom: 30px;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 4rem;
+                    
+                    .ServiceLength {
+                        color: #7eb9ff;
+                        padding: 0 15px 0 0;
+                    }
+                }
+            }
         }
     }
 
@@ -159,5 +247,17 @@
     .StatusContainer .MessageMapContainer .Details .Finish time {
         bottom: inherit;
         left: inherit;
+    }
+
+    .StatusContainer .HistoryContainer .history-wrapper .status-row {
+        display: flex;
+        flex-flow: column;
+
+        .avatar,
+        .name,
+        .date,
+        .StartFinish {
+            margin: 0 auto;
+        }
     }
 }
