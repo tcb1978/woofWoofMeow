@@ -32,23 +32,22 @@ CREATE TABLE IF NOT EXISTS animals (
     age VARCHAR (100) NOT NULL,
     weight VARCHAR (7) NOT NULL,
     sex VARCHAR (7) NOT NULL,
+    animal_avatar VARCHAR (200),
     user_id INTEGER REFERENCES users (user_id) NOT NULL
 );
 
 INSERT INTO animals
-(animal_name, breed, age, weight, sex, user_id)
+(animal_name, breed, age, weight, sex, animal_avatar, user_id)
 VALUES
-('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 1);
+('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 'https://image.ibb.co/cLyDTH/mia.jpg', 1);
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users (user_id) NOT NULL,
-    month INTEGER NOT NULL,
-    day INTEGER NOT NULL,
-    year INTEGER NOT NULL,
-    begin_time VARCHAR (10) NOT NULL,
-    end_time VARCHAR (10) NOT NULL,
-    am_pm VARCHAR (5) NOT NULL
+    day INTEGER,
+    begin_time VARCHAR (10),
+    end_time VARCHAR (10),
+    am_pm VARCHAR (5)
 );
 
 CREATE TABLE IF NOT EXISTS jobs (

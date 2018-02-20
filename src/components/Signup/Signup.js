@@ -43,15 +43,31 @@ class Signup extends Component {
             title: arr[2]
         })
         .then(response => {
-            console.log('register ', response);
+            console.log('register user', response);
             // console.log(this.props);
             this.props.login(response.data)
             console.log('props', this.props);
-            this.setState({ user_id: response.data.user_id })
+            const user_id = response.data.user_id
+            this.setState({ user_id: user_id });
+            var day = 1;
+            const begin_time = "6:00";
+            const end_time = "2:00";
+            const am_pm = "am";
+            for (let i = 0; i < 7; i++) {
+                axios.post('/create/available', {
+                    user_id,
+                    day: i,
+                    begin_time,
+                    end_time,
+                    am_pm
+                })
+                .then( res => {
+                    console.log('res ', res);
+                })
+                .catch(error => console.log(error))
+            }
         })
-        .catch(error => {
-            console.log(error);
-        })
+        .catch(error => {console.log(error)})
     }
 
     // handleSubmit = (event) =>  {
@@ -120,7 +136,6 @@ class Signup extends Component {
     }
 
     render() {
-        // const { from } = this.props.location.state || '/'
         const { fireRedirect } = this.state
         return (
             <Aux>
