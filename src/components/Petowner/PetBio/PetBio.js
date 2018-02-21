@@ -29,7 +29,8 @@ class PetBio extends Component {
             breed: '',
             sex: '',
             weight: '',
-            animal_avatar : ''
+            animal_avatar : '',
+            PetBioIsHidden : true,
         }
     }
 
@@ -73,12 +74,47 @@ class PetBio extends Component {
         }).catch(error => console.log(error))
     }
 
+    handlePetBioAvatarClick = () => {
+        this.setState({
+            petBioIsHidden: !this.state.petBioIsHidden,
+        })
+    }
+
     render() {
+        const Child = () => (
+            <div className="PetBioDropDown">
+                <div className="container">
+                    <div className="row">
+                        <div className="column-style">
+                            <div className="col-xs-12 col-sm-4">
+                                <div className="PetBioDropDownHeader">
+                                    <div className="Avatar"><img src={this.state.animal_avatar} /></div>
+                                    <div className="Name"><h1>{this.state.animal_name}</h1></div>
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-4">
+                                <ul className="PetDetailsList">
+                                    <li>Breed: <span>    {this.state.breed}</span></li>
+                                    <li>Age: <span>  6 years</span></li>
+                                    <li>Weight: <span>   60 lbs.</span></li>
+                                    <li>Sex: <span>  Female</span></li>
+                                </ul>
+                            </div>
+                            <div className="col-xs-12 col-sm-4">
+                                <div>{this.state.about_message}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+
         return (
             <Aux>
                 <div className="Landscape"></div>
                 <div className="PetBio">
-                    <div className="PetBioAvatar"><img src={this.state.avatar} /></div>
+                    <div className="PetBioAvatar">
+                    <img src={this.state.avatar} /></div>
                     <div className="UserPetBio">
                         <div className="header">
                             <h1>{this.state.first_name}</h1>
@@ -86,44 +122,12 @@ class PetBio extends Component {
                         </div>
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
-                                <img src={this.state.animal_avatar} />
-                                <span>{this.state.animal_name}</span>
-                            </div>
-                            <div className="AnimalAvatar">
-                                <img src={this.state.animal_avatar} />
-                                <span>{this.state.animal_name}</span>
-                            </div>
-                            <div className="AnimalAvatar">
-                                <img src={this.state.animal_avatar} />
-                                <span>{this.state.animal_name}</span>
+                                <img onClick={this.handlePetBioAvatarClick.bind(this)} src={this.state.animal_avatar} />
+                                <span onClick={this.handlePetBioAvatarClick.bind(this)} >{this.state.animal_name}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="PetBioDropDown">
-                        <div className="container">
-                            <div className="row">
-                                <div className="column-style">
-                                    <div className="col-xs-12 col-sm-4">
-                                        <div className="PetBioDropDownHeader">
-                                            <div className="Avatar"><img src={this.state.animal_avatar} /></div>
-                                            <div className="Name"><h1>{this.state.animal_name}</h1></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-4">
-                                        <ul className="PetDetailsList">
-                                            <li>Breed: <span>    {this.state.breed}</span></li>
-                                            <li>Age: <span>  6 years</span></li>
-                                            <li>Weight: <span>   60 lbs.</span></li>
-                                            <li>Sex: <span>  Female</span></li>
-                                        </ul>
-                                    </div>
-                                    <div className="col-xs-12 col-sm-4">
-                                        <div>minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {this.state.petBioIsHidden && <Child />}
                 </div>
             </Aux>
         )

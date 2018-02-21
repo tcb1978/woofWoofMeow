@@ -15,7 +15,7 @@
     .SearchFilterContainer {
         border-radius: 5px;
         background-color: #7eb9ff;
-        padding: 2px 30px 30px 30px;
+        padding: 30px;
 
         .react-tabs {
 
@@ -56,6 +56,12 @@
                     background-color: #fff;
                     width: 100%;
                     padding: 15px;
+                }
+
+                .proximity {
+                    select {
+                        margin: auto;
+                    }
                 }
 
                 .proximity,
