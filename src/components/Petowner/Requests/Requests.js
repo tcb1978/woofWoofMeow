@@ -31,6 +31,7 @@ class Requests extends Component {
                             </div>
                         </div>
                     </div>
+
                     <div className="InterestedContainer">
                         <h1>Interested</h1>
                         <div className="status-row">
@@ -54,6 +55,7 @@ class Requests extends Component {
                             </div>
                         </div>
                     </div>
+
                     <div className="MessageMapContainer">
                         <h1>Jobs</h1>
                         <div className="status-row">
@@ -75,6 +77,7 @@ class Requests extends Component {
                             <div className="GoogleMap">This is a Google Map</div>
                         </div>
                     </div>
+
                     <div className="HistoryContainer">
                         <h1>History</h1>
                         <div className="history-wrapper">
@@ -124,6 +127,7 @@ class Requests extends Component {
                             </div>
                         </div>
                     </div>
+
                     <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
                 </div>
             </Aux>
