@@ -18,9 +18,36 @@ class CareGiverSearch extends Component {
         }
     }
 
+    componentDidMount() {
+        axios.get(`/caregivers`).then(response => {
+            const caregivers = response.data;
+            console.log(caregivers);
+            this.setState(previous => ({
+                isHidden: !previous.isHidden,
+                caregivers: caregivers
+            }))
+        }).catch(error => console.log(error))
+    }
+
+    filterMethod = () => {
+        const { proximity } = this.state;
+        console.log(proximity);
+        axios.get(`/caregivers/search?proximity=${proximity}?time=?{time}`)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => console.log(error))
+    }
+
     onHandleServicePicked = (event) => {
         this.setState({
             service : event.target.value
+        })
+    }
+
+    onHandleProximityPicked = (event) => {
+        this.setState({
+            proximity: event.target.value
         })
     }
 
@@ -84,7 +111,7 @@ class CareGiverSearch extends Component {
                             <TabList>
                                 <Tab onClick={this.toggleHiddenClear.bind(this)}>Proximity</Tab>
                                 <Tab onClick={this.toggleHiddenClear.bind(this)}>Time</Tab>
-                                <Tab onClick={this.handleSearch.bind(this)}><i className="fas fa-search"></i></Tab>
+                                <Tab onClick={this.filterMethod}><i className="fas fa-search"></i></Tab>
                             </TabList>
 
                             <TabPanel>
@@ -106,7 +133,10 @@ class CareGiverSearch extends Component {
                                     <div className="col-xs-12 col-sm-12">
                                         <div className="form-group">
                                             <label>Proximity</label>
-                                            <select className="form-control" name="Proximity">
+                                            <select
+                                                value={this.state.value}
+                                                onChange={(e) => this.onHandleProximityPicked(e)} 
+                                                className="form-control" name="Proximity">
                                                 <option value='' selected>--Select Proximity--</option>
                                                 <option value="3 miles">3 miles</option>
                                                 <option value="5 miles">5 miles</option>

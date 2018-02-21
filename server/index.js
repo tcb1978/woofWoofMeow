@@ -50,6 +50,7 @@ app.get('/petowner/:id', petowners_controller.getOne);
 
 // Caregivers management
 app.get('/caregivers', caregivers_controller.getAll);
+app.get('/caregivers/search', caregivers_controller.getFiltered);
 app.get('/caregiver/:id', caregivers_controller.getOne);
 
 // Animals management
