@@ -48,18 +48,19 @@ class Signup extends Component {
             this.props.login(response.data)
             console.log('props', this.props);
             const user_id = response.data.user_id
+            console.log(user_id);
             this.setState({ user_id: user_id });
             var day = 1;
-            const begin_time = "6:00";
-            const end_time = "2:00";
-            const am_pm = "am";
+            const time_range = "6AM - 2PM";
+            const begin_time = "6:00AM";
+            const end_time = "2:00PM";
             for (let i = 0; i < 7; i++) {
                 axios.post('/create/available', {
-                    user_id,
+                    user_id: this.state.user_id,
                     day: i,
-                    begin_time,
-                    end_time,
-                    am_pm
+                    time_range: time_range,
+                    begin_time: begin_time,
+                    end_time: end_time
                 })
                 .then( res => {
                     console.log('res ', res);
@@ -98,7 +99,7 @@ class Signup extends Component {
                 street_address,
                 state,
                 city,
-                zip,
+                zip, // think about zip code restrictions (501 <= zip <= 99950)
                 email,
                 phone,
                 avatar,

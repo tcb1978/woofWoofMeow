@@ -4,7 +4,7 @@ import './History.css';
 
 class History extends Component {
     render() {
-        const appointment_history = <div className="AppontmentHistory">
+        const appointment_history = <div className="AppointmentHistory">
             <div className="AvatarDisplay">
                 <div className="AnimalAvatar"><span>Dog's Name</span></div>
                 <div className="AnimalAvatar"><span>Dog's Name</span></div>

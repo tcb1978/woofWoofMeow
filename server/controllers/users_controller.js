@@ -144,9 +144,11 @@ module.exports = {
     // getting longitude and latitude from api request based on zip code
     axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
       .then( (response) => {
+        console.log('123123');
         // changing values of longitude and latitude from req.body
         longitude = response.data.coord.lon
         latitude = response.data.coord.lat
+        console.log(longitude, latitude);
         // making hashed password
         bcrypt.hash(password, saltRound)
         .then(hashedPassword => {

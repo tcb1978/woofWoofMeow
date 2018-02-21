@@ -1,2 +1,2 @@
 SELECT * FROM users
-WHERE title = 'caretaker';
+WHERE title = 'caregiver';

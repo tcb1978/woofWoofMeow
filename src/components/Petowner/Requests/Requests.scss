@@ -260,4 +260,18 @@
             margin: 0 auto;
         }
     }
+
+    .StatusContainer .HistoryContainer .history-wrapper .HistoryDropDown .AvatarDisplay {
+        display: flex;
+        flex-flow: column;
+
+        .AnimalAvatar {
+            margin: 0 auto 60px auto;
+        }
+    }
+
+    .StatusContainer .HistoryContainer .history-wrapper .HistoryDropDown .TodaysService {
+        width: 80%;
+        padding: 10px 0;
+    }
 }
