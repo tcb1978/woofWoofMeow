@@ -1,2 +1,1 @@
-SELECT * FROM users
-WHERE title = 'caregiver' AND proximity = $1;
+SELECT * FROM caregiver_availability;

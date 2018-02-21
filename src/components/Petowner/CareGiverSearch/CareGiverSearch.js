@@ -30,9 +30,9 @@ class CareGiverSearch extends Component {
     }
 
     filterMethod = () => {
-        const { proximity } = this.state;
-        console.log(proximity);
-        axios.get(`/caregivers/search?proximity=${proximity}?time=?{time}`)
+        const { proximity, time } = this.state;
+        console.log(proximity, time);
+        axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`)
         .then(response => {
             console.log(response.data);
         })
@@ -73,17 +73,6 @@ class CareGiverSearch extends Component {
         this.setState({
             isHidden: true
         })
-    }
-
-    handleSearch = () => {
-        axios.get(`/caregivers`).then(response => {
-            const caregivers = response.data;
-            console.log(caregivers);
-            this.setState(previous => ({
-                isHidden: !previous.isHidden,
-                caregivers: caregivers
-            }))
-        }).catch(error => console.log(error))
     }
 
     render () {

@@ -40,11 +40,11 @@ module.exports = {
     const db = req.app.get('db');
     let { time_range, day, user_id, begin_time, end_time } = req.body;
     if (time_range === "2PM - 10PM") {
-      begin_time = '2:00 pm';
-      end_time = '10:00 pm';
+      begin_time = '14:00';
+      end_time = '22:00';
     } else {
-      begin_time = '6:00 am'
-      end_time = '2:00 pm'
+      begin_time = '6:00'
+      end_time = '14:00'
     }
     console.log(req.body);
     console.log(time_range, day, user_id, begin_time, end_time);

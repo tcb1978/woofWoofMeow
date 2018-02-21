@@ -52,8 +52,8 @@ class Signup extends Component {
             this.setState({ user_id: user_id });
             var day = 1;
             const time_range = "6AM - 2PM";
-            const begin_time = "6:00 am";
-            const end_time = "2:00 pm";
+            const begin_time = 6;
+            const end_time = 14;
             for (let i = 0; i < 7; i++) {
                 axios.post('/create/available', {
                     user_id: this.state.user_id,
