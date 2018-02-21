@@ -123,7 +123,7 @@ class PetBio extends Component {
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
                                 <img onClick={this.handlePetBioAvatarClick.bind(this)} src={this.state.animal_avatar} />
-                                <span>{this.state.animal_name}</span>
+                                <span onClick={this.handlePetBioAvatarClick.bind(this)} >{this.state.animal_name}</span>
                             </div>
                         </div>
                     </div>
