@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Aux from '../../../hoc/Aux';
 import './CareGiverSearch.css';
+// import axios from 'axios';
 
 
 class CareGiverSearch extends Component {
@@ -20,20 +21,24 @@ class CareGiverSearch extends Component {
 
                             <TabPanel>
                                 <div className="proximity top-bottom">
-                                    <h3>Within <span>50</span> miles</h3>
+                                    <div className="col-xs-12 col-sm-2"><label>Proximity</label></div>
+                                    <div className="col-xs-12 col-sm-10">
+                                        <select className="form-control" name="Proximity">
+                                            <option value="3 miles" selected>3 miles</option>
+                                            <option value="5 miles">5 miles</option>
+                                            <option value="8 miles">8 miles</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="service-type top-bottom">
-                                    <h3>60 min dog park</h3>
-                                </div>
-                                <div className="caregiver-row top-bottom">
-                                    <div className="avatar"></div>
-                                    <div className="caregiver">Jennifer</div>
-                                    <div className="space-around"><button className="btn btn-request">Request</button></div>
-                                </div>
-                                <div className="caregiver-row top-bottom">
-                                    <div className="avatar"></div>
-                                    <div className="caregiver">Jennifer</div>
-                                    <div className="space-around"><button className="btn btn-request">Request</button></div>
+                                    <div className="col-xs-12 col-sm-2"><label>Service</label></div>
+                                    <div className="col-xs-12 col-sm-10">
+                                        <select className="form-control" name="Service">
+                                            <option value="30 minute walk" selected>30 minute walk</option>
+                                            <option value="60 minute walk" selected>60 minute walk</option>
+                                            <option value="60 minutes dog park">60 minutes dog park</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="caregiver-row top-bottom">
                                     <div className="avatar"></div>
