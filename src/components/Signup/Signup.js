@@ -26,7 +26,7 @@ class Signup extends Component {
             longitude: '',
             latitude: '',
             about_message: '',
-            proximity_definition: '3',
+            proximity: '3',
             animal_name: '',
             breed: '',
             age: '',
@@ -52,8 +52,8 @@ class Signup extends Component {
             this.setState({ user_id: user_id });
             var day = 1;
             const time_range = "6AM - 2PM";
-            const begin_time = "6:00AM";
-            const end_time = "2:00PM";
+            const begin_time = "6:00 am";
+            const end_time = "2:00 pm";
             for (let i = 0; i < 7; i++) {
                 axios.post('/create/available', {
                     user_id: this.state.user_id,
@@ -87,7 +87,7 @@ class Signup extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const { user_id, first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity_definition, animal_name, breed, age, weight, sex } = this.state;
+        const { user_id, first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex } = this.state;
 
         // console.log(password, passwordCheck);
         if (password !== passwordCheck) {
@@ -108,7 +108,7 @@ class Signup extends Component {
                 longitude,
                 latitude,
                 about_message,
-                proximity_definition,
+                proximity,
                 user_id
             }).then( response => {
                 // this.setState({
@@ -274,7 +274,7 @@ class Signup extends Component {
                                         className="form-control"
                                         type="text"
                                         placeholder="last name"
-                                        onChange={(event) => this.handleChange("proximity_definition", event)}>
+                                        onChange={(event) => this.handleChange("proximity", event)}>
                                         <option value="3">3</option>
                                         <option value="5">5</option>
                                         <option value="7">7</option>

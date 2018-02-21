@@ -17,11 +17,11 @@ CREATE TABLE IF NOT EXISTS users (
     longitude VARCHAR (100),
     latitude VARCHAR (100),
     about_message VARCHAR (1000),
-    proximity_definition VARCHAR (10)
+    proximity VARCHAR (10)
 );
 
 INSERT INTO users
-(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition)
+(first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity)
 VALUES
 ('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', 'bla');
 
