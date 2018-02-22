@@ -82,35 +82,6 @@ class CareGiverSearch extends Component {
         this.setState({ [property] : event.target.value})
     }
 
-    // onHandleServicePicked = (event) => {
-    //     this.setState({
-    //         service : event.target.value
-    //     })
-    // }
-
-    // onHandleProximityPicked = (event) => {
-    //     this.setState({
-    //         proximity: event.target.value
-    //     })
-    // }
-
-    // onHandleTimePicked = (event) => {
-    //     this.setState({
-    //         time: event.target.value
-    //     })
-    // }
-
-    // onHandleMonthPicked = (event) => {
-    //     this.setState({
-    //         month: event.target.value
-    //     })
-    // }
-
-    // onHandleDayPicked = (event) => {
-    //     this.setState({
-    //         day: event.target.value
-    //     })
-    // }
 
     toggleHiddenClear = () => {
         this.setState({
