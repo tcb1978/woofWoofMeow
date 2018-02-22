@@ -25,7 +25,7 @@
             padding: 2% 0%;
             box-sizing: border-box;
             margin-bottom: 2px;
-            background: #fff;
+            background-color: #e9edf3;
             border-radius: 4px;
         }
         .paw {
@@ -58,6 +58,7 @@
                     background-color: #fff;
                     display: flex;
                     flex-flow: column-reverse;
+                    border: 1px solid;
                     span {
                         margin: 0 auto;
                         top: 30px;
@@ -67,7 +68,7 @@
                 }
             }
             .TodaysService {
-                width: 30%;
+                width: 60%;
                 padding: 10px 0;
                 margin: auto;
                 display: flex;
@@ -104,7 +105,7 @@
                 }
             }
             .Cancel {
-                width: 80%;
+                // width: 80%;
                 margin: 0 auto;
                 display: flex;
                 .cancel-text {
@@ -160,6 +161,8 @@
                 .AddressContact {
                     padding: 30px;
                     font-size: 15px;
+                    display: flex;
+                    flex-flow: column;
                     .OwnerPhone {
                         font-size: 15px;
                     }

@@ -1,63 +1,53 @@
-.Requests {
+.Interested {
     width: 100%;
     height: auto;
-    background-color: #eceff3;
+    background-color: #fff;
     padding: 30px 0 60px 0;
     display: flex;
     flex-flow: column;
-    margin-bottom: 2px;
-
     h1 {
         padding-bottom: 30px;
         margin: auto;
     }
-
-    .request-row-box {
+    .interested-row-box {
         width: 80%;
         margin: auto;
         background-color: #fff;
         padding: 15px;
         border-radius: 5px;
-
-        .ClientRow {
+        
+        border-bottom: 2px solid #dbdbdb;
+        
+        
+        .caregiverRow {
             display: flex;
             flex-flow: row;
             justify-content: space-between;
-
-            .client-avatar {
+            .caregiver-avatar {
                 width: 4rem;
                 height: 4rem;
                 border-radius: 100%;
                 background-color: #ccc;
                 margin: 0 15px 0 0;
             }
-
-            .client-name,
-            .request-info {
+            .caregiver-name,
+            .interested-info {
                 font-size: 20px;
                 font-weight: 100;
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
             }
-
             div {
                 display: flex;
                 flex-flow: row;
-
                 button {
                     margin: 0 15px 0 15px;
                     cursor: pointer;
                 }
-
-                .interest {
+                .cancel {
                     background-color: #fecd44;
                     border: #fecd44;
-                }
-
-                .pass {
-                    background-color: #c2c5d2;
-                    border: #c2c5d2;
                 }
             }
         }

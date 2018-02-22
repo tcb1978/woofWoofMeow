@@ -89,7 +89,7 @@ class CareGiverSearch extends Component {
                     <div className="avatar"></div>
                     <div className="caregiver">{person.first_name}</div>
                     <div className="space-around">
-                        <button onClick={this.toggleHiddenClear} className="btn btn-request">Request</button>
+                        <button onClick={this.onHandleRequestCaregiver.bind(this)} className="btn btn-request">Request</button>
                     </div>
                 </div>
             ))}
