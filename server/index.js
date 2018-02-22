@@ -33,6 +33,7 @@ const availability_controller = require ('./controllers/availability_controller'
 const bookings_controller = require ('./controllers/bookings_controller');
 const jobs_controller = require ('./controllers/jobs_controller');
 const reviews_controller = require ('./controllers/reviews_controller');
+const googleMaps_controller = require ('./controllers/googleMaps_controller');
 
 // Users management
 // app.post('/register', users_controller.register);
@@ -81,6 +82,10 @@ app.delete('/delete/job/:id', jobs_controller.destroy);
 app.post('/review', reviews_controller.create);
 app.get('/reviews', reviews_controller.getAll);
 app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver);
+
+// Geolocation
+app.get('/location/user', googleMaps_controller.getUserlocation);
+app.get('/location', googleMaps_controller.getlocation);
 
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
