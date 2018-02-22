@@ -31,10 +31,11 @@ class CareGiverSearch extends Component {
 
     filterMethod = () => {
         const { proximity, time } = this.state;
-        console.log(proximity, time);
         axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`)
         .then(response => {
-            console.log(response.data);
+            this.setState(previous => ({
+                isHidden: !previous.isHidden,
+            }))
         })
         .catch(error => console.log(error))
     }
