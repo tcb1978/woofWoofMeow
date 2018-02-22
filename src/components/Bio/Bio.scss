@@ -11,15 +11,14 @@
     justify-content: center;
 
     .BioAvatar {
-        margin: 0 auto;
-        width: 18rem;
-        height: 18rem;
-        border: 6px solid #ccc;
-        border-radius: 100%;
-        clear: both;
-        position: relative;
-        bottom: 9rem;
-        background-color: #fff;
+        img {
+            margin: 0 auto;
+            width: 18rem;
+            height: 18rem;
+            border: 6px solid #ccc;
+            border-radius: 100%;
+            clear: both;   
+        }
     }
 
     div {
