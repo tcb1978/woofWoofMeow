@@ -21,7 +21,6 @@ class CareGiverSearch extends Component {
     componentDidMount() {
         axios.get(`/caregivers`).then(response => {
             const caregivers = response.data;
-            console.log(caregivers);
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
                 caregivers: caregivers
@@ -113,7 +112,7 @@ class CareGiverSearch extends Component {
                                                 value={this.state.value}
                                                 onChange={(e) => this.onHandleServicePicked(e)} className="form-control"
                                                 name="Service">
-                                                <option value='' selected>--Select A Service--</option>
+                                                <option value=''>--Select A Service--</option>
                                                 <option value="30 minute walk">30 minute walk</option>
                                                 <option value="60 minute walk">60 minute walk</option>
                                                 <option value="60 minutes dog park">60 minutes dog park</option>
@@ -127,7 +126,7 @@ class CareGiverSearch extends Component {
                                                 value={this.state.value}
                                                 onChange={(e) => this.onHandleProximityPicked(e)} 
                                                 className="form-control" name="Proximity">
-                                                <option value='' selected>--Select Proximity--</option>
+                                                <option value=''>--Select Proximity--</option>
                                                 <option value="3 miles">3 miles</option>
                                                 <option value="5 miles">5 miles</option>
                                                 <option value="8 miles">8 miles</option>
@@ -147,7 +146,7 @@ class CareGiverSearch extends Component {
                                                 onChange={(e) => this.onHandleTimePicked(e)}
                                                 className="form-control"
                                                 name="Time">
-                                                <option value='' selected>--Select Time--</option>
+                                                <option value=''>--Select Time--</option>
                                                 <option value="6:00 am">6:00 am</option>
                                                 <option value="6:30 am">6:30 am</option>
                                                 <option value="7:30 am">7:30 am</option>
@@ -188,7 +187,7 @@ class CareGiverSearch extends Component {
                                                 onChange={(e) => this.onHandleMonthPicked(e)}
                                                 className="form-control"
                                                 name="Time">
-                                                <option value='' selected>--Select Month--</option>
+                                                <option value=''>--Select Month--</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -212,7 +211,7 @@ class CareGiverSearch extends Component {
                                                 onChange={(e) => this.onHandleDayPicked(e)}
                                                 className="form-control"
                                                 name="Time">
-                                                <option value='' selected>--Select Day--</option>
+                                                <option value=''>--Select Day--</option>
                                                 <option value='1'>1</option>
                                                 <option value='2'>2</option>
                                                 <option value='3'>3</option>
