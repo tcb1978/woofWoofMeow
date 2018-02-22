@@ -63,3 +63,14 @@
         }
     }
 }
+@media (max-width: 414px) {
+    .ClientRow {
+        display: flex;
+        flex-flow: column;
+
+        div {
+            margin: auto;
+            padding: 5px 0 5px 0;
+        }
+    }
+}
