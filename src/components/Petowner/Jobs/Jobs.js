@@ -14,7 +14,7 @@ class Jobs extends Component {
         return (
             <Aux>
                 <div className="petowner-jobs">
-                    <div className="container">
+                    <div className="jobs-container">
                     
                         <h1>Jobs</h1>
                         <div className="jobs">
