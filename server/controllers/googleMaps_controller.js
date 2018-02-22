@@ -12,15 +12,9 @@ module.exports = {
 
                 res.status(200).json( loc.data.results );
 
-            }).catch( error => {
-                console.log(error);
-                res.status(404).json(error);
-            });
+            }).catch( error => { console.log(error); res.status(404).json(error); });
 
-        }).catch( error => {
-            console.log(error) ;
-            res.status(500).json(error);
-        });
+        }).catch( error => { console.log(error); res.status(500).json(error); });
     },
     
     getlocation: ( req, res, nex ) => {
@@ -34,9 +28,6 @@ module.exports = {
 
             res.status(200).json( resp.data.results );
 
-        }).catch( error => {
-            console.log(error) ;
-            res.status(404).json(error);
-        });
+        }).catch( error => { console.log(error); res.status(404).json(error); });
     }
 }
