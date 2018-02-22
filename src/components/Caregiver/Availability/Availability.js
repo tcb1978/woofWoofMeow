@@ -28,35 +28,35 @@ class Availability extends Component {
             user_id: user_id
         })
         .then(response => {
-            console.log(response);
+           
             const arr = response.data;
             let monday = arr.filter(weekday => weekday.day === 0)
             this.setState({ monday: monday[0].time_range })
-            console.log(this.state.monday);
+           
 
             let tuesday = arr.filter(weekday => weekday.day === 1)
             this.setState({ tuesday: tuesday[0].time_range })
-            console.log(this.state.tuesday);
+           
 
             let wednesday = arr.filter(weekday => weekday.day === 2)
             this.setState({ wednesday: wednesday[0].time_range })
-            console.log(this.state.wednesday);
+            
 
             let thursday = arr.filter(weekday => weekday.day === 3)
             this.setState({ thursday: thursday[0].time_range })
-            console.log(this.state.thursday);
+           
 
             let friday = arr.filter(weekday => weekday.day === 4)
             this.setState({ friday: friday[0].time_range })
-            console.log(this.state.friday);
+           
 
             let saturday = arr.filter(weekday => weekday.day === 5)
             this.setState({ saturday: saturday[0].time_range })
-            console.log(this.state.saturday);
+           
 
             let sunday = arr.filter(weekday => weekday.day === 6)
             this.setState({ sunday: sunday[0].time_range })
-            console.log(this.state.sunday);
+           
 
         })
         .catch(error => console.log(error))

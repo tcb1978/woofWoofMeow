@@ -55,7 +55,7 @@ class Calendar extends Component {
         date.setDate( 1 );
         // The number of days in the month
         const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-        console.log( this.state.monthOffset );
+        
         if ( direction === 'right' ) {
             this.setState(prevState => ({ 
                 yyyy: date.getFullYear(),
@@ -111,13 +111,13 @@ class Calendar extends Component {
                 weeks[i][j] = calendarDays[dayIndex];
             }
         }
-        console.log( this.state.monthOffset );
+        
         // console.log('yyyy: ', yyyy);
         // console.log('mm: ', months[mm]);
         // console.log('dd: ', dd);
         // console.log('Day: ', days[day]);
         // console.log('Number of Days: ', numOfDays);
-        console.log( selectedDay );
+        
 
         return (
             <div className="calendar panel">
