@@ -7,12 +7,12 @@ module.exports = {
   // register: (req, res, next) => {
   //   const db = req.app.get('db');
   //   console.log(req.body);
-  //   // const {first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition} = req.body;
+  //   // const {first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity} = req.body;
   //   const { title } = req.body
   //   bcrypt.hash(password, saltRound)
   //   .then(hashedPassword => {
   //     // need to create this sql file
-  //     db.create_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity_definition ])
+  //     db.create_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity ])
   //     .then((user) => {
   //       // req.session.user = { email };
   //       // res.json({ user: req.session.user });
@@ -48,7 +48,7 @@ module.exports = {
           longitude: null,
           latitude: null,
           about_message: null,
-          proximity_definition: null
+          proximity: null
         }
         res.status(200).json( req.session.user )
         // console.log(req.session);
@@ -83,7 +83,7 @@ module.exports = {
                 longitude: users[0].longitude,
                 latitude: users[0].latitude,
                 about_message: users[0].about_message,
-                proximity_definition: users[0].proximity_definition
+                proximity: users[0].proximity
               };
               res.status(200).json({ user: req.session.user });
               // console.log(req);
@@ -127,10 +127,10 @@ module.exports = {
   // update: (req, res, next) => {
   //   const db = req.app.get('db');
   //   console.log(req.body);
-  //   const { first_name, last_name, street_address, state, city, zip, phone, avatar, title, longitude, latitude, about_message, proximity_definition } = req.body;
+  //   const { first_name, last_name, street_address, state, city, zip, phone, avatar, title, longitude, latitude, about_message, proximity } = req.body;
     
   //   // Later 1 is gonna session user id
-  //   db.update_user([first_name, last_name, street_address, state, city, zip, phone, avatar, title, longitude, latitude, about_message, proximity_definition, 1])
+  //   db.update_user([first_name, last_name, street_address, state, city, zip, phone, avatar, title, longitude, latitude, about_message, proximity, 1])
   //     .then( (user) => res.status(200).json(user) )
   //     .catch( (error) => res.status(500).send(error))
   // },
@@ -139,7 +139,7 @@ module.exports = {
     const db = req.app.get('db');
     console.log('req.body ', req.body);
     // we'll change longitude and latitude later so we need to declare it with let
-    let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity_definition, user_id } = req.body;
+    let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity, user_id } = req.body;
     
     // getting longitude and latitude from api request based on zip code
     axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
@@ -153,7 +153,7 @@ module.exports = {
         bcrypt.hash(password, saltRound)
         .then(hashedPassword => {
           if (title === 'caregiver') {
-            db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity_definition, user_id ])
+            db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity, user_id ])
               .then( (user) => res.status(200).json(user) )
               .catch( (error) => res.status(500).send(error))
           } else {

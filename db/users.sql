@@ -19,7 +19,7 @@ CREATE TABLE users
     longitude character varying(100) COLLATE pg_catalog."default",
     latitude character varying(100) COLLATE pg_catalog."default",
     about_message character varying(1000) COLLATE pg_catalog."default",
-    proximity_definition character varying(20) COLLATE pg_catalog."default" NOT NULL DEFAULT 0,
+    proximity character varying(20) COLLATE pg_catalog."default" NOT NULL DEFAULT 0,
     CONSTRAINT users_pkey PRIMARY KEY (user_id)
 )
 WITH (
