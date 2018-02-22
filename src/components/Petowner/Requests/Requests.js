@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './Requests.css';
 import History from '../../History/History';
+import Jobs from '../../../components/Petowner/Jobs/Jobs';
 
 class Requests extends Component {
     render () {
@@ -56,27 +57,7 @@ class Requests extends Component {
                         </div>
                     </div>
 
-                    <div className="MessageMapContainer">
-                        <h1>Jobs</h1>
-                        <div className="status-row">
-                            <div className="avatar"></div>
-                            <div className="name">Mark</div>
-                            <div className="date">
-                                <date>January 10</date>
-                            </div>
-                            <div className="space-around">
-                                <button className="btn message">Message</button>
-                            </div>
-                        </div>
-                        <div className="Details">
-                            <h3>Wednesday</h3>
-                            <div className="StartFinish">
-                                <div className="Start">Start: <time className="btn">1:28pm</time></div>
-                                <div className="Finish">Finish: <time className="btn">2:28pm</time></div>
-                            </div>
-                            <div className="GoogleMap">This is a Google Map</div>
-                        </div>
-                    </div>
+                    <Jobs />
 
                     <div className="HistoryContainer">
                         <h1>History</h1>
