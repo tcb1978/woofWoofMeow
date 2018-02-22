@@ -9,8 +9,10 @@ module.exports = {
 
   getFiltered: (req, res, next) => {
     const db = req.app.get('db');
-    let { proximity, time } = req.query;
-    console.log(proximity, time);
+    let { time, proximity } = req.query;
+    console.log(time, proximity);
+    let proximityNum = proximity.split(' ')[0]
+    console.log(proximityNum);
 
     function convertTo24Hour(time) {
       var hours = parseInt(time.substr(0, 2));
@@ -31,8 +33,7 @@ module.exports = {
     let convertedTime = timeToDecimal(convertTo24Hour(time))
     console.log(convertedTime)
     
-
-    db.get_filtered([  ])
+    db.get_filtered([ convertedTime, proximityNum ])
       .then( (caregivers) => res.status(200).json(caregivers) )
       .catch( error => console.log(error) )
   },

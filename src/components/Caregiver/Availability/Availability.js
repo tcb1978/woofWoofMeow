@@ -8,7 +8,7 @@ class Availability extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: 2,
+            user_id: 9,
             day: '',
             begin_time: '',
             end_time: '',
@@ -77,11 +77,12 @@ class Availability extends Component {
     // think about how we make it one function
     handleMondayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ monday: event.target.value })
         axios.put('/update/available', {
             day: 0,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -89,11 +90,12 @@ class Availability extends Component {
 
     handleTuesdayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ tuesday: event.target.value })
         axios.put('/update/available', {
             day: 1,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -101,11 +103,12 @@ class Availability extends Component {
 
     handleWednesdayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ wednesday: event.target.value })
         axios.put('/update/available', {
             day: 2,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -113,11 +116,12 @@ class Availability extends Component {
 
     handleThursdayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ thursday: event.target.value })
         axios.put('/update/available', {
             day: 3,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -125,11 +129,12 @@ class Availability extends Component {
 
     handleFridayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ friday: event.target.value })
         axios.put('/update/available', {
             day: 4,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -137,11 +142,12 @@ class Availability extends Component {
 
     handleSaturdayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ saturday: event.target.value })
         axios.put('/update/available', {
             day: 5,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))
@@ -149,11 +155,12 @@ class Availability extends Component {
 
     handleSundayChange(event) {
         event.preventDefault();
+        const { user_id } = this.state;
         this.setState({ sunday: event.target.value })
         axios.put('/update/available', {
             day: 6,
             time_range: event.target.value,
-            user_id: 2
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error))

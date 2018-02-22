@@ -31,7 +31,7 @@ module.exports = {
     const db = req.app.get('db');
     
     // Later 1 is gonna session user id
-    db.get_availability_by_user([ 2 ])
+    db.get_availability_by_user([ 9 ])
       .then( (availability) => res.status(200).send(availability) )
       .catch( (error) => res.status(500).send(error) )
   },
@@ -40,11 +40,11 @@ module.exports = {
     const db = req.app.get('db');
     let { time_range, day, user_id, begin_time, end_time } = req.body;
     if (time_range === "2PM - 10PM") {
-      begin_time = '14:00';
-      end_time = '22:00';
+      begin_time = '14';
+      end_time = '22';
     } else {
-      begin_time = '6:00'
-      end_time = '14:00'
+      begin_time = '6'
+      end_time = '14'
     }
     console.log(req.body);
     console.log(time_range, day, user_id, begin_time, end_time);

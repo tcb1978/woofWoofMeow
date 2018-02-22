@@ -56,7 +56,7 @@ class Signup extends Component {
             const end_time = 14;
             for (let i = 0; i < 7; i++) {
                 axios.post('/create/available', {
-                    user_id: this.state.user_id,
+                    user_id: user_id,
                     day: i,
                     time_range: time_range,
                     begin_time: begin_time,
