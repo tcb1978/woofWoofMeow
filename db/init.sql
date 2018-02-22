@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS users, animals, jobs, review, caregiver_availability CASCADE;
-
+DROP TABLE IF EXISTS users, animals, jobs, reviews, caregiver_availability CASCADE;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
@@ -23,7 +22,13 @@ CREATE TABLE IF NOT EXISTS users (
 INSERT INTO users
 (first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity)
 VALUES
-('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', 'bla');
+('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '3'),
+('Sergey', 'Sherstobitov', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
+('Jake', 'Jakeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '7'),
+('John', 'Johnson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '10'),
+('Kate', 'Kateson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '3'),
+('Jane', 'Janeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
+('Petowner', 'Petownerson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', '5');
 
 CREATE TABLE IF NOT EXISTS animals (
     animal_id SERIAL PRIMARY KEY,
@@ -44,27 +49,24 @@ VALUES
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users (user_id) NOT NULL,
-    day INTEGER,
-    begin_time VARCHAR (10),
-    end_time VARCHAR (10),
-    am_pm VARCHAR (5)
+    day INTEGER NOT NULL,
+    time_range VARCHAR (10),
+    begin_time INTEGER,
+    end_time INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS jobs (
     job_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users (user_id) NOT NULL,
+    caregiver_id INTEGER REFERENCES users (user_id) NOT NULL,
+    petowner_id INTEGER REFERENCES users (user_id) NOT NULL,
     comments VARCHAR (100),
     month INTEGER NOT NULL,
     day INTEGER NOT NULL,
     year INTEGER NOT NULL,
     begin_time VARCHAR (10) NOT NULL,
     end_time VARCHAR (10) NOT NULL,
-    am_pm VARCHAR (5) NOT NULL,
-    animal_id INTEGER REFERENCES animals (animal_id) NOT NULL,
-    request_status VARCHAR (3) NOT NULL,
-    thirty_minute_service VARCHAR (3) NOT NULL,
-    sixty_minute_service VARCHAR (3) NOT NULL,
-    sixty_minute_park_service VARCHAR (3) NOT NULL
+    request_status BOOLEAN NOT NULL,
+    service VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS reviews (
