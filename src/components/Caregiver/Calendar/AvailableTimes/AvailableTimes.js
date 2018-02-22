@@ -25,11 +25,11 @@ class AvailableTimes extends Component {
                     <ul>
                         <li>
                             <div className="time">2:30pm - 3:00pm</div>
-                            <button className="">Request</button>
+                            <button className="btn btn-primary">Request</button>
                         </li>
                         <li>
                             <div className="time">3:30pm - 4:00pm</div>
-                            <button className="">Request</button>
+                            <button className="btn btn-primary">Request</button>
                         </li>
                     </ul>
 

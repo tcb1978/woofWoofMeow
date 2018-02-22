@@ -75,6 +75,10 @@ class CareGiverSearch extends Component {
         })
     }
 
+    onHandleRequestCaregiver = () => {
+        alert('Requested!!')
+    }
+
     render () {
         const date = new Date();
         const year = date.getFullYear();
@@ -85,7 +89,7 @@ class CareGiverSearch extends Component {
                     <div className="avatar"></div>
                     <div className="caregiver">{person.first_name}</div>
                     <div className="space-around">
-                        <button className="btn btn-request">Request</button>
+                        <button onClick={this.onHandleRequestCaregiver.bind(this)} className="btn btn-request">Request</button>
                     </div>
                 </div>
             ))}

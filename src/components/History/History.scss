@@ -33,14 +33,14 @@
             }
         }
 
-        .AppontmentHistory {
+        .AppointmentHistory {
             background-color: #e9edf3;
 
             .AvatarDisplay {
-                    padding: 30px 0 30px 0;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;
+                padding: 30px 0 30px 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
 
                 .AnimalAvatar {
                     width: 12rem;
@@ -50,7 +50,6 @@
                     border-radius: 100%;
                     display: flex;
                     flex-flow: column-reverse;
-
                     span {
                         margin: 0 auto;
                         top: 30px;
@@ -59,6 +58,7 @@
                     }
                 }
             }
+
             .TodaysService {
                 width: 30%;
                 padding: 10px 0;
@@ -72,12 +72,12 @@
                 display: flex;
                 flex-direction: row;
                 font-size: 4rem;
-
                 .ServiceLength {
                     color: #6aa6ef;
                     padding: 0 10px;
                 }
             }
+
             .AddressContact {
                 display: flex;
                 flex-flow: inherit;
@@ -89,7 +89,6 @@
                     color: #595857;
                     padding: 0px 0;
                 }
-
                 .Address,
                 .OwnerPhone {
                     div {
@@ -103,17 +102,11 @@
 
 @media (max-width: 414px) {
     .HistoryContainer {
-        
-        h1 {
-            
-        }
         .HistoryDropDown {
-            
             .tab {
                 display: flex;
                 flex-flow: column;
                 justify-content: inherit;
-
                 .avatar,
                 .day,
                 .time {
@@ -121,7 +114,8 @@
                     margin: 0 auto;
                 }
             }
-            .AppontmentHistory {
+
+            .AppointmentHistory {
                 display: flex;
                 flex-flow: column;
 
@@ -133,9 +127,9 @@
                     margin-bottom: 30px;
 
                     .AnimalAvatar {
-                            width: 12rem;
-                            height: 12rem;
-                            margin: 0 auto 45px auto;
+                        width: 12rem;
+                        height: 12rem;
+                        margin: 0 auto 45px auto;
                         span {
                             margin: 0 auto;
                             top: 30px;
@@ -144,30 +138,18 @@
                         }
                     }
                 }
-                .TodaysService {
-                    width: 80%;
-                    padding: 0;
-                    font-size: 3rem;
-
-                    .ServiceLength {
-                        
-                    }
-                }
-                .AddressContact {
-                    padding: 30px;
-                    font-size: 15px;
-
-                    h1 {
-                        
-                    }
-                    .Address,
-                    .OwnerPhone {
-                        div {
-                            
-                        }
-                    }
-                }
             }
         }
+    }
+
+    .HistoryContainer .HistoryDropDown .AppointmentHistory .TodaysService {
+        width: 80%;
+        padding: 0;
+        font-size: 3rem;
+    }
+
+    .HistoryContainer .HistoryDropDown .AppointmentHistory .AddressContact {
+        font-size: 15px;
+        padding: 30px;
     }
 }
