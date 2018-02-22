@@ -9,6 +9,8 @@ class CareGiverSearch extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            caregiver_id: '',
+            petowner_id: '',
             service: '30 min walk ',
             proximity: '3 miles ',
             time: '6:00 am ',
@@ -34,40 +36,83 @@ class CareGiverSearch extends Component {
         console.log(proximity, time);
         axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`)
         .then(response => {
-            console.log(response.data);
+            const caregivers = response.data;
+            console.log(caregivers);
+            this.setState(previous => ({
+                isHidden: !previous.isHidden,
+                caregivers: caregivers
+            }))
         })
         .catch(error => console.log(error))
     }
 
-    onHandleServicePicked = (event) => {
-        this.setState({
-            service : event.target.value
+    requestMethod = (id) => {
+        let { service, proximity, time, month, day } = this.state;
+        console.log(service, proximity, time, month, day);
+        const caregiver_id = id;
+        const petowner_id = 1;
+        const begin_time = time;
+        const end_time = time;
+        month = parseInt(month);
+        day = parseInt(day);
+        const year = (new Date()).getFullYear();
+        const request_status = 'f';
+
+        // later we'll get petowner_id from redux
+        // this.props.login(response.data)
+        // console.log('props', this.props);
+        // const user_id = response.data.user_id
+        axios.post('/job', {
+            caregiver_id,
+            petowner_id,
+            month,
+            day,
+            year,
+            begin_time,
+            end_time,
+            request_status,
+            service
         })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => console.log(error))
     }
 
-    onHandleProximityPicked = (event) => {
-        this.setState({
-            proximity: event.target.value
-        })
+    onHandlePicked = (property, event) => {
+        event.preventDefault();
+        this.setState({ [property] : event.target.value})
     }
 
-    onHandleTimePicked = (event) => {
-        this.setState({
-            time: event.target.value
-        })
-    }
+    // onHandleServicePicked = (event) => {
+    //     this.setState({
+    //         service : event.target.value
+    //     })
+    // }
 
-    onHandleMonthPicked = (event) => {
-        this.setState({
-            month: event.target.value
-        })
-    }
+    // onHandleProximityPicked = (event) => {
+    //     this.setState({
+    //         proximity: event.target.value
+    //     })
+    // }
 
-    onHandleDayPicked = (event) => {
-        this.setState({
-            day: event.target.value
-        })
-    }
+    // onHandleTimePicked = (event) => {
+    //     this.setState({
+    //         time: event.target.value
+    //     })
+    // }
+
+    // onHandleMonthPicked = (event) => {
+    //     this.setState({
+    //         month: event.target.value
+    //     })
+    // }
+
+    // onHandleDayPicked = (event) => {
+    //     this.setState({
+    //         day: event.target.value
+    //     })
+    // }
 
     toggleHiddenClear = () => {
         this.setState({
@@ -85,7 +130,7 @@ class CareGiverSearch extends Component {
                     <div className="avatar"></div>
                     <div className="caregiver">{person.first_name}</div>
                     <div className="space-around">
-                        <button className="btn btn-request">Request</button>
+                        <button className="btn btn-request" onClick={ () => this.requestMethod(person.user_id) }>Request</button>
                     </div>
                 </div>
             ))}
@@ -110,7 +155,7 @@ class CareGiverSearch extends Component {
                                             <label>Service</label>
                                             <select
                                                 value={this.state.value}
-                                                onChange={(e) => this.onHandleServicePicked(e)} className="form-control"
+                                                onChange={(e) => this.onHandlePicked("service", e)} className="form-control"
                                                 name="Service">
                                                 <option value='' selected>--Select A Service--</option>
                                                 <option value="30 minute walk">30 minute walk</option>
@@ -124,7 +169,7 @@ class CareGiverSearch extends Component {
                                             <label>Proximity</label>
                                             <select
                                                 value={this.state.value}
-                                                onChange={(e) => this.onHandleProximityPicked(e)} 
+                                                onChange={(e) => this.onHandlePicked("proximity", e)} 
                                                 className="form-control" name="Proximity">
                                                 <option value='' selected>--Select Proximity--</option>
                                                 <option value="3 miles">3 miles</option>
@@ -143,7 +188,7 @@ class CareGiverSearch extends Component {
                                             <label>Begin Time</label>
                                             <select
                                                 value={this.state.value}
-                                                onChange={(e) => this.onHandleTimePicked(e)}
+                                                onChange={(e) => this.onHandlePicked("time", e)}
                                                 className="form-control"
                                                 name="Time">
                                                 <option value='' selected>--Select Time--</option>
@@ -184,7 +229,7 @@ class CareGiverSearch extends Component {
                                             <label>Month</label>
                                             <select
                                                 value={this.state.value}
-                                                onChange={(e) => this.onHandleMonthPicked(e)}
+                                                onChange={(e) => this.onHandlePicked("month", e)}
                                                 className="form-control"
                                                 name="Time">
                                                 <option value='' selected>--Select Month--</option>
@@ -208,7 +253,7 @@ class CareGiverSearch extends Component {
                                             <label>Day</label>
                                             <select
                                                 value={this.state.value}
-                                                onChange={(e) => this.onHandleDayPicked(e)}
+                                                onChange={(e) => this.onHandlePicked("day", e)}
                                                 className="form-control"
                                                 name="Time">
                                                 <option value='' selected>--Select Day--</option>

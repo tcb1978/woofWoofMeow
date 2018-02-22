@@ -35,56 +35,56 @@ class Signup extends Component {
         };
     }
 
+    // when the page loads we put in the users table a record with all
+    // fields empty except the title of user("caregiver" or "petowner")
+    // 
+    // when get the response we make default ("6AM - 2PM") availability for the caregiver
     componentDidMount() {
         const str = this.props.match.url
         const arr = str.split('/')
         this.setState({ title: arr[2] })
+        // initial post to the database with user title only
         axios.post('/register', {
             title: arr[2]
         })
         .then(response => {
             console.log('register user', response);
             // console.log(this.props);
+
+            // getting user id from the redux
             this.props.login(response.data)
             console.log('props', this.props);
             const user_id = response.data.user_id
             console.log(user_id);
             this.setState({ user_id: user_id });
-            var day = 1;
-            const time_range = "6AM - 2PM";
-            const begin_time = 6;
-            const end_time = 14;
-            for (let i = 0; i < 7; i++) {
-                axios.post('/create/available', {
-                    user_id: user_id,
-                    day: i,
-                    time_range: time_range,
-                    begin_time: begin_time,
-                    end_time: end_time
-                })
-                .then( res => {
-                    console.log('res ', res);
-                })
-                .catch(error => console.log(error))
+            // if the user that is trying to register is caregiver
+            // we create default availability data for him
+            if (response.data.title === 'caregiver') {
+                // making default values for the availability
+                var day = 1;
+                const time_range = "6AM - 2PM";
+                const begin_time = 6;
+                const end_time = 14;
+                // making availability for 7 days for one user
+                for (let i = 0; i < 7; i++) {
+                    axios.post('/create/available', {
+                        user_id: user_id,
+                        day: i,
+                        time_range: time_range,
+                        begin_time: begin_time,
+                        end_time: end_time
+                    })
+                    .then( res => {
+                        console.log('res ', res);
+                    })
+                    .catch(error => console.log(error))
+                }
             }
         })
         .catch(error => {console.log(error)})
     }
 
-    // handleSubmit = (event) =>  {
-    //     event.preventDefault();
-    //     const { animal_name, breed, age, weight, sex, user_id } = this.state;
-    //     axios.post('/animal', {
-    //         animal_name, breed, age, weight, sex, user_id
-    //     })
-    //     .then( //request => {console.log(request)}
-    //         this.setState({
-    //             fireRedirect: true
-    //         })
-    //     )
-    //     .catch((error) => (console.log(error)))
-    // }
-
+    // here we are sending the actual user data to update the user record in the database
     handleSubmit(event) {
         event.preventDefault();
         const { user_id, first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex } = this.state;
@@ -115,6 +115,8 @@ class Signup extends Component {
                 //     fireRedirect: true
                 // })
                 console.log('user -> ', response);
+                // if the user is petowner then we will also create
+                // an animal in animals table for that user(with all data he put in)
                 if (title === 'petowner') {
                     axios.post('/animal', {
                         animal_name, breed, age, weight, sex, user_id
