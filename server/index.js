@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
-// const socket = require('socket.io');
+const socket = require('socket.io');
+let messages = [];
 require('dotenv').config();
 
 // Connecting our .env variable
@@ -34,6 +35,7 @@ const bookings_controller = require ('./controllers/bookings_controller');
 const jobs_controller = require ('./controllers/jobs_controller');
 const reviews_controller = require ('./controllers/reviews_controller');
 const googleMaps_controller = require ('./controllers/googleMaps_controller');
+const socket_controller = require('./controllers/socket_controller');
 
 // Users management
 // app.post('/register', users_controller.register);
@@ -91,12 +93,28 @@ app.get('/location', googleMaps_controller.getlocation);
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
-// io = socket(server);
 
-// io.on('connection', (socket) => {
-//   console.log(socket.id);
-//   // listens for the message 
-//   socket.on('SEND_MESSAGE', function(data){
-//     io.emit('RECEIVE_MESSAGE', data);
-//   })
-// });
+// Chat
+io.on('connection', (socket) => {
+  console.log(socket.id);
+
+  // A user joins the chat room
+  socket.join('chat room');
+  console.log('A user joined chat');
+
+  // listens for the message then sends the new list of messages
+  socket.on('send_message', (message) => {
+    messages.push(message);
+    io.in('chat room').emit('get_message', message);  // Sends to the the new list of messages
+  })
+
+  // The user gets the list of messages
+  socket.on('join', () => {
+    socket.emit('get_message', messages);
+  })
+
+  // The user disconnects from the chat
+  socket.on('disconnect', () => {
+    console.log('A user disconnected from chat');
+  })
+});
