@@ -26,6 +26,7 @@ app.use( session({
 
 // Controllers
 const users_controller = require('./controllers/users_controller');
+const search_controller = require('./controllers/search_controller');
 const petowners_controller = require('./controllers/petowners_controller');
 const caregivers_controller = require ('./controllers/caregivers_controller');
 const animals_controller = require ('./controllers/animals_controller');
@@ -36,7 +37,7 @@ const reviews_controller = require ('./controllers/reviews_controller');
 const googleMaps_controller = require ('./controllers/googleMaps_controller');
 
 // Users management
-// app.post('/register', users_controller.register);
+
 app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
@@ -45,14 +46,18 @@ app.get('/users', users_controller.getAll);
 app.put('/update/user', users_controller.update)
 app.delete('/delete/user/:id', users_controller.destroy);
 
+// Search management
+app.get('/caregivers/search', search_controller.getFiltered);
+
 // Petowners management
-app.get('/petowners', petowners_controller.getAll);
-app.get('/petowner/:id', petowners_controller.getOne);
+app.get('/petowner/jobs/:id', petowners_controller.getPetownerJobs);
+app.get('/petowners/jobs/requested', petowners_controller.getPetownersJobsRequested);
+app.get('/petowners/jobs/interested', petowners_controller.getPetownersJobsInterested);
 
 // Caregivers management
-app.get('/caregivers', caregivers_controller.getAll);
-app.get('/caregivers/search', caregivers_controller.getFiltered);
-app.get('/caregiver/:id', caregivers_controller.getOne);
+app.get('/caregiver/jobs/:id', caregivers_controller.getCaregiverJobs);
+app.get('/caregivers/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
+app.get('/caregivers/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
 
 // Animals management
 app.post('/animal', animals_controller.create);
@@ -76,12 +81,8 @@ app.put('/update/booked/:id', bookings_controller.update);
 // Jobs management
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
-app.get('/caregiver/jobs/:id', jobs_controller.getCaregiverJobs);
-app.get('/petowner/jobs/:id', jobs_controller.getPetownerJobs);
-app.get('/caregivers/jobs/requested', jobs_controller.getCaregiversJobsRequested);
-app.get('/caregivers/jobs/interested', jobs_controller.getCaregiversJobsInterested);
-app.get('/petowners/jobs/requested', jobs_controller.getPetownersJobsRequested);
-app.get('/petowners/jobs/interested', jobs_controller.getPetownersJobsInterested);
+
+
 app.get('/job/:id', jobs_controller.getOne);
 app.delete('/delete/job/:id', jobs_controller.destroy);
 
