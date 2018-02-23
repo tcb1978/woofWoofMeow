@@ -19,12 +19,16 @@ class CareGiverSearch extends Component {
             day : '1',
             isHidden : true,
             jobs: [],
-            interested: []
+            requests: [],
+            interested: [],
+            caregivers: []
         }
     }
 
-    componentDidMount() {
+    componentDidMount () {
+        // Gets all the caregivers
         axios.get(`/caregivers`).then(response => {
+            console.log( 'All caregivers', response.data);
             const caregivers = response.data;
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
@@ -32,20 +36,24 @@ class CareGiverSearch extends Component {
             }))
         }).catch(error => console.log(error))
 
-        axios.get().catch( err => console.log(err) );
+        // Gets all the petowner's requested jobs ( gets all jobs with request value false)
+        axios.get(`/caregivers/jobs/requested`).then( res => {
+            console.log( 'Requested', res.data );
+            this.setState({ requests: res.data });
+        }).catch( err => console.log(err) );
     }
 
     filterMethod = () => {
         const { proximity, time } = this.state;
-        axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`)
-        .then(response => {
+        axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`).then(response => {
+
             const caregivers = response.data;
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
                 caregivers: caregivers
             }))
-        })
-        .catch(error => console.log(error))
+
+        }).catch(error => console.log(error))
     }
 
     requestMethod = (id) => {
@@ -73,21 +81,18 @@ class CareGiverSearch extends Component {
             end_time,
             request_status,
             service
-        })
-        .then(response => {
+        }).then(response => {
             axios.get(`/jobs`).then(jobs => {
-                this.setState({
-                    jobs: jobs.data
-                })
                 axios.get(`/caregivers/jobs/interested`).then(interested => {
+
                     this.setState({
-                        interested: interested.data
+                        jobs: jobs.data,
+                        interested: interested.data 
                     })
+
                 })
-                console.log(this.state.interested, 'this is the data you wnat');
             })
-        })
-        .catch(error => console.log(error))
+        }).catch(error => console.log(error))
     }
 
     onHandlePicked = (property, event) => {
@@ -96,26 +101,22 @@ class CareGiverSearch extends Component {
     }
 
     toggleHiddenClear = () => {
-        this.setState({
-            isHidden: true
-        })
+        this.setState({ isHidden: true })
     }
 
     render () {
         const date = new Date();
         const year = date.getFullYear();
         const available = this.state.caregivers
-        const Child = () => (<div>
-            {this.state.caregivers.map((person, index) => (
-                <div key={index} className="caregiver-row top-bottom">
+        const Child = this.state.caregivers.map( person => (
+                <div key={person.id} className="caregiver-row top-bottom">
                     <div className="avatar"></div>
                     <div className="caregiver">{person.first_name}</div>
                     <div className="space-around">
                         <button className="btn btn-request" onClick={ () => this.requestMethod(person.user_id) }>Request</button>
                     </div>
                 </div>
-            ))}
-        </div>);
+            ));
         
         return (        
             <Aux>
@@ -125,9 +126,9 @@ class CareGiverSearch extends Component {
                         <div className="SearchFilterContainer">
                             <Tabs>
                                 <TabList>
-                                    <Tab onClick={this.toggleHiddenClear.bind(this)}>Proximity</Tab>
-                                    <Tab onClick={this.toggleHiddenClear.bind(this)}>Time</Tab>
-                                    <Tab onClick={this.filterMethod}><i className="fas fa-search"></i></Tab>
+                                    <Tab onClick={ () => this.toggleHiddenClear() }>Proximity</Tab>
+                                    <Tab onClick={ () => this.toggleHiddenClear() }>Time</Tab>
+                                    <Tab onClick={ () => this.filterMethod() }><i className="fas fa-search"></i></Tab>
                                 </TabList>
 
                                 <TabPanel>
@@ -150,7 +151,7 @@ class CareGiverSearch extends Component {
                                             <div className="form-group">
                                                 <label>Proximity</label>
                                                 <select
-                                                    value={this.state.value}
+                                                    value={this.state.proximity}
                                                     onChange={(e) => this.onHandlePicked("proximity", e)} 
                                                     className="form-control" name="Proximity">
                                                     <option value=''>--Select Proximity--</option>
@@ -169,7 +170,7 @@ class CareGiverSearch extends Component {
                                             <div className="form-group">
                                                 <label>Begin Time</label>
                                                 <select
-                                                    value={this.state.value}
+                                                    value={this.state.time}
                                                     onChange={(e) => this.onHandlePicked("time", e)}
                                                     className="form-control"
                                                     name="Time">
@@ -210,7 +211,7 @@ class CareGiverSearch extends Component {
                                             <div className="form-group">
                                                 <label>Month</label>
                                                 <select
-                                                    value={this.state.value}
+                                                    value={this.state.month}
                                                     onChange={(e) => this.onHandlePicked("month", e)}
                                                     className="form-control"
                                                     name="Time">
@@ -234,7 +235,7 @@ class CareGiverSearch extends Component {
                                             <div className="form-group">
                                                 <label>Day</label>
                                                 <select
-                                                    value={this.state.value}
+                                                    value={this.state.day}
                                                     onChange={(e) => this.onHandlePicked("day", e)}
                                                     className="form-control"
                                                     name="Time">
@@ -286,12 +287,12 @@ class CareGiverSearch extends Component {
                                     <div className="service-type top-bottom">
                                         <h3>{this.state.service}</h3>
                                     </div>
-                                    {!this.state.isHidden && <Child />}
+                                    {!this.state.isHidden && Child }
                                 </TabPanel>
                             </Tabs>
                         </div>
                     </div>
-                    <Requests jobs={ this.props.jobs }/> 
+                    <Requests jobs={ this.state.requests }/> 
                 </div>
             </Aux>
         )

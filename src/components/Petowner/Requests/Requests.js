@@ -6,24 +6,31 @@ import Jobs from '../../../components/Petowner/Jobs/Jobs';
 import axios from 'axios';
 
 class Requests extends Component {
-    constructor(props) {
-        super(props)
+    constructor () {
+        super();
         this.state = {
             jobs: []
         }
     }
+
     componentDidMount() {
-        axios.get('/caregivers/jobs/interested').then(response => {
-            const { job_id, first_name, last_name, caregiver_id, petowner_id, comments, month, day, year, begin_time, end_time, request_status, service, avatar } = response.data
-            console.log(response.data);
-            this.setState({
-                jobs: response.data
-            })
-            console.log(this.state.request_status);
-        }).catch(error => console.log(error));
+        // axios.get('/caregivers/jobs/interested').then(response => {
+        //     const { job_id, first_name, last_name, caregiver_id, petowner_id, comments, month, day, year, begin_time, end_time, request_status, service, avatar } = response.data
+        //     console.log('Interested', response.data );
+        //     this.setState({
+        //         jobs: response.data
+        //     })
+        //     console.log(this.state.request_status);
+        // }).catch(error => console.log(error));
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log( nextProps );
+        // this.setState({ jobs: nextProps })
     }
 
     handleCancelRequest = (id) => {
+        alert('delete')
         axios.delete(`/delete/job/${id}`)
         .then(response => {
             axios.get(`/jobs`).then(jobs => {
@@ -36,9 +43,10 @@ class Requests extends Component {
     
     render () {
         const { jobs } = this.props;
+        console.log( 'Jobs in Request Component', jobs )
 
-        const RequestedCaregivers = () => (<div>
-            {this.state.jobs.map((job) => (
+        // List of caregivers
+        const RequestedCaregivers = jobs.length ? jobs.map((job) => (
                 <div key={job.job_id} className="status-row">
                     <div className="avatar"><img src={job.avatar} /></div>
                     <div className="name">{job.first_name}</div>
@@ -49,14 +57,14 @@ class Requests extends Component {
                         <button onClick={() => this.handleCancelRequest(job.job_id)} className="btn cancel">Cancel</button>
                     </div>
                 </div>
-            ))}
-        </div>);
+            )) : '' ;
+
         return (
             <Aux>
                 <div className="StatusContainer">
                     <div className="RequestsContainer">
                         <h1>Requests</h1>
-                        <RequestedCaregivers />
+                        { RequestedCaregivers }
                     </div>
 
                     <div className="InterestedContainer">
