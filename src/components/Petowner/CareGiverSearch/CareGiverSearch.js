@@ -18,7 +18,8 @@ class CareGiverSearch extends Component {
             month : '1',
             day : '1',
             isHidden : true,
-            jobs: []
+            jobs: [],
+            interested: []
         }
     }
 
@@ -78,7 +79,12 @@ class CareGiverSearch extends Component {
                 this.setState({
                     jobs: jobs.data
                 })
-                console.log(this.state.jobs);
+                axios.get(`/caregivers/jobs/interested`).then(interested => {
+                    this.setState({
+                        interested: interested.data
+                    })
+                })
+                console.log(this.state.interested, 'this is the data you wnat');
             })
         })
         .catch(error => console.log(error))
@@ -93,10 +99,6 @@ class CareGiverSearch extends Component {
         this.setState({
             isHidden: true
         })
-    }
-
-    onHandleRequestCaregiver = () => {
-        alert('Requested!!')
     }
 
     render () {
@@ -289,7 +291,7 @@ class CareGiverSearch extends Component {
                             </Tabs>
                         </div>
                     </div>
-            {/* <Requests jobs={ jobs }/> */}
+                    <Requests jobs={ this.props.jobs }/> 
                 </div>
             </Aux>
         )
