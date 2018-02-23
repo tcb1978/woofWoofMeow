@@ -18,29 +18,23 @@ class CareGiverSearch extends Component {
             month : '1',
             day : '1',
             isHidden : true,
-            jobs: [],
+            // jobs: [],
+            caregivers: [],
             requests: [],
-            interested: [],
-            caregivers: []
+            interested: []
         }
     }
 
     componentDidMount () {
         // Gets all the caregivers
-        axios.get(`/caregivers`).then(response => {
-            console.log( 'All caregivers', response.data);
-            const caregivers = response.data;
-            this.setState(previous => ({
-                isHidden: !previous.isHidden,
-                caregivers: caregivers
-            }))
-        }).catch(error => console.log(error))
-
-        // Gets all the petowner's requested jobs ( gets all jobs with request value false)
-        axios.get(`/caregivers/jobs/requested`).then( res => {
-            console.log( 'Requested', res.data );
-            this.setState({ requests: res.data });
-        }).catch( err => console.log(err) );
+        // axios.get(`/caregivers`).then(response => {
+        //     console.log( 'All caregivers', response.data);
+        //     const caregivers = response.data;
+        //     this.setState(previous => ({
+        //         isHidden: !previous.isHidden,
+        //         caregivers: caregivers
+        //     }))
+        // }).catch(error => console.log(error))
     }
 
     filterMethod = () => {
@@ -56,44 +50,44 @@ class CareGiverSearch extends Component {
         }).catch(error => console.log(error))
     }
 
-    requestMethod = (id) => {
-        let { service, proximity, time, month, day } = this.state;
-        const caregiver_id = id;
-        const petowner_id = 7;
-        const begin_time = time;
-        const end_time = time;
-        month = parseInt(month);
-        day = parseInt(day);
-        const year = (new Date()).getFullYear();
-        const request_status = 'f';
+    // requestMethod = (id) => {
+    //     let { service, proximity, time, month, day } = this.state;
+    //     const caregiver_id = id;
+    //     const petowner_id = 7;
+    //     const begin_time = time;
+    //     const end_time = time;
+    //     month = parseInt(month);
+    //     day = parseInt(day);
+    //     const year = (new Date()).getFullYear();
+    //     const request_status = 'f';
 
-        // later we'll get petowner_id from redux
-        // this.props.login(response.data)
-        // console.log('props', this.props);
-        // const user_id = response.data.user_id
-        axios.post('/job', {
-            caregiver_id,
-            petowner_id,
-            month,
-            day,
-            year,
-            begin_time,
-            end_time,
-            request_status,
-            service
-        }).then(response => {
-            axios.get(`/jobs`).then(jobs => {
-                axios.get(`/caregivers/jobs/interested`).then(interested => {
+    //     // later we'll get petowner_id from redux
+    //     // this.props.login(response.data)
+    //     // console.log('props', this.props);
+    //     // const user_id = response.data.user_id
+    //     axios.post('/job', {
+    //         caregiver_id,
+    //         petowner_id,
+    //         month,
+    //         day,
+    //         year,
+    //         begin_time,
+    //         end_time,
+    //         request_status,
+    //         service
+    //     }).then(response => {
+    //         axios.get(`/jobs`).then(jobs => {
+    //             axios.get(`/caregivers/jobs/interested`).then(interested => {
 
-                    this.setState({
-                        jobs: jobs.data,
-                        interested: interested.data 
-                    })
+    //                 this.setState({
+    //                     jobs: jobs.data,
+    //                     interested: interested.data 
+    //                 })
 
-                })
-            })
-        }).catch(error => console.log(error))
-    }
+    //             })
+    //         })
+    //     }).catch(error => console.log(error))
+    // }
 
     onHandlePicked = (property, event) => {
         event.preventDefault();
@@ -105,18 +99,19 @@ class CareGiverSearch extends Component {
     }
 
     render () {
+        const { caregivers, caregiver_id, petowner_id, service, proximity, time, month, day } = this.state;
         const date = new Date();
         const year = date.getFullYear();
         const available = this.state.caregivers
-        const Child = this.state.caregivers.map( person => (
-                <div key={person.id} className="caregiver-row top-bottom">
-                    <div className="avatar"></div>
-                    <div className="caregiver">{person.first_name}</div>
-                    <div className="space-around">
-                        <button className="btn btn-request" onClick={ () => this.requestMethod(person.user_id) }>Request</button>
-                    </div>
-                </div>
-            ));
+        // const Child = this.state.caregivers.map( person => (
+        //         <div key={person.id} className="caregiver-row top-bottom">
+        //             <div className="avatar"></div>
+        //             <div className="caregiver">{person.first_name}</div>
+        //             <div className="space-around">
+        //                 <button className="btn btn-request" onClick={ () => this.requestMethod(person.user_id) }>Request</button>
+        //             </div>
+        //         </div>
+        //     ));
         
         return (        
             <Aux>
@@ -287,12 +282,20 @@ class CareGiverSearch extends Component {
                                     <div className="service-type top-bottom">
                                         <h3>{this.state.service}</h3>
                                     </div>
-                                    {!this.state.isHidden && Child }
+                                    {/*{!this.state.isHidden && Child } */}
                                 </TabPanel>
                             </Tabs>
                         </div>
                     </div>
-                    <Requests jobs={ this.state.requests }/> 
+                    <Requests caregivers={ caregivers }
+                              caregiver_id={ caregiver_id }
+                              petowner_id={ petowner_id }
+                              service={ service }
+                              proximity={ proximity }
+                              time={ time }
+                              month={ month }
+                              day={ day }
+                              filter={ this.filterMethod }/>
                 </div>
             </Aux>
         )

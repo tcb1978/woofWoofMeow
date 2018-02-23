@@ -76,6 +76,8 @@ app.put('/update/booked/:id', bookings_controller.update);
 // Jobs management
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
+app.get('/caregiver/jobs/:id', jobs_controller.getCaregiverJobs);
+app.get('/petowner/jobs/:id', jobs_controller.getPetownerJobs);
 app.get('/caregivers/jobs/requested', jobs_controller.getCaregiversJobsRequested);
 app.get('/caregivers/jobs/interested', jobs_controller.getCaregiversJobsInterested);
 app.get('/petowners/jobs/requested', jobs_controller.getPetownersJobsRequested);

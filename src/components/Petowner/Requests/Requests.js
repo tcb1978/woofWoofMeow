@@ -9,44 +9,98 @@ class Requests extends Component {
     constructor () {
         super();
         this.state = {
-            jobs: []
+            caregivers: [],
+            requests: [],
+            interested: []
         }
     }
 
     componentDidMount() {
-        // axios.get('/caregivers/jobs/interested').then(response => {
-        //     const { job_id, first_name, last_name, caregiver_id, petowner_id, comments, month, day, year, begin_time, end_time, request_status, service, avatar } = response.data
-        //     console.log('Interested', response.data );
-        //     this.setState({
-        //         jobs: response.data
-        //     })
-        //     console.log(this.state.request_status);
-        // }).catch(error => console.log(error));
+        // Gets all the petowner's requested jobs ( gets all jobs with request value false)
+        axios.get(`/caregivers/jobs/requested`).then(res => {
+            console.log('Requested', res.data);
+            this.setState({ requests: res.data });
+        }).catch(err => console.log(err));
+
+        axios.get('/caregivers/jobs/interested').then(response => {
+            console.log('Interested', response.data );
+            this.setState({ jobs: response.data })
+        }).catch(error => console.log(error));
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log( nextProps );
-        // this.setState({ jobs: nextProps })
+    // filterRequest = () => {
+    //     // Gets all the caregivers
+    //     axios.get(`/caregivers`).then(response => {
+    //         console.log('All filtered caregivers', response.data);
+    //         const caregivers = response.data;
+    //         this.setState({ caregivers: caregivers })
+    //     }).catch(error => console.log(error))
+    // }
+
+    request = (id) => {
+        let { service, proximity, time, month, day } = this.props;
+        const caregiver_id = id;
+        const petowner_id = 7;
+        const begin_time = time;
+        const end_time = time;
+        month = parseInt(month);
+        day = parseInt(day);
+        const year = (new Date()).getFullYear();
+        const request_status = 'f';
+
+        // later we'll get petowner_id from redux
+        // this.props.login(response.data)
+        // console.log('props', this.props);
+        // const user_id = response.data.user_id
+        axios.post('/job', {
+            caregiver_id,
+            petowner_id,
+            month,
+            day,
+            year,
+            begin_time,
+            end_time,
+            request_status,
+            service
+        }).then(response => {
+            axios.get(`/jobs`).then(jobs => {
+                axios.get(`/caregivers/jobs/requested`).then(requests => {
+
+                    console.log( requests.data );
+                    this.setState({ requests: requests.data })
+
+                })
+            })
+        }).catch(error => console.log(error))
     }
 
-    handleCancelRequest = (id) => {
-        alert('delete')
+    cancelRequest = (id, user_id) => {
         axios.delete(`/delete/job/${id}`)
         .then(response => {
-            axios.get(`/jobs`).then(jobs => {
-                this.setState({
-                    jobs: jobs.data
-                })
+            axios.get(`/petowner/jobs/${user_id}`).then( requests => {
+                console.log('Cancel request method', requests.data);
+                this.setState({ requests: requests.data })
             })
         }).catch(error => console.log(error))
     }
     
     render () {
-        const { jobs } = this.props;
-        console.log( 'Jobs in Request Component', jobs )
+        console.log( 'caregivers in Request Component', this.state.caregivers );
+        console.log('requests in Request Component', this.state.requests );
 
-        // List of caregivers
-        const RequestedCaregivers = jobs.length ? jobs.map((job) => (
+        // List of filtered caregivers
+        const listOfCaregivers = this.props.caregivers.map(person => (
+            <div key={person.id} className="caregiver-row top-bottom">
+                <div className="avatar"></div>
+                <div className="caregiver">{person.first_name}</div>
+                <div className="space-around">
+                    <button className="btn btn-request" onClick={() => this.request(person.user_id)}>Request</button>
+                </div>
+            </div>
+        ));
+
+        // List of caregivers requests
+        const listOfRequests = this.state.requests.length ? this.state.requests.map((job) => (
                 <div key={job.job_id} className="status-row">
                     <div className="avatar"><img src={job.avatar} /></div>
                     <div className="name">{job.first_name}</div>
@@ -54,17 +108,24 @@ class Requests extends Component {
                         <date>{job.month}/{job.day}/{job.year}</date>
                     </div>
                     <div className="space-around">
-                        <button onClick={() => this.handleCancelRequest(job.job_id)} className="btn cancel">Cancel</button>
+                        <button onClick={() => this.cancelRequest(job.job_id, job.petowner_id)} className="btn cancel">Cancel</button>
                     </div>
                 </div>
             )) : '' ;
 
+        // List of interested caregivers
+        const listOfInterested = [];
+
         return (
             <Aux>
                 <div className="StatusContainer">
+                    <div className="something">
+                        { listOfCaregivers }
+                    </div>
+
                     <div className="RequestsContainer">
                         <h1>Requests</h1>
-                        { RequestedCaregivers }
+                        { listOfRequests }
                     </div>
 
                     <div className="InterestedContainer">
