@@ -266,6 +266,9 @@
         color: #fff;
         padding: 5px;
         display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
 
         span {
             margin: 0 auto; 
@@ -321,5 +324,21 @@
     .StatusContainer .HistoryContainer .history-wrapper .HistoryDropDown .TodaysService {
         width: 80%;
         padding: 10px 0;
+    }
+
+    .StatusContainer .CaregiversContainer .caregiver-row {
+        display: flex;
+        flex-flow: column;
+
+        .avatar,
+        .caregiver,
+        .space-around {
+            margin: auto;
+        }
+    }
+
+    .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .proximity,
+    .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .time {
+        flex-flow: column;
     }
 }
