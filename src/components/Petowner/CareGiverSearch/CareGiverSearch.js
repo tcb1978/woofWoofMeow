@@ -10,6 +10,7 @@ class CareGiverSearch extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            caregivers: [],
             caregiver_id: '',
             petowner_id: '',
             service: '30 min walk ',
@@ -17,24 +18,8 @@ class CareGiverSearch extends Component {
             time: '6:00 am ',
             month : '1',
             day : '1',
-            isHidden : true,
-            // jobs: [],
-            caregivers: [],
-            requests: [],
-            interested: []
+            isHidden : true
         }
-    }
-
-    componentDidMount () {
-        // Gets all the caregivers
-        // axios.get(`/caregivers`).then(response => {
-        //     console.log( 'All caregivers', response.data);
-        //     const caregivers = response.data;
-        //     this.setState(previous => ({
-        //         isHidden: !previous.isHidden,
-        //         caregivers: caregivers
-        //     }))
-        // }).catch(error => console.log(error))
     }
 
     filterMethod = () => {
@@ -50,45 +35,6 @@ class CareGiverSearch extends Component {
         }).catch(error => console.log(error))
     }
 
-    // requestMethod = (id) => {
-    //     let { service, proximity, time, month, day } = this.state;
-    //     const caregiver_id = id;
-    //     const petowner_id = 7;
-    //     const begin_time = time;
-    //     const end_time = time;
-    //     month = parseInt(month);
-    //     day = parseInt(day);
-    //     const year = (new Date()).getFullYear();
-    //     const request_status = 'f';
-
-    //     // later we'll get petowner_id from redux
-    //     // this.props.login(response.data)
-    //     // console.log('props', this.props);
-    //     // const user_id = response.data.user_id
-    //     axios.post('/job', {
-    //         caregiver_id,
-    //         petowner_id,
-    //         month,
-    //         day,
-    //         year,
-    //         begin_time,
-    //         end_time,
-    //         request_status,
-    //         service
-    //     }).then(response => {
-    //         axios.get(`/jobs`).then(jobs => {
-    //             axios.get(`/caregivers/jobs/interested`).then(interested => {
-
-    //                 this.setState({
-    //                     jobs: jobs.data,
-    //                     interested: interested.data 
-    //                 })
-
-    //             })
-    //         })
-    //     }).catch(error => console.log(error))
-    // }
-
     onHandlePicked = (property, event) => {
         event.preventDefault();
         this.setState({ [property] : event.target.value})
@@ -103,15 +49,6 @@ class CareGiverSearch extends Component {
         const date = new Date();
         const year = date.getFullYear();
         const available = this.state.caregivers
-        // const Child = this.state.caregivers.map( person => (
-        //         <div key={person.id} className="caregiver-row top-bottom">
-        //             <div className="avatar"></div>
-        //             <div className="caregiver">{person.first_name}</div>
-        //             <div className="space-around">
-        //                 <button className="btn btn-request" onClick={ () => this.requestMethod(person.user_id) }>Request</button>
-        //             </div>
-        //         </div>
-        //     ));
         
         return (        
             <Aux>
@@ -282,7 +219,6 @@ class CareGiverSearch extends Component {
                                     <div className="service-type top-bottom">
                                         <h3>{this.state.service}</h3>
                                     </div>
-                                    {/*{!this.state.isHidden && Child } */}
                                 </TabPanel>
                             </Tabs>
                         </div>

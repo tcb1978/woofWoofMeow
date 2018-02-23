@@ -18,24 +18,13 @@ class Requests extends Component {
     componentDidMount() {
         // Gets all the petowner's requested jobs ( gets all jobs with request value false)
         axios.get(`/caregivers/jobs/requested`).then(res => {
-            console.log('Requested', res.data);
             this.setState({ requests: res.data });
         }).catch(err => console.log(err));
 
         axios.get('/caregivers/jobs/interested').then(response => {
-            console.log('Interested', response.data );
             this.setState({ jobs: response.data })
         }).catch(error => console.log(error));
     }
-
-    // filterRequest = () => {
-    //     // Gets all the caregivers
-    //     axios.get(`/caregivers`).then(response => {
-    //         console.log('All filtered caregivers', response.data);
-    //         const caregivers = response.data;
-    //         this.setState({ caregivers: caregivers })
-    //     }).catch(error => console.log(error))
-    // }
 
     request = (id) => {
         let { service, proximity, time, month, day } = this.props;
@@ -48,10 +37,6 @@ class Requests extends Component {
         const year = (new Date()).getFullYear();
         const request_status = 'f';
 
-        // later we'll get petowner_id from redux
-        // this.props.login(response.data)
-        // console.log('props', this.props);
-        // const user_id = response.data.user_id
         axios.post('/job', {
             caregiver_id,
             petowner_id,
@@ -65,8 +50,6 @@ class Requests extends Component {
         }).then(response => {
             axios.get(`/jobs`).then(jobs => {
                 axios.get(`/caregivers/jobs/requested`).then(requests => {
-
-                    console.log( requests.data );
                     this.setState({ requests: requests.data })
 
                 })
@@ -78,16 +61,12 @@ class Requests extends Component {
         axios.delete(`/delete/job/${id}`)
         .then(response => {
             axios.get(`/petowner/jobs/${user_id}`).then( requests => {
-                console.log('Cancel request method', requests.data);
                 this.setState({ requests: requests.data })
             })
         }).catch(error => console.log(error))
     }
     
     render () {
-        console.log( 'caregivers in Request Component', this.state.caregivers );
-        console.log('requests in Request Component', this.state.requests );
-
         // List of filtered caregivers
         const listOfCaregivers = this.props.caregivers.map(person => (
             <div key={person.id} className="caregiver-row top-bottom">
@@ -115,7 +94,6 @@ class Requests extends Component {
 
         // List of interested caregivers
         const listOfInterested = [];
-
         return (
             <Aux>
                 <div className="StatusContainer">
