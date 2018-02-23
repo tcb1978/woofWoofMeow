@@ -11,7 +11,6 @@ export default class Petowner extends Component {
       <Aux>
         <PetBio />
         <CareGiverSearch />
-        <Requests />
       </Aux>
     );
   }

@@ -9,28 +9,44 @@ class Requests extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            jobs: [],
+            jobs: []
         }
     }
     componentDidMount() {
-        axios.get(`/jobs`).then(response => {
+        axios.get('/jobs/interested').then(response => {
             const { job_id, first_name, last_name, caregiver_id, petowner_id, comments, month, day, year, begin_time, end_time, request_status, service, avatar } = response.data
+            console.log(response.data);
             this.setState({
                 jobs: response.data
             })
+            console.log(this.state.request_status);
         }).catch(error => console.log(error));
     }
+
+    handleCancelRequest = (id) => {
+        axios.delete(`/delete/job/${id}`)
+        .then(response => {
+            axios.get(`/jobs`).then(jobs => {
+                this.setState({
+                    jobs: jobs.data
+                })
+            })
+        }).catch(error => console.log(error))
+    }
+    
     render () {
+        const { jobs } = this.props;
+
         const RequestedCaregivers = () => (<div>
-            {this.state.jobs.map((job, index) => (
-                <div className="status-row">
+            {this.state.jobs.map((job) => (
+                <div key={job.job_id} className="status-row">
                     <div className="avatar"><img src={job.avatar} /></div>
                     <div className="name">{job.first_name}</div>
                     <div className="date">
                         <date>{job.month}/{job.day}/{job.year}</date>
                     </div>
                     <div className="space-around">
-                        <button className="btn cancel">Cancel</button>
+                        <button onClick={() => this.handleCancelRequest(job.job_id)} className="btn cancel">Cancel</button>
                     </div>
                 </div>
             ))}

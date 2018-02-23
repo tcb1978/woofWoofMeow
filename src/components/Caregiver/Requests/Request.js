@@ -14,6 +14,7 @@ class Requests extends Component {
     componentDidMount() {
         axios.get(`/jobs`).then(response => {
             const { job_id, first_name, last_name, caregiver_id, petowner_id, comments, month, day, year, begin_time, end_time, request_status, service, avatar } = response.data
+            console.log(response.data);
             this.setState({
                 jobs : response.data
             })

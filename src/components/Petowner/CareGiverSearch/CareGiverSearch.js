@@ -4,6 +4,7 @@ import Aux from '../../../hoc/Aux';
 import './CareGiverSearch.css';
 import axios from 'axios';
 
+import Requests from '../Requests/Requests';
 
 class CareGiverSearch extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class CareGiverSearch extends Component {
             month : '1',
             day : '1',
             isHidden : true,
+            jobs: []
         }
     }
 
@@ -28,6 +30,8 @@ class CareGiverSearch extends Component {
                 caregivers: caregivers
             }))
         }).catch(error => console.log(error))
+
+        axios.get().catch( err => console.log(err) );
     }
 
     filterMethod = () => {
@@ -35,7 +39,6 @@ class CareGiverSearch extends Component {
         axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`)
         .then(response => {
             const caregivers = response.data;
-            console.log(caregivers);
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
                 caregivers: caregivers
@@ -46,9 +49,8 @@ class CareGiverSearch extends Component {
 
     requestMethod = (id) => {
         let { service, proximity, time, month, day } = this.state;
-        console.log(service, proximity, time, month, day);
         const caregiver_id = id;
-        const petowner_id = 1;
+        const petowner_id = 7;
         const begin_time = time;
         const end_time = time;
         month = parseInt(month);
@@ -72,7 +74,12 @@ class CareGiverSearch extends Component {
             service
         })
         .then(response => {
-            console.log(response);
+            axios.get(`/jobs`).then(jobs => {
+                this.setState({
+                    jobs: jobs.data
+                })
+                console.log(this.state.jobs);
+            })
         })
         .catch(error => console.log(error))
     }
@@ -81,7 +88,6 @@ class CareGiverSearch extends Component {
         event.preventDefault();
         this.setState({ [property] : event.target.value})
     }
-
 
     toggleHiddenClear = () => {
         this.setState({
@@ -111,176 +117,179 @@ class CareGiverSearch extends Component {
         
         return (        
             <Aux>
-                <div className="CaregiverFilterContainer">
-                    <h1>Find Caregiver</h1>
-                    <div className="SearchFilterContainer">
-                        <Tabs>
-                            <TabList>
-                                <Tab onClick={this.toggleHiddenClear.bind(this)}>Proximity</Tab>
-                                <Tab onClick={this.toggleHiddenClear.bind(this)}>Time</Tab>
-                                <Tab onClick={this.filterMethod}><i className="fas fa-search"></i></Tab>
-                            </TabList>
+                <div>
+                    <div className="CaregiverFilterContainer">
+                        <h1>Find Caregiver</h1>
+                        <div className="SearchFilterContainer">
+                            <Tabs>
+                                <TabList>
+                                    <Tab onClick={this.toggleHiddenClear.bind(this)}>Proximity</Tab>
+                                    <Tab onClick={this.toggleHiddenClear.bind(this)}>Time</Tab>
+                                    <Tab onClick={this.filterMethod}><i className="fas fa-search"></i></Tab>
+                                </TabList>
 
-                            <TabPanel>
-                                <div className="proximity top-bottom">
-                                    <div className="col-xs-12 col-sm-12">
-                                        <div className="form-group">
-                                            <label>Service</label>
-                                            <select
-                                                value={this.state.value}
-                                                onChange={(e) => this.onHandlePicked("service", e)} className="form-control"
-                                                name="Service">
-                                                <option value=''>--Select A Service--</option>
-                                                <option value="30 minute walk">30 minute walk</option>
-                                                <option value="60 minute walk">60 minute walk</option>
-                                                <option value="60 minutes dog park">60 minutes dog park</option>
-                                            </select>
+                                <TabPanel>
+                                    <div className="proximity top-bottom">
+                                        <div className="col-xs-12 col-sm-12">
+                                            <div className="form-group">
+                                                <label>Service</label>
+                                                <select
+                                                    value={this.state.value}
+                                                    onChange={(e) => this.onHandlePicked("service", e)} className="form-control"
+                                                    name="Service">
+                                                    <option value=''>--Select A Service--</option>
+                                                    <option value="30 minute walk">30 minute walk</option>
+                                                    <option value="60 minute walk">60 minute walk</option>
+                                                    <option value="60 minutes dog park">60 minutes dog park</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-12">
+                                            <div className="form-group">
+                                                <label>Proximity</label>
+                                                <select
+                                                    value={this.state.value}
+                                                    onChange={(e) => this.onHandlePicked("proximity", e)} 
+                                                    className="form-control" name="Proximity">
+                                                    <option value=''>--Select Proximity--</option>
+                                                    <option value="3 miles">3 miles</option>
+                                                    <option value="5 miles">5 miles</option>
+                                                    <option value="8 miles">8 miles</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xs-12 col-sm-12">
-                                        <div className="form-group">
-                                            <label>Proximity</label>
-                                            <select
-                                                value={this.state.value}
-                                                onChange={(e) => this.onHandlePicked("proximity", e)} 
-                                                className="form-control" name="Proximity">
-                                                <option value=''>--Select Proximity--</option>
-                                                <option value="3 miles">3 miles</option>
-                                                <option value="5 miles">5 miles</option>
-                                                <option value="8 miles">8 miles</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </TabPanel>
+                                </TabPanel>
 
-                            <TabPanel>
-                                <div className="time top-bottom">
-                                    <div className="col-xs-12 col-sm-4">
-                                        <div className="form-group">
-                                            <label>Begin Time</label>
-                                            <select
-                                                value={this.state.value}
-                                                onChange={(e) => this.onHandlePicked("time", e)}
-                                                className="form-control"
-                                                name="Time">
-                                                <option value=''>--Select Time--</option>
-                                                <option value="6:00 am">6:00 am</option>
-                                                <option value="6:30 am">6:30 am</option>
-                                                <option value="7:30 am">7:30 am</option>
-                                                <option value="8:00 am">8:00 am</option>
-                                                <option value="8:30 am">8:30 am</option>
-                                                <option value="9:00 am">9:00 am</option>
-                                                <option value="9:30 am">9:30 am</option>
-                                                <option value="10:00 am">10:00 am</option>
-                                                <option value="10:30 am">10:30 am</option>
-                                                <option value="11:00 am">11:00 am</option>
-                                                <option value="11:30 am">11:30 am</option>
-                                                <option value="12:00 pm">12:00 pm</option>
-                                                <option value="12:30 pm">12:30 pm</option>
-                                                <option value="1:00 pm">1:00 pm</option>
-                                                <option value="1:30 pm">1:30 pm</option>
-                                                <option value="2:00 pm">2:00 pm</option>
-                                                <option value="2:30 pm">2:30 pm</option>
-                                                <option value="3:00 pm">3:00 pm</option>
-                                                <option value="4:00 pm">4:00 pm</option>
-                                                <option value="4:30 pm">4:30 pm</option>
-                                                <option value="5:00 pm">5:00 pm</option>
-                                                <option value="5:30 pm">5:30 pm</option>
-                                                <option value="6:00 pm">6:00 pm</option>
-                                                <option value="6:30 pm">6:30 pm</option>
-                                                <option value="7:00 pm">7:00 pm</option>
-                                                <option value="7:30 pm">7:30 pm</option>
-                                                <option value="8:30 pm">8:30 pm</option>
-                                                <option value="9:00 pm">9:00 pm</option>
-                                                <option value="9:30 pm">9:30 pm</option>
-                                            </select>
+                                <TabPanel>
+                                    <div className="time top-bottom">
+                                        <div className="col-xs-12 col-sm-4">
+                                            <div className="form-group">
+                                                <label>Begin Time</label>
+                                                <select
+                                                    value={this.state.value}
+                                                    onChange={(e) => this.onHandlePicked("time", e)}
+                                                    className="form-control"
+                                                    name="Time">
+                                                    <option value=''>--Select Time--</option>
+                                                    <option value="6:00 am">6:00 am</option>
+                                                    <option value="6:30 am">6:30 am</option>
+                                                    <option value="7:30 am">7:30 am</option>
+                                                    <option value="8:00 am">8:00 am</option>
+                                                    <option value="8:30 am">8:30 am</option>
+                                                    <option value="9:00 am">9:00 am</option>
+                                                    <option value="9:30 am">9:30 am</option>
+                                                    <option value="10:00 am">10:00 am</option>
+                                                    <option value="10:30 am">10:30 am</option>
+                                                    <option value="11:00 am">11:00 am</option>
+                                                    <option value="11:30 am">11:30 am</option>
+                                                    <option value="12:00 pm">12:00 pm</option>
+                                                    <option value="12:30 pm">12:30 pm</option>
+                                                    <option value="1:00 pm">1:00 pm</option>
+                                                    <option value="1:30 pm">1:30 pm</option>
+                                                    <option value="2:00 pm">2:00 pm</option>
+                                                    <option value="2:30 pm">2:30 pm</option>
+                                                    <option value="3:00 pm">3:00 pm</option>
+                                                    <option value="4:00 pm">4:00 pm</option>
+                                                    <option value="4:30 pm">4:30 pm</option>
+                                                    <option value="5:00 pm">5:00 pm</option>
+                                                    <option value="5:30 pm">5:30 pm</option>
+                                                    <option value="6:00 pm">6:00 pm</option>
+                                                    <option value="6:30 pm">6:30 pm</option>
+                                                    <option value="7:00 pm">7:00 pm</option>
+                                                    <option value="7:30 pm">7:30 pm</option>
+                                                    <option value="8:30 pm">8:30 pm</option>
+                                                    <option value="9:00 pm">9:00 pm</option>
+                                                    <option value="9:30 pm">9:30 pm</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-4">
+                                            <div className="form-group">
+                                                <label>Month</label>
+                                                <select
+                                                    value={this.state.value}
+                                                    onChange={(e) => this.onHandlePicked("month", e)}
+                                                    className="form-control"
+                                                    name="Time">
+                                                    <option value=''>--Select Month--</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-4">
+                                            <div className="form-group">
+                                                <label>Day</label>
+                                                <select
+                                                    value={this.state.value}
+                                                    onChange={(e) => this.onHandlePicked("day", e)}
+                                                    className="form-control"
+                                                    name="Time">
+                                                    <option value=''>--Select Day--</option>
+                                                    <option value='1'>1</option>
+                                                    <option value='2'>2</option>
+                                                    <option value='3'>3</option>
+                                                    <option value='4'>4</option>
+                                                    <option value='5'>5</option>
+                                                    <option value='6'>6</option>
+                                                    <option value='7'>7</option>
+                                                    <option value='8'>8</option>
+                                                    <option value='9'>9</option>
+                                                    <option value='10'>10</option>
+                                                    <option value='11'>11</option>
+                                                    <option value='12'>12</option>
+                                                    <option value='13'>13</option>
+                                                    <option value='14'>14</option>
+                                                    <option value='15'>15</option>
+                                                    <option value='16'>16</option>
+                                                    <option value='17'>17</option>
+                                                    <option value='18'>18</option>
+                                                    <option value='19'>19</option>
+                                                    <option value='20'>20</option>
+                                                    <option value='21'>21</option>
+                                                    <option value='22'>22</option>
+                                                    <option value='23'>23</option>
+                                                    <option value='24'>24</option>
+                                                    <option value='25'>25</option>
+                                                    <option value='26'>26</option>
+                                                    <option value='27'>27</option>
+                                                    <option value='28'>28</option>
+                                                    <option value='29'>29</option>
+                                                    <option value='30'>30</option>
+                                                    <option value='31'>31</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xs-12 col-sm-4">
-                                        <div className="form-group">
-                                            <label>Month</label>
-                                            <select
-                                                value={this.state.value}
-                                                onChange={(e) => this.onHandlePicked("month", e)}
-                                                className="form-control"
-                                                name="Time">
-                                                <option value=''>--Select Month--</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                            </select>
-                                        </div>
+                                    <div className="service-type top-bottom">
+                                        <h3>{this.state.service}</h3>
                                     </div>
-                                    <div className="col-xs-12 col-sm-4">
-                                        <div className="form-group">
-                                            <label>Day</label>
-                                            <select
-                                                value={this.state.value}
-                                                onChange={(e) => this.onHandlePicked("day", e)}
-                                                className="form-control"
-                                                name="Time">
-                                                <option value=''>--Select Day--</option>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                                <option value='5'>5</option>
-                                                <option value='6'>6</option>
-                                                <option value='7'>7</option>
-                                                <option value='8'>8</option>
-                                                <option value='9'>9</option>
-                                                <option value='10'>10</option>
-                                                <option value='11'>11</option>
-                                                <option value='12'>12</option>
-                                                <option value='13'>13</option>
-                                                <option value='14'>14</option>
-                                                <option value='15'>15</option>
-                                                <option value='16'>16</option>
-                                                <option value='17'>17</option>
-                                                <option value='18'>18</option>
-                                                <option value='19'>19</option>
-                                                <option value='20'>20</option>
-                                                <option value='21'>21</option>
-                                                <option value='22'>22</option>
-                                                <option value='23'>23</option>
-                                                <option value='24'>24</option>
-                                                <option value='25'>25</option>
-                                                <option value='26'>26</option>
-                                                <option value='27'>27</option>
-                                                <option value='28'>28</option>
-                                                <option value='29'>29</option>
-                                                <option value='30'>30</option>
-                                                <option value='31'>31</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="service-type top-bottom">
-                                    <h3>{this.state.service}</h3>
-                                </div>
-                            </TabPanel>
+                                </TabPanel>
 
-                            <TabPanel>
-                                <div className="time top-bottom">
-                                    <h3><date>{this.state.month}/{this.state.day}/{year} </date> <time>  {this.state.time}</time></h3>
-                                </div>
-                                <div className="service-type top-bottom">
-                                    <h3>{this.state.service}</h3>
-                                </div>
-                                {!this.state.isHidden && <Child />}
-                            </TabPanel>
-                        </Tabs>
+                                <TabPanel>
+                                    <div className="time top-bottom">
+                                        <h3><date>{this.state.month}/{this.state.day}/{year} </date> <time>  {this.state.time}</time></h3>
+                                    </div>
+                                    <div className="service-type top-bottom">
+                                        <h3>{this.state.service}</h3>
+                                    </div>
+                                    {!this.state.isHidden && <Child />}
+                                </TabPanel>
+                            </Tabs>
+                        </div>
                     </div>
+            {/* <Requests jobs={ jobs }/> */}
                 </div>
             </Aux>
         )

@@ -111,9 +111,9 @@ class Signup extends Component {
                 proximity,
                 user_id
             }).then( response => {
-                // this.setState({
-                //     fireRedirect: true
-                // })
+                this.setState({
+                    fireRedirect: true
+                })
                 console.log('user -> ', response);
                 // if the user is petowner then we will also create
                 // an animal in animals table for that user(with all data he put in)
