@@ -19,9 +19,9 @@ class Requests extends Component {
             axios.get(`/caregiver/jobs/${1}`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
-            console.log('Requests', requestsRes.data);
+            // console.log('Requests', requestsRes.data);
             console.log('Interested', interestedRes.data);
-            console.log('Jobs', jobsRes.data);
+            // console.log('Jobs', jobsRes.data);
             this.setState({ 
                 requests: requestsRes.data, 
                 interested: interestedRes.data,
@@ -33,13 +33,10 @@ class Requests extends Component {
 
     onHandleInterest = (id) => {
         let { service, proximity, time, month, day, job_id } = this.props;
-
-        axios.put(`/update/job/${job_id}`, {
-            request_status: 't'
-        }).then(() => {
-            axios.get(`/petowners/jobs/requested/${this.state.caregiver_id}`).then(requests => {
-                this.setState({ requests: requests.data });
-            })
+        console.log(job_id, 'Here motherfuckers!!!');
+        axios.put(`/update/job/${id}`, {
+            request_status: 't',
+            job_id : job_id
         }).catch(error => console.log(error))
     }
 
@@ -65,9 +62,9 @@ class Requests extends Component {
                     <div className="client-avatar"><img src={job.avatar} alt="Avatar"/></div>
                     <div className="client-name">{job.first_name}</div>
                 </div>
-                <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end}</div>
+                <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end_time}</div>
                 <div>
-                    <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.user_id)}>Interest</button>
+                    <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.job_id)}>Interest</button>
                     <button className="btn btn-primary pass">Pass</button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ class Profile extends Component {
           : <Caregiver/>
         }
         */}
-        <Caregiver/>
+        <Petowner/>
       </Aux>
     );
   }
