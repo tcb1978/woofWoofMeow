@@ -28,16 +28,15 @@ app.use( session({
 const users_controller = require('./controllers/users_controller');
 const search_controller = require('./controllers/search_controller');
 const petowners_controller = require('./controllers/petowners_controller');
-const caregivers_controller = require ('./controllers/caregivers_controller');
-const animals_controller = require ('./controllers/animals_controller');
-const availability_controller = require ('./controllers/availability_controller');
-const bookings_controller = require ('./controllers/bookings_controller');
-const jobs_controller = require ('./controllers/jobs_controller');
-const reviews_controller = require ('./controllers/reviews_controller');
-const googleMaps_controller = require ('./controllers/googleMaps_controller');
+const caregivers_controller = require('./controllers/caregivers_controller');
+const animals_controller = require('./controllers/animals_controller');
+const availability_controller = require('./controllers/availability_controller');
+const bookings_controller = require('./controllers/bookings_controller');
+const jobs_controller = require('./controllers/jobs_controller');
+const reviews_controller = require('./controllers/reviews_controller');
+const googleMaps_controller = require('./controllers/googleMaps_controller');
 
 // Users management
-
 app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
@@ -81,8 +80,6 @@ app.put('/update/booked/:id', bookings_controller.update);
 // Jobs management
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
-
-
 app.get('/job/:id', jobs_controller.getOne);
 app.delete('/delete/job/:id', jobs_controller.destroy);
 

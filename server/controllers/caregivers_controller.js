@@ -8,7 +8,7 @@ module.exports = {
       .catch((error) => console.log(error))
   },
 
-  getCaregiverJobsRequested: (req, res, next) => {
+  getCaregiversJobsRequested: (req, res, next) => {
       const db = req.app.get('db');
       const { id } = req.params;
 
