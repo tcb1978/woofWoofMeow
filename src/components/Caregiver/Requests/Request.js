@@ -31,36 +31,58 @@ class Requests extends Component {
         })).catch( err => console.log(err) );
     }
 
+    onHandleInterest = (id) => {
+        let { service, proximity, time, month, day, job_id } = this.props;
+
+        axios.put(`/update/job/${job_id}`, {
+            request_status: 't'
+        }).then(() => {
+            axios.get(`/petowners/jobs/requested/${this.state.caregiver_id}`).then(requests => {
+                this.setState({ requests: requests.data });
+            })
+        }).catch(error => console.log(error))
+    }
+
+    cancelInterested = (id, user_id) => {
+        // console.log('cancel interested');
+        axios.delete(`/delete/job/${id}`)
+            .then(response => {
+                axios.get(`/caregiver/jobs/${user_id}`).then(requests => {
+                    this.setState({ requests: requests.data })
+                })
+            }).catch(error => console.log(error))
+    }
+
     render() {
-        console.log('State -> Requests', this.state.requests);
-        console.log('State -> Interested', this.state.interested);
-        console.log('State -> Jobs', this.state.jobs);
+        // console.log('State -> Requests', this.state.requests);
+        // console.log('State -> Interested', this.state.interested);
+        // console.log('State -> Jobs', this.state.jobs);
 
         // The list of requested job
         const listOfRequests = this.state.requests.map( job => (
-            <div key={job.job_id} className="ClientRow">
+            <div key={job.user_id} className="ClientRow">
                 <div>
                     <div className="client-avatar"><img src={job.avatar} alt="Avatar"/></div>
                     <div className="client-name">{job.first_name}</div>
                 </div>
                 <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end}</div>
                 <div>
-                    <button className="btn btn-primary interest">Interest</button>
+                    <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.user_id)}>Interest</button>
                     <button className="btn btn-primary pass">Pass</button>
                 </div>
             </div>
         ));
 
         // The list interested jobs
-        const listOfInterested = this.state.requests.map( job => (
-            <div key={job.job_id} className="">
+        const listOfInterested = this.state.interested.map( job => (
+            <div key={job.job_id} className="interested">
                 <div className="caregiverRow">
                     <div>
                         <div className="caregiver-avatar"><img src={job.avatar} alt="Avatar"/></div>
                         <div className="caregiver-name">{job.first_name}</div>
                     </div>
                     <div>
-                        <button className="btn btn-primary cancel">Cancel</button>
+                        <button onClick={() => this.cancelInterested(job.job_id, job.caregiver_id)} className="btn cancel">Cancel</button>
                     </div>
                 </div>
             </div>
