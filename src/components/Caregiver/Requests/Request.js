@@ -31,12 +31,15 @@ class Requests extends Component {
         })).catch( err => console.log(err) );
     }
 
-    onHandleInterest = (id) => {
-        let { service, proximity, time, month, day, job_id } = this.props;
+    onHandleInterest = (job_id, petowner_id) => {
+        // let { service, proximity, time, month, day, job_id } = this.props;
         console.log(job_id, 'Here motherfuckers!!!');
-        axios.put(`/update/job/${id}`, {
-            request_status: 't',
-            job_id : job_id
+        axios.put(`/update/job/${job_id}`, {
+            request_status: 't'
+        }).then(() => {
+            axios.get(`/petowners/jobs/interested/${petowner_id}`).then( interested => {
+                this.setState({interested: interested.data})
+            })
         }).catch(error => console.log(error))
     }
 
@@ -64,7 +67,7 @@ class Requests extends Component {
                 </div>
                 <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end_time}</div>
                 <div>
-                    <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.job_id)}>Interest</button>
+                    <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.job_id, job.petowner_id)}>Interest</button>
                     <button className="btn btn-primary pass">Pass</button>
                 </div>
             </div>
