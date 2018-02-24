@@ -11,7 +11,8 @@ class Requests extends Component {
         this.state = {
             caregivers: [],
             requests: [],
-            interested: []
+            interested: [],
+            jobs: []
         }
     }
 
@@ -70,14 +71,13 @@ class Requests extends Component {
         // List of filtered caregivers
         const listOfCaregivers = this.props.caregivers.map(person => (
             <div key={person.id} className="caregiver-row top-bottom">
-                <div className="avatar"></div>
+                <div className="avatar"><img src={person.avatar}/></div>
                 <div className="caregiver">{person.first_name}</div>
                 <div className="space-around">
-                    <button className="btn btn-request" onClick={() => this.request(person.user_id)}>Request</button>
+                    <button className="btn btn-request btn-primary" onClick={() => this.request(person.user_id)}>Request</button>
                 </div>
             </div>
         ));
-
         // List of caregivers requests
         const listOfRequests = this.state.requests.length ? this.state.requests.map((job) => (
                 <div key={job.job_id} className="status-row">
@@ -93,11 +93,22 @@ class Requests extends Component {
             )) : '' ;
 
         // List of interested caregivers
-        const listOfInterested = [];
+        const listOfInterested = this.state.jobs.map((job) => (
+            <div className="status-row">
+                <div className="avatar"><img src={job.avatar} /></div>
+                <div className="name">{job.first_name}</div>
+                <div className="date">
+                    <date>{job.month}/{job.day}/{job.year}</date>
+                </div>
+                <div className="space-around">
+                    <button className="btn message">Message</button>
+                </div>
+            </div>
+        ));
         return (
             <Aux>
                 <div className="StatusContainer">
-                    <div className="something">
+                    <div className="CaregiversContainer">
                         { listOfCaregivers }
                     </div>
 
@@ -108,26 +119,7 @@ class Requests extends Component {
 
                     <div className="InterestedContainer">
                         <h1>Interested</h1>
-                        <div className="status-row">
-                            <div className="avatar"></div>
-                            <div className="name">Mark</div>
-                            <div className="date">
-                                <date>January 10</date>
-                            </div>
-                            <div className="space-around">
-                                <button className="btn message">Message</button>
-                            </div>
-                        </div>
-                        <div className="status-row">
-                            <div className="avatar"></div>
-                            <div className="name">Mark</div>
-                            <div className="date">
-                                <date>January 10</date>
-                            </div>
-                            <div className="space-around">
-                                <button className="btn message">Message</button>
-                            </div>
-                        </div>
+                        { listOfInterested }
                     </div>
 
                     <Jobs />
