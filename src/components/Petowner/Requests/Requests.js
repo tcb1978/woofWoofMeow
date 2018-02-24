@@ -9,6 +9,7 @@ class Requests extends Component {
     constructor () {
         super();
         this.state = {
+            petowner_id: 5,
             caregivers: [],
             requests: [],
             interested: [],
@@ -18,12 +19,14 @@ class Requests extends Component {
 
     componentDidMount() {
         // Gets all the petowner's requested jobs ( gets all jobs with request value false)
-        axios.get(`/caregivers/jobs/requested`).then(res => {
+        const { petowner_id } = this.state
+        console.log(petowner_id);
+        axios.get(`/caregivers/jobs/requested/${petowner_id}`).then(res => {
             this.setState({ requests: res.data });
         }).catch(err => console.log(err));
-
-        axios.get('/caregivers/jobs/interested').then(response => {
-            this.setState({ jobs: response.data })
+        // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
+        axios.get(`/caregivers/jobs/interested/${petowner_id}`).then(response => {
+            this.setState({ interested: response.data })
         }).catch(error => console.log(error));
     }
 
@@ -50,7 +53,7 @@ class Requests extends Component {
             service
         }).then(response => {
             axios.get(`/jobs`).then(jobs => {
-                axios.get(`/caregivers/jobs/requested`).then(requests => {
+                axios.get(`/caregivers/jobs/requested/${petowner_id}`).then(requests => {
                     this.setState({ requests: requests.data })
 
                 })
@@ -93,7 +96,7 @@ class Requests extends Component {
             )) : '' ;
 
         // List of interested caregivers
-        const listOfInterested = this.state.jobs.map((job) => (
+        const listOfInterested = this.state.interested.map((job) => (
             <div className="status-row">
                 <div className="avatar"><img src={job.avatar} /></div>
                 <div className="name">{job.first_name}</div>
