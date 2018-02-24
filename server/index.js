@@ -1,9 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const session = require('express-session');
 const massive = require('massive');
 // const socket = require('socket.io');
 require('dotenv').config();
+
+// Middlewares
+const checkForSession = require('./middlewares/checkForSession');
 
 // Connecting our .env variable
 massive( process.env.CONNECTION_STRING )
@@ -13,6 +17,7 @@ massive( process.env.CONNECTION_STRING )
 const app = express();
 
 app.use( bodyParser.json() );
+app.use( cors() );
 
 // Session initialization
 app.use( session({
@@ -22,7 +27,8 @@ app.use( session({
   cookie: {
     maxAge: 200 * 1000
   }
-}) );
+}));
+app.use( checkForSession );
 
 // Controllers
 const users_controller = require('./controllers/users_controller');
@@ -40,7 +46,7 @@ const googleMaps_controller = require('./controllers/googleMaps_controller');
 app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
-app.get('/user/:id', users_controller.getOne);
+app.get('/user', users_controller.getOne);
 app.get('/users', users_controller.getAll);
 app.put('/update/user', users_controller.update)
 app.delete('/delete/user/:id', users_controller.destroy);
