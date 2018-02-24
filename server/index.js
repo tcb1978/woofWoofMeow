@@ -27,18 +27,17 @@ app.use( session({
 
 // Controllers
 const users_controller = require('./controllers/users_controller');
+const search_controller = require('./controllers/search_controller');
 const petowners_controller = require('./controllers/petowners_controller');
-const caregivers_controller = require ('./controllers/caregivers_controller');
-const animals_controller = require ('./controllers/animals_controller');
-const availability_controller = require ('./controllers/availability_controller');
-const bookings_controller = require ('./controllers/bookings_controller');
-const jobs_controller = require ('./controllers/jobs_controller');
-const reviews_controller = require ('./controllers/reviews_controller');
-const googleMaps_controller = require ('./controllers/googleMaps_controller');
-const socket_controller = require('./controllers/socket_controller');
+const caregivers_controller = require('./controllers/caregivers_controller');
+const animals_controller = require('./controllers/animals_controller');
+const availability_controller = require('./controllers/availability_controller');
+const bookings_controller = require('./controllers/bookings_controller');
+const jobs_controller = require('./controllers/jobs_controller');
+const reviews_controller = require('./controllers/reviews_controller');
+const googleMaps_controller = require('./controllers/googleMaps_controller');
 
 // Users management
-// app.post('/register', users_controller.register);
 app.post('/register', users_controller.register);
 app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
@@ -47,14 +46,18 @@ app.get('/users', users_controller.getAll);
 app.put('/update/user', users_controller.update)
 app.delete('/delete/user/:id', users_controller.destroy);
 
+// Search management
+app.get('/caregivers/search', search_controller.getFiltered);
+
 // Petowners management
-app.get('/petowners', petowners_controller.getAll);
-app.get('/petowner/:id', petowners_controller.getOne);
+app.get('/petowner/jobs/:id', petowners_controller.getPetownerJobs);
+app.get('/petowners/jobs/requested/:id', petowners_controller.getPetownersJobsRequested);
+app.get('/petowners/jobs/interested/:id', petowners_controller.getPetownersJobsInterested);
 
 // Caregivers management
-app.get('/caregivers', caregivers_controller.getAll);
-app.get('/caregivers/search', caregivers_controller.getFiltered);
-app.get('/caregiver/:id', caregivers_controller.getOne);
+app.get('/caregiver/jobs/:id', caregivers_controller.getCaregiverJobs);
+app.get('/caregivers/jobs/requested/:id', caregivers_controller.getCaregiversJobsRequested);
+app.get('/caregivers/jobs/interested/:id', caregivers_controller.getCaregiversJobsInterested);
 
 // Animals management
 app.post('/animal', animals_controller.create);

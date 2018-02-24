@@ -1,4 +1,7 @@
 .StatusContainer {
+    position: relative;
+    bottom: 38px;
+    height: auto;
 
     .RequestsContainer,
     .InterestedContainer,
@@ -30,10 +33,11 @@
             padding: 15px 30px;
 
             .avatar {
-                width: 5rem;
-                height: 5rem;
-                border: 1px solid grey;
-                border-radius: 100%;
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 100%;
+                }
             }
 
             .name,
@@ -56,6 +60,50 @@
                     border-color: #fecd44;
                     max-height: 40px;
                 }
+            }
+        }
+    }
+
+    .CaregiversContainer {
+        background-color: #7EB9FF;
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        border-radius: 0 0 5px 5px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-flow: column;
+
+        .caregiver-row {
+                margin: 0 0 2px 0;
+                background-color: #fff;
+                width: 100%;
+                padding: 15px;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+            .avatar, 
+            .caregiver,
+            .space-around {
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+            }    
+
+            .avatar {
+                
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 100%;
+                }
+            }
+
+            .caregiver {
+                font-size: 20px;
+                font-weight: 100;
             }
         }
     }
@@ -218,6 +266,9 @@
         color: #fff;
         padding: 5px;
         display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
 
         span {
             margin: 0 auto; 
@@ -273,5 +324,21 @@
     .StatusContainer .HistoryContainer .history-wrapper .HistoryDropDown .TodaysService {
         width: 80%;
         padding: 10px 0;
+    }
+
+    .StatusContainer .CaregiversContainer .caregiver-row {
+        display: flex;
+        flex-flow: column;
+
+        .avatar,
+        .caregiver,
+        .space-around {
+            margin: auto;
+        }
+    }
+
+    .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .proximity,
+    .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .time {
+        flex-flow: column;
     }
 }

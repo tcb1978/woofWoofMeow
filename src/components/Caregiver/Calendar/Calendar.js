@@ -41,7 +41,7 @@ class Calendar extends Component {
             mm: mm,
             day: day,
             numOfDays: numOfDays,
-            daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDate() % 7 - (date.getDay() + 1)) : -1,
+            daysOffset: (date.getDate() % 7 !== date.getDay()) ? (date.getDay() - (date.getDate() % 7)) : 0,
             currentDay: { yyyy, dd, mm, day },
             selectedDay: { yyyy, dd, mm, day }
         });
@@ -55,7 +55,7 @@ class Calendar extends Component {
         date.setDate( 1 );
         // The number of days in the month
         const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-        console.log( this.state.monthOffset );
+        
         if ( direction === 'right' ) {
             this.setState(prevState => ({ 
                 yyyy: date.getFullYear(),
@@ -79,7 +79,7 @@ class Calendar extends Component {
         }
     }
 
-    selectDay ( yyyy, mm, dd ) {
+    selectDay = ( yyyy, mm, dd ) => {
         const date = new Date();
         // The full year set to month currently being viewed. This allows me to get the day of the month
         date.setFullYear( yyyy, mm, dd );
@@ -111,14 +111,13 @@ class Calendar extends Component {
                 weeks[i][j] = calendarDays[dayIndex];
             }
         }
-        console.log( this.state.monthOffset );
-        // console.log('yyyy: ', yyyy);
-        // console.log('mm: ', months[mm]);
-        // console.log('dd: ', dd);
-        // console.log('Day: ', days[day]);
-        // console.log('Number of Days: ', numOfDays);
-        console.log( selectedDay );
-
+        
+        console.log('yyyy: ', yyyy);
+        console.log('mm: ', months[mm]);
+        console.log('dd: ', dd);
+        console.log('Day: ', days[day]);
+        console.log('Number of Days: ', numOfDays);
+        
         return (
             <div className="calendar panel">
                 <div className="container">
@@ -145,6 +144,7 @@ class Calendar extends Component {
                             </div>
                             )) }
                         </div>
+
                         <AvailableTimes months={months} days={days} day={selectedDay} />
                     </div>
                     

@@ -1,10 +1,36 @@
 module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
-    const { user_id, comments, month, day, year, begin_time, end_time, am_pm, animal_id, request_status, thirty_minute_service, sixty_minute_service, sixty_minute_park_service  } = req.body;
+    const { caregiver_id, petowner_id, month, day, year, begin_time, end_time, request_status, service } = req.body;
     console.log(req.body);
 
-    db.create_job([ user_id, comments, month, day, year, begin_time, end_time, am_pm, animal_id, request_status, thirty_minute_service, sixty_minute_service, sixty_minute_park_service ])
+    function convertTo24Hour(time) {
+      var hours = parseInt(time.substr(0, 2));
+      if (time.indexOf('am') != -1 && hours == 12) {
+        time = time.replace('12', '0');
+      }
+      if (time.indexOf('pm') != -1 && hours < 12) {
+        time = time.replace(hours, (hours + 12));
+      }
+      return time.replace(/(am|pm)/, '');
+    }
+
+    function timeToDecimal(t) {
+      t = t.split(':');
+      return parseFloat(parseInt(t[0], 10) + parseInt(t[1], 10) / 60);
+    }
+
+    let convertedTime = timeToDecimal(convertTo24Hour(begin_time))
+
+    const minutes = parseInt(service.split(' ')[0])
+    let walkDurationInHours = 0
+    if (minutes === 30) {
+      walkDurationInHours = 0.5
+    } else { walkDurationInHours = 1 }
+    console.log('walkDurationInHours ', walkDurationInHours);
+    const serviceTime = convertedTime + walkDurationInHours;
+
+    db.create_job([ caregiver_id, petowner_id, month, day, year, begin_time, serviceTime, request_status, service ])
       .then( (job) => res.status(200).json(job) )
       .catch( (error) => res.status(500).send(error) )
   },
