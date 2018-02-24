@@ -28,7 +28,7 @@ class Jobs extends Component {
             </div>
             <div className="Cancel">
                 <form className="form-group">
-                    <textarea className="cancel-text" name="message" rows="2" cols="80">Cancel message..</textarea>
+                    <textarea className="cancel-text" name="message" rows="2" cols="80" defaultValue="Cancel message..."></textarea>
                     <button className="submit-cancel" >Cancel</button>
                 </form>
             </div>

@@ -40,7 +40,7 @@ class Requests extends Component {
         const listOfRequests = this.state.requests.map( job => (
             <div key={job.job_id} className="ClientRow">
                 <div>
-                    <div className="client-avatar"><img src={job.avatar} /></div>
+                    <div className="client-avatar"><img src={job.avatar} alt="Avatar"/></div>
                     <div className="client-name">{job.first_name}</div>
                 </div>
                 <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end}</div>
@@ -56,7 +56,7 @@ class Requests extends Component {
             <div key={job.job_id} className="">
                 <div className="caregiverRow">
                     <div>
-                        <div className="caregiver-avatar"><img src={job.avatar}/></div>
+                        <div className="caregiver-avatar"><img src={job.avatar} alt="Avatar"/></div>
                         <div className="caregiver-name">{job.first_name}</div>
                     </div>
                     <div>
@@ -66,12 +66,12 @@ class Requests extends Component {
             </div>
         ));
 
-        // The list of jobs ( the )
-        const listOfJobs = this.state.jobs.map( job => (
-            <div className="">
+        // // The list of jobs ( the )
+        // const listOfJobs = this.state.jobs.map( job => (
+        //     <div className="">
                 
-            </div>
-        ));
+        //     </div>
+        // ));
 
         return (
             <Aux>

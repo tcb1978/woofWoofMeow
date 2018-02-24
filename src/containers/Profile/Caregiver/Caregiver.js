@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Bio from '../../../components/Bio/Bio';
 import Request from '../../../components/Caregiver/Requests/Request';
-import Interested from '../../../components/Caregiver/Interested/Interested';
 import Availability from '../../../components/Caregiver/Availability/Availability';
 import Calendar from '../../../components/Caregiver/Calendar/Calendar';
 import Jobs from '../../../components/Caregiver/Jobs/Jobs';
