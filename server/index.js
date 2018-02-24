@@ -81,6 +81,7 @@ app.put('/update/booked/:id', bookings_controller.update);
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
 app.get('/job/:id', jobs_controller.getOne);
+app.put('/update/job/:id', jobs_controller.update); // :id is the job id, and the user id is gonna be the session id
 app.delete('/delete/job/:id', jobs_controller.destroy);
 
 // Reviews management
