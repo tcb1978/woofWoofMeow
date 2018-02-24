@@ -11,7 +11,8 @@ class Requests extends Component {
         this.state = {
             caregivers: [],
             requests: [],
-            interested: []
+            interested: [],
+            jobs: []
         }
     }
 
@@ -77,7 +78,6 @@ class Requests extends Component {
                 </div>
             </div>
         ));
-
         // List of caregivers requests
         const listOfRequests = this.state.requests.length ? this.state.requests.map((job) => (
                 <div key={job.job_id} className="status-row">
@@ -93,7 +93,18 @@ class Requests extends Component {
             )) : '' ;
 
         // List of interested caregivers
-        const listOfInterested = [];
+        const listOfInterested = this.state.jobs.map((job) => (
+            <div className="status-row">
+                <div className="avatar"><img src={job.avatar} /></div>
+                <div className="name">{job.first_name}</div>
+                <div className="date">
+                    <date>{job.month}/{job.day}/{job.year}</date>
+                </div>
+                <div className="space-around">
+                    <button className="btn message">Message</button>
+                </div>
+            </div>
+        ));
         return (
             <Aux>
                 <div className="StatusContainer">
@@ -108,26 +119,7 @@ class Requests extends Component {
 
                     <div className="InterestedContainer">
                         <h1>Interested</h1>
-                        <div className="status-row">
-                            <div className="avatar"></div>
-                            <div className="name">Mark</div>
-                            <div className="date">
-                                <date>January 10</date>
-                            </div>
-                            <div className="space-around">
-                                <button className="btn message">Message</button>
-                            </div>
-                        </div>
-                        <div className="status-row">
-                            <div className="avatar"></div>
-                            <div className="name">Mark</div>
-                            <div className="date">
-                                <date>January 10</date>
-                            </div>
-                            <div className="space-around">
-                                <button className="btn message">Message</button>
-                            </div>
-                        </div>
+                        { listOfInterested }
                     </div>
 
                     <Jobs />
