@@ -20,7 +20,6 @@ class Caregiver extends Component {
             <Aux>
                 <Bio />
                 <Request />
-                <Interested />
                 <Availability />
                 <Calendar />
                 <Jobs />

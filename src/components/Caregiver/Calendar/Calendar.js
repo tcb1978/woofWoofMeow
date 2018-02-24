@@ -118,7 +118,6 @@ class Calendar extends Component {
         // console.log('Day: ', days[day]);
         // console.log('Number of Days: ', numOfDays);
         
-
         return (
             <div className="calendar panel">
                 <div className="container">
