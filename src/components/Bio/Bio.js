@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getUser } from '../../redux/ducks/reducer';
 
 class Bio extends Component {
-    
+
     componentDidMount() {
         const { getUser } = this.props
         axios.get('/user').then( user => {
@@ -17,7 +17,6 @@ class Bio extends Component {
 
     render() {
         const { user } = this.props;
-        console.log( 'User prop', user );
         return (
             <Aux>
                 <div className="Landscape"></div>

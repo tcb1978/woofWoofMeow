@@ -202,8 +202,8 @@ class Signup extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
-                                    <div clasName="form-group">
-                                        Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
+                                    <div className="form-group">
+                                        Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@ class Signup extends Component {
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6">
-                                            Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
+                                            Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
                                         </div>
                                     </div>
                                     <div className="row">
@@ -265,7 +265,7 @@ class Signup extends Component {
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6">
-                                            <div clasName="form-group">
+                                            <div className="form-group">
                                                 <select
                                                     className="form-control"
                                                     type="text"
@@ -292,7 +292,7 @@ class Signup extends Component {
                 </div>
                 
                 {fireRedirect && (
-                    <Redirect to={'/'} />
+                    <Redirect to={'/profile'} />
                 )}
             </Aux>
         );

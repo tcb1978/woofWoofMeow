@@ -23,7 +23,7 @@ module.exports = {
     const db = req.app.get('db');
 
     db.get_animal([ req.session.user.user_id ])
-      .then( (animal) => res.status(200).json(animal) )
+      .then( (animal) => { res.status(200).json(animal); console.log('Animal', animal); } )
       .catch( (error) => res.status(500).send(error) )
   },
 
