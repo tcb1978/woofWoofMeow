@@ -112,11 +112,11 @@ class Calendar extends Component {
             }
         }
         
-        console.log('yyyy: ', yyyy);
-        console.log('mm: ', months[mm]);
-        console.log('dd: ', dd);
-        console.log('Day: ', days[day]);
-        console.log('Number of Days: ', numOfDays);
+        // console.log('yyyy: ', yyyy);
+        // console.log('mm: ', months[mm]);
+        // console.log('dd: ', dd);
+        // console.log('Day: ', days[day]);
+        // console.log('Number of Days: ', numOfDays);
         
         return (
             <div className="calendar panel">

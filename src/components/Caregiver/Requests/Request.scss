@@ -99,21 +99,32 @@
         margin: auto;
         background-color: #fff;
         padding: 15px;
-        border-radius: 5px;
         
-        border-bottom: 2px solid #dbdbdb;
-        
+        .interested {
+            padding: 15px 30px;
+            border-bottom: 2px solid #dbdbdb;
+            border-radius: 0 0 5px 5px;
+        }
         
         .caregiverRow {
             display: flex;
             flex-flow: row;
             justify-content: space-between;
-            .caregiver-avatar {
-                width: 4rem;
-                height: 4rem;
-                border-radius: 100%;
-                background-color: #ccc;
-                margin: 0 15px 0 0;
+
+            div{
+
+                .caregiver-avatar {
+                    img {
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 100%;
+                        background-color: #ccc;
+                        margin: 0 15px 0 0;
+                    }
+                }
+                .cancel {
+                    color: #fff;
+                }
             }
             .caregiver-name,
             .interested-info {

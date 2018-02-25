@@ -24,7 +24,11 @@ class Requests extends Component {
         }).catch(err => console.log(err));
 
         // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
+<<<<<<< HEAD
         axios.get(`/petowner/jobs/interested/${this.state.petowner_id}`).then(response => {
+=======
+        axios.get(`/caregivers/jobs/interested/${this.state.petowner_id}`).then(response => {
+>>>>>>> client
             this.setState({ interested: response.data });
         }).catch(error => console.log(error));
     }
