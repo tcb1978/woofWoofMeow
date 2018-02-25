@@ -14,6 +14,7 @@ module.exports = {
         
         req.session.user.user_id = user[0].user_id;
         req.session.user.title = title;
+        // console.log('req.session', req.session.user);
 
         res.status(200).json( req.session.user )
       })
@@ -92,9 +93,11 @@ module.exports = {
 
   update: (req, res, next) => {
     const db = req.app.get('db');
-    // console.log('req.body ', req.body);
+    console.log('req.body ', req.body);
+    // console.log('session id', req.session.user );
     // we'll change longitude and latitude later so we need to declare it with let
-    let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity, user_id } = req.body;
+    let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity } = req.body;
+    console.log(avatar);
     
     // getting longitude and latitude from api request based on zip code
     // axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
@@ -104,53 +107,54 @@ module.exports = {
         // latitude = response.data.coord.lat
         longitude = 12
         latitude = 15
-        console.log(longitude, latitude);
         // making hashed password
         bcrypt.hash(password, saltRound)
         .then(hashedPassword => {
           if (title === 'caregiver') {
-            db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity, user_id ])
+            db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity, req.session.user.user_id ])
               .then( (user) => {
                 req.session.user = {
-                  user_id: user.user_id,
-                  first_name: user.first_name,
-                  last_name: user.last_name,
-                  street_address: user.street_address,
-                  state: user.state,
-                  city: user.city,
-                  zip: user.zip,
-                  email: user.email,
-                  phone: user.phone,
-                  avatar: user.avatar,
-                  title: user.title,
-                  longitude: user.longitude,
-                  latitude: user.latitude,
-                  about_message: user.about_message,
-                  proximity: user.proximity
+                  user_id: user[0].user_id,
+                  first_name: user[0].first_name,
+                  last_name: user[0].last_name,
+                  street_address: user[0].street_address,
+                  state: user[0].state,
+                  city: user[0].city,
+                  zip: user[0].zip,
+                  email: user[0].email,
+                  phone: user[0].phone,
+                  avatar: user[0].avatar,
+                  title: user[0].title,
+                  longitude: user[0].longitude,
+                  latitude: user[0].latitude,
+                  about_message: user[0].about_message,
+                  proximity: user[0].proximity
                 }
                 res.status(200).json( req.session.user ) 
               })
               .catch( (error) => res.status(500).send(error))
           } else {
-              db.update_user([ first_name, last_name, street_address, state, city, zip, email, phone, null, title, hashedPassword, longitude, latitude, null, null, user_id ])
+            db.update_user([first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, hashedPassword, longitude, latitude, about_message, proximity, req.session.user.user_id ])
                 .then( (user) => {
+                  // console.log('user ', user[0]);
                   req.session.user = {
-                    user_id: user.user_id,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    street_address: user.street_address,
-                    state: user.state,
-                    city: user.city,
-                    zip: user.zip,
-                    email: user.email,
-                    phone: user.phone,
-                    avatar: user.avatar,
-                    title: user.title,
-                    longitude: user.longitude,
-                    latitude: user.latitude,
-                    about_message: user.about_message,
-                    proximity: user.proximity
+                    user_id: user[0].user_id,
+                    first_name: user[0].first_name,
+                    last_name: user[0].last_name,
+                    street_address: user[0].street_address,
+                    state: user[0].state,
+                    city: user[0].city,
+                    zip: user[0].zip,
+                    email: user[0].email,
+                    phone: user[0].phone,
+                    avatar: user[0].avatar,
+                    title: user[0].title,
+                    longitude: user[0].longitude,
+                    latitude: user[0].latitude,
+                    about_message: user[0].about_message,
+                    proximity: user[0].proximity
                   }
+                  // console.log('req.session.user ', req.session.user);
                   res.status(200).json( req.session.user ) 
                 })
                 .catch( (error) => res.status(500).send(error))
@@ -163,29 +167,9 @@ module.exports = {
 
   destroy: (req, res, next) => {
     const db = req.app.get('db');
-    const { id } = req.params;
 
-    // for now we have to pass the id of the user we want to delete as a parameter
-    // later its' gonna be user session id
-    db.delete_user([ id ])
+    db.delete_user([ req.session.user.user_id ])
       .then( () => res.status(200).json('deleted') )
       .catch( (error) => res.status(500).send(error) );
-  },
-
-  getAddress: (req, res, next) => {
-    const db = req.app.get('db');
-    let zip = '85004';
-    
-
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)
-      .then( (response) => {
-        temp.push({ zip: response.data.coord })
-        let lon1 = response.data.coord.lon
-        let lat1 = response.data.coord.lat
-        console.log(lon1, lat1);
-        console.log(temp);
-        res.json(response.data)
-      })
-      .catch( (error) => console.log(error))
   }
 }

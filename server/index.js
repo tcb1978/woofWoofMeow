@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const session = require('express-session');
 const massive = require('massive');
 // const socket = require('socket.io');
@@ -17,7 +17,7 @@ massive( process.env.CONNECTION_STRING )
 const app = express();
 
 app.use( bodyParser.json() );
-app.use( cors() );
+// app.use( cors() );
 
 // Session initialization
 app.use( session({
@@ -37,7 +37,6 @@ const petowners_controller = require('./controllers/petowners_controller');
 const caregivers_controller = require('./controllers/caregivers_controller');
 const animals_controller = require('./controllers/animals_controller');
 const availability_controller = require('./controllers/availability_controller');
-const bookings_controller = require('./controllers/bookings_controller');
 const jobs_controller = require('./controllers/jobs_controller');
 const reviews_controller = require('./controllers/reviews_controller');
 const googleMaps_controller = require('./controllers/googleMaps_controller');
@@ -49,28 +48,27 @@ app.post('/logout', users_controller.logout);
 app.get('/user', users_controller.getOne);
 app.get('/users', users_controller.getAll);
 app.put('/update/user', users_controller.update)
-app.delete('/delete/user/:id', users_controller.destroy);
+app.delete('/delete/user', users_controller.destroy);
 
 // Search management
 app.get('/caregivers/search', search_controller.getFiltered);
 
 // Petowners management
-app.get('/petowner/jobs/:id', petowners_controller.getPetownerJobs);
-app.get('/petowners/jobs/requested/:id', petowners_controller.getPetownersJobsRequested);
-app.get('/petowners/jobs/interested/:id', petowners_controller.getPetownersJobsInterested);
+app.get('/caregiver/jobs', petowners_controller.getPetownerJobs);
+app.get('/caregiver/jobs/requested', petowners_controller.getPetownersJobsRequested);
+app.get('/caregiver/jobs/interested', petowners_controller.getPetownersJobsInterested);
 
 // Caregivers management
-app.get('/caregiver/jobs/:id', caregivers_controller.getCaregiverJobs);
-app.get('/caregivers/jobs/requested/:id', caregivers_controller.getCaregiversJobsRequested);
-app.get('/caregivers/jobs/interested/:id', caregivers_controller.getCaregiversJobsInterested);
+app.get('/petowner/jobs', caregivers_controller.getCaregiverJobs);
+app.get('/petowner/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
+app.get('/petowner/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
 
 // Animals management
-app.post('/animal', animals_controller.create);
-app.get('/animals', animals_controller.getAll);
-app.get('/animals/:id', animals_controller.getUserAnimals);
-app.get('/animal/:id', animals_controller.getOne);
-app.put('/update/animal/:id', animals_controller.update);
-app.delete('/delete/animal/:id', animals_controller.destroy);
+app.post('/animal/create', animals_controller.create);
+app.get('/animals', animals_controller.getUserAnimals);
+app.get('/animal', animals_controller.getOne);
+app.put('/update/animal/:id', animals_controller.update); // :id parameter is the animal id (don't take it off)
+app.delete('/delete/animal/:id', animals_controller.destroy); // :id parameter is the animal id (don't take it off)
 
 // Availability management
 app.post('/create/available', availability_controller.create);
@@ -78,22 +76,17 @@ app.get('/available', availability_controller.getAll);
 app.get('/available/user', availability_controller.getUserAvailability);
 app.put('/update/available', availability_controller.update);
 
-// Booking management
-app.post('/create/booked', bookings_controller.create);
-app.get('/booked', bookings_controller.getAll);
-app.put('/update/booked/:id', bookings_controller.update);
-
 // Jobs management
 app.post('/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
-app.get('/job/:id', jobs_controller.getOne);
-app.put('/update/job/:id', jobs_controller.update); // :id is the job id, and the user id is gonna be the session id
-app.delete('/delete/job/:id', jobs_controller.destroy);
+app.get('/job', jobs_controller.getOne);
+app.put('/update/job/:id', jobs_controller.update); // :id is the job id (don't take it off)
+app.delete('/delete/job/:id', jobs_controller.destroy); // :id is the job id (don't take it off)
 
 // Reviews management
 app.post('/review', reviews_controller.create);
 app.get('/reviews', reviews_controller.getAll);
-app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver);
+app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver); // read comment in the controller (don't take off :id)
 
 // Geolocation
 app.get('/location/user', googleMaps_controller.getUserlocation);

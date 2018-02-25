@@ -47,17 +47,15 @@ module.exports = {
     const db = req.app.get('db');
     const { id } = req.params;
 
-    // Later 1 is gonna session user id
-    db.get_job([ id, 1 ])
+    db.get_job([id, req.session.user.user_id ])
       .then( (job) => res.status(200).json(job) )
       .catch( (error) => res.status(500).send(error) )
   },
 
   update: (req, res, next) => {
     const db = req.app.get('db');
-    const { id } = req.params;
 
-    db.update_job([ id, 1 ])
+    db.update_job([ id, req.session.user.user_id ])
       .then( (job) => res.status(200).json(job) )
       .catch(error => console.log(error))
   },
@@ -65,7 +63,6 @@ module.exports = {
   destroy: (req, res, next) => {
     const db = req.app.get('db');
     const { id } = req.params;
-    console.log(id);
 
     db.delete_job([ id ])
       .then( () => res.status(200).json('deleted') )

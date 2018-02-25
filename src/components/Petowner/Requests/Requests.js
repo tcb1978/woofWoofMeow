@@ -9,7 +9,7 @@ class Requests extends Component {
     constructor () {
         super();
         this.state = {
-            petowner_id: 5,
+            petowner_id: '',
             caregivers: [],
             requests: [],
             interested: [],
@@ -19,12 +19,12 @@ class Requests extends Component {
 
     componentDidMount() {
         // Gets all the petowner's requested jobs ( gets all jobs with request value false)
-        axios.get(`/caregivers/jobs/requested/${this.state.petowner_id}`).then(res => {
+        axios.get(`/petowner/jobs/requested/${this.state.petowner_id}`).then(res => {
             this.setState({ requests: res.data });
         }).catch(err => console.log(err));
 
         // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
-        axios.get(`/caregivers/jobs/interested/${this.statepetowner_id}`).then(response => {
+        axios.get(`/petowner/jobs/interested/${this.state.petowner_id}`).then(response => {
             this.setState({ interested: response.data });
         }).catch(error => console.log(error));
     }

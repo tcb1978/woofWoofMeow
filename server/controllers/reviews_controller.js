@@ -21,6 +21,7 @@ module.exports = {
     const { id } = req.params;
 
     // Later 1 is gonna session user id
+    // right now we are getting it by user id. is it gonna be caregiver id or petowner id
     db.get_reviews_by_user([id])
       .then( (reviews) => res.status(200).json(reviews) )
       .catch( (error) => res.status(500).send(error) )

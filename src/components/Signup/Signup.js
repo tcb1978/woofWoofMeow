@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
-import { login } from '../../redux/ducks/reducer';
+import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
 
 class Signup extends Component {
@@ -10,7 +10,6 @@ class Signup extends Component {
         super(props);
         this.state = {
             fireRedirect: false,
-            user_id: '',
             first_name: '',
             last_name: '',
             street_address: '',
@@ -31,7 +30,8 @@ class Signup extends Component {
             breed: '',
             age: '',
             weight: '',
-            sex: ''
+            sex: '',
+            animal_avatar: ''
         };
     }
 
@@ -52,10 +52,10 @@ class Signup extends Component {
             // console.log(this.props);
 
             // getting user id from the redux
-            this.props.login(response.data)
+            this.props.register(response.data)
             console.log('props', this.props);
             const user_id = response.data.user_id
-            console.log(user_id);
+            // console.log(user_id);
             this.setState({ user_id: user_id });
             // if the user that is trying to register is caregiver
             // we create default availability data for him
@@ -87,7 +87,8 @@ class Signup extends Component {
     // here we are sending the actual user data to update the user record in the database
     handleSubmit(event) {
         event.preventDefault();
-        const { user_id, first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex } = this.state;
+
+        const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar } = this.state;
 
         // console.log(password, passwordCheck);
         if (password !== passwordCheck) {
@@ -108,18 +109,14 @@ class Signup extends Component {
                 longitude,
                 latitude,
                 about_message,
-                proximity,
-                user_id
-            }).then( response => {
-                this.setState({
-                    fireRedirect: true
-                })
-                console.log('user -> ', response);
+                proximity
+            }).then( user => {
+                this.setState({ fireRedirect: true });
                 // if the user is petowner then we will also create
                 // an animal in animals table for that user(with all data he put in)
-                if (title === 'petowner') {
-                    axios.post('/animal', {
-                        animal_name, breed, age, weight, sex, user_id
+                if (user.data.title === 'petowner') {
+                    axios.post('/animal/create', {
+                        animal_name, breed, age, weight, sex, animal_avatar
                     })
                     .then( animal => {
                         console.log(animal);
@@ -211,7 +208,13 @@ class Signup extends Component {
                                 </div>
                             </div>
                         </div>
-                        
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <div clasName="form-group">
+                                    Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     { this.props.user.title === 'petowner'
@@ -248,19 +251,22 @@ class Signup extends Component {
                                     Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
                                 </div>
                             </div>
+                            <div className="col-xs-12 col-sm-6">
+                                Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <div className="form-group">
+                                    Include a description about your animal.
+                                    <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     ) : (
                     <div className="container" >
                         <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Upload an image of yourself. Pictures with your furry friends are best!!
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} />
-                            </div>
                             <div className="col-xs-12">
                                 <div className="form-group">
                                     Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!
@@ -314,7 +320,7 @@ const mapStateToProps = state => {
   };
   
   const mapDispatchToProps = {
-    login: login
+    register: register
   }
   
   export default connect(mapStateToProps, mapDispatchToProps)(Signup);

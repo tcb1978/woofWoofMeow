@@ -14,9 +14,9 @@ class Requests extends Component {
     }
     componentDidMount() {
         axios.all([
-            axios.get(`/petowners/jobs/requested/${1}`),
-            axios.get(`/petowners/jobs/interested/${1}`),
-            axios.get(`/caregiver/jobs/${1}`)
+            axios.get(`/caregiver/jobs/requested`),
+            axios.get(`/caregiver/jobs/interested`),
+            axios.get(`/caregiver/jobs/`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
             console.log('Requests', requestsRes.data);

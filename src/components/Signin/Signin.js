@@ -22,7 +22,7 @@ class Signin extends Component {
     }
 
     componentDidMount() {
-        // if (this.props.user) {
+        // if (this.props.user.user_id) {
         //     this.props.history.push('/profile')
         // }
     }
@@ -31,18 +31,18 @@ class Signin extends Component {
         const { email, password } = this.state;
         console.log(email, password);
         axios.post('/login', { email, password })
-        .then(response => {
-            console.log(response);
-            this.props.login(response.data.user);
+        .then(user => {
+            console.log('User', user);
+            this.props.login(user.data);
             this.props.history.push('/profile');
         })
         .catch(error => {
             if (error.response.status === 401) {
                 this.setState({ errorMessage: 'Wrong password' })
-                console.log(this.state.errorMessage);
+                // console.log(this.state.errorMessage);
               } else if (error.response.status === 403) {
                 this.setState({ errorMessage: 'This user is not registered' })
-                console.log(this.state.errorMessage);
+                // console.log(this.state.errorMessage);
               }
             console.log(error);
         })

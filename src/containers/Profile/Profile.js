@@ -9,15 +9,11 @@ class Profile extends Component {
   render() {
     return (
       <Aux>
-
-        {/*
+        {console.log(this.props.user.title) }
           { this.props.user.title === 'petowner'
           ? <Petowner/>
           : <Caregiver/>
         }
-        */}
-        {/* <Petowner /> */}
-        <Caregiver/>
       </Aux>
     );
   }
