@@ -7,10 +7,10 @@ import { login } from '../../redux/ducks/reducer';
 
 class Profile extends Component {
   render() {
+    const { user } = this.props;
     return (
       <Aux>
-        {console.log(this.props.user.title) }
-          { this.props.user.title === 'petowner'
+        { user.title === 'petowner'
           ? <Petowner/>
           : <Caregiver/>
         }

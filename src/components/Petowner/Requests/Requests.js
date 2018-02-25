@@ -107,12 +107,12 @@ class Requests extends Component {
 
                     <div className="RequestsContainer">
                         <h1>Requests</h1>
-                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No Requests</div> }
+                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
                     </div>
 
                     <div className="InterestedContainer">
                         <h1>Interested</h1>
-                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No Interests</div> }
+                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
                     </div>
 
                     <Jobs />
