@@ -32,7 +32,7 @@ const Layout = (props) => {
                                 <div className="btn-underlay size"></div>
                             </div>
                         </Link>
-                        <Link to="/signup/cargiver">
+                        <Link to="/signup/caregiver">
                             <div className="signup-btn">
                                 <div className="btn-name size"><div>Become Caretaker</div></div>
                                 <div className="btn-border size"></div>
