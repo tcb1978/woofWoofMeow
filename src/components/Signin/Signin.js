@@ -3,6 +3,7 @@ import axios from 'axios';
 import Aux from '../../hoc/Aux';
 import { connect } from 'react-redux';
 import { login } from '../../redux/ducks/reducer';
+import './Signin.css';
 
 // const Signin = (props) => {
 //     return (
@@ -51,25 +52,25 @@ class Signin extends Component {
     render() {
         return (
             <Aux>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-6">
-                            <div className="form-group">
-                                Email:
+                <div className="sign-in-container">
+                    <div className="module">
+                            <div className="bone"></div>
+                            <div className="form-element">
+                                <div className="form-group">
+                                    Email:
                                 <input className="form-control" placeholder="email" onChange={(e) => this.setState({ email: e.target.value })} />
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-6">
-                            <div className="form-group">
-                                Password:
+                            <div className="form-element">
+                                <div className="form-group">
+                                    Password:
                                 <input className="form-control" placeholder="password" type="password" onChange={(e) => this.setState({ password: e.target.value })} />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <button className="form-control btn btn-primary mb-2" onClick={this.login}>Log in</button>
-                        </div>
+                            <div className="form-element flex">
+                                <button className="form-control btn btn-primary mb-2 login" onClick={this.login}>Log in</button>
+                            </div>
+                        
                     </div>
                 </div>
             </Aux>
