@@ -54,25 +54,27 @@
                     margin: 0 0 2px 0;
                     background-color: #fff;
                     width: 100%;
+                    height: 105px;
                     padding: 15px;
                 }
 
-                .proximity {
-                    select {
-                        margin: auto;
-                    }
-                }
+                // .proximity {
+                //     select {
+                //         margin: auto;
+                //     }
+                // }
 
-                .proximity,
-                .time
-                .service-type{
-                    margin: 0 0 2px 0;
-                }
+                // .proximity,
+                // .time
+                // .service-type{
+                //     margin: 0 0 2px 0;
+                // }
                 
                 .proximity,
                 .time {
                     border-radius: 5px 5px 0 0;
                     display: flex;
+                    align-items: center;
 
                     h3 {
                         font-weight: 100;
@@ -84,16 +86,18 @@
                     }
                 }
 
-                .service-type {
-                    display: flex;
-                    margin-bottom: 8px;
+                // .service-type {
+                //     display: flex;
+                //     justify-content: center;
+                //     margin-bottom: 8px;
+                //     background-color: white;
 
-                    h3 {
-                        font-weight: 100;
-                        color: #7eb9ff;
-                        margin: 0 auto;
-                    }
-                }
+                //     h3 {
+                //         font-weight: 100;
+                //         color: #7eb9ff;
+                //         margin: 0 auto;
+                //     }
+                // }
 
                 .caregiver-row {
                     display: flex;
@@ -129,6 +133,19 @@
                     }
                 }
 
+            }
+        }
+        .service-type {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+            padding: 15px 0;
+            background-color: white;
+
+            h3 {
+                font-weight: 100;
+                color: #7eb9ff;
+                margin: 0;
             }
         }
     }

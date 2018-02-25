@@ -24,12 +24,11 @@ class CareGiverSearch extends Component {
 
     filterMethod = () => {
         const { proximity, time } = this.state;
-        axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`).then(response => {
+        axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`).then( caregivers => {
 
-            const caregivers = response.data;
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
-                caregivers: caregivers
+                caregivers: caregivers.data
             }))
 
         }).catch(error => console.log(error))
@@ -207,20 +206,17 @@ class CareGiverSearch extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="service-type top-bottom">
-                                        <h3>{this.state.service}</h3>
-                                    </div>
                                 </TabPanel>
 
                                 <TabPanel>
                                     <div className="time top-bottom">
                                         <h3><date>{this.state.month}/{this.state.day}/{year} </date> <time>  {this.state.time}</time></h3>
                                     </div>
-                                    <div className="service-type top-bottom">
-                                        <h3>{this.state.service}</h3>
-                                    </div>
                                 </TabPanel>
                             </Tabs>
+                            <div className="service-type">
+                                <h3>{this.state.service}</h3>
+                            </div>
                         </div>
                     </div>
                     <Requests caregivers={ caregivers }

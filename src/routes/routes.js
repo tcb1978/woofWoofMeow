@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../containers/Layout/Layout';
 import Signin from '../components/Signin/Signin';
 import Signup from '../components/Signup/Signup';
@@ -18,7 +18,7 @@ export default (
     <Route path="/signup/caregiver" component={ Signup }/>
     <Route path="/profile" component={ Profile }/>
     <Route path="/chat" component={ Chat }/>
-    <Route path="/update-message" component={UpdateMessage} />
+    <Route path="/update-message" component={ UpdateMessage } />
     <Route path="/caregiver" component={ Caregiver }/>
   </Switch>
 )

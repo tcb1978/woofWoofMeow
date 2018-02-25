@@ -15,21 +15,30 @@ const Layout = (props) => {
                 <div className="NavRight">
                     <Scroll type="id" element="_About">About </Scroll>
                     <Scroll type="id" element="_Services">Services </Scroll>
-                    <Link to="/signup">Sign Up </Link>
+                    <Scroll type="id" element="_GetStarted">Sign Up</Scroll>
+                    {/* <Link to="/signup">Sign Up </Link> */}
                     <Link to="/signin">Sign In </Link>
                 </div>
             </nav>
 
-            <section className="GetStarted">
+            <section className="GetStarted" id="_GetStarted">
                 <div className="Find">
                     <h1>GET STARTED</h1>
                     <div>
-                        <div className="border border-radius"><div className="borderContainer"></div></div>
-                        <div className="border border-radius"><div className="borderContainer"></div></div>
-                    </div>
-                    <div>
-                        <Link to="/signup/petowner" className="border border-radius"><span>Find Caretaker</span></Link>
-                        <Link to="/signup/caregiver" className="border border-radius"><span>Become Caretaker</span></Link>
+                        <Link to="/signup/petowner">
+                            <div className="signup-btn">
+                                <div className="btn-name size"><div>Find Caretaker</div></div>
+                                <div className="btn-border size"></div>
+                                <div className="btn-underlay size"></div>
+                            </div>
+                        </Link>
+                        <Link to="/signup/cargiver">
+                            <div className="signup-btn">
+                                <div className="btn-name size"><div>Become Caretaker</div></div>
+                                <div className="btn-border size"></div>
+                                <div className="btn-underlay size"></div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -117,7 +126,7 @@ const Layout = (props) => {
                     </div>
                 </div>
             </section>
-            <div className="finallyGetStarted"><Link to="/" className="btn-yellow  border-radius">Get started</Link></div>
+            <div className="GetStarted-btn"><Scroll type="id" element="_GetStarted"><button className="yellow-btn">Get started</button></Scroll></div>
             <footer>
                 <div className="container">
                     <div className="row">
@@ -131,7 +140,7 @@ const Layout = (props) => {
                         </div>
                         <div className="col-xs-12 col-sm-4">
                             <ul>
-                                <li><a href="/"><h2>Contact</h2></a></li>
+                                <li><h2>Contact</h2></li>
                                 <li><a href="mailto:woofwoofmeow@email.com">woofwoofmeow@email.com</a></li>
                             </ul>
                         </div>

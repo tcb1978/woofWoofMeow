@@ -41,26 +41,21 @@ class Signup extends Component {
     // 
     // when get the response we make default ("6AM - 2PM") availability for the caregiver
     componentDidMount() {
-        const str = this.props.match.url
-        const arr = str.split('/')
-        this.setState({ title: arr[2] })
+        const url = this.props.match.url
+        const title = url.split('/')
+        this.setState({ title: title[2] });
+
         // initial post to the database with user title only
         axios.post('/register', {
-            title: arr[2]
-        })
-        .then(response => {
-            console.log('register user', response);
-            // console.log(this.props);
+            title: title[2]
+        }).then( user => {
+            // updates user in redux
+            this.props.register(user.data)
 
-            // getting user id from the redux
-            this.props.register(response.data)
-            console.log('props', this.props);
-            const user_id = response.data.user_id
-            // console.log(user_id);
-            this.setState({ user_id: user_id });
-            // if the user that is trying to register is caregiver
-            // we create default availability data for him
-            if (response.data.title === 'caregiver') {
+            this.setState({ user_id: user.data.user_id });
+
+            // if the user title is caregiver, default availability data is created
+            if (user.data.title === 'caregiver') {
                 // making default values for the availability
                 var day = 1;
                 const time_range = "6AM - 2PM";
@@ -69,20 +64,17 @@ class Signup extends Component {
                 // making availability for 7 days for one user
                 for (let i = 0; i < 7; i++) {
                     axios.post('/create/available', {
-                        user_id: user_id,
+                        user_id: user.data.user_id,
                         day: i,
                         time_range: time_range,
                         begin_time: begin_time,
                         end_time: end_time
-                    })
-                    .then( res => {
-                        console.log('res ', res);
-                    })
-                    .catch(error => console.log(error))
+                    }).then( available => {
+                        console.log('Available ', available);
+                    }).catch(error => console.log(error))
                 }
             }
-        })
-        .catch(error => {console.log(error)})
+        }).catch(error => console.log(error));
     }
 
     // here we are sending the actual user data to update the user record in the database
