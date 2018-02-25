@@ -25,6 +25,7 @@ class History extends Component {
                 </div>
             </div>
         </div>
+        
         return (
             <Aux>
                 <div className="HistoryContainer">

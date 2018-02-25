@@ -60,7 +60,6 @@ class PetBio extends Component {
             axios.get(`/animal`).then(response => {
                 const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = response.data[0]
                 
-                
                 this.setState({
                     animal_id: animal_id,
                     animal_name: animal_name,
@@ -74,14 +73,12 @@ class PetBio extends Component {
         }).catch(error => console.log(error))
     }
 
-    handlePetBioAvatarClick = () => {
-        this.setState({
-            petBioIsHidden: !this.state.petBioIsHidden,
-        })
+    showPetBio = () => {
+        this.setState(prevState => ({ petBioIsHidden: !prevState.petBioIsHidden }));
     }
 
     render() {
-        const Child = () => (
+        const petBio = (
             <div className="PetBioDropDown">
                 <div className="container">
                     <div className="row">
@@ -106,8 +103,7 @@ class PetBio extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            </div> );
 
         return (
             <Aux>
@@ -122,12 +118,12 @@ class PetBio extends Component {
                         </div>
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
-                                <img onClick={this.handlePetBioAvatarClick.bind(this)} src={this.state.animal_avatar} />
-                                <span onClick={this.handlePetBioAvatarClick.bind(this)} >{this.state.animal_name}</span>
+                                <img onClick={ this.showPetBio } src={this.state.animal_avatar} />
+                                <span onClick={ this.showPetBio } >{this.state.animal_name}</span>
                             </div>
                         </div>
                     </div>
-                    {this.state.petBioIsHidden && <Child />}
+                    { this.state.petBioIsHidden && petBio }
                 </div>
             </Aux>
         )

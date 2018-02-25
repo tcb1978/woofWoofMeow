@@ -22,13 +22,19 @@ CREATE TABLE IF NOT EXISTS users (
 INSERT INTO users
 (first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity)
 VALUES
-('Jemaine', 'Brown', 'Lane', 'Ca', 'Santa Monica', '90048', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '3'),
-('Sergey', 'Sherstobitov', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
-('Jake', 'Jakeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '7'),
-('John', 'Johnson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '10'),
-('Kate', 'Kateson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '3'),
-('Jane', 'Janeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
-('Petowner', 'Petownerson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', '5');
+('PetOwner 1', 'LastName', '1234 N Street St', 'CA', 'Santa Monica', '90048', 'pmail1', '1234567890', 'http://busybridgeng.com/wp-content/uploads/2017/05/generic-avatar.png', 'petowner', '1', '-118.390856', '34.095567', 'Hi, my name is PetOwner 1, and I have dogs.', '3'),
+('PetOwner 2', 'LastName', '1234 N Street St', 'CA', 'Santa Monica', '90048', 'pmail2', '1234567890', 'http://busybridgeng.com/wp-content/uploads/2017/05/generic-avatar.png', 'petowner', '1', '-118.390856', '34.095567', 'Hi, my name is PetOwner 2, and these boots were not made for walking.', '3'),
+
+('Caregiver 1', 'LastName', '1234 N Street St', 'Ca', 'Santa Monica', '90048', 'cmail1', '1234567890', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'Hi, my name is Caregiver 1, and these boots were made for walking.', '3'),
+('Caregiver 2', 'LastName', '1234 N Street St', 'Ca', 'Santa Monica', '90048', 'cmail2', '1234567890', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'Hi, my name is Caregiver 2, and these boots were made for walking.', '3'),
+('Caregiver 3', 'LastName', '1234 N Street St', 'Ca', 'Santa Monica', '90048', 'cmail3', '1234567890', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'Hi, my name is Caregiver 3, and these boots were made for walking.', '3'),
+('Caregiver 4', 'LastName', '1234 N Street St', 'Ca', 'Santa Monica', '90048', 'cmail4', '1234567890', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'Hi, my name is Caregiver 4, and these boots were made for walking.', '3'),
+-- ('Sergey', 'Sherstobitov', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
+-- ('Jake', 'Jakeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '7'),
+-- ('John', 'Johnson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '10'),
+-- ('Kate', 'Kateson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '3'),
+-- ('Jane', 'Janeson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'caregiver', '1', '-118.390856', '34.095567', 'blablabla', '5'),
+-- ('Petowner', 'Petownerson', 'Lane', 'Ca', 'Santa Monica', '9813', 'mrmunster@gmail.com', '3236666666', 'https://vignette.wikia.nocookie.net/headhuntershorrorhouse/images/6/6b/Herman_Munster_001.jpg/revision/latest?cb=20091022161116', 'petowner', '1', '-118.390856', '34.095567', 'blablabla', '5');
 
 CREATE TABLE IF NOT EXISTS animals (
     animal_id SERIAL PRIMARY KEY,
@@ -45,6 +51,7 @@ INSERT INTO animals
 (animal_name, breed, age, weight, sex, animal_avatar, user_id)
 VALUES
 ('Mia', 'Chihuahua Mix', '5', '6 lbs', 'Female', 'https://image.ibb.co/cLyDTH/mia.jpg', 1);
+('Copper', 'Chihuahua Mix', '5', '6 lbs', 'Female', 'http://images6.fanpop.com/image/photos/36300000/German-Shepherds-image-german-shepherds-36311386-1997-1636.jpg', 2;
 
 CREATE TABLE IF NOT EXISTS caregiver_availability (
     caregiver_availability_id SERIAL PRIMARY KEY,
