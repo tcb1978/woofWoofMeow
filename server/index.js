@@ -122,12 +122,29 @@ const server = app.listen( port, () => console.log(`Listening on port: ${port}`)
 //   })
 // );
 
-io = socket(server);
+let messages = ['Blue', 'Red', 'Green', 'Purple'];  // This will be in the database
+
+const io = socket(server);
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
-  // listens for the message 
-  socket.on('SEND_MESSAGE', function(data){
-    io.emit('RECEIVE_MESSAGE', data);
-  })
+    console.log(socket.id);
+
+    // User joins the chat room
+    socket.join('CHAT ROOM');
+    console.log('A user joined chat');
+
+    // When the users join they get there previous messages
+    socket.on('JOIN', () => {
+      io.emit('GET_MESSAGES', messages);
+    })
+
+    // The message is sent and received
+    socket.on('SEND_MESSAGE', (data) => {
+      io.emit('RECEIVE_MESSAGE', data);
+    })
+
+    // Disconnects the user from the chat
+    socket.on('DISCONNECT', () => {
+        console.log('A user disconnected from chat');
+    })
 });
