@@ -1,9 +1,6 @@
 /*Navbar*/
 
 .Nav {
-    // padding: 15px;
-    // margin: 15px;
-    // line-height: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -11,10 +8,8 @@
     .NavLeft {
         padding: 10px;
         font-size: 30px;
-        // background-color: rgba(255, 192, 203, 0.753);
     }
     .NavRight {
-        // background-color: rgba(192, 251, 255, 0.753);
         span, 
         a {
             padding: 0em 0.8em;
@@ -33,13 +28,6 @@
     .Nav {
         display: flex;
         flex-direction: column;
-        // padding: 0 0;
-        // display: block;
-        // line-height: 1.5;
-        // .NavLeft,
-        // .NavRight {
-        //     text-align: center;
-        // }
     }
     .NavRight {
         padding: 10px 0 15px 0;
@@ -91,7 +79,6 @@ section.GetStarted {
             display: flex;
             justify-content: center;
             align-items: center;
-            // background-color: rgba(255, 192, 203, 0.301);
             div {
                 color: #fff;
                 font-size: 1.6em;
@@ -135,15 +122,15 @@ section.GetStarted {
 
 @media (max-width: 507px) {
     .GetStarted {
-        .Find h1 {
+        .Find  h1 {
             margin: 0 0 20px 0;
         }
     }
 }
 
-/*Get Started*/
+/*  Get Started  */
 
-/*Get Started*/
+/*  About  */
 
 section.About {
     padding: 60px 0 60px 0;
@@ -159,9 +146,9 @@ section.About {
     }
 }
 
-/*Get Started*/
+/*  About  */
 
-/*Services*/
+/*  Services  */
 
 .DogParkBackground {
     background: url('../../assets/img/1-Main-Page_img-2.png') no-repeat 0 0 transparent;
@@ -225,9 +212,9 @@ section.Services {
     }
 }
 
-/*Services*/
+/*  Services  */
 
-/*How It Works*/
+/*  How It Works  */
 
 section.HowItWorks {
         height: auto;
@@ -292,7 +279,10 @@ section.HowItWorks {
         }
     }
 }
-/*How It Works*/
+
+/*  How It Works  */
+
+/*  Get Started button  */
 
 .GetStarted-btn {
     display: flex;
@@ -314,8 +304,10 @@ section.HowItWorks {
     margin: 50px 0px 50px 0px;
 }
 
+/*  Get Started button  */
 
-/*Footer*/
+/*  Footer  */
+
 footer {
     height: auto;
     background-color: #959595;
