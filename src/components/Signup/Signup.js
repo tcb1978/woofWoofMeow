@@ -4,6 +4,7 @@ import Aux from '../../hoc/Aux';
 import axios from 'axios';
 import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
+import './Signup.css';
 
 class Signup extends Component {
     constructor(props) {
@@ -139,171 +140,164 @@ class Signup extends Component {
         const { fireRedirect } = this.state
         return (
             <Aux>
-                <form onSubmit={ (event) => this.handleSubmit(event)}>
-                    <div className="container">
-                        <h1>Personal Information</h1>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} />
+                <div className="background">
+                    <form onSubmit={(event) => this.handleSubmit(event)}>
+                        <div className="form-container">
+                            <h1>Personal Information</h1>
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} placeholder="First Name"/>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Last Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("last_name", event)} placeholder="Last Name"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Last Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("last_name", event)} />
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Street Address:<input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address"/>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        City:<input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        State:<input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} placeholder="State"/>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Zip:<input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Phone:<input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone"/>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Email:<input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Create Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("password", event)} placeholder="Create Password"/>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Confirm Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} placeholder="Confirm Password"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div clasName="form-group">
+                                        Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Street Address:<input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} />
-                                </div>                            
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    City:<input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} />
+                        {this.props.user.title === 'petowner'
+                            ? (
+                                <div className="form-container">
+                                    <h1>Animal</h1>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div className="form-group">
+                                                Animal Name:<input className="form-control" type="text" placeholder="name" onChange={(event) => this.handleChange("animal_name", event)} />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div className="form-group">
+                                                Breed:<input className="form-control" type="text" placeholder="breed" onChange={(event) => this.handleChange("breed", event)} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div className="form-group">
+                                                Age:<input className="form-control" type="text" placeholder="age" onChange={(event) => this.handleChange("age", event)} />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div className="form-group">
+                                                Weight:<input className="form-control" type="text" placeholder="weight" onChange={(event) => this.handleChange("weight", event)} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div className="form-group">
+                                                Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6">
+                                            Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xs-12">
+                                            <div className="form-group">
+                                                Include a description about your animal.
+                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    State:<input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} />
+                            ) : (
+                                <div className="form-container" >
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-6" >
+                                            <div className="form-group">
+                                                How many miles proximity from your home would you like to work? Consider commute times. Can you arrive in a reasonable window according to your appointments? Each appointment allows for a 60 minute window before and after the suggested scheduling time.
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-12 col-sm-6">
+                                            <div clasName="form-group">
+                                                <select
+                                                    className="form-control"
+                                                    type="text"
+                                                    onChange={(event) => this.handleChange("proximity", event)}>
+                                                    <option value="3 miles">3 miles</option>
+                                                    <option value="5 miles">5 miles</option>
+                                                    <option value="7 miles">8 miles</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div className="row">
+                                        <div className="col-xs-12">
+                                            <div className="form-group">
+                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Zip:<input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Phone:<input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} />
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Email:<input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Create Password:
-                                    <input className="form-control" type="password" required onChange={(event) => this.handleChange("password", event)} />
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Confirm Password:
-                                    <input className="form-control" type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div clasName="form-group">
-                                    Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    { this.props.user.title === 'petowner'
-                    ? (
-                    <div className="container">
-                        <h1>Animal</h1>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Animal Name:<input className="form-control" type="text" placeholder="name" onChange={(event) => this.handleChange("animal_name", event)} />
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Breed:<input className="form-control" type="text" placeholder="breed" onChange={(event) => this.handleChange("breed", event)} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Age:<input className="form-control" type="text" placeholder="age" onChange={(event) => this.handleChange("age", event)} />
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Weight:<input className="form-control" type="text" placeholder="weight" onChange={(event) => this.handleChange("weight", event)} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-6">
-                                <div className="form-group">
-                                    Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-6">
-                                Image:<input type="text" className="form-control" id="exampleFormControlFile1" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <div className="form-group">
-                                    Include a description about your animal.
-                                    <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    ) : (
-                    <div className="container" >
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <div className="form-group">
-                                    Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!
-                                    <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12" >
-                                <div className="form-group">
-                                    How many miles proximity from your home would you like to work? Consider commute times. Can you arrive in a reasonable window according to your appointments? Each appointment allows for a 60 minute window before and after the suggested scheduling time.
-                                    <select
-                                        className="form-control"
-                                        type="text"
-                                        placeholder="last name"
-                                        onChange={(event) => this.handleChange("proximity", event)}>
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="7">7</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xs-12">
-                                <div className="form-group">
-                                    <input className="form-control btn btn-primary mb-2" type="submit" value="Submit" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                            )}
+                        <input className="form-control btn btn-primary submit-button" type="submit" value="Submit" />
+                    </form>
+                </div>
                 
                 {fireRedirect && (
                     <Redirect to={'/'} />

@@ -107,7 +107,7 @@ const Layout = (props) => {
                             <span> • </span>
                             <span> • </span>
                             <span> • </span>                            
-                            <p>Give Caregiver</p>
+                            <p>Give Care</p>
                             <span> • </span>
                             <span> • </span>
                             <span> • </span>
