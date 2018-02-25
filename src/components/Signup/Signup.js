@@ -250,8 +250,8 @@ class Signup extends Component {
                                     <div className="row">
                                         <div className="col-xs-12">
                                             <div className="form-group">
-                                                Include a description about your animal.
-                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About Yourself" onChange={(event) => this.handleChange("about_message", event)} />
+                                                Include a description of your animal.
+                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About yourself and your animal" onChange={(event) => this.handleChange("about_message", event)} />
                                             </div>
                                         </div>
                                     </div>
