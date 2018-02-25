@@ -21,7 +21,7 @@ module.exports = {
 
   getOne: (req, res, next) => {
     const db = req.app.get('db');
-
+    console.log( req.session.user );
     db.get_animal([ req.session.user.user_id ])
       .then( (animal) => { res.status(200).json(animal); console.log('Animal', animal); } )
       .catch( (error) => res.status(500).send(error) )

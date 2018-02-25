@@ -57,8 +57,9 @@ class PetBio extends Component {
                 user_id : user_id,
                 zip : zip,
             })
-            axios.get(`/animal`).then(response => {
-                const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = response.data[0]
+
+            axios.get(`/animal`).then( animal => {
+                const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data
                 
                 this.setState({
                     animal_id: animal_id,
