@@ -52,7 +52,7 @@ class CareGiverSearch extends Component {
         const { caregivers, caregiver_id, petowner_id, service, proximity, time, month, day } = this.state;
         const date = new Date();
         const year = date.getFullYear();
-        const available = this.state.caregivers
+        // const available = this.state.caregivers
         
         return (        
             <Aux>

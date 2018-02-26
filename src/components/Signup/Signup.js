@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
 import { register } from '../../redux/ducks/reducer';
@@ -14,7 +15,7 @@ class Signup extends Component {
             first_name: '',
             last_name: '',
             street_address: '',
-            state: 'Alabama',
+            state: '',
             city: '',
             zip: '',
             email: '',
@@ -32,7 +33,7 @@ class Signup extends Component {
             breed: '',
             age: '',
             weight: '',
-            sex: 'Male',
+            sex: '',
             animal_avatar: '',
             animal_about_message: ''
         };
@@ -59,7 +60,7 @@ class Signup extends Component {
             // if the user title is caregiver, default availability data is created
             if (user.data.title === 'caregiver') {
                 // making default values for the availability
-                var day = 1;
+                // var day = 1;
                 const time_range = "6AM - 2PM";
                 const begin_time = 6;
                 const end_time = 14;
@@ -72,7 +73,6 @@ class Signup extends Component {
                         begin_time: begin_time,
                         end_time: end_time
                     }).then( available => {
-                        console.log('Available ', available);
                     }).catch(error => console.log(error))
                 }
             }
@@ -132,16 +132,8 @@ class Signup extends Component {
     }
 
     render() {
-        const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia',
-            'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland',
-            'Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
-            'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina',
-            'South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming',
-        ];
-        const stateOptions = states.map( (state, i) => (
-            <option key={i} value={state}>{state}</option>
-        ));
-
+        // const { fireRedirect } = this.state
+        console.log(this.props.user.title)
         return (
             <Aux>
                 <div className="background">
@@ -177,11 +169,7 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        State:
-                                        {/* <input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} placeholder="State"/> */}
-                                        <select className="form-control" name="State" value={this.state.state} onChange={(event) => this.handleChange("state", event)}>
-                                            { stateOptions }
-                                        </select>
+                                        State:<input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} placeholder="State"/>
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-6">
@@ -219,7 +207,6 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />*/}
                                         <UserUploader />
                                     </div>
                                 </div>
@@ -257,15 +244,10 @@ class Signup extends Component {
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6">
                                             <div className="form-group">
-                                                Sex: 
-                                                <select className="form-control" name="Sex" value={this.state.sex} onChange={(event) => this.handleChange("sex", event)}>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
+                                                Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6">
-                                            {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />*/}
                                             <AnimalUploader />
                                         </div>
                                     </div>
@@ -294,7 +276,7 @@ class Signup extends Component {
                                                     onChange={(event) => this.handleChange("proximity", event)}>
                                                     <option value="3 miles">3 miles</option>
                                                     <option value="5 miles">5 miles</option>
-                                                    <option value="7 miles">7 miles</option>
+                                                    <option value="7 miles">8 miles</option>
                                                 </select>
                                             </div>
                                         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './Requests.css';
-import History from '../../History/History';
+// import History from '../../History/History';
 import Jobs from '../../../components/Petowner/Jobs/Jobs';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ class Requests extends Component {
     }
 
     request = (id) => {
-        let { service, proximity, time, month, day } = this.props;
+        let { service, time, month, day } = this.props;
 
         axios.post('/job', {
             caregiver_id: id,
@@ -69,7 +69,7 @@ class Requests extends Component {
         // List of filtered caregivers
         const listOfCaregivers = this.props.caregivers.map( person => (
             <div key={person.user_id} className="caregiver-row top-bottom">
-                <div className="avatar"><img src={person.avatar}/></div>
+                <div className="avatar"><img src={person.avatar} alt="decorative avatar"/></div>
                 <div className="caregiver">{person.first_name}</div>
                 <div className="space-around">
                     <button className="btn btn-request btn-primary" onClick={() => this.request(person.user_id)}>Request</button>
@@ -80,7 +80,7 @@ class Requests extends Component {
         // List of jobs requests
         const listOfRequests = this.state.requests.map( job => (
             <div key={job.job_id} className="status-row">
-                <div className="avatar"><img src={job.avatar} /></div>
+                <div className="avatar"><img src={job.avatar} alt="decorative avatar"/></div>
                 <div className="name">{job.first_name}</div>
                 <div className="date">
                     <date>{job.month}/{job.day}/{job.year}</date>
@@ -94,7 +94,7 @@ class Requests extends Component {
         // List of interested caregivers
         const listOfInterested = this.state.interested.map( job => (
             <div key={job.job_id} className="status-row">
-                <div className="avatar"><img src={job.avatar} /></div>
+                <div className="avatar"><img src={job.avatar} alt="decorative avatar"/></div>
                 <div className="name">{job.first_name}</div>
                 <div className="date">
                     <date>{job.month}/{job.day}/{job.year}</date>

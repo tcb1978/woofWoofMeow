@@ -78,7 +78,7 @@ class PetBio extends Component {
 
     render() {
         console.log( 'Animal', this.state.animals );
-        const { user } = this.props;
+        // const { user } = this.props;
         const { animals } = this.state;
 
         return (

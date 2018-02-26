@@ -93,7 +93,7 @@ class Calendar extends Component {
         const weeks = [new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length), new Array(days.length),new Array(days.length)];
         const calendarDays = new Array(weeks.length * days.length);
         
-        const { yyyy, mm, dd, day, numOfDays, daysOffset, currentDay, selectedDay, } = this.state;
+        const { yyyy, mm, numOfDays, daysOffset, currentDay, selectedDay, } = this.state;
 
         for ( let i = 0; i < weeks.length; i++ ) { 
             for ( let j = 0; j < days.length; j++ ) {
