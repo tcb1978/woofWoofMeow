@@ -10,7 +10,6 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fireRedirect: false,
             first_name: '',
             last_name: '',
             street_address: '',
@@ -50,7 +49,7 @@ class Signup extends Component {
             title: title[2]
         }).then( user => {
             // updates user in redux
-            this.props.register(user.data)
+            this.props.register(user.data);
 
             this.setState({ user_id: user.data.user_id });
 
@@ -83,7 +82,6 @@ class Signup extends Component {
 
         const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar } = this.state;
 
-        // console.log(password, passwordCheck);
         if (password !== passwordCheck) {
             alert('Passwords Do Not Match!!')
         } else {
@@ -104,22 +102,18 @@ class Signup extends Component {
                 about_message,
                 proximity
             }).then( user => {
-                this.setState({ fireRedirect: true });
-                // if the user is petowner then we will also create
-                // an animal in animals table for that user(with all data he put in)
+
+                // If the user is petowner, an animal is created in the animal table with the input data
                 if (user.data.title === 'petowner') {
                     axios.post('/animal/create', {
                         animal_name, breed, age, weight, sex, animal_avatar
-                    })
-                    .then( animal => {
+                    }).then( animal => {
                         console.log(animal);
-                    })
-                    .catch(error => console.log(error))
+                    }).catch(error => console.log(error))
                 }
-            })
-            .catch(
-                (error) => (console.log(error))
-            )
+                this.props.history.push('/profile');
+
+            }).catch(error => console.log(error));
         }
     }
 
@@ -290,10 +284,6 @@ class Signup extends Component {
                         <input className="form-control btn btn-primary submit-button" type="submit" value="Submit" />
                     </form>
                 </div>
-                
-                {fireRedirect && (
-                    <Redirect to={'/profile'} />
-                )}
             </Aux>
         );
     }

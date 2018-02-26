@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './PetBio.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { logout } from '../../../redux/ducks/reducer';
+
 
 class PetBio extends Component {
     constructor(props) {
@@ -59,7 +62,7 @@ class PetBio extends Component {
             })
 
             axios.get(`/animal`).then( animal => {
-                const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data
+                const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data[0];
                 
                 this.setState({
                     animal_id: animal_id,
@@ -70,7 +73,8 @@ class PetBio extends Component {
                     sex: sex,
                     animal_avatar: animal_avatar
                 })
-            })
+            }).catch(error => console.log(error));
+
         }).catch(error => console.log(error))
     }
 
@@ -79,56 +83,65 @@ class PetBio extends Component {
     }
 
     render() {
-        const petBio = (
-            <div className="PetBioDropDown">
-                <div className="container">
-                    <div className="row">
-                        <div className="column-style">
-                            <div className="col-xs-12 col-sm-4">
-                                <div className="PetBioDropDownHeader">
-                                    <div className="Avatar"><img src={this.state.animal_avatar} /></div>
-                                    <div className="Name"><h1>{this.state.animal_name}</h1></div>
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-4">
-                                <ul className="PetDetailsList">
-                                    <li>Breed: <span>    {this.state.breed}</span></li>
-                                    <li>Age: <span>  6 years</span></li>
-                                    <li>Weight: <span>   60 lbs.</span></li>
-                                    <li>Sex: <span>  Female</span></li>
-                                </ul>
-                            </div>
-                            <div className="col-xs-12 col-sm-4">
-                                <div>{this.state.about_message}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> );
-
         return (
             <Aux>
-                <div className="Landscape"></div>
+                {/* <div className="Landscape"></div> */}
                 <div className="PetBio">
-                    <div className="PetBioAvatar">
-                    <img src={this.state.avatar} /></div>
+                    {/* <div className="PetBioAvatar">
+                        <img src={this.state.avatar} alt="avatar"/>
+                    </div> */}
                     <div className="UserPetBio">
-                        <div className="header">
+                        {/* <div className="header">
                             <h1>{this.state.first_name}</h1>
                             <i className="UserEdit fas fa-edit"></i>
-                        </div>
+                        </div> */}
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
-                                <img onClick={ this.showPetBio } src={this.state.animal_avatar} />
+                                <img onClick={ this.showPetBio } src={this.state.animal_avatar} alt="avatar"/>
                                 <span onClick={ this.showPetBio } >{this.state.animal_name}</span>
                             </div>
                         </div>
                     </div>
-                    { this.state.petBioIsHidden && petBio }
+
+                    { this.state.petBioIsHidden && 
+                    <div className="PetBioDropDown">
+                        <div className="container">
+                            <div className="row">
+                                <div className="column-style">
+                                    <div className="col-xs-12 col-sm-4">
+                                        <div className="PetBioDropDownHeader">
+                                            <div className="Avatar"><img src={this.state.animal_avatar} alt="avatar"/></div>
+                                            <div className="Name"><h1>{this.state.animal_name}</h1></div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-4">
+                                        <ul className="PetDetailsList">
+                                            <li>Breed: <span>    {this.state.breed}</span></li>
+                                            <li>Age: <span>  6 years</span></li>
+                                            <li>Weight: <span>   60 lbs.</span></li>
+                                            <li>Sex: <span>  Female</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-4">
+                                        <div>{this.state.about_message}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    }
                 </div>
             </Aux>
         )
     }
 };
 
-export default PetBio;
+const mapStateToProps = state => {
+    return { user: state.user }
+}
+
+const mapDispatchToProps = {
+    logout: logout
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( PetBio );
