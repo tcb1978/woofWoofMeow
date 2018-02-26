@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS animals (
     weight VARCHAR (7) NOT NULL,
     sex VARCHAR (7) NOT NULL,
     animal_avatar VARCHAR (200),
+    animal_about_message VARCHAR (1000),
     user_id INTEGER REFERENCES users (user_id) NOT NULL
 );
 

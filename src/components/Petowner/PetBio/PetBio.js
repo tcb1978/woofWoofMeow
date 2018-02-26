@@ -9,72 +9,66 @@ class PetBio extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            userabout_message : '',
-            useravatar : '',
-            usercity : '',
-            useremail : '',
-            userfirst_name : '',
-            userlast_name : '',
-            userlatitude : '',
-            userlongitude : '',
-            userpassword : '',
-            userphone : '',
-            userproximity : '',
-            userstate : '',
-            userstreet_address : '',
-            usertitle : '',
-            useruser_id : '',
-            userzip : '',
-            age: '',
-            animal_id: '',
-            animal_name: '',
-            breed: '',
-            sex: '',
-            weight: '',
-            animal_avatar : '',
-            PetBioIsHidden : true,
+            // userabout_message : '',
+            // useravatar : '',
+            // usercity : '',
+            // useremail : '',
+            // userfirst_name : '',
+            // userlast_name : '',
+            // userlatitude : '',
+            // userlongitude : '',
+            // userpassword : '',
+            // userphone : '',
+            // userproximity : '',
+            // userstate : '',
+            // userstreet_address : '',
+            // usertitle : '',
+            // useruser_id : '',
+            // userzip : '',
+            // age: '',
+            // animal_id: '',
+            // animal_name: '',
+            // breed: '',
+            // sex: '',
+            // weight: '',
+            // animal_avatar : '',
+            // PetBioIsHidden : true,
+            animals: []
         }
     }
 
     componentDidMount() {
-        axios.get('/users').then( response => {
+        // axios.get('/users').then( response => {
             
-            const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip} = response.data[0]
+            // const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip} = response.data[0]
             
-            this.setState({
-                about_message : about_message,
-                avatar : avatar,
-                city : city,
-                email : email,
-                first_name : first_name,
-                last_name : last_name,
-                latitude : latitude,
-                longitude : longitude,
-                password : password,
-                phone : phone,
-                proximity : proximity,
-                state : state,
-                street_address : street_address,
-                title : title,
-                user_id : user_id,
-                zip : zip,
-            })
+            // this.setState({
+            //     about_message : about_message,
+            //     avatar : avatar,
+            //     city : city,
+            //     email : email,
+            //     first_name : first_name,
+            //     last_name : last_name,
+            //     latitude : latitude,
+            //     longitude : longitude,
+            //     password : password,
+            //     phone : phone,
+            //     proximity : proximity,
+            //     state : state,
+            //     street_address : street_address,
+            //     title : title,
+            //     user_id : user_id,
+            //     zip : zip,
+            // })
 
-            axios.get(`/animal`).then( animal => {
-                const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data[0];
-                
+            axios.get(`/animal`).then( animals => {
+                // const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data[0];
                 this.setState({
-                    animal_id: animal_id,
-                    animal_name: animal_name,
-                    breed: breed,
-                    age: age,
-                    weight: weight,
-                    sex: sex,
-                    animal_avatar: animal_avatar
+                    animals: animals.data
                 })
             }).catch(error => console.log(error));
 
-        }).catch(error => console.log(error))
+        // }).catch(error => console.log(error))
     }
 
     showPetBio = () => {
@@ -82,6 +76,8 @@ class PetBio extends Component {
     }
 
     render() {
+        const { user } = this.props;
+        const { animal_name, breed, age, weight, sex, animal_avatar } = this.state.animals[0];
         return (
             <Aux>
                 {/* <div className="Landscape"></div> */}
@@ -96,8 +92,8 @@ class PetBio extends Component {
                         </div> */}
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
-                                <img onClick={ this.showPetBio } src={this.state.animal_avatar} alt="avatar"/>
-                                <span onClick={ this.showPetBio } >{this.state.animal_name}</span>
+                                <img onClick={ this.showPetBio } src={ animal_avatar } alt="avatar"/>
+                                <span onClick={ this.showPetBio } >{ animal_name }</span>
                             </div>
                         </div>
                     </div>
@@ -109,20 +105,20 @@ class PetBio extends Component {
                                 <div className="column-style">
                                     <div className="col-xs-12 col-sm-4">
                                         <div className="PetBioDropDownHeader">
-                                            <div className="Avatar"><img src={this.state.animal_avatar} alt="avatar"/></div>
-                                            <div className="Name"><h1>{this.state.animal_name}</h1></div>
+                                            <div className="Avatar"><img src={ animal_avatar } alt="avatar"/></div>
+                                            <div className="Name"><h1>{ animal_name }</h1></div>
                                         </div>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
                                         <ul className="PetDetailsList">
-                                            <li>Breed: <span>    {this.state.breed}</span></li>
-                                            <li>Age: <span>  6 years</span></li>
-                                            <li>Weight: <span>   60 lbs.</span></li>
-                                            <li>Sex: <span>  Female</span></li>
+                                            <li>Breed: <span>    { breed }</span></li>
+                                            <li>Age: <span>  { age } years</span></li>
+                                            <li>Weight: <span>   { weight } lbs.</span></li>
+                                            <li>Sex: <span>  { sex }</span></li>
                                         </ul>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
-                                        <div>{this.state.about_message}</div>
+                                        {/* <div>{ animal_about_message }</div> */}
                                     </div>
                                 </div>
                             </div>

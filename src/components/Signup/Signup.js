@@ -31,7 +31,8 @@ class Signup extends Component {
             age: '',
             weight: '',
             sex: '',
-            animal_avatar: ''
+            animal_avatar: '',
+            animal_about_message: ''
         };
     }
 
@@ -80,7 +81,7 @@ class Signup extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar } = this.state;
+        const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar, animal_about_message } = this.state;
 
         if (password !== passwordCheck) {
             alert('Passwords Do Not Match!!')
@@ -99,14 +100,14 @@ class Signup extends Component {
                 password,
                 longitude,
                 latitude,
-                about_message,
+                about_message: !about_message ? null : about_message,
                 proximity
             }).then( user => {
 
                 // If the user is petowner, an animal is created in the animal table with the input data
                 if (user.data.title === 'petowner') {
                     axios.post('/animal/create', {
-                        animal_name, breed, age, weight, sex, animal_avatar
+                        animal_name, breed, age, weight, sex, animal_avatar, animal_about_message
                     }).then( animal => {
                         console.log(animal);
                     }).catch(error => console.log(error))
@@ -245,7 +246,7 @@ class Signup extends Component {
                                         <div className="col-xs-12">
                                             <div className="form-group">
                                                 Include a description of your animal.
-                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About yourself and your animal" onChange={(event) => this.handleChange("about_message", event)} />
+                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" placeholder="About your animal" onChange={(event) => this.handleChange("animal_about_message", event)} />
                                             </div>
                                         </div>
                                     </div>
