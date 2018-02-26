@@ -62,6 +62,7 @@ class PetBio extends Component {
             // })
 
             axios.get(`/animal`).then( animals => {
+                console.log( 'Animals', animals.data );
                 // const { animal_id, animal_name, breed, age, weight, sex, animal_avatar } = animal.data[0];
                 this.setState({
                     animals: animals.data
@@ -76,24 +77,19 @@ class PetBio extends Component {
     }
 
     render() {
+        console.log( 'Animal', this.state.animals );
         const { user } = this.props;
-        const { animal_name, breed, age, weight, sex, animal_avatar } = this.state.animals[0];
+        const { animals } = this.state;
+
         return (
             <Aux>
-                {/* <div className="Landscape"></div> */}
+                { this.state.animals.length &&
                 <div className="PetBio">
-                    {/* <div className="PetBioAvatar">
-                        <img src={this.state.avatar} alt="avatar"/>
-                    </div> */}
                     <div className="UserPetBio">
-                        {/* <div className="header">
-                            <h1>{this.state.first_name}</h1>
-                            <i className="UserEdit fas fa-edit"></i>
-                        </div> */}
                         <div className="AvatarDisplay">
                             <div className="AnimalAvatar">
-                                <img onClick={ this.showPetBio } src={ animal_avatar } alt="avatar"/>
-                                <span onClick={ this.showPetBio } >{ animal_name }</span>
+                                <img onClick={ this.showPetBio } src={ animals[0].animal_avatar } alt="avatar"/>
+                                <span onClick={ this.showPetBio } >{ animals[0].animal_name }</span>
                             </div>
                         </div>
                     </div>
@@ -105,20 +101,20 @@ class PetBio extends Component {
                                 <div className="column-style">
                                     <div className="col-xs-12 col-sm-4">
                                         <div className="PetBioDropDownHeader">
-                                            <div className="Avatar"><img src={ animal_avatar } alt="avatar"/></div>
-                                            <div className="Name"><h1>{ animal_name }</h1></div>
+                                            <div className="Avatar"><img src={ animals[0].animal_avatar } alt="avatar"/></div>
+                                            <div className="Name"><h1>{ animals[0].animal_name }</h1></div>
                                         </div>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
                                         <ul className="PetDetailsList">
-                                            <li>Breed: <span>    { breed }</span></li>
-                                            <li>Age: <span>  { age } years</span></li>
-                                            <li>Weight: <span>   { weight } lbs.</span></li>
-                                            <li>Sex: <span>  { sex }</span></li>
+                                            <li>Breed: <span>    { animals[0].breed }</span></li>
+                                            <li>Age: <span>  { animals[0].age } years</span></li>
+                                            <li>Weight: <span>   { animals[0].weight } lbs.</span></li>
+                                            <li>Sex: <span>  { animals[0].sex }</span></li>
                                         </ul>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
-                                        {/* <div>{ animal_about_message }</div> */}
+                                        <div>{ animals[0].animal_about_message }</div>
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +122,7 @@ class PetBio extends Component {
                     </div> 
                     }
                 </div>
+                }
             </Aux>
         )
     }

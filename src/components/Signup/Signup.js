@@ -109,7 +109,7 @@ class Signup extends Component {
                     axios.post('/animal/create', {
                         animal_name, breed, age, weight, sex, animal_avatar, animal_about_message
                     }).then( animal => {
-                        console.log(animal);
+                        // console.log(animal);
                     }).catch(error => console.log(error))
                 }
                 this.props.history.push('/profile');
