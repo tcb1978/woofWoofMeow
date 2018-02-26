@@ -1,6 +1,8 @@
 // initial state
 const initialState = {
-  user: {}
+  user: {},
+  userUrl: '',
+  animalUrl: ''
 }
 
 // action types
@@ -8,6 +10,8 @@ const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
 const LOGOUT = 'LOGOUT';
 const GET_USER = 'GET_USER';
+const USERURLSEND = 'USERURLSEND';
+const ANIMALURLSEND = 'ANIMALURLSEND';
 
 // reducer
 export default function reducer (state = initialState, action) {
@@ -21,6 +25,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, user: payload };
     case GET_USER:
       return { ...state, user: payload };
+    case USERURLSEND:
+      return { ...state, userUrl: action.payload };
+    case ANIMALURLSEND:
+      return { ...state, animalUrl: action.payload };
 
     default: return state;
   }
@@ -40,6 +48,20 @@ export const register = (user) => {
     payload: user
   };
 }
+
+export const userUrlSend = (userUrl) => {
+  return {
+    type: USERURLSEND,
+    payload: userUrl
+  };
+};
+
+export const animalUrlSend = (animalUrl) => {
+  return {
+    type: ANIMALURLSEND,
+    payload: animalUrl
+  };
+};
 
 export const logout = (user) => {
   return {
