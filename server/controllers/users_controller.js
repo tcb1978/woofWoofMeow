@@ -97,7 +97,6 @@ module.exports = {
     // console.log('session id', req.session.user );
     // we'll change longitude and latitude later so we need to declare it with let
     let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity } = req.body;
-    console.log(avatar);
     
     // getting longitude and latitude from api request based on zip code
     // axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${process.env.WEATHER_API_KEY}`)

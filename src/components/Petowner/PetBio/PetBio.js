@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './PetBio.css';
 import axios from 'axios';
+import { getUser } from '../../../redux/ducks/reducer';
+import { connect } from 'react-redux';
 
 class PetBio extends Component {
     constructor(props) {
@@ -36,6 +38,7 @@ class PetBio extends Component {
 
     componentDidMount() {
         axios.get('/users').then(response => {
+            console.log('this.props', this.props);
             
             const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip} = response.data[0]
             
@@ -131,4 +134,14 @@ class PetBio extends Component {
     }
 };
 
-export default PetBio;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = {
+    getUser: getUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PetBio);
