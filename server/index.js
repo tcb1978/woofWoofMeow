@@ -5,6 +5,49 @@ const session = require('express-session');
 const massive = require('massive');
 // const socket = require('socket.io');
 require('dotenv').config();
+const multer = require('multer');
+const AWS = require('aws-sdk');
+
+const app = express();
+
+app.use(bodyParser.json());
+// app.use( cors() );
+
+// AWS declare
+// AWS.config.update should be above declaring s3 variable.
+// Use region only if you want to get something from AWS.
+// See https://stackoverflow.com/a/26284339/5184474
+AWS.config.update({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION
+});
+const s3 = new AWS.S3();
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 52428800
+  }
+})
+// AWS Upload
+app.post('/api/upload', upload.single('avatar'), (req, res) => {
+  var params = {
+    Bucket: process.env.BUCKET,
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ContentType: "image/png",
+    ACL: 'public-read'
+  }
+  // s3.putObject() puts the image to the AWS bucket. If the file is already there
+  // it won't give any error, just make view that file is uploaded again though
+  // it just checked if it's in there
+  s3.putObject(params, (err) => {
+    console.log(err);
+    if (err) return res.status(400).send(err);
+  })
+  var imageUrl = 'https://s3-us-west-1.amazonaws.com/' + params.Bucket + '/' + params.Key
+  res.status(200).send(imageUrl);
+})
 
 // Middlewares
 const checkForSession = require('./middlewares/checkForSession');
@@ -13,11 +56,6 @@ const checkForSession = require('./middlewares/checkForSession');
 massive( process.env.CONNECTION_STRING )
   .then( db => app.set('db', db) )
   .catch( (error) => console.log(error));
-
-const app = express();
-
-app.use( bodyParser.json() );
-// app.use( cors() );
 
 // Session initialization
 app.use( session({

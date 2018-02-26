@@ -5,6 +5,8 @@ import axios from 'axios';
 import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
 import './Signup.css';
+import UserUploader from '../Uploader/UserUploader';
+import AnimalUploader from '../Uploader/AnimalUploader';
 
 class Signup extends Component {
     constructor(props) {
@@ -19,6 +21,7 @@ class Signup extends Component {
             email: '',
             phone: '',
             avatar: '',
+            url: '',
             title: '',
             password: '',
             passwordCheck: '',
@@ -81,7 +84,13 @@ class Signup extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar, animal_about_message } = this.state;
+        let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, passwordCheck, longitude, latitude, about_message, proximity, animal_name, breed, age, weight, sex, animal_avatar, animal_about_message } = this.state;
+
+        const { userUrl } = this.props;
+        const { animalUrl } = this.props;
+
+        avatar = userUrl;
+        animal_avatar = animalUrl;
 
         if (password !== passwordCheck) {
             alert('Passwords Do Not Match!!')
@@ -125,6 +134,7 @@ class Signup extends Component {
 
     render() {
         const { fireRedirect } = this.state
+        console.log(this.props.user.title)
         return (
             <Aux>
                 <div className="background">
@@ -198,7 +208,8 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />
+                                        {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />*/}
+                                        <UserUploader />
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +250,8 @@ class Signup extends Component {
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6">
-                                            Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />
+                                            {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />*/}
+                                            <AnimalUploader />
                                         </div>
                                     </div>
                                     <div className="row">
@@ -291,11 +303,15 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => {
-    return { user: state.user };
+    return {
+      user: state.user,
+      userUrl: state.userUrl,
+      animalUrl: state.animalUrl
+    };
   };
   
-  const mapDispatchToProps = {
+const mapDispatchToProps = {
     register: register
-  }
+}
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
