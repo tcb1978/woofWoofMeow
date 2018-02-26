@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Aux from '../../hoc/Aux';
 import { connect } from 'react-redux';
-import { login } from '../../redux/ducks/reducer';
+import { login, getUser } from '../../redux/ducks/reducer';
 import './Signin.css';
-
-// const Signin = (props) => {
-//     return (
-//         <Aux>
-//         </Aux>
-//     )
-// };
 
 class Signin extends Component {
     constructor (props) {
@@ -22,29 +15,29 @@ class Signin extends Component {
         }
     }
 
-    componentDidMount() {
-        // if (this.props.user.user_id) {
-        //     this.props.history.push('/profile')
-        // }
-    }
+    
+    // componentDidMount() {
+    //     // Gets the empty user object
+    //     axios.get('/user').then( user => {
+    //         this.props.getUser( user.data );
+    //         console.log( 'Redux User', this.props.user );
+    //     }).catch(error => console.log(error))
+    // }
 
     login = () => {
         const { email, password } = this.state;
-        console.log(email, password);
         axios.post('/login', { email, password })
-        .then(user => {
-            console.log('User', user);
+        .then( user => {
             this.props.login(user.data);
+            console.log( 'Redux User Signin', this.props.user );
             this.props.history.push('/profile');
         })
         .catch(error => {
             if (error.response.status === 401) {
                 this.setState({ errorMessage: 'Wrong password' })
-                // console.log(this.state.errorMessage);
-              } else if (error.response.status === 403) {
+            } else if (error.response.status === 403) {
                 this.setState({ errorMessage: 'This user is not registered' })
-                // console.log(this.state.errorMessage);
-              }
+            }
             console.log(error);
         })
     }
@@ -85,7 +78,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    login: login
+    login: login,
+    getUser: getUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

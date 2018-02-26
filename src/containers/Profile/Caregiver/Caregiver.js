@@ -17,7 +17,7 @@ class Caregiver extends Component {
     render () {
         return (
             <Aux>
-                <Bio />
+                <Bio logout={ this.props.logout }/>
                 <Request />
                 <Availability />
                 <Calendar />

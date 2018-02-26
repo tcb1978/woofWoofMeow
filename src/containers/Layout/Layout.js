@@ -8,7 +8,7 @@ import './Layout.css'
 import Scroll from 'react-scroll-to-element';
 
 const Layout = (props) => {
-    return(
+    return (
         <Aux>
             <nav className="Nav">
                 <div className="NavLeft">WoofWoofMeow</div>
