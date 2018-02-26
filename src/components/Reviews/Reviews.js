@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../hoc/Aux';
 import './Reviews.css'
 
 class Reviews extends Component {
