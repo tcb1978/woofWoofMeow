@@ -1,11 +1,11 @@
 module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
-    const { animal_name, breed, age, weight, sex, animal_avatar } = req.body;
+    const { animal_name, breed, age, weight, sex, animal_avatar, animal_about_message } = req.body;
     // console.log(req.body);
     // console.log(req.session.user.user_id);
 
-    db.create_animal([animal_name, breed, age, weight, sex, animal_avatar, req.session.user.user_id ])
+    db.create_animal([animal_name, breed, age, weight, sex, animal_avatar, animal_about_message, req.session.user.user_id ])
       .then( (animal) => res.status(200).json(animal) )
       .catch( (error) => res.status(500).send(error) )
   },
