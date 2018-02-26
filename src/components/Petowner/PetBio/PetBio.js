@@ -3,7 +3,6 @@ import Aux from '../../../hoc/Aux';
 import './PetBio.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { logout } from '../../../redux/ducks/reducer';
 
 
 class PetBio extends Component {
@@ -38,7 +37,7 @@ class PetBio extends Component {
     }
 
     componentDidMount() {
-        axios.get('/users').then(response => {
+        axios.get('/users').then( response => {
             
             const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip} = response.data[0]
             
@@ -136,12 +135,4 @@ class PetBio extends Component {
     }
 };
 
-const mapStateToProps = state => {
-    return { user: state.user }
-}
-
-const mapDispatchToProps = {
-    logout: logout
-}
-
-export default connect( mapStateToProps, mapDispatchToProps )( PetBio );
+export default connect( state => state )( PetBio );
