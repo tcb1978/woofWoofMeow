@@ -4,12 +4,12 @@ import './Requests.css';
 import History from '../../History/History';
 import Jobs from '../../../components/Petowner/Jobs/Jobs';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Requests extends Component {
     constructor () {
         super();
         this.state = {
-            petowner_id: '',
             caregivers: [],
             requests: [],
             interested: [],
@@ -19,14 +19,19 @@ class Requests extends Component {
 
     componentDidMount() {
         // Gets all the petowner's requested jobs ( gets all jobs with request value false)
-        axios.get(`/petowner/jobs/requested/${this.state.petowner_id}`).then(res => {
-            this.setState({ requests: res.data });
-        }).catch(err => console.log(err));
-
         // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
-        axios.get(`/petowner/jobs/interested/${this.state.petowner_id}`).then(response => {
-            this.setState({ interested: response.data });
-        }).catch(error => console.log(error));
+        axios.all([
+            axios.get(`/petowner/jobs/requested`),
+            axios.get(`/petowner/jobs/interested`)
+        ]).then( axios.spread( (requestsRes, interestsRes) => {
+
+            console.log( 'Petowner Interested', interestsRes.data );
+            this.setState({
+                requests: requestsRes.data,
+                interested: interestsRes.data
+            });
+
+        })).catch(error => console.log(error));
     }
 
     request = (id) => {
@@ -42,17 +47,19 @@ class Requests extends Component {
             end_time: time,
             request_status: 'f',
             service: service
-        }).then( () => {
-            axios.get(`/caregivers/jobs/requested/${this.state.petowner_id}`).then( requests => {
+        }).then( job => {
+            axios.get(`/petowner/jobs/requested`).then( requests => {
+                
                 this.setState({ requests: requests.data });
-            })
+
+            }).catch(error => console.log(error));
         }).catch(error => console.log(error))
     }
 
-    cancelRequest = (id, user_id) => {
-        axios.delete(`/delete/job/${id}`)
-        .then(response => {
-            axios.get(`/petowner/jobs/${user_id}`).then( requests => {
+    cancelRequest = (id) => {
+        axios.delete(`/delete/job/${id}`).then( () => {
+            axios.get(`/petowner/jobs/requested`).then( requests => {
+                console.log( requests.data );
                 this.setState({ requests: requests.data })
             })
         }).catch(error => console.log(error))
@@ -79,7 +86,7 @@ class Requests extends Component {
                     <date>{job.month}/{job.day}/{job.year}</date>
                 </div>
                 <div className="space-around">
-                    <button onClick={() => this.cancelRequest(job.job_id, job.petowner_id)} className="btn cancel">Cancel</button>
+                    <button onClick={ () => this.cancelRequest(job.job_id) } className="btn cancel">Cancel</button>
                 </div>
             </div>
         ));
@@ -150,7 +157,7 @@ class Requests extends Component {
                                 </div>
                                 <div className="StartFinish">
                                     <div className="Start"><time className="">1:28pm- </time></div>
-                                    <div className="Finish"><time className="">     2:28pm</time></div>
+                                    <div className="Finish"><time className=""> 2:28pm</time></div>
                                 </div>
                             </div>
                             <div className="status-row">
@@ -161,7 +168,7 @@ class Requests extends Component {
                                 </div>
                                 <div className="StartFinish">
                                     <div className="Start"><time className="">1:28pm- </time></div>
-                                    <div className="Finish"><time className="">     2:28pm</time></div>
+                                    <div className="Finish"><time className=""> 2:28pm</time></div>
                                 </div>
                             </div>
                         </div>
@@ -174,4 +181,4 @@ class Requests extends Component {
     }
 }
 
-export default Requests
+export default connect(state => state)(Requests);

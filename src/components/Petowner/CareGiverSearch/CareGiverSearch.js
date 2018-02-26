@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Aux from '../../../hoc/Aux';
 import './CareGiverSearch.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Requests from '../Requests/Requests';
 
@@ -26,6 +27,10 @@ class CareGiverSearch extends Component {
         const { proximity, time } = this.state;
         axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`).then( caregivers => {
 
+            console.log( this.props.user );
+            console.log( 'Caregivers', caregivers.data );
+            console.log( 'Proximity', proximity );
+            console.log( 'Time', time );
             this.setState(previous => ({
                 isHidden: !previous.isHidden,
                 caregivers: caregivers.data
@@ -88,7 +93,7 @@ class CareGiverSearch extends Component {
                                                     <option value=''>--Select Proximity--</option>
                                                     <option value="3 miles">3 miles</option>
                                                     <option value="5 miles">5 miles</option>
-                                                    <option value="8 miles">8 miles</option>
+                                                    <option value="7 miles">7 miles</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -210,7 +215,7 @@ class CareGiverSearch extends Component {
 
                                 <TabPanel>
                                     <div className="time top-bottom">
-                                        <h3><date>{this.state.month}/{this.state.day}/{year} </date> <time>  {this.state.time}</time></h3>
+                                        <h3><date>{this.state.month} / {this.state.day} / {year}</date>&nbsp;&nbsp;&nbsp;<time>{this.state.time}</time></h3>
                                     </div>
                                 </TabPanel>
                             </Tabs>
@@ -234,4 +239,4 @@ class CareGiverSearch extends Component {
     }
 };
 
-export default CareGiverSearch;
+export default connect(state => state)(CareGiverSearch);

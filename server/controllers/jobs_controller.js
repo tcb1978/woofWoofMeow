@@ -2,7 +2,7 @@ module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
     const { caregiver_id, petowner_id, month, day, year, begin_time, end_time, request_status, service } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     function convertTo24Hour(time) {
       var hours = parseInt(time.substr(0, 2));
@@ -27,10 +27,10 @@ module.exports = {
     if (minutes === 30) {
       walkDurationInHours = 0.5
     } else { walkDurationInHours = 1 }
-    console.log('walkDurationInHours ', walkDurationInHours);
+    // console.log('walkDurationInHours ', walkDurationInHours);
     const serviceTime = convertedTime + walkDurationInHours;
 
-    db.create_job([ caregiver_id, petowner_id, month, day, year, begin_time, serviceTime, request_status, service ])
+    db.create_job([ caregiver_id, req.session.user.user_id, month, day, year, begin_time, serviceTime, request_status, service ])
       .then( (job) => res.status(200).json(job) )
       .catch( (error) => res.status(500).send(error) )
   },
@@ -54,6 +54,7 @@ module.exports = {
 
   update: (req, res, next) => {
     const db = req.app.get('db');
+    const { id } = req.params;
 
     db.update_job([ id, req.session.user.user_id ])
       .then( (job) => res.status(200).json(job) )

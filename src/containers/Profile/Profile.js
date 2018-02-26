@@ -9,35 +9,41 @@ import Petowner from './Petowner/Petowner';
 import Caregiver from './Caregiver/Caregiver';
 
 class Profile extends Component {
+  constructor () {
+    super();
+    this.state = { }
+  }
 
-  componentDidMount() {
+  componentWillMount() {
     // Gets the empty user object
     axios.get('/user').then( user => {
         this.props.getUser( user.data );
-        console.log( 'Redux User', this.props.user );
+        console.log( 'Profile User', this.props.user );
     }).catch(error => console.log(error))
-}
+  }
 
   logout = () => {
     axios.post(`/logout`).then( user => {
         this.props.logout( user.data );
-        console.log( 'Redux User Signout', this.props.user );
+        console.log( 'Profile User Signout', this.props.user );
         this.props.history.push('/');
     }).catch(error => console.log(error));
   }
 
   render() {
     const { user } = this.props;
+    console.log( 'Profile user', user );
     return (
       <Aux>
-        { user.title ? (
-            user.title === 'petowner'
-            ? <Petowner logout={ this.logout }/>
-            : <Caregiver logout={ this.logout }/>
-          ) : (
-            <Redirect to="/"/>
-          ) 
-        }
+          { 
+            user.title ? (
+              user.title === 'petowner'
+              ? <Petowner logout={ this.logout } />
+              : <Caregiver logout={ this.logout } />
+            ) : (
+              <Redirect to="/"/>
+            )
+          }
       </Aux>
     );
   }

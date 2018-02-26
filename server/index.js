@@ -92,14 +92,14 @@ app.delete('/delete/user', users_controller.destroy);
 app.get('/caregivers/search', search_controller.getFiltered);
 
 // Petowners management
-app.get('/caregiver/jobs', petowners_controller.getPetownerJobs);
-app.get('/caregiver/jobs/requested', petowners_controller.getPetownersJobsRequested);
-app.get('/caregiver/jobs/interested', petowners_controller.getPetownersJobsInterested);
+app.get('/petowner/jobs', petowners_controller.getPetownerJobs);
+app.get('/petowner/jobs/requested', petowners_controller.getPetownersJobsRequested);
+app.get('/petowner/jobs/interested', petowners_controller.getPetownersJobsInterested);
 
 // Caregivers management
-app.get('/petowner/jobs', caregivers_controller.getCaregiverJobs);
-app.get('/petowner/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
-app.get('/petowner/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
+app.get('/caregiver/jobs', caregivers_controller.getCaregiverJobs);
+app.get('/caregiver/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
+app.get('/caregiver/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
 
 // Animals management
 app.post('/animal/create', animals_controller.create);

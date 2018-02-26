@@ -82,12 +82,6 @@ module.exports = {
 
   getOne: (req, res, next) => {
     res.status(200).json( req.session.user );
-
-    // const db = req.app.get('db');
-    // const { id } = req.params;
-    // db.get_user([id])
-    //   .then(user => { res.status(200).json(user) })
-    //   .catch(error => { res.status(500).json(error) })
   },
 
 

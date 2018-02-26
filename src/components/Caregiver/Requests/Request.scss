@@ -5,6 +5,7 @@
     padding: 30px 0 60px 0;
     display: flex;
     flex-flow: column;
+    justify-content: center;
     margin-bottom: 2px;
 
     h1 {
@@ -15,8 +16,9 @@
 
     .request-row-box {
         width: 80%;
+        // display: flex;
+        // justify-content: center;
         margin: auto;
-        // background-color: #fff;
         padding: 15px;
         border-radius: 5px;
 
@@ -96,6 +98,8 @@
     }
     .interested-row-box {
         width: 80%;
+        // display: flex;
+        // justify-content: center;
         margin: auto;
         background-color: #fff;
         padding: 15px;
@@ -103,7 +107,7 @@
         .interested {
             padding: 15px 30px;
             border-bottom: 2px solid #dbdbdb;
-            border-radius: 0 0 5px 5px;
+            // border-radius: 0 0 5px 5px;
         }
         
         .caregiverRow {
@@ -112,7 +116,6 @@
             justify-content: space-between;
 
             div{
-
                 .caregiver-avatar {
                     img {
                         width: 4rem;

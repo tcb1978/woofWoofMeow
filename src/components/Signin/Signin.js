@@ -15,15 +15,6 @@ class Signin extends Component {
         }
     }
 
-    
-    // componentDidMount() {
-    //     // Gets the empty user object
-    //     axios.get('/user').then( user => {
-    //         this.props.getUser( user.data );
-    //         console.log( 'Redux User', this.props.user );
-    //     }).catch(error => console.log(error))
-    // }
-
     login = () => {
         const { email, password } = this.state;
         axios.post('/login', { email, password })

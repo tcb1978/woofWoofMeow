@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './Request.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Requests extends Component {
     constructor() {
@@ -13,15 +14,16 @@ class Requests extends Component {
         }
     }
     componentDidMount() {
+        console.log( 'User', this.props.user );
         axios.all([
             axios.get(`/caregiver/jobs/requested`),
             axios.get(`/caregiver/jobs/interested`),
-            axios.get(`/caregiver/jobs/`)
+            axios.get(`/caregiver/jobs`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
-            // console.log('Requests', requestsRes.data);
+            console.log('Requests', requestsRes.data);
             console.log('Interested', interestedRes.data);
-            // console.log('Jobs', jobsRes.data);
+            console.log('Jobs', jobsRes.data);
             this.setState({ 
                 requests: requestsRes.data, 
                 interested: interestedRes.data,
@@ -31,26 +33,42 @@ class Requests extends Component {
         })).catch( err => console.log(err) );
     }
 
-    onHandleInterest = (job_id, petowner_id) => {
-        // let { service, proximity, time, month, day, job_id } = this.props;
-        console.log(job_id, 'Here motherfuckers!!!');
-        axios.put(`/update/job/${job_id}`, {
-            request_status: 't'
-        }).then(() => {
-            axios.get(`/petowners/jobs/interested/${petowner_id}`).then( interested => {
-                this.setState({interested: interested.data})
-            })
+    onHandleInterest = (job_id) => {
+        axios.put(`/update/job/${job_id}`, { request_status: 't' }).then( () => {
+
+            axios.all([
+                axios.get(`/caregiver/jobs/requested`),
+                axios.get(`/caregiver/jobs/interested`),
+            ]).then( axios.spread( (requestsRes, interestedRes) => {
+
+                this.setState({ 
+                    requests: requestsRes.data, 
+                    interested: interestedRes.data
+                });
+    
+            })).catch( err => console.log(err) );
+
         }).catch(error => console.log(error))
     }
 
-    cancelInterested = (id, user_id) => {
-        // console.log('cancel interested');
-        axios.delete(`/delete/job/${id}`)
-            .then(response => {
-                axios.get(`/caregiver/jobs/${user_id}`).then(requests => {
-                    this.setState({ requests: requests.data })
-                })
-            }).catch(error => console.log(error))
+    cancelRequest = (id) => {
+        axios.delete(`/delete/job/${id}`).then( () => {
+            axios.get(`/caregiver/jobs/requested`).then( requests => {
+
+                this.setState({ requests: requests.data })
+
+            }).catch( err => console.log(err) );
+        }).catch(error => console.log(error))
+    }
+
+    cancelInterest = (id) => {
+        axios.delete(`/delete/job/${id}`).then( () => {
+            axios.get(`/caregiver/jobs/interested`).then( interests => {
+
+                this.setState({ interested: interests.data })
+
+            }).catch( err => console.log(err) );
+        }).catch(error => console.log(error))
     }
 
     render() {
@@ -60,7 +78,7 @@ class Requests extends Component {
 
         // The list of requested job
         const listOfRequests = this.state.requests.map( job => (
-            <div key={job.user_id} className="ClientRow">
+            <div key={job.job_id} className="ClientRow">
                 <div>
                     <div className="client-avatar"><img src={job.avatar} alt="Avatar"/></div>
                     <div className="client-name">{job.first_name}</div>
@@ -68,7 +86,7 @@ class Requests extends Component {
                 <div className="request-info">{job.day}/{job.month}/{job.year} {job.begin_time}-{job.end_time}</div>
                 <div>
                     <button className="btn btn-primary interest" onClick={() => this.onHandleInterest(job.job_id, job.petowner_id)}>Interest</button>
-                    <button className="btn btn-primary pass">Pass</button>
+                    <button className="btn btn-primary pass" onClick={() => this.cancelRequest(job.job_id)}>Pass</button>
                 </div>
             </div>
         ));
@@ -82,7 +100,7 @@ class Requests extends Component {
                         <div className="caregiver-name">{job.first_name}</div>
                     </div>
                     <div>
-                        <button onClick={() => this.cancelInterested(job.job_id, job.caregiver_id)} className="btn cancel">Cancel</button>
+                        <button onClick={() => this.cancelInterest(job.job_id)} className="btn cancel">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -100,14 +118,14 @@ class Requests extends Component {
                 <div className="Requests">
                     <h1>Requests</h1>
                     <div className="request-row-box">
-                        { listOfRequests }
+                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
                     </div>
                 </div>
 
                 <div className="Interested">
                     <h1>Interested</h1>
                     <div className="interested-row-box">
-                        { listOfInterested }
+                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
                     </div>
                 </div>
             </Aux>
@@ -115,4 +133,4 @@ class Requests extends Component {
     }
 };
 
-export default Requests;
+export default connect(state => state)(Requests);

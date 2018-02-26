@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import './Bio.css';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Bio extends Component {
