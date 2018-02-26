@@ -21,7 +21,6 @@ const Layout = (props) => {
                     <Link to="/signin">Sign In </Link>
                 </div>
             </nav>
-
             <section className="GetStarted" id="_GetStarted">
                 <div className="Find">
                     <h1>GET STARTED</h1>

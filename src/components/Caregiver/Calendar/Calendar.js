@@ -144,11 +144,8 @@ class Calendar extends Component {
                             </div>
                             )) }
                         </div>
-
                         <AvailableTimes months={months} days={days} day={selectedDay} />
                     </div>
-                    
-                    
                 </div>
             </div>
         )
