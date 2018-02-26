@@ -6,7 +6,7 @@ import Availability from '../../../components/Caregiver/Availability/Availabilit
 import Calendar from '../../../components/Caregiver/Calendar/Calendar';
 import Jobs from '../../../components/Caregiver/Jobs/Jobs';
 import History from '../../../components/History/History';
-import Reviews from '../../../components/Caregiver/Reviews/Reviews';
+import Reviews from '../../../components/Reviews/Reviews';
 import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 import Aux from '../../../hoc/Aux';
 import './Caregiver.css';
