@@ -5860,6 +5860,10 @@ react-prop-types@^0.4.0:
   dependencies:
     warning "^3.0.0"
 
+react-rating@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-rating/-/react-rating-1.0.5.tgz#46804b5be4a0c68df561054add35106cbbb179c2"
+
 react-redux@^5.0.6:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"

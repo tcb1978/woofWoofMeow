@@ -72,18 +72,6 @@
         }
     }
 }
-@media (max-width: 414px) {
-    .ClientRow {
-        display: flex;
-        flex-flow: column;
-
-        div {
-            margin: auto;
-            padding: 5px 0 5px 0;
-        }
-    }
-}
-
 
 .Interested {
     width: 100%;
@@ -150,5 +138,22 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 414px) {
+    .ClientRow {
+        display: flex;
+        flex-flow: column;
+        div {
+            margin: auto;
+            padding: 5px 0 5px 0;
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .Requests .request-row-box .ClientRow {
+        flex-flow: column;
     }
 }
