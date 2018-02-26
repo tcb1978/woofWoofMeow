@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
-import { getUser } from '../../redux/ducks/reducer';
+import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
 import './Signup.css';
 import UserUploader from '../Uploader/UserUploader';
@@ -320,7 +320,7 @@ const mapStateToProps = state => {
   };
   
 const mapDispatchToProps = {
-    getUser: getUser
+    register: register
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

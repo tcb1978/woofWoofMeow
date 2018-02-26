@@ -40,7 +40,7 @@ class PetBio extends Component {
         axios.get('/users').then(response => {
             console.log('this.props', this.props);
             
-            const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip} = response.data[0]
+            const { about_message, avatar, city, email, first_name, last_name, latitude, longitude, password, phone, proximity, state, street_address, title, user_id, zip } = this.props.user;
             
             this.setState({
                 about_message : about_message,

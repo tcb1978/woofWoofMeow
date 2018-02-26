@@ -21,7 +21,7 @@ class UserUploader extends Component {
             .attach('avatar', files[0]) // 'avatar' has to match with another string in /server/index.js 
             .end((error, response) => {
                 this.setState({ url: response.text })
-                this.props.userUrlSendqwe(response.text)
+                this.props.userUrlSend(response.text)
                 console.log('response -> ', response.text)
                 if (error) console.log(error);
                 console.log('File Uploaded Succesfully');
