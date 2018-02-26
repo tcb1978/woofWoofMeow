@@ -45,7 +45,7 @@ app.post('/api/upload', upload.single('avatar'), (req, res) => {
     console.log(err);
     if (err) return res.status(400).send(err);
   })
-  var imageUrl = 'https://s3.amazonaws.com/' + params.Bucket + '/' + params.Key
+  var imageUrl = 'https://s3-us-west-1.amazonaws.com/' + params.Bucket + '/' + params.Key
   res.status(200).send(imageUrl);
 })
 
