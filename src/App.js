@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { getUser } from './redux/ducks/reducer';
 
 class App extends Component {
-  componentWillMount() {
-    // Gets the empty user object
-    axios.get('/user').then( user => {
-        this.props.getUser( user.data );
-        console.log( 'Redux User', this.props.user );
-    }).catch(error => console.log(error))
-  }
+  // componentWillMount() {
+  //   // Gets the empty user object
+  //   axios.get('/user').then( user => {
+  //       this.props.getUser( 'App User', user.data );
+  //       console.log( 'Redux User', this.props.user );
+  //   }).catch(error => console.log(error))
+  // }
 
   render() {
     return (

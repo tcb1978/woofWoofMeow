@@ -1,66 +1,59 @@
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './Jobs.css';
+import axios from 'axios';
 import Iframe from 'react-iframe';
+import { connect } from 'react-redux';
+
+import Job from './Job/Job';
 
 class Jobs extends Component {
     constructor () {
         super();
-        this.state = { }
+        this.state = { 
+            jobs: []
+         }
+    }
+
+    componentDidMount () {
+        const { user } = this.props;
+        if ( user.title = 'petowner' ) {
+            axios.get(`/petowner/jobs/interested`).then( jobs => {
+                this.setState({ jobs: jobs.data });
+            }).catch(error => console.log(error));
+        } else {
+            axios.get(`/caregiver/jobs/interested`).then( jobs => {
+                this.setState({ jobs: jobs.data });
+            }).catch(error => console.log(error));
+        }
+    }
+
+    showChat () {
+
     }
 
     render() {
+        const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        const listOfJobs = this.state.jobs.map( job => {
+            return <Job key={ job.job_id }
+                        job={ job }
+                        months={ months }
+                        days={ days } />
+        })
+
         return (
             <Aux>
-                <div className="petowner-jobs">
+                <div className="Jobs">
                     <div className="jobs-container">
                     
                         <h1>Jobs</h1>
-                        <div className="jobs">
-                            <div className="job-item">
-                                <div className="AvatarName">
-                                    <div className="avatar"></div>
-                                    <div className="name">Mark</div>
-                                </div>
-                                <date className="date">January 10</date>
-                                <div><button className="btn message">Message</button></div>
-                            </div>
-                            <div className="details">
-                                <h3>Wednesday</h3>
-                                <div className="StartFinish">
-                                    <div>Start&nbsp;: <time>1:28pm</time></div>
-                                    <div>Finish&nbsp;: <time>2:28pm</time></div>
-                                </div>
-                                <div className="GoogleMap">
-                                    <div className="map">
-                                        {/* <Iframe url="http://www.youtube.com/embed/xDMP3i36naA"
-                                            position="relative"
-                                            width="100%"
-                                            height="100%"
-                                            id="myId"
-                                            className="myClassname"
-                                            styles={{width: "350px", height: "350px"}}
-                                            allowFullScreen /> */}
-                                        {/* <Iframe url={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_PLACES_KEY}&q=Space+Needle,Seattle+WA`}
-                                            position="relative"
-                                            width="100%"
-                                            height="100%"
-                                            id="myId"
-                                            className="myClassname"
-                                            styles={{width: "350px", height: "350px"}}
-                                            allowFullScreen /> */}
-                                        <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.976408627208!2d-112.07693238499344!3d33.449921156677355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b1223cc3206f9%3A0xb5ea49903b4b21d3!2sUS+Bank+Tower%2C+101+N+1st+Ave%2C+Phoenix%2C+AZ+85003!5e0!3m2!1sen!2sus!4v1519326392838"
-                                            position="absolute"
-                                            width="100%"
-                                            height="100%"
-                                            id="myId"
-                                            className="myClassname"
-                                            styles={{width: "390px", height: "390px"}}
-                                            allowFullScreen />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <ul className="job-list">
+
+                            { listOfJobs.length ? listOfJobs : <div>No Appointments</div> }
+
+                        </ul>
 
                     </div>
                 </div>
@@ -69,4 +62,4 @@ class Jobs extends Component {
     }
 };
 
-export default Jobs;
+export default connect(state => state)(Jobs);

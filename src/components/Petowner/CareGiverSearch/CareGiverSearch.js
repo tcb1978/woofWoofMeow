@@ -50,13 +50,16 @@ class CareGiverSearch extends Component {
 
     render () {
         const { caregivers, caregiver_id, petowner_id, service, proximity, time, month, day } = this.state;
+        // Current month day
         const date = new Date();
+        // Current year
         const year = date.getFullYear();
-        // const available = this.state.caregivers
-        
+        // Current month's number of days
+        const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
         return (        
             <Aux>
-                <div>
+                <div className="CaregiverSearch">
                     <div className="CaregiverFilterContainer">
                         <h1>Find Caregiver</h1>
                         <div className="SearchFilterContainer">

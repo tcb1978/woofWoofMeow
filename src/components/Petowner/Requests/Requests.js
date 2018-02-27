@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import './Requests.css';
-// import History from '../../History/History';
-import Jobs from '../../../components/Petowner/Jobs/Jobs';
 import axios from 'axios';
 import { connect } from 'react-redux';
+
+// import History from '../../History/History';
+// import Jobs from '../../../components/Petowner/Jobs/Jobs';
 
 class Requests extends Component {
     constructor () {
@@ -40,8 +41,8 @@ class Requests extends Component {
         axios.post('/job', {
             caregiver_id: id,
             petowner_id: this.state.petowner_id,
-            month: parseInt(month),
-            day: parseInt(day),
+            month: parseInt(month, 10),
+            day: parseInt(day, 10),
             year: (new Date()).getFullYear(),
             begin_time: time,
             end_time: time,
@@ -92,18 +93,18 @@ class Requests extends Component {
         ));
 
         // List of interested caregivers
-        const listOfInterested = this.state.interested.map( job => (
-            <div key={job.job_id} className="status-row">
-                <div className="avatar"><img src={job.avatar} alt="decorative avatar"/></div>
-                <div className="name">{job.first_name}</div>
-                <div className="date">
-                    <date>{job.month}/{job.day}/{job.year}</date>
-                </div>
-                <div className="space-around">
-                    <button className="btn message">Message</button>
-                </div>
-            </div>
-        ));
+        // const listOfInterested = this.state.interested.map( job => (
+        //     <div key={job.job_id} className="status-row">
+        //         <div className="avatar"><img src={job.avatar} alt="decorative avatar"/></div>
+        //         <div className="name">{job.first_name}</div>
+        //         <div className="date">
+        //             <date>{job.month}/{job.day}/{job.year}</date>
+        //         </div>
+        //         <div className="space-around">
+        //             <button className="btn message">Message</button>
+        //         </div>
+        //     </div>
+        // ));
 
         return (
             <Aux>
@@ -117,14 +118,12 @@ class Requests extends Component {
                         { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
                     </div>
 
-                    <div className="InterestedContainer">
+                    {/* <div className="InterestedContainer">
                         <h1>Interested</h1>
                         { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
-                    </div>
+                    </div> */}
 
-                    <Jobs />
-
-                    <div className="HistoryContainer">
+                    {/* <div className="HistoryContainer">
                         <h1>History</h1>
                         <div className="history-wrapper">
                             <div className="status-row">
@@ -172,9 +171,7 @@ class Requests extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
+                    </div> */}
                 </div>
             </Aux>
         )

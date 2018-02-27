@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
+import './Signup.css';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
-import './Signup.css';
+
 import UserUploader from '../Uploader/UserUploader';
 import AnimalUploader from '../Uploader/AnimalUploader';
 
@@ -293,6 +294,8 @@ class Signup extends Component {
                             )}
                         <input className="form-control btn btn-primary submit-button" type="submit" value="Submit" />
                     </form>
+
+                    { this.props.user.title && <Redirect to="/profile" /> }
                 </div>
             </Aux>
         );

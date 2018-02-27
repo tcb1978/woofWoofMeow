@@ -14,36 +14,35 @@ class Profile extends Component {
     this.state = { }
   }
 
-  componentWillMount() {
-    // Gets the empty user object
+  componentDidMount() {
     axios.get('/user').then( user => {
-        this.props.getUser( user.data );
-        console.log( 'Profile User', this.props.user );
+      this.props.getUser( user.data );
+      if ( !this.props.user.first_name ) {
+        this.props.history.push('/');
+      }
     }).catch(error => console.log(error))
   }
 
   logout = () => {
     axios.post(`/logout`).then( user => {
-        this.props.logout( user.data );
-        console.log( 'Profile User Signout', this.props.user );
-        this.props.history.push('/');
+      this.props.logout( user.data );
+      this.props.history.push('/');
     }).catch(error => console.log(error));
   }
 
   render() {
     const { user } = this.props;
-    console.log( 'Profile user', user );
+    console.log( 'Profile return user redux', user );
     return (
       <Aux>
-          { 
-            user.title ? (
-              user.title === 'petowner'
-              ? <Petowner logout={ this.logout } />
-              : <Caregiver logout={ this.logout } />
-            ) : (
-              <Redirect to="/"/>
-            )
+          { user.title === 'petowner'
+            ? <Petowner logout={ this.logout } />
+            : <Caregiver logout={ this.logout } />
           }
+          
+          <div className="footer-profile" style={{ background: '#959595',color: '#fff',padding: '5px',display: 'flex',position: 'fixed',bottom: '0',width: '100%' }}>
+            <span style={{ margin: 'auto' }}>&copy; All rights reserved.</span>
+          </div>
       </Aux>
     );
   }
