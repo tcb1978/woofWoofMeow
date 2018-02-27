@@ -122,46 +122,76 @@ class Popup extends Component {
             <option key={i} value={state}>{state}</option>
         ));
         return (
-            <form className='popup' onSubmit={() => this.handleSubmit()}>
+            <form className='popup' onSubmit={(event) => this.handleSubmit(event)}>
+                <span onClick={this.props.closePopup}><i class="fas fa-times-circle"></i></span>
                 <div className='popup_inner'>
-                
-                    <div className="pop-elements"><label>Street Address:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address" value={this.state.street_address}/></div>
+                    <div clasName="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group"><label>Street Address:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address" value={ this.state.street_address }/></div>
 
-                    <div className="pop-elements"><label>City:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City" value={this.state.city} /></div>
+                            <div className="form-group"><label>City:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City" value={ this.state.city}/></div>
+                        </div>
+                    </div>
+                    <div clasName="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group"><label>State:</label><select className="form-control" name="State" value={this.state.state} onChange={(event) => this.handleChange("state", event)} value={ this.state.state }>{stateOptions}</select></div>
 
-                    <div className="pop-elements"><label>State:</label><select className="form-control" value={this.state.state} onChange={(event) => this.handleChange("state", event)} value={this.state.state}>{stateOptions}</select></div>
-
-                    <div className="pop-elements"><label>Zip:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" value={this.state.zip}/></div>
-
-                    <div className="pop-elements"><label>Phone:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone" value={this.state.phone}/></div>
-
-                    <div className="pop-elements"><label>Email:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email" value={this.state.email}/></div>
-                    <textarea className="pop-elements" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" defaultValue={ this.state.about_message }></textarea>
-                    <UserUploader />
+                            <div className="form-group"><label>Zip:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" value={ this.state.zip }/></div>
+                        </div>
+                    </div>
+                    <div clasName="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group"><label>Phone:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone" value={ this.state.phone }/></div>
+                        </div>
+                    </div>
+                    <div clasName="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group"><label>Email:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email" value={ this.state.email }/></div>
+                        </div>
+                    </div>
+                    <div clasName="row">
+                        <div className="col-xs-12 col-sm-6">
+                            <div className="form-group"><UserUploader /></div>
+                        </div>
+                    </div>
+                    <div clasName="row">
+                        <div className="col-xs-12">
+                            <div className="form-group">
+                                <textarea className="form-control" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" defaultValue={ this.state.about_message } />
+                            </div>
+                        </div>
+                    </div>
 
                     {this.props.user.title === 'caregiver'
                         ? (
-                            <dib>
-                                <div>
-                                    How many miles proximity from your home would you like to work? Consider commute times. Can you arrive in a reasonable window according to your appointments? Each appointment allows for a 60 minute window before and after the suggested scheduling time.
-                                    <select
-                                        className="pop-elements"
-                                        type="text"
-                                        onChange={(event) => this.handleChange("proximity", event)}
-                                        value={this.state.proximity}>
-                                        <option value="3 miles">3 miles</option>
-                                        <option value="5 miles">5 miles</option>
-                                        <option value="7 miles">7 miles</option>
-                                    </select>
+                            <div clasName="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        <label>Proximity from home:</label>
+                                        <select
+                                            className="form-control"
+                                            type="text"
+                                            value={ this.state.proximity }
+                                            onChange={(event) => this.handleChange("proximity", event)}>
+                                            <option value="3 miles">3 miles</option>
+                                            <option value="5 miles">5 miles</option>
+                                            <option value="7 miles">7 miles</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </dib>
+                            </div>
                         ) : (
-                            <div></div>
+                            <div>
+                        </div>
                         )}
 
-                    <input className="form-control btn btn-primary submit-button" type="submit" value="Submit" />
-                    
-                    <button onClick={this.props.closePopup}><i class="fas fa-times-circle"></i></button>
+                        <div clasName="row">
+                            <div className="col-xs-12">
+                                <div className="form-group">
+                                    <input className="form-control btn btn-primary submit-button" type="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </form>
         );

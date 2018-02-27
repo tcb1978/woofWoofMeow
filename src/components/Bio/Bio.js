@@ -29,11 +29,8 @@ class Bio extends Component {
                     <div className="info">
                         <div>
                             <h1>{user.first_name}</h1>
-                            <button onClick={this.togglePopup.bind(this)}><i className="UserEdit fas fa-edit"></i></button>
+                            <span onClick={this.togglePopup.bind(this)}><i className="UserEdit fas fa-edit"></i></span>
                         </div>
-                        {this.state.showPopup ?
-                            <Popup closePopup={this.togglePopup.bind(this)}/> : null
-                        }
                         <button className="signout-btn btn-primary" onClick={ () => logout() }>Sign out</button>
                         
                         { this.props.user.title === 'caregiver' &&
@@ -42,6 +39,9 @@ class Bio extends Component {
                         </div>
                         }
                     </div>
+                    {this.state.showPopup ?
+                        <Popup closePopup={this.togglePopup.bind(this)} /> : null
+                    }
                 </div>
             </Aux>
         )
