@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
 import { register } from '../../redux/ducks/reducer';
@@ -15,7 +14,7 @@ class Signup extends Component {
             first_name: '',
             last_name: '',
             street_address: '',
-            state: '',
+            state: 'Alabama',
             city: '',
             zip: '',
             email: '',
@@ -33,7 +32,7 @@ class Signup extends Component {
             breed: '',
             age: '',
             weight: '',
-            sex: '',
+            sex: 'Male',
             animal_avatar: '',
             animal_about_message: ''
         };
@@ -51,7 +50,7 @@ class Signup extends Component {
         // initial post to the database with user title only
         axios.post('/register', {
             title: title[2]
-        }).then( user => {
+        }).then(user => {
             // updates user in redux
             this.props.register(user.data);
 
@@ -60,7 +59,7 @@ class Signup extends Component {
             // if the user title is caregiver, default availability data is created
             if (user.data.title === 'caregiver') {
                 // making default values for the availability
-                // var day = 1;
+                var day = 1;
                 const time_range = "6AM - 2PM";
                 const begin_time = 6;
                 const end_time = 14;
@@ -72,7 +71,8 @@ class Signup extends Component {
                         time_range: time_range,
                         begin_time: begin_time,
                         end_time: end_time
-                    }).then( available => {
+                    }).then(available => {
+                        console.log('Available ', available);
                     }).catch(error => console.log(error))
                 }
             }
@@ -110,13 +110,13 @@ class Signup extends Component {
                 latitude,
                 about_message: !about_message ? null : about_message,
                 proximity
-            }).then( user => {
+            }).then(user => {
 
                 // If the user is petowner, an animal is created in the animal table with the input data
                 if (user.data.title === 'petowner') {
                     axios.post('/animal/create', {
                         animal_name, breed, age, weight, sex, animal_avatar, animal_about_message
-                    }).then( animal => {
+                    }).then(animal => {
                         // console.log(animal);
                     }).catch(error => console.log(error))
                 }
@@ -132,8 +132,16 @@ class Signup extends Component {
     }
 
     render() {
-        // const { fireRedirect } = this.state
-        console.log(this.props.user.title)
+        const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
+            'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+            'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+            'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+            'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
+        ];
+        const stateOptions = states.map((state, i) => (
+            <option key={i} value={state}>{state}</option>
+        ));
+
         return (
             <Aux>
                 <div className="background">
@@ -143,25 +151,12 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} placeholder="First Name"/>
+                                        First Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("first_name", event)} placeholder="First Name" />
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        Last Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("last_name", event)} placeholder="Last Name"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="form-group">
-                                        Street Address:<input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address"/>
-                                    </div>
-                                </div>
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="form-group">
-                                        City:<input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City"/>
+                                        Last Name:<input className="form-control" type="text" onChange={(event) => this.handleChange("last_name", event)} placeholder="Last Name" />
                                     </div>
                                 </div>
                             </div>
@@ -169,25 +164,12 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        State:<input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} placeholder="State"/>
+                                        Street Address:<input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address" />
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        Zip:<input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="form-group">
-                                        Phone:<input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone"/>
-                                    </div>
-                                </div>
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="form-group">
-                                        Email:<input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email"/>
+                                        City:<input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City" />
                                     </div>
                                 </div>
                             </div>
@@ -195,18 +177,49 @@ class Signup extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        Create Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("password", event)} placeholder="Create Password"/>
+                                        State:
+                                        {/* <input className="form-control" type="text" onChange={(event) => this.handleChange("state", event)} placeholder="State"/> */}
+                                        <select className="form-control" name="State" value={this.state.state} onChange={(event) => this.handleChange("state", event)}>
+                                            {stateOptions}
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
-                                        Confirm Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} placeholder="Confirm Password"/>
+                                        Zip:<input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Phone:<input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone" />
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Email:<input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Create Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("password", event)} placeholder="Create Password" />
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-6">
+                                    <div className="form-group">
+                                        Confirm Password:<input className="form-control" type="password" required onChange={(event) => this.handleChange("passwordCheck", event)} placeholder="Confirm Password" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-6">
                                     <div className="form-group">
+                                        {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("avatar", event)} placeholder="Include an image link of yourself with your furry friend!!" />*/}
                                         <UserUploader />
                                     </div>
                                 </div>
@@ -244,10 +257,15 @@ class Signup extends Component {
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-6">
                                             <div className="form-group">
-                                                Sex:<input className="form-control" type="text" placeholder="sex" onChange={(event) => this.handleChange("sex", event)} />
+                                                Sex:
+                                                <select className="form-control" name="Sex" value={this.state.sex} onChange={(event) => this.handleChange("sex", event)}>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="col-xs-12 col-sm-6">
+                                            {/*Image:<input type="text" className="form-control" onChange={(event) => this.handleChange("animal_avatar", event)} placeholder="Include an image link of your furry friend!!" />*/}
                                             <AnimalUploader />
                                         </div>
                                     </div>
@@ -276,7 +294,7 @@ class Signup extends Component {
                                                     onChange={(event) => this.handleChange("proximity", event)}>
                                                     <option value="3 miles">3 miles</option>
                                                     <option value="5 miles">5 miles</option>
-                                                    <option value="7 miles">8 miles</option>
+                                                    <option value="7 miles">7 miles</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -285,7 +303,7 @@ class Signup extends Component {
                                     <div className="row">
                                         <div className="col-xs-12">
                                             <div className="form-group">
-                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!"/>
+                                                <textarea className="form-control" name="Text1" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" />
                                             </div>
                                         </div>
                                     </div>
@@ -301,14 +319,14 @@ class Signup extends Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      userUrl: state.userUrl,
-      animalUrl: state.animalUrl
+        user: state.user,
+        userUrl: state.userUrl,
+        animalUrl: state.animalUrl
     };
-  };
-  
+};
+
 const mapDispatchToProps = {
     register: register
 }
-  
+
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
