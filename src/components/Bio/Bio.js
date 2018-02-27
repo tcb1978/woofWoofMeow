@@ -3,9 +3,20 @@ import Aux from '../../hoc/Aux';
 import './Bio.css';
 // import axios from 'axios';
 import { connect } from 'react-redux';
+import Popup from './Popup/Popup'
 
 class Bio extends Component {
-
+    constructor() {
+        super();
+        this.state = {
+            showPopup: false
+        };
+    }
+    togglePopup() {
+        this.setState({
+            showPopup: !this.state.showPopup
+        });
+    }
 
 
     render() {
@@ -18,9 +29,11 @@ class Bio extends Component {
                     <div className="info">
                         <div>
                             <h1>{user.first_name}</h1>
-                            <i className="UserEdit fas fa-edit"></i>
+                            <button onClick={this.togglePopup.bind(this)}><i className="UserEdit fas fa-edit"></i></button>
                         </div>
-                        
+                        {this.state.showPopup ?
+                            <Popup closePopup={this.togglePopup.bind(this)}/> : null
+                        }
                         <button className="signout-btn btn-primary" onClick={ () => logout() }>Sign out</button>
                         
                         { this.props.user.title === 'caregiver' &&

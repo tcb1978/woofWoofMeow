@@ -85,7 +85,8 @@ app.post('/login', users_controller.login);
 app.post('/logout', users_controller.logout);
 app.get('/user', users_controller.getOne);
 app.get('/users', users_controller.getAll);
-app.put('/update/user', users_controller.update)
+app.put('/update/user', users_controller.update);
+app.put('/update/profile', users_controller.updateProfile);
 app.delete('/delete/user', users_controller.destroy);
 
 // Search management

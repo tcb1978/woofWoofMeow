@@ -158,6 +158,14 @@ module.exports = {
       // .catch( (error) => res.status(500).send(error))
   },
 
+  updateProfile: (req, res, next) => {
+    const db = req.app.get('db');
+
+    db.update_profile([])
+      .then((user) => res.status(200).json(user))
+      .catch(error => console.log(error))
+  },
+
   destroy: (req, res, next) => {
     const db = req.app.get('db');
 
