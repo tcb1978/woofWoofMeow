@@ -45,14 +45,11 @@ class Popup extends Component {
         this.setState({ [property]: event.target.value });
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault()
         const { userUrl } = this.props;
-        // alert(this.props.userUrl)
         let { street_address, state, city, zip, email, phone, avatar, about_message, proximity } = this.state;
-        // if (this.props.userUrl !== '') {
-        //     console.log();
-        //     avatar = this.props.userUrl;
-        // }
+        console.log(this.props);
 
         if (this.props.user.title === 'caregiver') {
             axios.put('/update/profile', {
@@ -134,7 +131,7 @@ class Popup extends Component {
                     </div>
                     <div clasName="row">
                         <div className="col-xs-12 col-sm-6">
-                            <div className="form-group"><label>State:</label><select className="form-control" name="State" value={this.state.state} onChange={(event) => this.handleChange("state", event)} value={ this.state.state }>{stateOptions}</select></div>
+                            <div className="form-group"><label>State:</label><select className="form-control" value={this.state.state} onChange={(event) => this.handleChange("state", event)} value={ this.state.state }>{stateOptions}</select></div>
 
                             <div className="form-group"><label>Zip:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" value={ this.state.zip }/></div>
                         </div>
