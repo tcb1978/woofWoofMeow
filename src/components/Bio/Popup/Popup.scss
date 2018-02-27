@@ -1,4 +1,8 @@
 .popup {
+    width: 80%;
+    margin: auto;
+    padding: 30px 15px;
+
     span {
         font-size: 20px;
         color: #7EB9FF;
@@ -6,9 +10,12 @@
         flex-flow: row;
         justify-content: flex-end;
     }
-    width: 80%;
-    margin: auto;
-    padding: 30px 15px;
+
+    input.submit-button {
+        width: auto;
+        display: flex;
+        margin: auto;
+    }
 }
 
 @media (max-width: 414px) {
