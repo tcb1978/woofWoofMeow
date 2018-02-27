@@ -23,7 +23,21 @@ class Popup extends Component {
     }
 
     componentDidMount() {
-        // axios.get('/')
+        console.log(this.props.user);
+        const { street_address, state, city, zip, email, phone, about_message, proximity } = this.props.user;
+        const avatar = this.props.userUrl;
+        console.log(avatar);
+        this.setState({
+            street_address,
+            state,
+            city,
+            zip,
+            email,
+            phone,
+            avatar,
+            about_message,
+            proximity
+        })
     }
 
     handleChange(property, event) {
@@ -32,8 +46,13 @@ class Popup extends Component {
     }
 
     handleSubmit() {
-        const { street_address, state, city, zip, email, phone, about_message, proximity } = this.state;
-        const avatar = this.props.userUrl;
+        const { userUrl } = this.props;
+        // alert(this.props.userUrl)
+        let { street_address, state, city, zip, email, phone, avatar, about_message, proximity } = this.state;
+        // if (this.props.userUrl !== '') {
+        //     console.log();
+        //     avatar = this.props.userUrl;
+        // }
 
         if (this.props.user.title === 'caregiver') {
             axios.put('/update/profile', {
@@ -43,12 +62,23 @@ class Popup extends Component {
                 zip,
                 email,
                 phone,
-                avatar,
+                avatar: userUrl.length ? userUrl : avatar,
                 about_message,
                 proximity
             })
                 .then(response => {
                     console.log(response);
+                    this.setState({
+                        street_address,
+                        state,
+                        city,
+                        zip,
+                        email,
+                        phone,
+                        avatar,
+                        about_message,
+                        proximity
+                    })
                 })
                 .catch(error => console.log(error))
         } else if (this.props.user.title === 'petowner') {
@@ -64,6 +94,16 @@ class Popup extends Component {
             })
                 .then(response => {
                     console.log(response);
+                    this.setState({
+                        street_address,
+                        state,
+                        city,
+                        zip,
+                        email,
+                        phone,
+                        avatar,
+                        about_message
+                    })
                 })
                 .catch(error => console.log(error))
         }
@@ -71,6 +111,7 @@ class Popup extends Component {
     }
     
     render() {
+        console.log(this.state.about_message);
         const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
             'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
             'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
@@ -81,21 +122,21 @@ class Popup extends Component {
             <option key={i} value={state}>{state}</option>
         ));
         return (
-            <form className='popup' onSubmit={(event) => this.handleSubmit(event)}>
+            <form className='popup' onSubmit={() => this.handleSubmit()}>
                 <div className='popup_inner'>
                 
-                    <div className="pop-elements"><label>Street Address:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address" /></div>
+                    <div className="pop-elements"><label>Street Address:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("street_address", event)} placeholder="Street Address" value={this.state.street_address}/></div>
 
-                    <div className="pop-elements"><label>City:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City" /></div>
+                    <div className="pop-elements"><label>City:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("city", event)} placeholder="City" value={this.state.city} /></div>
 
-                    <div className="pop-elements"><label>State:</label><select className="form-control" name="State" value={this.state.state} onChange={(event) => this.handleChange("state", event)}>{stateOptions}</select></div>
+                    <div className="pop-elements"><label>State:</label><select className="form-control" value={this.state.state} onChange={(event) => this.handleChange("state", event)} value={this.state.state}>{stateOptions}</select></div>
 
-                    <div className="pop-elements"><label>Zip:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" /></div>
+                    <div className="pop-elements"><label>Zip:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("zip", event)} placeholder="Zip" value={this.state.zip}/></div>
 
-                    <div className="pop-elements"><label>Phone:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone" /></div>
+                    <div className="pop-elements"><label>Phone:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("phone", event)} placeholder="Phone" value={this.state.phone}/></div>
 
-                    <div className="pop-elements"><label>Email:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email" /></div>
-                    <textarea className="pop-elements" name="Text1" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" />
+                    <div className="pop-elements"><label>Email:</label><input className="form-control" type="text" onChange={(event) => this.handleChange("email", event)} placeholder="Email" value={this.state.email}/></div>
+                    <textarea className="pop-elements" cols="40" rows="5" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" defaultValue={ this.state.about_message }></textarea>
                     <UserUploader />
 
                     {this.props.user.title === 'caregiver'
@@ -106,7 +147,8 @@ class Popup extends Component {
                                     <select
                                         className="pop-elements"
                                         type="text"
-                                        onChange={(event) => this.handleChange("proximity", event)}>
+                                        onChange={(event) => this.handleChange("proximity", event)}
+                                        value={this.state.proximity}>
                                         <option value="3 miles">3 miles</option>
                                         <option value="5 miles">5 miles</option>
                                         <option value="7 miles">7 miles</option>
