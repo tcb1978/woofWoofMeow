@@ -11,7 +11,9 @@ export default class NewReview extends Component {
         super(props);
 
         this.state = {
-            message: ''
+            message: '',
+            rating: null,
+            job_id: 20
         }
     }
 
@@ -21,44 +23,59 @@ export default class NewReview extends Component {
         })
     }
 
-    onHandleRatingClick = (value) => {
-        this.setState({
-            rating: value,
-            bones: value
+    onHandleRatingChange = (value) => {
+        this.setState( {
+            rating: value
         })
         console.log(this.state.rating, 'rating');
-        console.log(this.state.bones, 'bones')
     }
 
     onHandleSubmit = () => {
-        
+        const { message, rating, job_id } = this.state;
+        const timeStamp = new Date();
+        const post_date = timeStamp.toUTCString();
+        console.log(post_date);
+
+        axios.post('/review', {
+            post_date,
+            message,
+            rating,
+            job_id
+        })
+        .then( response => {
+            console.log(response);
+        })
+        .catch( error => console.log(error) )
     }
     
 
     render() {
+        
         return (
             <Aux>
                 <div className="Review">
                     <h1>Make a review</h1>
                     <div className="Form-wrapper">
                         <form>
+
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">Review:</label>
                                 <textarea
                                     onChange={(event) => this.onHandleReviewChange(event) }
                                     class="form-control"
                                     rows="5"
-                                    id="comment">
+                                    id="comment"
+                                    title="">
                                 </textarea>
                             </div>
                             <Rating
-                                onClick={(rate) => this.onHandleRatingClick(rate)}
+                                onHover={(rate) => this.onHandleRatingChange(rate)}
                                 className="Rating"
+                                initialRating={3}
                                 placeholderRating={this.state.rating}
                                 emptySymbol={<img src={empty} className="icon" />}
                                 placeholderSymbol={<img src={empty} className="icon" />}
                                 fullSymbol={<img src={full} className="icon" />}
-                                onChange={(bones) => this.onHandleRatingClick(bones)}
                             />
                             <input
                                 onClick={this.onHandleSubmit}

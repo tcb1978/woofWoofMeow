@@ -1,9 +1,10 @@
 module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
-    const { user_id, message, rating, job_id } = req.body;
+    const { post_date, message, rating, job_id } = req.body;
+    console.log(req.body);
 
-    db.create_review([user_id, message, rating, job_id])
+    db.create_review([post_date, message, rating, job_id])
       .then( (review) => res.status(200).json(review) )
       .catch( (error) => res.status(500).send(error) )
   },

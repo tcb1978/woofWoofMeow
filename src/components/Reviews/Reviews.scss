@@ -7,6 +7,7 @@
     border-radius: 5px;
     display: flex;
     flex-flow: column;
+    margin-bottom: 60px;
 
     h1 {
         margin: 0 auto;
@@ -33,6 +34,14 @@
                 flex-direction: row;
                 padding: 10px 0;
 
+                span {
+                    span {
+                        img.icon {
+                            height: 3rem;
+                        }
+                    }
+                }
+
                 .date {
                     font-size: large;
                     font-weight: 100;
@@ -52,6 +61,16 @@
                     background-size: contain;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 414px) {
+    .ReviewsContainer {
+        width: 100%;
+
+        .ReviewDisplay .ReviewRow {
+            width: 100%;
         }
     }
 }

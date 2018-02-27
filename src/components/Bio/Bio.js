@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 class Bio extends Component {
 
+
+
     render() {
         const { user, logout } = this.props;
         return (
@@ -19,11 +21,11 @@ class Bio extends Component {
                             <i className="UserEdit fas fa-edit"></i>
                         </div>
                         
-                        <button className="signout-btn" onClick={ () => logout() }>Sign out</button>
+                        <button className="signout-btn btn-primary" onClick={ () => logout() }>Sign out</button>
                         
                         { this.props.user.title === 'caregiver' &&
                         <div className="UserBio">
-                            <div className="BioCaption" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sagittis, tortor vitae sodales venenatis, quam orci scelerisque odio, eu tempus quam tellus sed nulla. Duis vel erat sed sapien eleifend vulputate ut quis est.</div>
+                            <div className="BioCaption" >{user.about_message}</div>
                         </div>
                         }
                     </div>
