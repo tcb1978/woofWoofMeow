@@ -87,7 +87,7 @@ module.exports = {
 
   update: (req, res, next) => {
     const db = req.app.get('db');
-    console.log('req.body ', req.body);
+    // console.log('req.body ', req.body);
     // console.log('session id', req.session.user );
     // we'll change longitude and latitude later so we need to declare it with let
     let { first_name, last_name, street_address, state, city, zip, email, phone, avatar, title, password, longitude, latitude, about_message, proximity } = req.body;
@@ -160,10 +160,18 @@ module.exports = {
 
   updateProfile: (req, res, next) => {
     const db = req.app.get('db');
+    const { street_address, state, city, zip, email, phone, avatar, about_message, proximity } = req.body;
+    console.log(req.body);
 
-    db.update_profile([])
-      .then((user) => res.status(200).json(user))
-      .catch(error => console.log(error))
+    if (req.session.user.title === 'caregiver') {
+      db.update_profile([street_address, state, city, zip, email, phone, avatar, about_message, proximity, req.session.user.user_id])
+        .then((user) => res.status(200).json(user))
+        .catch(error => console.log(error))
+    } else {
+      db.update_profile([street_address, state, city, zip, email, phone, avatar, about_message, null, req.session.user.user_id])
+        .then((user) => res.status(200).json(user))
+        .catch(error => console.log(error))
+    }
   },
 
   destroy: (req, res, next) => {
