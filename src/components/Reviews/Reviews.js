@@ -5,6 +5,8 @@ import Rating from 'react-rating';
 import axios from 'axios';
 import empty from '../../assets/img/icon-bone_empty.png';
 import full from '../../assets/img/icon-bone.png';
+import { register } from '../../redux/ducks/reducer';
+import { connect } from 'react-redux';
 
 class Reviews extends Component {
     constructor(props) {
@@ -14,13 +16,14 @@ class Reviews extends Component {
             rating: '',
             date: '',
             message: '',
-            caregiver_id: 10,
+            caregiver_id: '',
             caregiver_reviews: []
         }
     }
 
     componentDidMount() {
-        const { caregiver_id } = this.state;
+        let { caregiver_id } = this.state;
+        caregiver_id = this.props.user.user_id;
         axios.get(`/reviews/${caregiver_id}`)
         .then(response => {
             console.log(response);
@@ -64,4 +67,14 @@ class Reviews extends Component {
     }
 };
 
-export default Reviews;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = {
+    register: register
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
