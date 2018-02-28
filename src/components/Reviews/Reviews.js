@@ -59,7 +59,7 @@ class Reviews extends Component {
                 <div className="ReviewsContainer">
                     <h1>Reviews</h1>
                     <div className="ReviewDisplay">
-                        {listOfReviews}
+                        {listOfReviews.length ? listOfReviews : <div style={{ margin: 'auto' }}>Currently no reviews</div>}
                     </div>
                 </div>
             </Aux>

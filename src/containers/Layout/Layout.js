@@ -12,12 +12,11 @@ const Layout = (props) => {
     return (
         <Aux>
             <nav className="Nav">
-                <div className="NavLeft">WoofWoofMeow</div>
+                <div className="NavLeft">WoofWWalkin'</div>
                 <div className="NavRight">
                     <Scroll type="id" element="_About">About </Scroll>
                     <Scroll type="id" element="_Services">Services </Scroll>
                     <Scroll type="id" element="_GetStarted">Sign Up</Scroll>
-                    {/* <Link to="/signup">Sign Up </Link> */}
                     <Link to="/signin">Sign In </Link>
                 </div>
             </nav>

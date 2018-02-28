@@ -154,7 +154,7 @@ class Popup extends Component {
                     <div clasName="row">
                         <div className="col-xs-12">
                             <div className="form-group">
-                                <textarea className="form-control" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Include a description about yourself. Consider what makes you trustworthy to enter peoples homes and provide animal care. What previous experience do you have? Sell yourself!!" defaultValue={ this.state.about_message } />
+                                <textarea className="form-control" type="text" onChange={(event) => this.handleChange("about_message", event)} placeholder="Update description" defaultValue={ this.state.about_message } />
                             </div>
                         </div>
                     </div>
