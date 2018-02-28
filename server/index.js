@@ -7,6 +7,9 @@ const massive = require('massive');
 require('dotenv').config();
 const multer = require('multer');
 const AWS = require('aws-sdk');
+const path = require('path')
+
+
 
 const app = express();
 
@@ -135,6 +138,11 @@ app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); //
 // Geolocation
 app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
