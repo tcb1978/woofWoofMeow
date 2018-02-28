@@ -1,7 +1,7 @@
 import React from 'react';
 import './Layout.css'
 import Aux from '../../hoc/Aux';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 // import routes from '../../routes/routes';
 // import Signup from '../../components/Signup/Signup';
@@ -160,7 +160,6 @@ const Layout = (props) => {
                     </div>
                 </div>
             </footer>
-            { props.user.first_name && <Redirect to="/profile"/> }
         </Aux>
     )
 }

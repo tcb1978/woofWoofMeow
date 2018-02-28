@@ -52,7 +52,9 @@ CREATE TABLE IF NOT EXISTS jobs (
     begin_time VARCHAR (10) NOT NULL,
     end_time VARCHAR (10),
     request_status BOOLEAN,
-    service VARCHAR(20) NOT NULL
+    service VARCHAR(20) NOT NULL,
+    checkin_time VARCHAR(10),
+    checkout_time VARCHAR(10)
 );
 
 CREATE TABLE IF NOT EXISTS reviews (

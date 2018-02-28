@@ -37,7 +37,9 @@ class History extends Component {
                             <div className="day"><h3>March 24</h3></div>
                             <div className="time"><h3>2:30pm - 3:00pm</h3></div>
                         </div>
+
                         { appointment_history }
+                        
                         <div className="Appointment tab">
                             <div className="avatar"></div>
                             <div className="day"><h3>March 24</h3></div>
