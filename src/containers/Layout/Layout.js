@@ -12,7 +12,7 @@ const Layout = (props) => {
     return (
         <Aux>
             <nav className="Nav">
-                <div className="NavLeft">WoofWalkin'</div>
+                <div className="NavLeft">WoofWalks</div>
                 <div className="NavRight">
                     <Scroll type="id" element="_About">About </Scroll>
                     <Scroll type="id" element="_Services">Services </Scroll>
