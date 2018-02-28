@@ -1,31 +1,31 @@
-# WoofWalking.us
+# WoofWalkin.us
 
-Dog walking app
+Dog walking appointment app
 
 ## Original idea:
 
-Create a web-site that will connect the pet owners and pet walkers.
+Create a web-site that will connect pet owners to pet walkers.
 
 ## Client MVP:
 
-* Clients (pet owner) can create a profile with their personal information and dog information.
-* Clients can make a request for the walk where they put the information (description) about the walking. Information includes the type of walk (30 minutes walk, 60 minutes walk, 60 minutes dog park), proximity (max distance the walker lives from you), begin time, month and day. In the search results they see all the walkers that satisfy the condition and request the walk.
+* Clients (pet owner) can create a profile with their personal (and dog) information.
+* Clients make a request for the walk based on included parameters. Information includes the type of walk (30 minutes walk, 60 minutes walk, 60 minutes dog park), proximity (max distance the walker lives from you), begin time, month and day. In the search results they see all the walkers that satisfy the condition and request the walk.
 * When they make the request it goes to the caregiver (pet walker). Once the caregiver accepts it, they can start chatting.
 * Clients can see check-in and check-out marks of the caregiver with geolocation.
 * After the walk is over, client receives the photo with the dog from the walk.
 * After that, the client can write a review on that person.
 
-* Also, they can see the reviews for any caregivers
+* Also, they can view reviews displayed on any caregiver profile.
 
-* In the profile, clients can update their profile information (addres, phone number, email) and dog information.
+* In the client (petwoner) profile, clients can update their profile information (addres, phone number, email) and dog information.
 
 ## Caregiver MVP:
 
 * Caregivers can create a profile with their personal information.
 * In their profile, caregivers can update their availability.
 * They also can accept requests from the clients and chat with them.
-* They start of finish the walk they check-in or check-out with the geolocation. Also, after the walk they have to send the photo of the dog during walk.
-* After that, the walk is considered as finished and they can go to the next one.
+* They check-in then check-out of the appontment with the geolocation and time-stamp. Upon 'checkout' the caregiver may update the client with a photo and details from the walk.
+* The walk is considered as finished and the caregiver may continue on to any further appointments.
 
 ## Built with
 * React - a framework for dynamic component side of the app
