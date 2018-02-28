@@ -14,16 +14,12 @@ class Requests extends Component {
         }
     }
     componentDidMount() {
-        console.log( 'User', this.props.user );
         axios.all([
             axios.get(`/caregiver/jobs/requested`),
             axios.get(`/caregiver/jobs/interested`),
             axios.get(`/caregiver/jobs`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
-            console.log('Requests', requestsRes.data);
-            console.log('Interested', interestedRes.data);
-            console.log('Jobs', jobsRes.data);
             this.setState({ 
                 requests: requestsRes.data, 
                 interested: interestedRes.data,
