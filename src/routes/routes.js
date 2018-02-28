@@ -8,6 +8,7 @@ import Caregiver from '../containers/Profile/Caregiver/Caregiver';
 import Profile from '../containers/Profile/Profile';
 import Chat from '../components/Chat/Chat';
 import UpdateMessage from '../components/UpdateMessage/UpdateMessage'
+import NotFound from '../components/NotFound/NotFound';
 
 
 export default (
@@ -20,5 +21,7 @@ export default (
     <Route path="/chat" component={ Chat }/>
     <Route path="/update-message" component={ UpdateMessage } />
     <Route path="/caregiver" component={ Caregiver }/>
+
+    <Route path="*" component={ NotFound }/>
   </Switch>
 )
