@@ -38,7 +38,7 @@ class Requests extends Component {
     request = (id) => {
         let { service, time, month, day } = this.props;
 
-        axios.post('/job', {
+        axios.post('/create/job', {
             caregiver_id: id,
             petowner_id: this.state.petowner_id,
             month: parseInt(month, 10),

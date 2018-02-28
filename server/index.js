@@ -100,11 +100,13 @@ app.get('/petowner/jobs/interested', petowners_controller.getPetownersJobsIntere
 app.get('/caregiver/jobs', caregivers_controller.getCaregiverJobs);
 app.get('/caregiver/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
 app.get('/caregiver/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
+app.get('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
+app.get('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkin);
 
 // Animals management
-app.post('/animal/create', animals_controller.create);
+app.post('/create/animal', animals_controller.create);
 app.get('/animals', animals_controller.getUserAnimals);
-app.get('/animal', animals_controller.getOne);
+app.get('/animal/:petowner_id', animals_controller.getOne);
 app.put('/update/animal/:id', animals_controller.update); // :id parameter is the animal id (don't take it off)
 app.delete('/delete/animal/:id', animals_controller.destroy); // :id parameter is the animal id (don't take it off)
 
@@ -115,16 +117,16 @@ app.get('/available/user', availability_controller.getUserAvailability);
 app.put('/update/available', availability_controller.update);
 
 // Jobs management
-app.post('/job', jobs_controller.create);
+app.post('/create/job', jobs_controller.create);
 app.get('/jobs', jobs_controller.getAll);
 app.get('/job', jobs_controller.getOne);
 app.put('/update/job/:id', jobs_controller.update); // :id is the job id (don't take it off)
 app.delete('/delete/job/:id', jobs_controller.destroy); // :id is the job id (don't take it off)
 
 // Reviews management
-app.post('/review', reviews_controller.create);
+app.post('/create/review', reviews_controller.create);
 app.get('/reviews', reviews_controller.getAll);
-app.get('/reviews/:id', reviews_controller.getReviewsForCaregiver); // read comment in the controller (don't take off :id)
+app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); // read comment in the controller (don't take off :id)
 
 // Geolocation
 app.get('/location/user', googleMaps_controller.getUserlocation);

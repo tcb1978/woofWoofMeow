@@ -2,8 +2,6 @@ module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
     const { animal_name, breed, age, weight, sex, animal_avatar, animal_about_message } = req.body;
-    // console.log(req.body);
-    // console.log(req.session.user.user_id);
 
     db.create_animal([animal_name, breed, age, weight, sex, animal_avatar, animal_about_message, req.session.user.user_id ])
       .then( (animal) => res.status(200).json(animal) )
@@ -12,7 +10,6 @@ module.exports = {
 
   getUserAnimals: (req, res, next) => {
     const db = req.app.get('db');
-    console.log(req.body);
 
     db.get_animals_by_user([ req.session.user.user_id ])
       .then( (animals) => res.status(200).json(animals) )
@@ -21,8 +18,9 @@ module.exports = {
 
   getOne: (req, res, next) => {
     const db = req.app.get('db');
-    console.log( req.session.user );
-    db.get_animal([ req.session.user.user_id ])
+    const { petowner_id } = req.params;
+    
+    db.get_animal([ petowner_id || req.session.user.user_id ])
       .then( (animal) => { res.status(200).json(animal); console.log('Animal', animal); } )
       .catch( (error) => res.status(500).send(error) )
   },

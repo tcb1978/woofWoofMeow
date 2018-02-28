@@ -27,7 +27,6 @@ class CareGiverSearch extends Component {
         const { proximity, time } = this.state;
         axios.get(`/caregivers/search?proximity=${proximity}&time=${time}`).then( caregivers => {
 
-            console.log( this.props.user );
             console.log( 'Caregivers', caregivers.data );
             console.log( 'Proximity', proximity );
             console.log( 'Time', time );

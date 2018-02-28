@@ -115,7 +115,7 @@ class Signup extends Component {
 
                 // If the user is petowner, an animal is created in the animal table with the input data
                 if (user.data.title === 'petowner') {
-                    axios.post('/animal/create', {
+                    axios.post('/create/animal', {
                         animal_name, breed, age, weight, sex, animal_avatar, animal_about_message
                     }).then( animal => {
                         // console.log(animal);

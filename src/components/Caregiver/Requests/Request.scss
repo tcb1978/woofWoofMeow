@@ -15,9 +15,10 @@
     }
 
     .request-row-box {
-        width: 80%;
-        // display: flex;
+        // width: 80%;
+        display: flex;
         // justify-content: center;
+        flex-direction: column;
         margin: auto;
         padding: 15px;
         border-radius: 5px;

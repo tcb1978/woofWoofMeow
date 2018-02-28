@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser, logout } from '../../redux/ducks/reducer';
 

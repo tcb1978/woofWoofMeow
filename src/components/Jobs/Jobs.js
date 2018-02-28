@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../hoc/Aux';
 import './Jobs.css';
 import axios from 'axios';
-import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
 
 import Job from './Job/Job';
@@ -17,15 +16,26 @@ class Jobs extends Component {
 
     componentDidMount () {
         const { user } = this.props;
-        if ( user.title = 'petowner' ) {
+        if ( user.title === 'petowner' ) {
             axios.get(`/petowner/jobs/interested`).then( jobs => {
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
-        } else {
+        } 
+        if ( user.title === 'caregiver' ) {
             axios.get(`/caregiver/jobs/interested`).then( jobs => {
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
         }
+    }
+
+    removeJob = ( id ) => {
+        axios.delete(`/delete/job/${id}`).then(() => {
+            axios.get(`/caregiver/jobs/interested`).then( jobs => {
+
+                this.setState({ jobs: jobs.data });
+
+            }).catch(error => console.log(error));
+        }).catch(error => console.log(error));
     }
 
     showChat () {
@@ -33,6 +43,7 @@ class Jobs extends Component {
     }
 
     render() {
+        console.log( 'Jobs', this.state.jobs );
         const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -40,8 +51,9 @@ class Jobs extends Component {
             return <Job key={ job.job_id }
                         job={ job }
                         months={ months }
-                        days={ days } />
-        })
+                        days={ days } 
+                        removeJob={ this.removeJob }/>
+        });
 
         return (
             <Aux>
@@ -51,7 +63,7 @@ class Jobs extends Component {
                         <h1>Jobs</h1>
                         <ul className="job-list">
 
-                            { listOfJobs.length ? listOfJobs : <div>No Appointments</div> }
+                            { listOfJobs.length ? listOfJobs : <div style={{ color: 'white' }}>No Appointments</div> }
 
                         </ul>
 
