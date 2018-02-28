@@ -114,14 +114,14 @@ class Requests extends Component {
                 <div className="Requests">
                     <h1>Requests</h1>
                     <div className="request-row-box">
-                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
+                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto', display:'flex' }}>No requests</div> }
                     </div>
                 </div>
 
                 <div className="Interested">
                     <h1>Interested</h1>
                     <div className="interested-row-box">
-                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
+                        {listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto', display:'flex'  }}>No interests</div> }
                     </div>
                 </div>
             </Aux>
