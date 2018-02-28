@@ -11,7 +11,8 @@ class Signin extends Component {
         this.state = {
             email: '',
             password: '',
-            errorMessage: ''
+            errorMessage: '',
+            showPopup: false
         }
     }
 
@@ -29,7 +30,7 @@ class Signin extends Component {
             } else if (error.response.status === 403) {
                 this.setState({ errorMessage: 'This user is not registered' })
             }
-            console.log(error);
+            this.setState({showPopup: true})
         })
     }
 
@@ -51,6 +52,10 @@ class Signin extends Component {
                                 <input className="form-control" placeholder="password" type="password" onChange={(e) => this.setState({ password: e.target.value })} />
                                 </div>
                             </div>
+                            {this.state.showPopup ? 
+                                <div className="form-element errorMessage">{ this.state.errorMessage }</div> : null
+                            }
+
                             <div className="form-element flex">
                                 <button className="form-control btn btn-primary mb-2 login" onClick={this.login}>Log in</button>
                             </div>
