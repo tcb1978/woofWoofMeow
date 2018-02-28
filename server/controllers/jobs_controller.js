@@ -30,7 +30,7 @@ module.exports = {
     // console.log('walkDurationInHours ', walkDurationInHours);
     const serviceTime = convertedTime + walkDurationInHours;
 
-    db.create_job([ caregiver_id, req.session.user.user_id, month, day, year, begin_time, serviceTime, request_status, service ])
+    db.create_job([ caregiver_id, req.session.user.user_id, month, day, year, begin_time, serviceTime, request_status, service, null, null ])
       .then( (job) => res.status(200).json(job) )
       .catch( (error) => res.status(500).send(error) )
   },

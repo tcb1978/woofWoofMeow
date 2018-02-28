@@ -15,9 +15,10 @@
     }
 
     .request-row-box {
-        width: 80%;
-        // display: flex;
+        // width: 80%;
+        display: flex;
         // justify-content: center;
+        flex-direction: column;
         margin: auto;
         padding: 15px;
         border-radius: 5px;
@@ -86,8 +87,8 @@
     }
     .interested-row-box {
         width: 80%;
-        // display: flex;
-        // justify-content: center;
+        display: flex;
+        justify-content: center;
         margin: auto;
         background-color: #fff;
         padding: 15px;

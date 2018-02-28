@@ -1,7 +1,7 @@
 import React from 'react';
 import './Layout.css'
 import Aux from '../../hoc/Aux';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 // import routes from '../../routes/routes';
 // import Signup from '../../components/Signup/Signup';
@@ -12,12 +12,11 @@ const Layout = (props) => {
     return (
         <Aux>
             <nav className="Nav">
-                <div className="NavLeft">WoofWoofMeow</div>
+                <div className="NavLeft">WoofWalks</div>
                 <div className="NavRight">
                     <Scroll type="id" element="_About">About </Scroll>
                     <Scroll type="id" element="_Services">Services </Scroll>
                     <Scroll type="id" element="_GetStarted">Sign Up</Scroll>
-                    {/* <Link to="/signup">Sign Up </Link> */}
                     <Link to="/signin">Sign In </Link>
                 </div>
             </nav>
@@ -161,7 +160,6 @@ const Layout = (props) => {
                     </div>
                 </div>
             </footer>
-            { props.user.first_name && <Redirect to="/profile"/> }
         </Aux>
     )
 }

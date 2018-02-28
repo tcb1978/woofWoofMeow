@@ -1,4 +1,4 @@
-# WoofWalkin.us
+# WoofWalks.us
 
 Dog walking appointment app
 

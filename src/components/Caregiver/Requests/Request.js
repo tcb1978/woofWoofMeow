@@ -14,16 +14,12 @@ class Requests extends Component {
         }
     }
     componentDidMount() {
-        console.log( 'User', this.props.user );
         axios.all([
             axios.get(`/caregiver/jobs/requested`),
             axios.get(`/caregiver/jobs/interested`),
             axios.get(`/caregiver/jobs`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
-            console.log('Requests', requestsRes.data);
-            console.log('Interested', interestedRes.data);
-            console.log('Jobs', jobsRes.data);
             this.setState({ 
                 requests: requestsRes.data, 
                 interested: interestedRes.data,
@@ -118,14 +114,14 @@ class Requests extends Component {
                 <div className="Requests">
                     <h1>Requests</h1>
                     <div className="request-row-box">
-                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
+                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto', display:'flex' }}>No requests</div> }
                     </div>
                 </div>
 
                 <div className="Interested">
                     <h1>Interested</h1>
                     <div className="interested-row-box">
-                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
+                        {listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto', display:'flex'  }}>No interests</div> }
                     </div>
                 </div>
             </Aux>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './Signup.css';
 import Aux from '../../hoc/Aux';
 import axios from 'axios';
 import { register } from '../../redux/ducks/reducer';
 import { connect } from 'react-redux';
-import './Signup.css';
+
 import UserUploader from '../Uploader/UserUploader';
 import AnimalUploader from '../Uploader/AnimalUploader';
 
@@ -114,7 +115,7 @@ class Signup extends Component {
 
                 // If the user is petowner, an animal is created in the animal table with the input data
                 if (user.data.title === 'petowner') {
-                    axios.post('/animal/create', {
+                    axios.post('/create/animal', {
                         animal_name, breed, age, weight, sex, animal_avatar, animal_about_message
                     }).then(animal => {
                         // console.log(animal);
