@@ -16,9 +16,9 @@ export default class Petowner extends Component {
         <Bio logout={ this.props.logout }/>
         <PetBio />
         <CareGiverSearch />
-        <NewReview />
         <Jobs />
         <History />
+        <NewReview />
       </Aux>
     );
   }

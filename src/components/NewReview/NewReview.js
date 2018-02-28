@@ -58,11 +58,11 @@ export default class NewReview extends Component {
                     <div className="Form-wrapper">
                         <form>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput2">Review:</label>
+                            <div className="form-group">
+                                <label>Review:</label>
                                 <textarea
                                     onChange={(event) => this.onHandleReviewChange(event) }
-                                    class="form-control"
+                                    className="form-control"
                                     rows="5"
                                     id="comment"
                                     title="">
