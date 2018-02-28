@@ -9,6 +9,7 @@ import UpdateMessage from '../components/UpdateMessage/UpdateMessage'
 import NotFound from '../components/NotFound/NotFound';
 
 
+
 export default (
   <Switch>
     <Route exact path="/" component={ Layout }/>
@@ -18,7 +19,7 @@ export default (
     <Route path="/profile" component={ Profile }/>
     <Route path="/chat" component={ Chat }/>
     <Route path="/update-message" component={ UpdateMessage } />
-
+    
     <Route path="*" component={ NotFound }/>
   </Switch>
 )

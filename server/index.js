@@ -13,6 +13,9 @@ const app = express();
 app.use(bodyParser.json());
 // app.use( cors() );
 
+//express.static pointing to build folder
+app.use(express.static(`${__dirname}/../build`));
+
 // AWS declare
 // AWS.config.update should be above declaring s3 variable.
 // Use region only if you want to get something from AWS.
