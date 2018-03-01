@@ -87,7 +87,7 @@ class Requests extends Component {
                     <date>{job.month}/{job.day}/{job.year}</date>
                 </div>
                 <div className="space-around">
-                    <button onClick={ () => this.cancelRequest(job.job_id) } className="btn cancel">Cancel</button>
+                    <button onClick={ () => this.cancelRequest(job.job_id) } className="btn">Cancel</button>
                 </div>
             </div>
         ));

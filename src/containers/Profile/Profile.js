@@ -20,8 +20,9 @@ class Profile extends Component {
         this.props.history.push('/');
       }
     }).catch(error => console.log(error));
+    
     // Temporary redirect so I can see the UpdateMessage component
-    this.props.history.push('/update-message');
+    // this.props.history.push('/update-message');
   }
 
   logout = () => {

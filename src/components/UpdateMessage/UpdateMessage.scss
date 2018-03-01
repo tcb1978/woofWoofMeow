@@ -13,6 +13,9 @@
     textarea {
         resize: none;
     }
+    textarea::placeholder {
+        color: #a9d1ff;
+    }
 
     .widget {
         min-width: 350px;
@@ -94,6 +97,10 @@
             span {
                 font-size: 6rem;
             }
+            caption {
+                color: #a9d1ff;
+                font-size: 18px;
+            }
         }
 
         form {
@@ -105,6 +112,7 @@
         }
 
         button {
+            background: #517cf7;
             max-width: 70px;
             margin: auto;
             cursor: pointer;

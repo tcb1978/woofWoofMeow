@@ -61,6 +61,11 @@
                     max-height: 40px;
                 }
             }
+
+            .btn {
+                color: white;
+                background: #c2c5d2;
+            }
         }
     }
 
@@ -262,7 +267,7 @@
     }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 520px) {
     .StatusContainer .RequestsContainer .status-row,
     .StatusContainer .InterestedContainer .status-row,
     .StatusContainer .MessageMapContainer .status-row {
