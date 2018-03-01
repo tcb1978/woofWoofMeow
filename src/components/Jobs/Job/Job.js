@@ -7,6 +7,7 @@ import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
 
 import Payment from '../../Payment/Payment';
+import Chat from '../../Chat/Chat'
 
 class Job extends Component {
     constructor () {
@@ -19,6 +20,7 @@ class Job extends Component {
             isCheckedin: false,
             isHidden: false,
             isCancelling: false,
+            isMessaging: false
         }
     }
     componentDidMount () {
@@ -35,6 +37,10 @@ class Job extends Component {
 
     showDetails () {
         this.setState(prevState => ({ isHidden: !prevState.isHidden }));
+    }
+
+    showChat () {
+        this.setState(prevState => ({ isMessaging: !prevState.isMessaging }));
     }
 
     checkinCheckout () {
@@ -65,7 +71,7 @@ class Job extends Component {
 
     render() {
         const { user, job, months, days, removeJob } = this.props;
-        const { animals, checkinTime, checkoutTime, isCheckedIn, cancelMessage, isHidden, isCancelling } = this.state;
+        const { animals, checkinTime, checkoutTime, isCheckedIn, cancelMessage, isHidden, isCancelling, isMessaging } = this.state;
 
         return (
             <Aux>
@@ -77,7 +83,7 @@ class Job extends Component {
                                 <div className="name">{ job.first_name }</div>
                             </div>
                             <div className="date" onClick={() => this.showDetails()}>{ months[job.month] } { job.day }</div>
-                            <div><button className="btn message">Message</button></div>
+                            <div><button className="btn message" onClick={() => this.showChat()}>Message</button></div>
                         </div>
                     ) : (
                         <div className="job-tab-caregiver">
@@ -167,6 +173,8 @@ class Job extends Component {
                             ) }
                         </div>
                     ) }
+
+                    { isMessaging && <Chat /> }
                 </li>
             </Aux>
         )
