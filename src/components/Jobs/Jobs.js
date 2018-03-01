@@ -17,12 +17,14 @@ class Jobs extends Component {
     componentDidMount () {
         const { user } = this.props;
         if ( user.title === 'petowner' ) {
-            axios.get(`/caregiver/jobs/accepted`).then( jobs => {
+            axios.get(`/petowner/jobs/accepted`).then( jobs => {
+                console.log( 'Petowner jobs', jobs.data );
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
         } 
         if ( user.title === 'caregiver' ) {
             axios.get(`/caregiver/jobs/accepted`).then( jobs => {
+                console.log( 'Caregiver jobs', jobs.data );
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
         }
@@ -43,7 +45,6 @@ class Jobs extends Component {
     }
 
     render() {
-        console.log( 'Jobs', this.state.jobs );
         const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 

@@ -40,14 +40,16 @@ class Job extends Component {
     checkinCheckout () {
         // Sending a body is unnecessary. The time updates on the backend.
         if ( !this.state.isCheckedIn ) {
-            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkin`).then( time => {
+            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkin`)
+            .then( time => {
                 this.setState(prevState => ({ 
                     isCheckedIn: !prevState.isCheckedIn,
                     checkinTime: time.data[0].checkin_time
                 }));
             }).catch(error => console.log(error));
         } else {
-            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkout`).then( time => {
+            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkout`)
+            .then( time => {
                 this.setState(prevState => ({ 
                     isCheckedIn: !prevState.isCheckedIn,
                     checkoutTime: time.data[0].checkout_time
@@ -156,7 +158,6 @@ class Job extends Component {
                             </div>
                             ) : (
                             <div className="Cancel">
-                                {/* <div>Cancel</div> */}
                                 <textarea className="cancel-text" name="message" rows="2" cols="80" placeholder="Cancel message..." onChange={(e) => this.handleChange('cancelMessage', e)}></textarea>
                                 <button className="cancel-btn btn" onClick={ () => cancelMessage.length ? removeJob(job.job_id) : null }>Confirm</button>
                                 <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Take back</button>

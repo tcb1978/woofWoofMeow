@@ -94,15 +94,15 @@ app.delete('/delete/user', users_controller.destroy);
 app.get('/caregivers/search', search_controller.getFiltered);
 
 // Petowners management
-app.get('/petowner/jobs', petowners_controller.getPetownerJobs);
-app.get('/petowner/jobs/requested', petowners_controller.getPetownersJobsRequested);
-app.get('/caregiver/jobs/accepted', petowners_controller.getPetownersJobsAccepted);
+app.get('/petowner/jobs', petowners_controller.getJobs);
+app.get('/petowner/jobs/requested', petowners_controller.getJobsRequested);
+app.get('/petowner/jobs/accepted', petowners_controller.getJobsAccepted);
 app.get('/petowner/jobs/history', caregivers_controller.getJobHistory);
 
 // Caregivers management
-app.get('/caregiver/jobs', caregivers_controller.getCaregiverJobs);
-app.get('/caregiver/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
-app.get('/caregiver/jobs/accepted', caregivers_controller.getCaregiversJobsAccepted);
+app.get('/caregiver/jobs', caregivers_controller.getJobs);
+app.get('/caregiver/jobs/requested', caregivers_controller.getJobsRequested);
+app.get('/caregiver/jobs/accepted', caregivers_controller.getJobsAccepted);
 app.get('/caregiver/jobs/history', caregivers_controller.getJobHistory);
 app.put('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
 app.put('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkout);

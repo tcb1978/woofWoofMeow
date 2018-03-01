@@ -1,5 +1,5 @@
 module.exports = {
-    getCaregiverJobs: (req, res, next) => {
+    getJobs: (req, res, next) => {
         const db = req.app.get('db');
 
         db.get_caregiver_jobs([ req.session.user.user_id ]).then( jobs => {
@@ -9,30 +9,30 @@ module.exports = {
         }).catch((error) => console.log(error))
     },
 
-    getCaregiversJobsRequested: (req, res, next) => {
+    getJobsRequested: (req, res, next) => {
         const db = req.app.get('db');
 
-        db.get_caregivers_jobs_requested([ req.session.user.user_id ]).then( jobs => { 
+        db.get_caregiver_jobs_requested([ req.session.user.user_id ]).then( jobs => { 
 
             res.status(200).json(jobs);
 
-        }).catch( (error) => console.log(error) )
+        }).catch(error => console.log(error));
     },
 
-    getCaregiversJobsAccepted: (req, res, next) => {
+    getJobsAccepted: (req, res, next) => {
         const db = req.app.get('db');
-
-        db.get_caregivers_jobs_interested([ req.session.user.user_id ]).then( jobs => {
+        
+        db.get_caregiver_jobs_accepted([ req.session.user.user_id ]).then( jobs => {
 
             res.status(200).json(jobs);
 
-        }).catch( (error) => console.log(error) )
+        }).catch(error => console.log(error));
     },
 
     getJobHistory: (req, res, next) => {
         const db = req.app.get('db');
     
-        db.get_caregiver_job_history( [req.session.user.user_id] ).then( jobs => {
+        db.get_caregiver_job_history([ req.session.user.user_id ]).then( jobs => {
 
             res.status(200).json(jobs);
 

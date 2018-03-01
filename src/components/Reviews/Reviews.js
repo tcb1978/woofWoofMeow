@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 class Reviews extends Component {
     constructor(props) {
         super(props);
-        
         this.state = {
             rating: '',
             date: '',
