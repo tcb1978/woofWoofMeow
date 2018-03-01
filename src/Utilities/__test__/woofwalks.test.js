@@ -35,3 +35,7 @@ test('verify friday value is correct', () => {
 test('verify saturday value is correct', () => {
     expect(woofwalks.checkSaturday(7)).toBe(6)
 })
+
+test('verify sunday value is correct', () => {
+    expect(woofwalks.checkSunday(true)).not.toBe(false)
+})
