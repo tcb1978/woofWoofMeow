@@ -8,5 +8,19 @@ module.exports = {
             time = time.replace(hours, (hours + 12));
         }
         return time.replace(/(am|pm)/, '');
+    },
+
+    isUserCaregiver(user) {
+        let title = user.title
+        if( title !== 'caregiver' ) {
+            return false
+        }
+    },
+
+    isUserPetOwner(user) {
+        let title = user.title
+        if (title !== 'petowner') {
+            return false
+        }
     }
 }
