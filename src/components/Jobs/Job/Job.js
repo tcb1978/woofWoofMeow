@@ -116,9 +116,10 @@ class Job extends Component {
                                         allowFullScreen />
                                 </div>
                             </div>
+                            { !job.checkin_time && 
                             <div className="Cancel">
                                 <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Cancel</button>
-                            </div>
+                            </div> }
                         </div>
                     ) : (
                         isHidden &&

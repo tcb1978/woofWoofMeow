@@ -15,6 +15,12 @@ class UpdateMessage extends Component {
         this.setState({ [property]: value });
     }
 
+   sendMessage () {
+    //    axios.post(`/`).then( message => {
+
+    //    }).catch(error => console.log(error));
+   }
+
     render () {
         const { user } = this.props;
 
@@ -39,7 +45,7 @@ class UpdateMessage extends Component {
                         <form classname="form-group">
                             <textarea className="form-control" placeholder="Text" onChange={(e) => this.handleChange('message', e.target.value)}></textarea>
                         </form>
-                        <button type="submit" className="btn btn-primary">Send</button>
+                        <button type="submit" className="btn btn-primary" onClick={() => this.sendMessage()}>Send</button>
                     </div>
                     <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
                 </div>

@@ -63,6 +63,11 @@
                     border: 1px solid;
                     border-radius: 100%;
                     margin-right: 15px;
+                    overflow: hidden;
+                    img {
+                        max-width: 100%;
+                        min-height: 100%;
+                    }
                 }
 
                 .sender-name {

@@ -86,8 +86,15 @@
         display: flex;
         flex-direction: column;
         margin: 0;
-        padding: 0;
+        padding: 30px;
         background: #e9edf3;
+
+        h3 {
+            color: #7EB9FF;
+            margin: 0;
+            padding: 0 0 28px 0; 
+        }
+
         .StartFinish {
             display: flex;
             justify-content: space-around;
@@ -117,6 +124,11 @@
                 border-radius: 8px;
                 background: white;
             }
+        }
+
+        .btn {
+            color: white;
+            background: #c2c5d2;
         }
     }
 
