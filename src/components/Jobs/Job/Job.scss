@@ -232,7 +232,13 @@
     .details-caregiver .StartFinish {
         flex-direction: column;
         .start {
-            margin-bottom: 10px;
+            margin-bottom: 25px;
+        }
+    }
+    .details-petowner .StartFinish {
+        flex-direction: column;
+        .start {
+            margin-bottom: 25px;
         }
     }
 }

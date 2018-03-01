@@ -100,8 +100,8 @@ class Job extends Component {
                         <div className="details-petowner">
                             <h3>{ days[job.day % 7] }</h3>
                             <div className="StartFinish">
-                                <div>Start : <time>{ checkinTime ? checkinTime : '-' }</time></div>
-                                <div>Finish : <time>{ checkoutTime ? checkinTime : '-'  }</time></div>
+                                <div className="start">Start : <time>{ checkinTime ? checkinTime : '-' }</time></div>
+                                <div className="finish">Finish : <time>{ checkoutTime ? checkinTime : '-'  }</time></div>
                             </div>
                             <div className="GoogleMap">
                                 <div className="map">
