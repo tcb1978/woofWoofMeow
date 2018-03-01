@@ -26,7 +26,7 @@ const UpdateMessage = (props) => {
                     </form>
                     <button type="submit" className="btn btn-primary">Send</button>
                 </div>
-                <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
+                <div className="all-rights-reserved"><span>2018 &copy; All rights reserved.</span></div>
             </div>
         </Aux>
     )
