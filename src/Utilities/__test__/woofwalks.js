@@ -1,9 +1,6 @@
 module.exports = {
     timeConvertion: function (time) {
-<<<<<<< HEAD
         
-=======
->>>>>>> 0632d7d7aff715f0c07d24b1fa8689ded3607ced
         var hours = parseInt(time.substr(0, 2));
         if (time.indexOf('am') != -1 && hours == 12) {
             time = time.replace('12', '0');
@@ -14,6 +11,20 @@ module.exports = {
         return time.replace(/(am|pm)/, '');
     },
 
+    isUserCaregiver(user) {
+        let title = user.title
+        if( title !== 'caregiver' ) {
+            return false
+        }
+    },
+
+    isUserPetOwner(user) {
+        let title = user.title
+        if (title !== 'petowner') {
+            return false
+        }
+    },
+    
     checkMonday: function (monday) {
         monday = 1
         let date = new Date
