@@ -1,0 +1,96 @@
+{
+	"info": {
+		"name": "testing",
+		"_postman_id": "eeef5005-8b20-4b55-afb6-f20bdcbc5e9f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3050/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4c920d3-7456-45aa-b261-d555388f136a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3050/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3050/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "097ff3ad-8e05-4fdf-8c60-8be3d2602414",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cmail1\",\n\t\"password\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3050/animals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"animals"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

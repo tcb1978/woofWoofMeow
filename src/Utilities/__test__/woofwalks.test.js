@@ -1,5 +1,7 @@
 const woofwalks = require('./woofwalks');
 
+/////////////////////////////////////////////////////////////////////
+// Sergey Sherstobitov unit tests
 test('Time convertion', () => {
     expect(woofwalks.timeConvertion('4:00 pm')).toBe('16:00 ');
 })
@@ -19,6 +21,8 @@ test('verify petwoner has title "petowner"', () => {
 test('verify caregiver has title "caregiver"', () => {
     expect(woofwalks.isUserCaregiver(false)).not.toBe(true)
  })
+
+/////////////////////////////////////////////////////////////////////
 
 test('verify monday value is correct', () => {
     expect(woofwalks.checkMonday(false)).toBe(true)
