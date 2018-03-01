@@ -17,7 +17,7 @@ class History extends Component {
     componentDidMount () {
         const { user } = this.props;
         if ( user.title === 'petowner' ) {
-            axios.get(`/caregiver/jobs/history`).then( jobs => {
+            axios.get(`/petowner/jobs/history`).then( jobs => {
                 console.log('History', jobs.data);
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
@@ -47,7 +47,7 @@ class History extends Component {
                     <h1>History</h1>
                     <div className="HistoryDropDown">
 
-                            { listOfPastJobs.length ? listOfPastJobs : <div>No Appointments</div> }
+                        { listOfPastJobs.length ? listOfPastJobs : <div>No Appointments</div> }
 
                     </div>
                 </div>

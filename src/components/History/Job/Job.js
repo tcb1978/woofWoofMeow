@@ -9,11 +9,12 @@ class Job extends Component {
         super();
         this.state = { 
             animals: [],
-            isHidden: false
+            isHidden: true
         }
     }
     componentDidMount () {
-        if ( this.props.user.title === 'caregiver' ) {
+        const { user } = this.props;
+        if ( user.title === 'caregiver' || user.title === 'petowner' ) {
             axios.get(`/animal/${this.props.job.petowner_id}`).then( animals => {
                 this.setState({ animals: animals.data });
             }).catch(error => console.log(error));
@@ -32,33 +33,49 @@ class Job extends Component {
         return (
             <Aux>
                 <li className="job">
-                    <div className="Appointment tab">
-                        <div className="avatar"></div>
-                        <div className="day"><h3>March 24</h3></div>
-                        <div className="time"><h3>2:30pm - 3:00pm</h3></div>
+                    <div className="job-tab">
+                        <div className="AvatarName">
+                            <div className="avatar"><img src={job.avatar} alt="avatar"/></div>
+                            <div className="name">{ job.first_name }</div>
+                        </div>
+                        <div className="day" onClick={() => this.showDetails()}><h3>{months[job.month]} {job.day}</h3></div>
+                        <div className="time"><h3>{job.begin_time} - {job.end_time}</h3></div>
                     </div>
 
-                    <div className="AppointmentHistory">
+                    { !isHidden &&
+                    <div className="details">
+                        <div className="StartFinish">
+                            <div className="start">Start : <time>{ job.checkin_time }</time></div>
+                            <div className="finish">Finish : <time>{ job.checkout_time }</time></div>
+                        </div>
+
                         <div className="AvatarDisplay">
-                            <div className="AnimalAvatar"><span>Dog's Name</span></div>
-                            <div className="AnimalAvatar"><span>Dog's Name</span></div>
-                            <div className="AnimalAvatar"><span>Dog's Name</span></div>
+                            { animals && animals.map( animal => (
+                            <div key={animal.animal_id}>
+                                <div className="AnimalAvatar"><img src={ animal.animal_avatar } alt="avatar"/></div>
+                                <div className="AnimalName">{ animal.animal_name }</div>
+                            </div>
+                            ))}
                         </div>
-                        <div className="TodaysService">
-                            <div className="ServiceLength">30 min </div>
-                            <div className="WalkOrPark"> walk</div>
+
+                        <div className="Service">
+                            <div className="ServiceLength">{ job.service.slice(0,6) } </div>
+                            <div className="WalkOrPark"> { job.service.slice(10, job.service.length) }</div>
                         </div>
+
+                        { user.title === 'caregiver' &&
                         <div className="AddressContact">
                             <div className="Address">
                                 <div>Address</div>
-                                1234 N. Somekinda Ave.
-                                            </div>
+                                {job.street_address}
+                            </div>
                             <div className="OwnerPhone">
                                 <div>Owners's Phone</div>
-                                555-555-5555
+                                {job.phone}
                             </div>
-                        </div>
+                        </div> }
                     </div> 
+                    }
                 </li>
             </Aux>
         )

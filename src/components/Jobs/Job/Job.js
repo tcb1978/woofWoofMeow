@@ -54,6 +54,7 @@ class Job extends Component {
                     isCheckedIn: !prevState.isCheckedIn,
                     checkoutTime: time.data[0].checkout_time
                 }));
+                // this.props.history.push('/update');
             }).catch(error => console.log(error));
         }
     }
@@ -70,20 +71,20 @@ class Job extends Component {
             <Aux>
                 <li className="job">
                     { user.title === 'petowner' ? (
-                        <div className="job-item-petowner">
+                        <div className="job-tab-petowner">
                             <div className="AvatarName">
-                                <div className="avatar"></div>
+                                <div className="avatar"><img src={job.avatar} alt="avatar"/></div>
                                 <div className="name">{ job.first_name }</div>
                             </div>
                             <div className="date" onClick={() => this.showDetails()}>{ months[job.month] } { job.day }</div>
                             <div><button className="btn message">Message</button></div>
                         </div>
                     ) : (
-                        <div className="job-item-caregiver">
+                        <div className="job-tab-caregiver">
                             <img className="paw" src={ paw } alt="paw"/>
                             <div className="date" onClick={() => this.showDetails()}>{ months[job.month] } { job.day }</div>
                             <div className="time">{job.begin_time} - {job.end_time}</div>
-                            <div>
+                            <div classname="btn-container">
                                 { !checkoutTime ?
                                     !isCheckedIn
                                     ? <button className="btn" onClick={ () => this.checkinCheckout() }>Check In</button>

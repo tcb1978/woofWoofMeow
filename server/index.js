@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 // const socket = require('socket.io');
-require('dotenv').config();
 const multer = require('multer');
 const AWS = require('aws-sdk');
+require('dotenv').config();
 
 const app = express();
 
@@ -97,7 +97,7 @@ app.get('/caregivers/search', search_controller.getFiltered);
 app.get('/petowner/jobs', petowners_controller.getJobs);
 app.get('/petowner/jobs/requested', petowners_controller.getJobsRequested);
 app.get('/petowner/jobs/accepted', petowners_controller.getJobsAccepted);
-app.get('/petowner/jobs/history', caregivers_controller.getJobHistory);
+app.get('/petowner/jobs/history', petowners_controller.getJobHistory);
 
 // Caregivers management
 app.get('/caregiver/jobs', caregivers_controller.getJobs);
