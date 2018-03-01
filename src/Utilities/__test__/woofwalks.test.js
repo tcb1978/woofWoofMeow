@@ -47,3 +47,25 @@ test('verify saturday value is correct', () => {
 test('verify sunday value is correct', () => {
     expect(woofwalks.checkSunday(true)).not.toBe(false)
 })
+
+// -----------
+
+test('Login', () => {
+    expect(woofwalks.login('cmail1', '1')).toBe('you got it');
+})
+
+test('Login', () => {
+    expect(woofwalks.login('cmail1', '2')).toBe('wrong password');
+})
+
+test('Login', () => {
+    expect(woofwalks.login('cmail2', '1')).toBe('wrong user');
+})
+
+test('Service to minutes', () => {
+    expect(woofwalks.getMinutes('30 minute walk')).toBe(0.5);
+})
+
+test('Service to minutes', () => {
+    expect(woofwalks.getMinutes('60 minute walk')).toBe(1);
+})

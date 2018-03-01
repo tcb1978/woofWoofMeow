@@ -79,5 +79,24 @@ module.exports = {
         if (date != Sunday) {
             return true
         }
+    },
+
+    // ------------
+    
+    login: function(username, password) {
+        if (username === 'cmail1' && password === '1') {
+            return 'you got it'
+        } else if (username !== 'cmail1') {
+            return 'wrong user'
+        } else {return 'wrong password'}
+    },
+
+    getMinutes: function(service) {
+        const minutes = parseInt(service.split(' ')[0])
+        let walkDurationInHours = 0
+        if (minutes === 30) {
+            walkDurationInHours = 0.5
+        } else { walkDurationInHours = 1 }
+        return walkDurationInHours
     }
 }
