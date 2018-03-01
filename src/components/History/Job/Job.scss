@@ -1,0 +1,134 @@
+.job-tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    outline: 2px solid #dedddc;
+
+    h3 { 
+        font-size: 22px;
+        margin: 0; 
+    }
+    
+    .AvatarName {
+        display: flex;
+        align-items: center;
+        .avatar {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin-right: 12px;
+            overflow: hidden;
+            background-color: #5fa8ff;
+            img {
+                max-width: 100%;
+                min-height: 100%;
+            }
+        }
+        .name {
+            font-size: 20px; 
+        }
+    }
+}
+.job-tab > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.details {
+    background-color: #e9edf3;
+    padding: 30px;
+
+    .StartFinish {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 25px;
+        time {
+            width: 300px;
+            border-radius: 5px;
+            color: #666666;
+            font-size: 20px;
+            padding: 7px 14px;
+            background-color: rgb(247, 250, 255);
+        }
+    }
+    .StartFinish > div { font-size: 18px; }
+
+    .AvatarDisplay {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+        .AnimalAvatar {
+            width: 12rem;
+            height: 12rem;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            border: 1px solid;
+            overflow: hidden;
+            img {
+                max-height: 100%;
+            }
+        }
+        .AnimalName {
+            text-align: center;
+            font-size: 2.2rem;
+        }
+    }
+
+    .Service {
+        max-width: 300px;
+        padding: 10px 0;
+        margin: auto;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        background: #fff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        display: flex;
+        font-size: 4rem;
+        .ServiceLength {
+            color: #6aa6ef;
+            padding: 0 10px 0 0;
+        }
+    }
+    
+
+    .AddressContact {
+        display: flex;
+        justify-content: space-around;
+        font-size: 25px;
+        font-weight: 100;
+        h1 {
+            color: #595857;
+            padding: 0px 0;
+        }
+        .Address,
+        .OwnerPhone {
+            div {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .details .StartFinish {
+        flex-direction: column;
+        .start {
+            margin-bottom: 25px;
+        }
+    }
+}
+
+@media (max-width: 545px) {
+    .AddressContact { 
+        flex-direction: column;
+        .Address{
+            margin-bottom: 20px;
+        }
+    }
+}

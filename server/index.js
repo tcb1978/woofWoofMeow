@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 // const socket = require('socket.io');
-require('dotenv').config();
 const multer = require('multer');
 const AWS = require('aws-sdk');
+require('dotenv').config();
 
 const app = express();
 
@@ -81,6 +81,7 @@ const availability_controller = require('./controllers/availability_controller')
 const jobs_controller = require('./controllers/jobs_controller');
 const reviews_controller = require('./controllers/reviews_controller');
 const googleMaps_controller = require('./controllers/googleMaps_controller');
+const stripe_controller = require('./controllers/stripe_controller');
 
 // Users management
 app.post('/register', users_controller.register);
@@ -96,16 +97,18 @@ app.delete('/delete/user', users_controller.destroy);
 app.get('/caregivers/search', search_controller.getFiltered);
 
 // Petowners management
-app.get('/petowner/jobs', petowners_controller.getPetownerJobs);
-app.get('/petowner/jobs/requested', petowners_controller.getPetownersJobsRequested);
-app.get('/petowner/jobs/interested', petowners_controller.getPetownersJobsInterested);
+app.get('/petowner/jobs', petowners_controller.getJobs);
+app.get('/petowner/jobs/requested', petowners_controller.getJobsRequested);
+app.get('/petowner/jobs/accepted', petowners_controller.getJobsAccepted);
+app.get('/petowner/jobs/history', petowners_controller.getJobHistory);
 
 // Caregivers management
-app.get('/caregiver/jobs', caregivers_controller.getCaregiverJobs);
-app.get('/caregiver/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
-app.get('/caregiver/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
-app.get('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
-app.get('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkin);
+app.get('/caregiver/jobs', caregivers_controller.getJobs);
+app.get('/caregiver/jobs/requested', caregivers_controller.getJobsRequested);
+app.get('/caregiver/jobs/accepted', caregivers_controller.getJobsAccepted);
+app.get('/caregiver/jobs/history', caregivers_controller.getJobHistory);
+app.put('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
+app.put('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkout);
 
 // Animals management
 app.post('/create/animal', animals_controller.create);
@@ -135,6 +138,9 @@ app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); //
 // Geolocation
 app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
+
+// Stripe
+app.post('/save-stripe-token', stripe_controller.paymentApi);
 
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );

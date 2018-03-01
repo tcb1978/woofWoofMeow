@@ -61,6 +61,11 @@
                     max-height: 40px;
                 }
             }
+
+            .btn {
+                color: white;
+                background: #c2c5d2;
+            }
         }
     }
 
@@ -192,15 +197,8 @@
             background-color: #e1e3e5;
 
             .status-row {
-                
                 width: 100%;
-
-                .avatar {}
-
-                .name {}
-
-                .date {}
-
+                
                 .StartFinish {
                     padding: 1.5% 0;
                     font-size: large;
@@ -262,7 +260,7 @@
     }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 520px) {
     .StatusContainer .RequestsContainer .status-row,
     .StatusContainer .InterestedContainer .status-row,
     .StatusContainer .MessageMapContainer .status-row {

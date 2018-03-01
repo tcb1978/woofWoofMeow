@@ -6,6 +6,8 @@ import axios from 'axios';
 import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
 
+import Payment from '../../Payment/Payment';
+
 class Job extends Component {
     constructor () {
         super();
@@ -35,29 +37,25 @@ class Job extends Component {
         this.setState(prevState => ({ isHidden: !prevState.isHidden }));
     }
 
-    checkIn () {
-        const date = new Date();
-        const hrs = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-        const mins = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-        const ampm = hrs < 12 ? 'am' : 'pm';
-
-        const time = `${hrs}:${mins} ${ampm}`;
-        console.log( time );
-
+    checkinCheckout () {
+        // Sending a body is unnecessary. The time updates on the backend.
         if ( !this.state.isCheckedIn ) {
-            // axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkin`, { time }).then( time => {
+            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkin`)
+            .then( time => {
                 this.setState(prevState => ({ 
                     isCheckedIn: !prevState.isCheckedIn,
-                    checkinTime: time
+                    checkinTime: time.data[0].checkin_time
                 }));
-            // }).catch(error => console.log(error));
+            }).catch(error => console.log(error));
         } else {
-            // axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkout`, { time }).then( time => {
+            axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkout`)
+            .then( time => {
                 this.setState(prevState => ({ 
                     isCheckedIn: !prevState.isCheckedIn,
-                    checkoutTime: time
+                    checkoutTime: time.data[0].checkout_time
                 }));
-            // }).catch(error => console.log(error));
+                // this.props.history.push('/update');
+            }).catch(error => console.log(error));
         }
     }
 
@@ -73,24 +71,24 @@ class Job extends Component {
             <Aux>
                 <li className="job">
                     { user.title === 'petowner' ? (
-                        <div className="job-item-petowner">
+                        <div className="job-tab-petowner">
                             <div className="AvatarName">
-                                <div className="avatar"></div>
+                                <div className="avatar"><img src={job.avatar} alt="avatar"/></div>
                                 <div className="name">{ job.first_name }</div>
                             </div>
                             <div className="date" onClick={() => this.showDetails()}>{ months[job.month] } { job.day }</div>
                             <div><button className="btn message">Message</button></div>
                         </div>
                     ) : (
-                        <div className="job-item-caregiver">
+                        <div className="job-tab-caregiver">
                             <img className="paw" src={ paw } alt="paw"/>
                             <div className="date" onClick={() => this.showDetails()}>{ months[job.month] } { job.day }</div>
                             <div className="time">{job.begin_time} - {job.end_time}</div>
-                            <div>
+                            <div classname="btn-container">
                                 { !checkoutTime ?
                                     !isCheckedIn
-                                    ? <button className="btn" onClick={ () => this.checkIn() }>Check In</button>
-                                    : <button className="btn" onClick={ () => this.checkIn() }>Check out</button>
+                                    ? <button className="btn" onClick={ () => this.checkinCheckout() }>Check In</button>
+                                    : <button className="btn" onClick={ () => this.checkinCheckout() }>Check out</button>
                                   : <button className="gray-btn">Done</button>
                                 }
                             </div>
@@ -103,8 +101,8 @@ class Job extends Component {
                         <div className="details-petowner">
                             <h3>{ days[job.day % 7] }</h3>
                             <div className="StartFinish">
-                                <div>Start&nbsp;: <time>1:28pm</time></div>
-                                <div>Finish&nbsp;: <time>2:28pm</time></div>
+                                <div className="start">Start : <time>{ checkinTime ? checkinTime : '-' }</time></div>
+                                <div className="finish">Finish : <time>{ checkoutTime ? checkinTime : '-'  }</time></div>
                             </div>
                             <div className="GoogleMap">
                                 <div className="map">
@@ -118,26 +116,33 @@ class Job extends Component {
                                         allowFullScreen />
                                 </div>
                             </div>
+                            { !job.checkin_time && 
+                            <div className="Cancel">
+                                <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Cancel</button>
+                            </div> }
                         </div>
                     ) : (
                         isHidden &&
                         <div className="details-caregiver">
                             <div className="StartFinish">
-                                <div>Start&nbsp;: <time>{ checkinTime }</time></div>
-                                <div>Finish&nbsp;: <time>{ checkoutTime }</time></div>
+                                <div className="start">Start : <time>{ checkinTime ? checkinTime : '-' }</time></div>
+                                <div className="finish">Finish : <time>{ checkoutTime ? checkinTime : '-' }</time></div>
                             </div>
+
                             <div className="AvatarDisplay">
-                                <div>
-                                    <div className="AnimalAvatar"><img src={ animals[0].animal_avatar } alt="avatar"/></div>
-                                    <div className="AnimalName">{ animals[0].animal_name }</div>
+                                { animals && animals.map( animal => (
+                                <div key={animal.animal_id}>
+                                    <div className="AnimalAvatar"><img src={ animal.animal_avatar } alt="avatar"/></div>
+                                    <div className="AnimalName">{ animal.animal_name }</div>
                                 </div>
-                                {/* <div><div className="AnimalAvatar"><span>Dog's Name</span></div></div>
-                                <div><div className="AnimalAvatar"><span>Dog's Name</span></div></div> */}
+                                ))}
                             </div>
+
                             <div className="TodaysService">
                                 <div className="ServiceLength">{ job.service.slice(0,6) } </div>
-                                <div className="WalkOrPark"> { job.service.slice(7, job.service.length) }</div>
+                                <div className="WalkOrPark"> { job.service.slice(10, job.service.length) }</div>
                             </div>
+
                             <div className="AddressContact">
                                 <div className="Address">
                                     <div>Address</div>
@@ -150,16 +155,15 @@ class Job extends Component {
                             </div>
 
                             { !isCancelling ? (
-                                <div className="Cancel">
-                                    <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Cancel</button>
-                                </div>
+                            <div className="Cancel">
+                                <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Cancel</button>
+                            </div>
                             ) : (
-                                <div className="Cancel">
-                                    {/* <div>Cancel</div> */}
-                                    <textarea className="cancel-text" name="message" rows="2" cols="80" placeholder="Cancel message..." onChange={(e) => this.handleChange('cancelMessage', e)}></textarea>
-                                    <button className="cancel-btn btn" onClick={ () => cancelMessage.length ? removeJob(job.job_id) : null }>Confirm</button>
-                                    <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Take back</button>
-                                </div>
+                            <div className="Cancel">
+                                <textarea className="cancel-text" name="message" rows="2" cols="80" placeholder="Cancel message..." onChange={(e) => this.handleChange('cancelMessage', e)}></textarea>
+                                <button className="cancel-btn btn" onClick={ () => cancelMessage.length ? removeJob(job.job_id) : null }>Confirm</button>
+                                <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Take back</button>
+                            </div>
                             ) }
                         </div>
                     ) }

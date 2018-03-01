@@ -23,7 +23,7 @@ class Requests extends Component {
         // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
         axios.all([
             axios.get(`/petowner/jobs/requested`),
-            axios.get(`/petowner/jobs/interested`)
+            axios.get(`/caregiver/jobs/accepted`)
         ]).then( axios.spread( (requestsRes, interestsRes) => {
 
             console.log( 'Petowner Interested', interestsRes.data );
@@ -87,7 +87,7 @@ class Requests extends Component {
                     <date>{job.month}/{job.day}/{job.year}</date>
                 </div>
                 <div className="space-around">
-                    <button onClick={ () => this.cancelRequest(job.job_id) } className="btn cancel">Cancel</button>
+                    <button onClick={ () => this.cancelRequest(job.job_id) } className="btn">Cancel</button>
                 </div>
             </div>
         ));

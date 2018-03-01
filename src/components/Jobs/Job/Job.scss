@@ -5,7 +5,7 @@
     overflow: hidden;
     margin-bottom: 5px;
 
-    .job-item-petowner {
+    .job-tab-petowner {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -16,16 +16,22 @@
             display: flex;
             align-items: center;
             .avatar {
-                width: 40px;
-                height: 40px;
+                width: 5rem;
+                height: 5rem;
                 border-radius: 50%;
                 margin-right: 12px;
-                background-color: rgb(223, 223, 223);
+                overflow: hidden;
+                background-color: #5fa8ff;
+                img {
+                    max-width: 100%;
+                }
             }
-            .name{ font-size: 20px; }
+            .name {
+                font-size: 20px; 
+            }
         }
         .date {
-            font-size: 17px;
+            font-size: 22px;
         }
         .btn {
             outline: none;
@@ -34,12 +40,12 @@
             background-color: #FECD44;
         }
     }
-    .job-item > div {
+    .job-tab-petowner > div {
         flex: 1;
     }
 
 
-    .job-item-caregiver {
+    .job-tab-caregiver {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -71,7 +77,7 @@
             background-color: #c2c5d2;
         }
     }
-    .job-item > div {
+    .job-tab-caregiver > div {
         flex: 1;
     }
 
@@ -80,8 +86,15 @@
         display: flex;
         flex-direction: column;
         margin: 0;
-        padding: 0;
+        padding: 30px;
         background: #e9edf3;
+
+        h3 {
+            color: #7EB9FF;
+            margin: 0;
+            padding: 0 0 28px 0; 
+        }
+
         .StartFinish {
             display: flex;
             justify-content: space-around;
@@ -95,7 +108,8 @@
                 background-color: rgb(247, 250, 255);
             }
         }
-        .StartFinish > div { font-size: 17px; }
+        .StartFinish > div { font-size: 18px; }
+
         .GoogleMap {
             display: flex;
             justify-content: center;
@@ -111,11 +125,16 @@
                 background: white;
             }
         }
+
+        .btn {
+            color: white;
+            background: #c2c5d2;
+        }
     }
 
 
     .details-caregiver {
-        padding: 30px 30px;
+        padding: 30px;
         background: #e9edf3;
 
         .StartFinish {
@@ -132,7 +151,7 @@
                 background-color: rgb(247, 250, 255);
             }
         }
-        .StartFinish > div { font-size: 17px; }
+        .StartFinish > div { font-size: 18px; }
     
         .AvatarDisplay {
             display: flex;
@@ -155,26 +174,24 @@
         }
 
         .TodaysService {
-            width: 60%;
+            max-width: 300px;
             padding: 10px 0;
             margin: auto;
+            margin-bottom: 40px;
             background: #fff;
-            margin-bottom: 30px;
             border-radius: 5px;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
-            flex-direction: row;
             font-size: 4rem;
             .ServiceLength {
                 color: #6aa6ef;
-                padding: 0 10px;
+                margin: 0 10px 0 0;
             }
         }
 
         .AddressContact {
             display: flex;
-            flex-flow: row;
             justify-content: space-around;
             font-size: 25px;
             font-weight: 100;
@@ -185,6 +202,7 @@
             }
             .Address,
             .OwnerPhone {
+                text-align: left;
                 div {
                     font-weight: bold;
                 }
@@ -216,6 +234,30 @@
                 font-size: 20px;
                 background: #c2c5d2;
             }
+        }
+    }
+}
+
+@media (max-width: 545px) {
+    .AddressContact { 
+        flex-direction: column;
+        .Address{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .details-caregiver .StartFinish {
+        flex-direction: column;
+        .start {
+            margin-bottom: 25px;
+        }
+    }
+    .details-petowner .StartFinish {
+        flex-direction: column;
+        .start {
+            margin-bottom: 25px;
         }
     }
 }

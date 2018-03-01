@@ -10,8 +10,15 @@
         padding: 30px 0;
     }
 
+    textarea {
+        resize: none;
+    }
+    textarea::placeholder {
+        color: #a9d1ff;
+    }
+
     .widget {
-        width: 80%;
+        min-width: 350px;
         height: auto;
         margin: auto;
         margin-top: 0;
@@ -28,7 +35,7 @@
 
             span {
                 color: #fff;
-                font-size: x-large;
+                font-size: 40px;
             }
 
             .reciever-name {
@@ -56,6 +63,11 @@
                     border: 1px solid;
                     border-radius: 100%;
                     margin-right: 15px;
+                    overflow: hidden;
+                    img {
+                        max-width: 100%;
+                        min-height: 100%;
+                    }
                 }
 
                 .sender-name {
@@ -90,6 +102,10 @@
             span {
                 font-size: 6rem;
             }
+            caption {
+                color: #a9d1ff;
+                font-size: 18px;
+            }
         }
 
         form {
@@ -101,6 +117,7 @@
         }
 
         button {
+            background: #517cf7;
             max-width: 70px;
             margin: auto;
             cursor: pointer;

@@ -26,13 +26,19 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-scroll-to-element": "^0.2.0",
+    "react-stripe-checkout": "^2.6.3",
     "react-tabs": "^2.2.1",
     "redux": "^3.7.2",
     "rest": "^2.0.0",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
+<<<<<<< HEAD
     "superagent": "^3.8.2",
     "supertest": "^3.0.0"
+=======
+    "stripe": "^5.5.0",
+    "superagent": "^3.8.2"
+>>>>>>> develop-2
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
