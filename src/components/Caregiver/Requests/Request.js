@@ -16,7 +16,7 @@ class Requests extends Component {
     componentDidMount() {
         axios.all([
             axios.get(`/caregiver/jobs/requested`),
-            axios.get(`/caregiver/jobs/interested`),
+            axios.get(`/caregiver/jobs/accepted`),
             axios.get(`/caregiver/jobs`)
         ]).then( axios.spread( (requestsRes, interestedRes, jobsRes) => {
 
@@ -34,7 +34,7 @@ class Requests extends Component {
 
             axios.all([
                 axios.get(`/caregiver/jobs/requested`),
-                axios.get(`/caregiver/jobs/interested`),
+                axios.get(`/caregiver/jobs/accepted`),
             ]).then( axios.spread( (requestsRes, interestedRes) => {
 
                 this.setState({ 
@@ -59,7 +59,7 @@ class Requests extends Component {
 
     cancelInterest = (id) => {
         axios.delete(`/delete/job/${id}`).then( () => {
-            axios.get(`/caregiver/jobs/interested`).then( interests => {
+            axios.get(`/caregiver/jobs/accepted`).then( interests => {
 
                 this.setState({ interested: interests.data })
 
@@ -87,20 +87,20 @@ class Requests extends Component {
             </div>
         ));
 
-        // The list interested jobs
-        const listOfInterested = this.state.interested.map( job => (
-            <div key={job.job_id} className="interested">
-                <div className="caregiverRow">
-                    <div>
-                        <div className="caregiver-avatar"><img src={job.avatar} alt="Avatar"/></div>
-                        <div className="caregiver-name">{job.first_name}</div>
-                    </div>
-                    <div>
-                        <button onClick={() => this.cancelInterest(job.job_id)} className="btn cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        ));
+        // // The list interested jobs
+        // const listOfInterested = this.state.interested.map( job => (
+        //     <div key={job.job_id} className="interested">
+        //         <div className="caregiverRow">
+        //             <div>
+        //                 <div className="caregiver-avatar"><img src={job.avatar} alt="Avatar"/></div>
+        //                 <div className="caregiver-name">{job.first_name}</div>
+        //             </div>
+        //             <div>
+        //                 <button onClick={() => this.cancelInterest(job.job_id)} className="btn cancel">Cancel</button>
+        //             </div>
+        //         </div>
+        //     </div>
+        // ));
 
         // // The list of jobs ( the )
         // const listOfJobs = this.state.jobs.map( job => (
@@ -118,12 +118,12 @@ class Requests extends Component {
                     </div>
                 </div>
 
-                <div className="Interested">
+                {/* <div className="Interested">
                     <h1>Interested</h1>
                     <div className="interested-row-box">
                         {listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto', display:'flex'  }}>No interests</div> }
                     </div>
-                </div>
+                </div> */}
             </Aux>
         )
     }

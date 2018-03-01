@@ -25,10 +25,10 @@ class Reviews extends Component {
         let { caregiver_id } = this.state;
         caregiver_id = this.props.user.user_id;
         axios.get(`/reviews/${caregiver_id}`)
-        .then(response => {
-            console.log(response);
+        .then(reviews => {
+            console.log('Reviews', reviews.data);
             this.setState({
-                caregiver_reviews: response.data
+                caregiver_reviews: reviews.data
             })
         })
         .catch(error => console.log(error))
@@ -59,7 +59,7 @@ class Reviews extends Component {
                 <div className="ReviewsContainer">
                     <h1>Reviews</h1>
                     <div className="ReviewDisplay">
-                        {listOfReviews.length ? listOfReviews : <div style={{ margin: 'auto' }}>Currently no reviews</div>}
+                        {listOfReviews.length ? listOfReviews : <div style={{ margin: 'auto' }}>No reviews</div>}
                     </div>
                 </div>
             </Aux>

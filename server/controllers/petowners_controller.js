@@ -20,7 +20,7 @@ module.exports = {
     }).catch( (error) => console.log(error) )
   },
 
-  getPetownersJobsInterested: (req, res, next) => {
+  getPetownersJobsAccepted: (req, res, next) => {
     const db = req.app.get('db');
 
     db.get_petowners_jobs_interested([ req.session.user.user_id ]).then( jobs => {
@@ -28,5 +28,15 @@ module.exports = {
       res.status(200).json(jobs);
 
     }).catch( (error) => console.log(error) )
-  }
+  },
+
+  getJobHistory: (req, res, next) => {
+    const db = req.app.get('db');
+
+    db.get_petowner_job_history( [req.session.user.user_id] ).then( jobs => {
+
+        res.status(200).json(jobs);
+
+    }).catch(error => console.log(error));
+  },
 }

@@ -23,7 +23,7 @@ class Requests extends Component {
         // Gets all the caregivers's interested in jobs ( gets all jobs with request value true )
         axios.all([
             axios.get(`/petowner/jobs/requested`),
-            axios.get(`/petowner/jobs/interested`)
+            axios.get(`/caregiver/jobs/accepted`)
         ]).then( axios.spread( (requestsRes, interestsRes) => {
 
             console.log( 'Petowner Interested', interestsRes.data );

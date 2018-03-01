@@ -155,7 +155,7 @@
         }
 
         .TodaysService {
-            width: 60%;
+            max-width: 300px;
             padding: 10px 0;
             margin: auto;
             background: #fff;
@@ -168,13 +168,12 @@
             font-size: 4rem;
             .ServiceLength {
                 color: #6aa6ef;
-                padding: 0 10px;
+                margin: 0 10px 0 0;
             }
         }
 
         .AddressContact {
             display: flex;
-            flex-flow: row;
             justify-content: space-around;
             font-size: 25px;
             font-weight: 100;
@@ -216,6 +215,24 @@
                 font-size: 20px;
                 background: #c2c5d2;
             }
+        }
+    }
+}
+
+@media (max-width: 545px) {
+    .AddressContact { 
+        flex-direction: column;
+        .Address{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .details-caregiver .StartFinish {
+        flex-direction: column;
+        .start {
+            margin-bottom: 10px;
         }
     }
 }

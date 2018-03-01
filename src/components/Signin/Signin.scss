@@ -8,10 +8,10 @@
     background-size: cover;
 
     .module {
-        width: 40%;
+        min-width: 350px;
         margin: auto;
         background: #fff;
-        padding: 30px 15px;
+        padding: 35px 15px 50px 15px;
         border-radius: 5px;
 
         .bone {
@@ -26,6 +26,7 @@
         .form-element {
             width: 80%;
             margin: auto;
+            padding-top: 10px;
         }
 
         .errorMessage {

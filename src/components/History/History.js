@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import './History.css';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 class History extends Component {
+    constructor () {
+        super();
+        this.state = {
+            jobs: []
+        }
+    }
+
+    componentDidMount () {
+        const { user } = this.props;
+        if ( user.title === 'petowner' ) {
+            axios.get(`/caregiver/jobs/history`).then( jobs => {
+                console.log('History', jobs.data);
+                // this.setState({ jobs: jobs.data });
+            }).catch(error => console.log(error));
+        } 
+        if ( user.title === 'caregiver' ) {
+            axios.get(`/caregiver/jobs/history`).then( jobs => {
+                console.log('History', jobs.data);
+                // this.setState({ jobs: jobs.data });
+            }).catch(error => console.log(error));
+        }
+    }
+
     render() {
         const appointment_history = (
             <div className="AppointmentHistory">
@@ -57,4 +82,4 @@ class History extends Component {
     }
 };
 
-export default History;
+export default connect( state => state )( History );

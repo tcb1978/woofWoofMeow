@@ -17,12 +17,12 @@ class Jobs extends Component {
     componentDidMount () {
         const { user } = this.props;
         if ( user.title === 'petowner' ) {
-            axios.get(`/petowner/jobs/interested`).then( jobs => {
+            axios.get(`/caregiver/jobs/accepted`).then( jobs => {
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
         } 
         if ( user.title === 'caregiver' ) {
-            axios.get(`/caregiver/jobs/interested`).then( jobs => {
+            axios.get(`/caregiver/jobs/accepted`).then( jobs => {
                 this.setState({ jobs: jobs.data });
             }).catch(error => console.log(error));
         }
@@ -30,7 +30,7 @@ class Jobs extends Component {
 
     removeJob = ( id ) => {
         axios.delete(`/delete/job/${id}`).then(() => {
-            axios.get(`/caregiver/jobs/interested`).then( jobs => {
+            axios.get(`/caregiver/jobs/accepted`).then( jobs => {
 
                 this.setState({ jobs: jobs.data });
 
