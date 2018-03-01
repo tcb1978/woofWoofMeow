@@ -136,8 +136,8 @@ app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); //
 app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
 
-const port = process.env.PORT || 3050;
-const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
+// const port = process.env.PORT || 3050;
+// const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
 // io = socket(server);
 
@@ -148,3 +148,5 @@ const server = app.listen( port, () => console.log(`Listening on port: ${port}`)
 //     io.emit('RECEIVE_MESSAGE', data);
 //   })
 // });
+
+module.exports = app
