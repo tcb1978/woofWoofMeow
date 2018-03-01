@@ -1,1 +1,3 @@
-endpoint
+const getUser = user => request(``)
+
+export { getUser }
