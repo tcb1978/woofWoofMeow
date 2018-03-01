@@ -62,19 +62,6 @@ class Availability extends Component {
         .catch(error => console.log(error))
     }
 
-    // handleChange(property, event) {
-    //     event.preventDefault();
-    //     this.setState({ [property]: event.target.value })
-    //     axios.update('/update/available', {
-    //         day: 0,
-    //         begin_time: '',
-    //         end_time,
-    //         am_pm,
-    //         user_id
-    //     })
-    // }
-
-    // think about how we make it one function
     handleMondayChange(event) {
         event.preventDefault();
         const { user_id } = this.state;
