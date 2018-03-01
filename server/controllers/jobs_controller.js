@@ -2,7 +2,7 @@ module.exports = {
   create: (req, res, next) => {
     const db = req.app.get('db');
     const { caregiver_id, petowner_id, month, day, year, begin_time, end_time, request_status, service } = req.body;
-    // console.log(req.body);
+    console.log(req.body);
 
     function convertTo24Hour(time) {
       var hours = parseInt(time.substr(0, 2));

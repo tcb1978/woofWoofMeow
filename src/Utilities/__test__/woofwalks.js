@@ -1,6 +1,9 @@
 module.exports = {
     timeConvertion: function (time) {
+<<<<<<< HEAD
         
+=======
+>>>>>>> 0632d7d7aff715f0c07d24b1fa8689ded3607ced
         var hours = parseInt(time.substr(0, 2));
         if (time.indexOf('am') != -1 && hours == 12) {
             time = time.replace('12', '0');
