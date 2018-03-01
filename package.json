@@ -44,6 +44,6 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
-  "main": "server/server.js",
+  "main": "server/index.js",
   "proxy": "http://localhost:3050"
 }

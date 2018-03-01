@@ -137,29 +137,29 @@ app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
 
 
-app.get('/', (req, res) => {
-  res.status(200).send('test 1')
-})
+// app.get('/', (req, res) => {
+//   res.status(200).send('test 1')
+// })
 
-app.get('/get', (req, res) => {
-  res.status(200).send('test 2')
-})
+// app.get('/get', (req, res) => {
+//   res.status(200).send('test 2')
+// })
 
-app.post('/post', (req, res) => {
-  res.status(200).send('test 3')
-})
+// app.post('/post', (req, res) => {
+//   res.status(200).send('test 3')
+// })
 
-app.post('/postmore', (req, res) => {
-  res.status(200).send('test 4')
-})
+// app.post('/postmore', (req, res) => {
+//   res.status(200).send('test 4')
+// })
 
-app.post('/update', (req, res) => {
-  res.status(200).send('test 5')
-})
+// app.post('/update', (req, res) => {
+//   res.status(200).send('test 5')
+// })
 
-app.post('/delete', (req, res) => {
-  res.status(200).send('test 6')
-})
+// app.post('/delete', (req, res) => {
+//   res.status(200).send('test 6')
+// })
 
 
 // app.get('/allusers', (req, res) => {
@@ -170,8 +170,8 @@ app.post('/delete', (req, res) => {
 //       .catch( (error) => { res.status(500) } )
 // })
 
-// const port = process.env.PORT || 3050;
-// const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
+const port = process.env.PORT || 3050;
+const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
 // io = socket(server);
 
