@@ -5,7 +5,7 @@ import paw from '../../../assets/img/icon-paw.png';
 import axios from 'axios';
 import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
-
+import UpdateMessage from '../../UpdateMessage/UpdateMessage';
 import Payment from '../../Payment/Payment';
 import Chat from '../../Chat/Chat'
 
@@ -20,7 +20,8 @@ class Job extends Component {
             isCheckedin: false,
             isHidden: false,
             isCancelling: false,
-            isMessaging: false
+            isMessaging: false,
+            showUpdatePopup: false
         }
     }
     componentDidMount () {
@@ -58,7 +59,8 @@ class Job extends Component {
             .then( time => {
                 this.setState(prevState => ({ 
                     isCheckedIn: !prevState.isCheckedIn,
-                    checkoutTime: time.data[0].checkout_time
+                    checkoutTime: time.data[0].checkout_time,
+                    showUpdatePopup: !prevState.showUpdatePopup
                 }));
                 // this.props.history.push('/update');
             }).catch(error => console.log(error));
@@ -71,7 +73,7 @@ class Job extends Component {
 
     render() {
         const { user, job, months, days, removeJob } = this.props;
-        const { animals, checkinTime, checkoutTime, isCheckedIn, cancelMessage, isHidden, isCancelling, isMessaging } = this.state;
+        const { animals, checkinTime, checkoutTime, isCheckedIn, cancelMessage, isHidden, isCancelling, isMessaging, showUpdatePopup } = this.state;
 
         return (
             <Aux>
@@ -176,6 +178,7 @@ class Job extends Component {
 
                     { isMessaging && <Chat showChat={this.showChat}/> }
                 </li>
+                { showUpdatePopup && <UpdateMessage job={job} />}
             </Aux>
         )
     }

@@ -238,6 +238,17 @@
     }
 }
 
+@media (max-width: 520px) {
+    .job .job-tab-caregiver {
+        display: inherit;
+    }
+
+    .job .job-tab-petowner {
+        display: inherit;
+        flex-flow: column;
+    }
+}
+
 @media (max-width: 545px) {
     .AddressContact { 
         flex-direction: column;
