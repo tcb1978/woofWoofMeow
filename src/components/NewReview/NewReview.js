@@ -73,9 +73,9 @@ export default class NewReview extends Component {
                                 className="Rating"
                                 initialRating={3}
                                 placeholderRating={this.state.rating}
-                                emptySymbol={<img src={empty} className="icon" />}
-                                placeholderSymbol={<img src={empty} className="icon" />}
-                                fullSymbol={<img src={full} className="icon" />}
+                                emptySymbol={<img src={empty} className="icon" alt="rating icon"/>}
+                                placeholderSymbol={<img src={empty} className="icon" alt="rating icon" />}
+                                fullSymbol={<img src={full} className="icon" alt="rating icon" />}
                             />
                             <input
                                 onClick={this.onHandleSubmit}
