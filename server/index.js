@@ -6,13 +6,10 @@ const massive = require('massive');
 const socket = require('socket.io');
 const multer = require('multer');
 const AWS = require('aws-sdk');
-<<<<<<< HEAD
 const path = require('path')
 
 
-=======
 require('dotenv').config();
->>>>>>> develop
 
 const app = express();
 
@@ -147,29 +144,17 @@ app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); //
 app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
 
-<<<<<<< HEAD
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 })
-=======
 // Stripe
 app.post('/save-stripe-token', stripe_controller.paymentApi);
->>>>>>> develop
 
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
 
-<<<<<<< HEAD
-// io.on('connection', (socket) => {
-//   console.log(socket.id);
-//   // listens for the message 
-//   socket.on('SEND_MESSAGE', function(data){
-//     io.emit('RECEIVE_MESSAGE', data);
-//   })
-// });
-=======
 // Chat
 let messages = ['Blue', 'Red', 'Green', 'Purple'];  // This will be in the database
 
@@ -199,4 +184,3 @@ io.on('connection', (socket) => {
 });
 
 module.exports = app;
->>>>>>> develop
