@@ -1,0 +1,93 @@
+{
+	"info": {
+		"name": "WoofWalkin Matthew Eldredge Enpoint Tests",
+		"_postman_id": "50abced5-b8fd-8761-d0c9-6a79e58c0d56",
+		"description": "per requirements on https://github.com/DevMountain/rubrics/blob/phoenix-campus/group_project.md",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/caregiver/jobs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75872c4b-2709-4b24-bbc6-8ba747832d56",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/caregiver/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"caregiver",
+						"jobs"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/caregiver/jobs/interested",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "32b711bf-dfec-4995-ae97-931910d4c914",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/petowner/jobs/interested",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"petowner",
+						"jobs",
+						"interested"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

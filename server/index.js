@@ -3,13 +3,16 @@ const bodyParser = require('body-parser');
 // const cors = require('cors');
 const session = require('express-session');
 const massive = require('massive');
-// const socket = require('socket.io');
-require('dotenv').config();
+const socket = require('socket.io');
 const multer = require('multer');
 const AWS = require('aws-sdk');
+<<<<<<< HEAD
 const path = require('path')
 
 
+=======
+require('dotenv').config();
+>>>>>>> develop
 
 const app = express();
 
@@ -36,6 +39,7 @@ const upload = multer({
   }
 })
 // AWS Upload
+// 'avatar' is used here for consistancy purposes. don't change it.
 app.post('/api/upload', upload.single('avatar'), (req, res) => {
   var params = {
     Bucket: process.env.BUCKET,
@@ -84,6 +88,7 @@ const availability_controller = require('./controllers/availability_controller')
 const jobs_controller = require('./controllers/jobs_controller');
 const reviews_controller = require('./controllers/reviews_controller');
 const googleMaps_controller = require('./controllers/googleMaps_controller');
+const stripe_controller = require('./controllers/stripe_controller');
 
 // Users management
 app.post('/register', users_controller.register);
@@ -99,16 +104,19 @@ app.delete('/delete/user', users_controller.destroy);
 app.get('/caregivers/search', search_controller.getFiltered);
 
 // Petowners management
-app.get('/petowner/jobs', petowners_controller.getPetownerJobs);
-app.get('/petowner/jobs/requested', petowners_controller.getPetownersJobsRequested);
-app.get('/petowner/jobs/interested', petowners_controller.getPetownersJobsInterested);
+app.get('/petowner/jobs', petowners_controller.getJobs);
+app.get('/petowner/jobs/requested', petowners_controller.getJobsRequested);
+app.get('/petowner/jobs/accepted', petowners_controller.getJobsAccepted);
+app.get('/petowner/jobs/history', petowners_controller.getJobHistory);
 
 // Caregivers management
-app.get('/caregiver/jobs', caregivers_controller.getCaregiverJobs);
-app.get('/caregiver/jobs/requested', caregivers_controller.getCaregiversJobsRequested);
-app.get('/caregiver/jobs/interested', caregivers_controller.getCaregiversJobsInterested);
-app.get('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
-app.get('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkin);
+app.get('/caregiver/jobs', caregivers_controller.getJobs);
+app.get('/caregiver/jobs/requested', caregivers_controller.getJobsRequested);
+app.get('/caregiver/jobs/accepted', caregivers_controller.getJobsAccepted);
+app.get('/caregiver/jobs/history', caregivers_controller.getJobHistory);
+app.put('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
+app.put('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkout);
+app.put('/caregiver/jobs/update/message', caregivers_controller.updateMessage);
 
 // Animals management
 app.post('/create/animal', animals_controller.create);
@@ -139,16 +147,21 @@ app.get('/reviews/:caregiver_id', reviews_controller.getReviewsForCaregiver); //
 app.get('/location/user', googleMaps_controller.getUserlocation);
 app.get('/location', googleMaps_controller.getlocation);
 
+<<<<<<< HEAD
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 })
+=======
+// Stripe
+app.post('/save-stripe-token', stripe_controller.paymentApi);
+>>>>>>> develop
 
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
-// io = socket(server);
 
+<<<<<<< HEAD
 // io.on('connection', (socket) => {
 //   console.log(socket.id);
 //   // listens for the message 
@@ -156,3 +169,34 @@ const server = app.listen( port, () => console.log(`Listening on port: ${port}`)
 //     io.emit('RECEIVE_MESSAGE', data);
 //   })
 // });
+=======
+// Chat
+let messages = ['Blue', 'Red', 'Green', 'Purple'];  // This will be in the database
+
+const io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    // User joins the chat room
+    socket.join('CHAT ROOM');
+    console.log('A user joined chat');
+
+    // When the users join they get there previous messages
+    socket.on('JOIN', () => {
+      io.emit('GET_MESSAGES', messages);
+    })
+
+    // The message is sent and received
+    socket.on('SEND_MESSAGE', (data) => {
+      io.emit('RECEIVE_MESSAGE', data);
+    })
+
+    // Disconnects the user from the chat
+    socket.on('DISCONNECT', () => {
+        console.log('A user disconnected from chat');
+    })
+});
+
+module.exports = app;
+>>>>>>> develop

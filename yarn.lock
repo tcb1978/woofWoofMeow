@@ -1108,7 +1108,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.4.7:
+bluebird@^3.4.7, bluebird@^3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -4770,6 +4770,10 @@ lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
 
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -6449,6 +6453,10 @@ react-scroll-to-element@^0.2.0:
     react "^16.1.1"
     smoothscroll-polyfill "^0.4.0"
 
+react-stripe-checkout@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
+
 react-tabs@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-2.2.1.tgz#0331d26173c56e7af4fdbfb6225e62683cfdda52"
@@ -6838,6 +6846,10 @@ resolve@^1.3.2, resolve@^1.5.0:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.5.0.tgz#1f09acce796c9a762579f31b2c1cc4c3cddf9f36"
   dependencies:
     path-parse "^1.0.5"
+
+rest@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rest/-/rest-2.0.0.tgz#6dfadf66a405c49cfbd5b4bd25b59fd29cd861bc"
 
 restore-cursor@^2.0.0:
   version "2.0.0"
@@ -7397,6 +7409,15 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
+stripe@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-5.5.0.tgz#df5fefae440531ae2a0051f91c7837457ba06717"
+  dependencies:
+    bluebird "^3.5.0"
+    lodash.isplainobject "^4.0.6"
+    qs "~6.5.1"
+    safe-buffer "^5.1.1"
+
 style-loader@0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.19.0.tgz#7258e788f0fee6a42d710eaf7d6c2412a4c50759"
@@ -7404,7 +7425,7 @@ style-loader@0.19.0:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
-superagent@^3.8.2:
+superagent@^3.0.0, superagent@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.8.2.tgz#e4a11b9d047f7d3efeb3bbe536d9ec0021d16403"
   dependencies:
@@ -7418,6 +7439,13 @@ superagent@^3.8.2:
     mime "^1.4.1"
     qs "^6.5.1"
     readable-stream "^2.0.5"
+
+supertest@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/supertest/-/supertest-3.0.0.tgz#8d4bb68fd1830ee07033b1c5a5a9a4021c965296"
+  dependencies:
+    methods "~1.1.2"
+    superagent "^3.0.0"
 
 supports-color@^2.0.0:
   version "2.0.0"

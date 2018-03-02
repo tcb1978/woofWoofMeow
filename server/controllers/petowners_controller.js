@@ -1,5 +1,5 @@
 module.exports = {
-  getPetownerJobs: (req, res, next) => {
+  getJobs: (req, res, next) => {
     const db = req.app.get('db');
 
     db.get_petowner_jobs([ req.session.user.user_id ]).then( jobs => {
@@ -10,23 +10,33 @@ module.exports = {
     }).catch((error) => console.log(error))
   },
 
-  getPetownersJobsRequested: (req, res, next) => {
+  getJobsRequested: (req, res, next) => {
     const db = req.app.get('db');
 
-    db.get_petowners_jobs_requested([ req.session.user.user_id ]).then( jobs => {
+    db.get_petowner_jobs_requested([ req.session.user.user_id ]).then( jobs => {
 
       res.status(200).json(jobs);
 
     }).catch( (error) => console.log(error) )
   },
 
-  getPetownersJobsInterested: (req, res, next) => {
+  getJobsAccepted: (req, res, next) => {
     const db = req.app.get('db');
 
-    db.get_petowners_jobs_interested([ req.session.user.user_id ]).then( jobs => {
-      
+    db.get_petowner_jobs_accepted([ req.session.user.user_id ]).then( jobs => {
+
       res.status(200).json(jobs);
 
     }).catch( (error) => console.log(error) )
-  }
+  },
+
+  getJobHistory: (req, res, next) => {
+    const db = req.app.get('db');
+
+    db.get_petowner_job_history([ req.session.user.user_id ]).then( jobs => {
+
+        res.status(200).json(jobs);
+
+    }).catch(error => console.log(error));
+  },
 }

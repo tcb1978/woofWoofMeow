@@ -1,0 +1,56 @@
+{
+	"info": {
+		"name": "WoofWalkin Jemaine Brown End Point Test",
+		"_postman_id": "bab74d7f-37bf-3fd3-0a2f-0ab93f0becd3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/petowner/jobs/interested",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/petowner/jobs/interested",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"petowner",
+						"jobs",
+						"interested"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/petowner/jobs/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/petowner/jobs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"petowner",
+						"jobs",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

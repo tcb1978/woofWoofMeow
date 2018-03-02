@@ -163,7 +163,7 @@ const Layout = (props) => {
                         <h2 className="center">We Also Sell Cookies</h2>
                     </div>
                     <div className="row copyright">
-                        <h2 className="center">© All rights reserved</h2>
+                        <h2 className="center">2018 © All rights reserved</h2>
                     </div>
                 </div>
             </footer>

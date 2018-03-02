@@ -19,7 +19,10 @@ class Profile extends Component {
       if ( !this.props.user.first_name ) {
         this.props.history.push('/');
       }
-    }).catch(error => console.log(error))
+    }).catch(error => console.log(error));
+    
+    // Temporary redirect so I can see the UpdateMessage component
+    // this.props.history.push('/update-message');
   }
 
   logout = () => {
@@ -39,8 +42,8 @@ class Profile extends Component {
             : <Caregiver logout={ this.logout } />
           }
           
-          <div className="footer-profile" style={{ background: '#959595',color: '#fff',padding: '5px',display: 'flex',position: 'fixed',bottom: '0',width: '100%' }}>
-            <span style={{ margin: 'auto' }}>&copy; All rights reserved.</span>
+          <div className="footer-profile" style={{ background: '#959595',color: '#fff',padding: '5px',display: 'flex',position: 'fixed',bottom: '0',width: '100%', zIndex: '2' }}>
+            <span style={{ margin: 'auto' }}>2018 &copy; All rights reserved.</span>
           </div>
       </Aux>
     );

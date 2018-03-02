@@ -1,0 +1,99 @@
+{
+	"id": "80c0a65d-3393-4c1d-b112-792ae1d8ad92",
+	"name": "WoofWalkin Matthew Eldredge Enpoint Tests",
+	"allTests": [],
+	"timestamp": "2018-02-28T21:06:00.040Z",
+	"collection_id": "50abced5-b8fd-8761-d0c9-6a79e58c0d56",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "no-environment",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "50abced5-b8fd-8761-d0c9-6a79e58c0d56",
+		"name": "WoofWalkin Matthew Eldredge Enpoint Tests",
+		"description": "per requirements on https://github.com/DevMountain/rubrics/blob/phoenix-campus/group_project.md",
+		"order": [],
+		"folders": [],
+		"folders_order": [],
+		"timestamp": 1519851431125,
+		"synced": false,
+		"remote_id": 0,
+		"owner": 0,
+		"sharedWithTeam": false,
+		"subscribed": false,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"createdAt": 1519851431125,
+		"updatedAt": 1519851431125,
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {},
+		"events": [],
+		"variables": [],
+		"auth": null
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"enabled": true,
+			"key": "data_length",
+			"type": "text",
+			"value": "9"
+		},
+		{
+			"enabled": true,
+			"key": "productID_0",
+			"type": "text",
+			"value": "1"
+		},
+		{
+			"enabled": true,
+			"key": "productID_1",
+			"type": "text",
+			"value": "2"
+		},
+		{
+			"enabled": true,
+			"key": "productID_2",
+			"type": "text",
+			"value": "3"
+		},
+		{
+			"enabled": true,
+			"key": "username",
+			"type": "text",
+			"value": "user 0"
+		},
+		{
+			"enabled": true,
+			"key": "total",
+			"type": "text",
+			"value": "0"
+		},
+		{
+			"enabled": true,
+			"key": "item0",
+			"type": "text",
+			"value": "{\"id\":1,\"title\":\"Snapback ( red )\",\"category\":\"hats\",\"price\":10}"
+		},
+		{
+			"enabled": true,
+			"key": "item1",
+			"type": "text",
+			"value": "{\"id\":2,\"title\":\"Snapback ( blue )\",\"category\":\"hats\",\"price\":10}"
+		}
+	],
+	"results": [],
+	"totalPass": 0,
+	"totalFail": 0,
+	"totalTime": 0,
+	"lifecycle": "done",
+	"requests": [],
+	"synced": false
+}

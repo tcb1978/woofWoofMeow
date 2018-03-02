@@ -25,7 +25,7 @@ class Bio extends Component {
             <Aux>
                 <div className="Landscape"></div>
                 <div className="Bio">
-                    <div className="BioAvatar"><img src={user.avatar} alt="Avatar"/></div>
+                    <div className="BioAvatar"><img src={user.avatar} alt="Avatar" className="img-responsive img-circle"/></div>
                     <div className="info">
                         <div>
                             <h1>{user.first_name}</h1>

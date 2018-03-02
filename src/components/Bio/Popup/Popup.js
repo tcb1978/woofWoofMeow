@@ -23,10 +23,8 @@ class Popup extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user);
         const { street_address, state, city, zip, email, phone, about_message, proximity } = this.props.user;
         const avatar = this.props.userUrl;
-        console.log(avatar);
         this.setState({
             street_address,
             state,
@@ -49,7 +47,6 @@ class Popup extends Component {
         e.preventDefault()
         const { userUrl } = this.props;
         let { street_address, state, city, zip, email, phone, avatar, about_message, proximity } = this.state;
-        console.log(this.props);
 
         if (this.props.user.title === 'caregiver') {
             axios.put('/update/profile', {
@@ -64,7 +61,6 @@ class Popup extends Component {
                 proximity
             })
                 .then(response => {
-                    console.log(response);
                     this.setState({
                         street_address,
                         state,
@@ -90,7 +86,6 @@ class Popup extends Component {
                 about_message
             })
                 .then(response => {
-                    console.log(response);
                     this.setState({
                         street_address,
                         state,
@@ -108,7 +103,6 @@ class Popup extends Component {
     }
     
     render() {
-        console.log(this.state.about_message);
         const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
             'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
             'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',

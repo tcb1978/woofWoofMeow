@@ -65,15 +65,19 @@
                 flex-flow: column;
                     
                 img {
-                    width: 12rem;
-                    height: 12rem;
+                    width: 12.5rem;
+                    height: 12.5rem;
+                    border: 5px solid #FFFFFF;
                     border-radius: 100%;
                     cursor: pointer;
+                }
+                img:hover {
+                    border: 5px solid #FECD44;
                 }
 
                 span{
                     margin: 0 auto;
-                    top: 30px;
+                    top: 15px;
                     position: relative;
                     font-size: 2rem;
                     cursor: pointer;
@@ -93,6 +97,7 @@
             .PetBioDropDownHeader {
 
                 .Avatar {
+                    margin-right: 15px;
                     img {
                         width: 12rem;
                         height: 12rem;
@@ -103,20 +108,23 @@
                     display: flex;
                     flex-flow: column;
                     justify-content: space-around;
-                    padding: 0 2rem;
                 }
             }
 
             .PetDetailsList {
                 padding: 0 15px;
-                width: 100%;
-
                 li {
-                    font-size: 1.5rem;
+                    font-size: 2rem;
                     font-weight: 100;
                     border-bottom: 2px solid #cccbcb;
                     line-height: 2;
+                    span {
+                        font-size: 25px;
+                    }
                 }
+            }
+            .description {
+                font-size: 20px;
             }
             div {
                 padding-top: 20px;
@@ -144,28 +152,5 @@
                 }
             }
         }
-
-            .PetBioDropDown {
-                
-                .column-style {
-                    
-                    
-                    .PetBioDropDownHeader {
-                        
-                        .Avatar {
-                            
-                        }
-                        .Name {
-                            
-                        }
-                    }
-                    .PetDetailsList {
-                        
-                        li {
-                            
-                        }
-                    }
-                }
-            }
     }
 }
