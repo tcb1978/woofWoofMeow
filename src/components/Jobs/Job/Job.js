@@ -132,6 +132,8 @@ class Job extends Component {
                     ) : (
                         isHidden &&
                         <div className="details-caregiver">
+                            <div><button className="btn message" onClick={() => this.showChat()}>Message</button></div>
+
                             <div className="StartFinish">
                                 <div className="start">Start : <time>{ checkinTime ? checkinTime : '-' }</time></div>
                                 <div className="finish">Finish : <time>{ checkoutTime ? checkinTime : '-' }</time></div>
