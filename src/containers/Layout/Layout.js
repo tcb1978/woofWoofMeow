@@ -45,7 +45,14 @@ const Layout = (props) => {
             <section className="About" id="_About">
                 <div>
                     <h1>About</h1>
-                    <p>Doggo ipsum lotsa pats waggy wags boof doggo, wow very biscit. Smol borking doggo with a long snoot for pats length boy pats blep, lotsa pats what a nice floof. Long doggo snoot ruff woofer h*ck shooberino, woofer clouds doge doggo, borkdrive stop it fren heckin borking doggo. Very jealous pupper wow such tempt fat boi doggo ur givin me a spook, pupperino doing me a frighten. Long water shoob blop heck, aqua doggo. Doggo smol borking doggo with a long snoot for pats fat boi what a nice floof maximum borkdrive dat tungg tho, aqua doggo thicc long water shoob heckin good boys and girls. Boofers ur givin me a spook sub woofer length boy smol borking doggo with a long snoot for pats floofs, heckin good boys and girls borkf heckin angery woofer doing me a frighten.</p>
+                    <p>* Clients (pet owner) can create a profile with their personal (and dog) information. * Clients make a request for the walk based on included parameters. Information includes the type of walk (30 minutes walk, 60 minutes walk, 60 minutes dog park), proximity (max distance the walker lives from you), begin time, month and day. In the search results, they see all the walkers that satisfy the condition and request the walk. * When they make the request it goes to the caregiver (pet walker). Once the caregiver accepts it, they can start chatting. * Clients can see check-in and check-out marks of the caregiver with geolocation. * After the walk is over, the client receives the photo with the dog from the walk. * After that, the client can write a review on that person.</p>
+                    <p>* Also, they can view reviews displayed on any caregiver profile.
+                    * In the client (petwoner) profile, clients can update their profile information (address, phone number, email) and dog information.</p>
+
+                    <p>* Caregivers can create a profile with their personal information. * In their profile, caregivers can update their availability. * They also can accept requests from the clients and chat with them. * They check-in then check-out the appointment with the geolocation and time-stamp. Upon 'checkout' the caregiver may update the client with a photo and details from the walk. * The walk is considered as finished and the caregiver may continue on to any further appointments.</p>
+
+                    <p>Built with the following yet not limited to:</p>
+                    <p>* React * Node.js * Express.js * Redux * axios and superagent * PostgreSQL * Massive.js * bcrypt * Multer * Sass * AWS * Dropzone * socket.io * google maps api</p>
                 </div>
                 
             </section>

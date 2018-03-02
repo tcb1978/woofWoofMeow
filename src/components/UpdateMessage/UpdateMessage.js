@@ -63,7 +63,7 @@ class UpdateMessage extends Component {
                             <div className="take-a-picture">
                                 <span><i className="fas fa-camera"></i></span>
                                 <caption>Take picture</caption>
-                                <img src={updateImageUrl} className="img-responsive upload-image" />
+                                <img src={updateImageUrl} className="img-responsive upload-image" alt="updated photo of pet"/>
                                 <UpdateImageUploader />
                             </div>
 

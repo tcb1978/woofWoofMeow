@@ -11,7 +11,7 @@ const NotFound = () =>
     Please, come back to Home page.<br />
     <Link to="/">Home</Link>
   </p>
-  <img src="https://http.cat/404" alt="404 page not found" height="500" />
+  <img src="https://http.cat/404" alt="404 page not found" height="500" alt="404 not found"/>
   
 </div>
 
