@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 // const cors = require('cors');
 const session = require('express-session');
 const massive = require('massive');
-// const socket = require('socket.io');
+const socket = require('socket.io');
 const multer = require('multer');
 const AWS = require('aws-sdk');
 require('dotenv').config();
@@ -147,14 +147,33 @@ app.post('/save-stripe-token', stripe_controller.paymentApi);
 const port = process.env.PORT || 3050;
 const server = app.listen( port, () => console.log(`Listening on port: ${port}`) );
 
-// io = socket(server);
 
-// io.on('connection', (socket) => {
-//   console.log(socket.id);
-//   // listens for the message 
-//   socket.on('SEND_MESSAGE', function(data){
-//     io.emit('RECEIVE_MESSAGE', data);
-//   })
-// });
+// Chat
+let messages = ['Blue', 'Red', 'Green', 'Purple'];  // This will be in the database
+
+const io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    // User joins the chat room
+    socket.join('CHAT ROOM');
+    console.log('A user joined chat');
+
+    // When the users join they get there previous messages
+    socket.on('JOIN', () => {
+      io.emit('GET_MESSAGES', messages);
+    })
+
+    // The message is sent and received
+    socket.on('SEND_MESSAGE', (data) => {
+      io.emit('RECEIVE_MESSAGE', data);
+    })
+
+    // Disconnects the user from the chat
+    socket.on('DISCONNECT', () => {
+        console.log('A user disconnected from chat');
+    })
+});
 
 module.exports = app;
