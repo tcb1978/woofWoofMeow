@@ -32,8 +32,6 @@ class UpdateImageUploader extends Component {
             <div>
                 <Dropzone className="dropzone form-control" onDrop={this.onDrop} multiple={false}>
                 </Dropzone>
-
-                <div>{this.state.url}</div>
             </div>
         );
     }

@@ -7,7 +7,6 @@ import Calendar from '../../../components/Caregiver/Calendar/Calendar';
 import Jobs from '../../../components/Jobs/Jobs';
 import History from '../../../components/History/History';
 import Reviews from '../../../components/Reviews/Reviews';
-import UpdateMessage from '../../../components/UpdateMessage/UpdateMessage';
 import Aux from '../../../hoc/Aux';
 
 class Caregiver extends Component {
@@ -20,9 +19,7 @@ class Caregiver extends Component {
                 <Calendar />
                 <Jobs />
                 <History />
-                <UpdateMessage />
                 <Reviews />
-                <Route path="/update-message" component={ UpdateMessage } />
             </Aux>
         )
     }
