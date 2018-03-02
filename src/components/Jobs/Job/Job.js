@@ -39,7 +39,7 @@ class Job extends Component {
         this.setState(prevState => ({ isHidden: !prevState.isHidden }));
     }
 
-    showChat () {
+    showChat = () => {
         this.setState(prevState => ({ isMessaging: !prevState.isMessaging }));
     }
 
@@ -174,7 +174,7 @@ class Job extends Component {
                         </div>
                     ) }
 
-                    { isMessaging && <Chat /> }
+                    { isMessaging && <Chat showChat={this.showChat}/> }
                 </li>
             </Aux>
         )

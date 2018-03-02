@@ -57,15 +57,15 @@ class Requests extends Component {
         }).catch(error => console.log(error))
     }
 
-    cancelInterest = (id) => {
-        axios.delete(`/delete/job/${id}`).then( () => {
-            axios.get(`/caregiver/jobs/accepted`).then( interests => {
+    // cancelInterest = (id) => {
+    //     axios.delete(`/delete/job/${id}`).then( () => {
+    //         axios.get(`/caregiver/jobs/accepted`).then( interests => {
 
-                this.setState({ interested: interests.data })
+    //             this.setState({ interested: interests.data })
 
-            }).catch( err => console.log(err) );
-        }).catch(error => console.log(error))
-    }
+    //         }).catch( err => console.log(err) );
+    //     }).catch(error => console.log(error))
+    // }
 
     render() {
         // console.log('State -> Requests', this.state.requests);

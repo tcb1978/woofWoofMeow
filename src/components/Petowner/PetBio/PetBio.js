@@ -62,7 +62,7 @@ class PetBio extends Component {
                                         </ul>
                                     </div>
                                     <div className="col-xs-12 col-sm-4">
-                                        <div>{ animals[0].animal_about_message }</div>
+                                        <div className="description">{ animals[0].animal_about_message }</div>
                                     </div>
                                 </div>
                             </div>
