@@ -33,6 +33,7 @@ const upload = multer({
   }
 })
 // AWS Upload
+// 'avatar' is used here for consistancy purposes. don't change it.
 app.post('/api/upload', upload.single('avatar'), (req, res) => {
   var params = {
     Bucket: process.env.BUCKET,
@@ -109,6 +110,7 @@ app.get('/caregiver/jobs/accepted', caregivers_controller.getJobsAccepted);
 app.get('/caregiver/jobs/history', caregivers_controller.getJobHistory);
 app.put('/caregiver/jobs/:job_id/checkin', caregivers_controller.checkin);
 app.put('/caregiver/jobs/:job_id/checkout', caregivers_controller.checkout);
+app.post('/caregiver/jobs/update/message', caregivers_controller.updateMessage);
 
 // Animals management
 app.post('/create/animal', animals_controller.create);

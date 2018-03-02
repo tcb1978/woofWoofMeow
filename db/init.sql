@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS jobs (
     job_id SERIAL PRIMARY KEY,
     caregiver_id INTEGER REFERENCES users (user_id) NOT NULL,
     petowner_id INTEGER REFERENCES users (user_id) NOT NULL,
-    comments VARCHAR (100),
     month INTEGER NOT NULL,
     day INTEGER NOT NULL,
     year INTEGER NOT NULL,
@@ -54,7 +53,9 @@ CREATE TABLE IF NOT EXISTS jobs (
     request_status BOOLEAN,
     service VARCHAR(20) NOT NULL,
     checkin_time VARCHAR(10),
-    checkout_time VARCHAR(10)
+    checkout_time VARCHAR(10),
+    update_message VARCHAR(1000),
+    update_image VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS reviews (

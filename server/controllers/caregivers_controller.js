@@ -71,5 +71,15 @@ module.exports = {
             res.status(200).json(checkoutTime);
 
         }).catch( (error) => console.log(error) )
+    },
+
+    updateMessage: (req, res, next) => {
+        const db = req.app.get('db');
+        const { job_id, update_message, update_image } = req.body;
+        console.log(req.body);
+
+        db.update_message_image([ update_message, update_image, job_id, req.session.user.user_id ])
+            .then(image => res.status(200).json(image))
+            .catch(error => console.log(error))
     }
 }

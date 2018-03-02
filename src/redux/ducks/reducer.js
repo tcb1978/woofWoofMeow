@@ -2,7 +2,8 @@
 const initialState = {
   user: {},
   userUrl: '',
-  animalUrl: ''
+  animalUrl: '',
+  updateImageUrl: ''
 }
 
 // action types
@@ -12,6 +13,7 @@ const LOGOUT = 'LOGOUT';
 const GET_USER = 'GET_USER';
 const USERURLSEND = 'USERURLSEND';
 const ANIMALURLSEND = 'ANIMALURLSEND';
+const UPDATEIMAGEURLSEND = 'UPDATEIMAGEURLSEND';
 
 // reducer
 export default function reducer (state = initialState, action) {
@@ -29,6 +31,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, userUrl: payload };
     case ANIMALURLSEND:
       return { ...state, animalUrl: payload };
+    case UPDATEIMAGEURLSEND: 
+      return { ...state, updateImageUrl: payload };
 
     default: return state;
   }
@@ -74,5 +78,12 @@ export const animalUrlSend = (animalUrl) => {
   return {
     type: ANIMALURLSEND,
     payload: animalUrl
+  };
+};
+
+export const updateImageUrlSend = (updateImageUrl) => {
+  return {
+    type: UPDATEIMAGEURLSEND,
+    payload: updateImageUrl
   };
 };

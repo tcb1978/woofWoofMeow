@@ -20,6 +20,7 @@ class Caregiver extends Component {
                 <Calendar />
                 <Jobs />
                 <History />
+                <UpdateMessage />
                 <Reviews />
                 <Route path="/update-message" component={ UpdateMessage } />
             </Aux>
