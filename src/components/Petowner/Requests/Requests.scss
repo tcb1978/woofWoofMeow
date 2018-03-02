@@ -1,6 +1,5 @@
 .StatusContainer {
     position: relative;
-    bottom: 38px;
     height: auto;
 
     .RequestsContainer,
@@ -78,6 +77,7 @@
         margin-bottom: 30px;
         display: flex;
         flex-flow: column;
+        bottom: 5px;
 
         .caregiver-row {
                 margin: 0 0 2px 0;
@@ -324,5 +324,9 @@
     .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .proximity,
     .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .time {
         flex-flow: column;
+    }
+
+    .CaregiverFilterContainer .SearchFilterContainer .react-tabs .react-tabs__tab-panel.react-tabs__tab-panel--selected .time h3 {
+        font-size: large;
     }
 }
