@@ -120,7 +120,7 @@ class Job extends Component {
                                         height="100%"
                                         id="myId"
                                         className="myClassname"
-                                        styles={{ width: "390px", height: "390px", position: 'inherit !important' }}
+                                        style={{ width: "390px", height: "390px", position: 'inherit !important' }}
                                         allowFullScreen />
                                 </div>
                             </div>
