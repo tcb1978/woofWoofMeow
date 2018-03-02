@@ -43,9 +43,9 @@ class Reviews extends Component {
                         readonly={true}
                         initialRating={review.rating}
                         placeholderRating={review.rating}
-                        emptySymbol={<img src={empty} className="icon" />}
-                        placeholderSymbol={<img src={empty} className="icon" />}
-                        fullSymbol={<img src={full} className="icon" />}
+                        emptySymbol={<img src={empty} className="icon" alt="rating icon"/>}
+                        placeholderSymbol={<img src={empty} className="icon" alt="rating icon"/>}
+                        fullSymbol={<img src={full} className="icon" alt="rating icon"/>}
                     />
                 </div>
                 <div className="date">{review.post_date}</div>
