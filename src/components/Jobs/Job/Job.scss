@@ -238,6 +238,12 @@
     }
 }
 
+@media (max-width: 520px) {
+    .job .job-tab-caregiver {
+        display: inherit;
+    }
+}
+
 @media (max-width: 545px) {
     .AddressContact { 
         flex-direction: column;

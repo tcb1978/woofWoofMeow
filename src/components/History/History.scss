@@ -16,14 +16,25 @@
         margin: 0 auto;
     }
     .HistoryDropDown {
-        border: 2px solid #5fa8ff;
-        border-radius: 5px;
+        // border: 2px solid #5fa8ff;
+        // border-radius: 5px;
+        display: flex;
+
+        div {
+            margin: auto;
+        }
     }
 }
 
 @media (max-width: 414px) {
     .HistoryContainer {
         .HistoryDropDown {
+
+            .job {
+                .job-tab {
+                    display: inherit;
+                }
+            }
             .tab {
                 display: flex;
                 flex-flow: column;
