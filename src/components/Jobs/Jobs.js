@@ -10,7 +10,8 @@ class Jobs extends Component {
     constructor () {
         super();
         this.state = { 
-            jobs: []
+            jobs: [],
+            isHidden: true
          }
     }
 
@@ -44,6 +45,12 @@ class Jobs extends Component {
 
     }
 
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
+
     render() {
         const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -56,16 +63,16 @@ class Jobs extends Component {
                         removeJob={ this.removeJob }/>
         });
 
+        const Jobs = () => (<div>{listOfJobs.length ? listOfJobs : <div style={{ color: 'white' }}>No Appointments</div>}</div>)
+
         return (
             <Aux>
                 <div className="Jobs">
-                    <div className="jobs-container">
+                    <div className="jobs-container" onClick={this.toggleHidden.bind(this)} >
                     
                         <h1>Jobs</h1>
                         <ul className="job-list">
-
-                            { listOfJobs.length ? listOfJobs : <div style={{ color: 'white' }}>No Appointments</div> }
-
+                            {!this.state.isHidden && <Jobs />}
                         </ul>
 
                     </div>

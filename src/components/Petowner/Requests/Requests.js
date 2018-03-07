@@ -14,7 +14,8 @@ class Requests extends Component {
             caregivers: [],
             requests: [],
             interested: [],
-            jobs: []
+            jobs: [],
+            isHidden : true
         }
     }
 
@@ -33,6 +34,12 @@ class Requests extends Component {
             });
 
         })).catch(error => console.log(error));
+    }
+
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
     }
 
     request = (id) => {
@@ -92,19 +99,7 @@ class Requests extends Component {
             </div>
         ));
 
-        // List of interested caregivers
-        // const listOfInterested = this.state.interested.map( job => (
-        //     <div key={job.job_id} className="status-row">
-        //         <div className="avatar"><img src={job.avatar} alt="decorative avatar"/></div>
-        //         <div className="name">{job.first_name}</div>
-        //         <div className="date">
-        //             <date>{job.month}/{job.day}/{job.year}</date>
-        //         </div>
-        //         <div className="space-around">
-        //             <button className="btn message">Message</button>
-        //         </div>
-        //     </div>
-        // ));
+        const Requests = () => (<div>{listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div>}</div>)
 
         return (
             <Aux>
@@ -113,65 +108,10 @@ class Requests extends Component {
                         { listOfCaregivers.length ? listOfCaregivers : <div style={{ margin: 'auto', color: 'white' }}>Find caregivers</div> }
                     </div>
 
-                    <div className="RequestsContainer">
+                    <div className="RequestsContainer" onClick={this.toggleHidden.bind(this)}>
                         <h1>Requests</h1>
-                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto' }}>No requests</div> }
+                        {!this.state.isHidden && <Requests />}
                     </div>
-
-                    {/* <div className="InterestedContainer">
-                        <h1>Interested</h1>
-                        { listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto' }}>No interests</div> }
-                    </div> */}
-
-                    {/* <div className="HistoryContainer">
-                        <h1>History</h1>
-                        <div className="history-wrapper">
-                            <div className="status-row">
-                                <div className="avatar"></div>
-                                <div className="name">Mark</div>
-                                <div className="date">
-                                    <date>January 10</date>
-                                </div>
-                                <div className="StartFinish">
-                                    <div className="Start"><time className="">1:28pm- </time></div>
-                                    <div className="Finish"><time className="">     2:28pm</time></div>
-                                </div>
-                            </div>
-                            <div className="HistoryDropDown">
-                                <div className="AvatarDisplay">
-                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
-                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
-                                    <div className="AnimalAvatar"><span>Dog's Name</span></div>
-                                </div>
-                                <div className="TodaysService">
-                                    <div className="ServiceLength">30 min </div>
-                                    <div className="WalkOrPark">   walk</div>
-                                </div>
-                            </div>
-                            <div className="status-row">
-                                <div className="avatar"></div>
-                                <div className="name">Mark</div>
-                                <div className="date">
-                                    <date>January 10</date>
-                                </div>
-                                <div className="StartFinish">
-                                    <div className="Start"><time className="">1:28pm- </time></div>
-                                    <div className="Finish"><time className=""> 2:28pm</time></div>
-                                </div>
-                            </div>
-                            <div className="status-row">
-                                <div className="avatar"></div>
-                                <div className="name">Mark</div>
-                                <div className="date">
-                                    <date>January 10</date>
-                                </div>
-                                <div className="StartFinish">
-                                    <div className="Start"><time className="">1:28pm- </time></div>
-                                    <div className="Finish"><time className=""> 2:28pm</time></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </Aux>
         )

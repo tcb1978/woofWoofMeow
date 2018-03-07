@@ -18,7 +18,8 @@ class Calendar extends Component {
             daysOffset: -1,
             week: 0,
             currentDay: {},
-            selectedDay: {}
+            selectedDay: {},
+            isHidden: true
         }
     }
 
@@ -87,6 +88,12 @@ class Calendar extends Component {
         this.setState({ selectedDay: { yyyy, mm, dd, day: date.getDay() } });
     }
 
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
+
     render () {
         const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -111,35 +118,35 @@ class Calendar extends Component {
                 weeks[i][j] = calendarDays[dayIndex];
             }
         }
+
+        const Calander = () => (<div className="calendar-layout">
+            <div className="months">
+                <div className="arrow" onClick={() => this.handleMonthChange('left')}><img src={arrowLeft} alt="left arrow" /></div>
+                <div className="month">{months[mm]} {yyyy}</div>
+                <div className="arrow" onClick={() => this.handleMonthChange('right')}><img src={arrowRight} alt="right arrow" /></div>
+            </div>
+
+            <div className="days">
+                {days.map((e, i) => <div key={i} className={`day ${i % 2 === 0 ? 'darkGrey' : 'lightGrey'}`}>{e.slice(0, 3)}</div>)}
+            </div>
+
+            <div className="weeks">
+                {weeks.map((week, i) => (
+                    <div key={i} className="week">
+                        {week.map((day, j) => (
+                            <div key={j} className={`day-block ${!day ? 'blueGrey' : 'white'} ${currentDay.yyyy === yyyy && currentDay.mm === mm && currentDay.dd === day ? 'blueNum' : ''}`} onClick={() => day ? this.selectDay(yyyy, mm, day) : null}>{day}</div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+            <AvailableTimes months={months} days={days} day={selectedDay} />
+        </div>)
         
         return (
-            <div className="calendar panel">
+            <div className="calendar panel" onClick={this.toggleHidden.bind(this)}>
                 <div className="container">
-
                     <h1>Calendar</h1>
-
-                    <div className="calendar-layout">
-                        <div className="months">
-                            <div className="arrow" onClick={ () => this.handleMonthChange('left') }><img src={ arrowLeft } alt="left arrow"/></div>
-                            <div className="month">{ months[mm] } { yyyy }</div>
-                            <div className="arrow" onClick={ () => this.handleMonthChange('right') }><img src={ arrowRight } alt="right arrow"/></div>
-                        </div>
-
-                        <div className="days">
-                            { days.map( (e, i) => <div key={i} className={`day ${i % 2 === 0 ? 'darkGrey' : 'lightGrey'}`}>{ e.slice(0, 3) }</div> ) }
-                        </div>
-
-                        <div className="weeks">
-                            { weeks.map( (week, i) => (
-                            <div key={i} className="week">
-                                { week.map( (day, j) => (
-                                <div key={j} className={`day-block ${!day ? 'blueGrey': 'white'} ${currentDay.yyyy === yyyy && currentDay.mm === mm && currentDay.dd === day ? 'blueNum' : ''}`} onClick={() => day ? this.selectDay(yyyy,mm,day) : null}>{ day }</div> 
-                                )) }
-                            </div>
-                            )) }
-                        </div>
-                        <AvailableTimes months={months} days={days} day={selectedDay} />
-                    </div>
+                    <div>{!this.state.isHidden && <Calander />}</div>
                 </div>
             </div>
         )
