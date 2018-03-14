@@ -13,7 +13,8 @@ export default class NewReview extends Component {
         this.state = {
             message: '',
             rating: null,
-            job_id: 20
+            job_id: 20,
+            isHidden: true
         }
     }
 
@@ -47,43 +48,51 @@ export default class NewReview extends Component {
         })
         .catch( error => console.log(error) )
     }
+
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
     
 
     render() {
+
+        const Review = () => (<div className="Form-wrapper">
+            <form>
+
+                <div className="form-group">
+                    <label>Review:</label>
+                    <textarea
+                        onChange={(event) => this.onHandleReviewChange(event)}
+                        className="form-control"
+                        rows="5"
+                        id="comment"
+                        title="">
+                    </textarea>
+                </div>
+                <Rating
+                    onHover={(rate) => this.onHandleRatingChange(rate)}
+                    className="Rating"
+                    initialRating={3}
+                    placeholderRating={this.state.rating}
+                    emptySymbol={<img src={empty} className="icon" alt="rating icon" />}
+                    placeholderSymbol={<img src={empty} className="icon" alt="rating icon" />}
+                    fullSymbol={<img src={full} className="icon" alt="rating icon" />}
+                />
+                <input
+                    onClick={this.onHandleSubmit}
+                    className="btn btn-primary submit-button"
+                    type="submit"
+                />
+            </form>
+        </div>)
         
         return (
             <Aux>
-                <div className="Review">
+                <div className="Review" onClick={this.toggleHidden.bind(this)} >
                     <h1>Make a review</h1>
-                    <div className="Form-wrapper">
-                        <form>
-
-                            <div className="form-group">
-                                <label>Review:</label>
-                                <textarea
-                                    onChange={(event) => this.onHandleReviewChange(event) }
-                                    className="form-control"
-                                    rows="5"
-                                    id="comment"
-                                    title="">
-                                </textarea>
-                            </div>
-                            <Rating
-                                onHover={(rate) => this.onHandleRatingChange(rate)}
-                                className="Rating"
-                                initialRating={3}
-                                placeholderRating={this.state.rating}
-                                emptySymbol={<img src={empty} className="icon" alt="rating icon"/>}
-                                placeholderSymbol={<img src={empty} className="icon" alt="rating icon" />}
-                                fullSymbol={<img src={full} className="icon" alt="rating icon" />}
-                            />
-                            <input
-                                onClick={this.onHandleSubmit}
-                                className="btn btn-primary submit-button"
-                                type="submit"
-                            />
-                        </form>
-                    </div>
+                    {!this.state.isHidden && <Review />}
                 </div>
             </Aux>
         );

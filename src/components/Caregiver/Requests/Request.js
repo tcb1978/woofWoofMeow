@@ -10,7 +10,8 @@ class Requests extends Component {
         this.state = {
             requests: [],
             interested: [],
-            jobs: []
+            jobs: [],
+            isHidden: true
         }
     }
     componentDidMount() {
@@ -27,6 +28,12 @@ class Requests extends Component {
             });
 
         })).catch( err => console.log(err) );
+    }
+
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
     }
 
     onHandleInterest = (job_id) => {
@@ -57,20 +64,9 @@ class Requests extends Component {
         }).catch(error => console.log(error))
     }
 
-    // cancelInterest = (id) => {
-    //     axios.delete(`/delete/job/${id}`).then( () => {
-    //         axios.get(`/caregiver/jobs/accepted`).then( interests => {
-
-    //             this.setState({ interested: interests.data })
-
-    //         }).catch( err => console.log(err) );
-    //     }).catch(error => console.log(error))
-    // }
+    
 
     render() {
-        // console.log('State -> Requests', this.state.requests);
-        // console.log('State -> Interested', this.state.interested);
-        // console.log('State -> Jobs', this.state.jobs);
 
         // The list of requested job
         const listOfRequests = this.state.requests.map( job => (
@@ -87,43 +83,16 @@ class Requests extends Component {
             </div>
         ));
 
-        // // The list interested jobs
-        // const listOfInterested = this.state.interested.map( job => (
-        //     <div key={job.job_id} className="interested">
-        //         <div className="caregiverRow">
-        //             <div>
-        //                 <div className="caregiver-avatar"><img src={job.avatar} alt="Avatar"/></div>
-        //                 <div className="caregiver-name">{job.first_name}</div>
-        //             </div>
-        //             <div>
-        //                 <button onClick={() => this.cancelInterest(job.job_id)} className="btn cancel">Cancel</button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // ));
-
-        // // The list of jobs ( the )
-        // const listOfJobs = this.state.jobs.map( job => (
-        //     <div className="">
-                
-        //     </div>
-        // ));
+        const Requests = () => (<div>{listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto', display: 'flex' }}>No requests</div>}</div>)
 
         return (
             <Aux>
-                <div className="Requests">
+                <div className="Requests" onClick={this.toggleHidden.bind(this)}>
                     <h1>Requests</h1>
                     <div className="request-row-box">
-                        { listOfRequests.length ? listOfRequests : <div style={{ margin: 'auto', display:'flex' }}>No requests</div> }
+                        {!this.state.isHidden && <Requests />}
                     </div>
                 </div>
-
-                {/* <div className="Interested">
-                    <h1>Interested</h1>
-                    <div className="interested-row-box">
-                        {listOfInterested.length ? listOfInterested : <div style={{ margin: 'auto', display:'flex'  }}>No interests</div> }
-                    </div>
-                </div> */}
             </Aux>
         )
     }

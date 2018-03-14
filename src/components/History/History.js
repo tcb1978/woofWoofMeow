@@ -10,7 +10,8 @@ class History extends Component {
     constructor () {
         super();
         this.state = {
-            jobs: []
+            jobs: [],
+            isHidden: true
         }
     }
 
@@ -30,6 +31,12 @@ class History extends Component {
         }
     }
 
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+    }
+
     render() {
         const months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -40,15 +47,15 @@ class History extends Component {
                  months={months}
                  days={days} />
         ));
+
+        const History = () => (<div>{listOfPastJobs.length ? listOfPastJobs : <div>No Appointments</div>}</div>)
         
         return (
             <Aux>
-                <div className="HistoryContainer">
+                <div className="HistoryContainer" onClick={this.toggleHidden.bind(this)} >
                     <h1>History</h1>
                     <div className="HistoryDropDown">
-
-                        { listOfPastJobs.length ? listOfPastJobs : <div>No Appointments</div> }
-
+                        {!this.state.isHidden && <History />}
                     </div>
                 </div>
             </Aux>
