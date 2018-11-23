@@ -53,10 +53,8 @@ class CareGiverSearch extends Component {
         const date = new Date();
         // Current year
         const year = date.getFullYear();
-        // Current month's number of days
-        const numOfDays = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
-        return (        
+        return (
             <Aux>
                 <div className="CaregiverSearch">
                     <div className="CaregiverFilterContainer">
@@ -90,7 +88,7 @@ class CareGiverSearch extends Component {
                                                 <label>Proximity</label>
                                                 <select
                                                     value={this.state.proximity}
-                                                    onChange={(e) => this.onHandlePicked("proximity", e)} 
+                                                    onChange={(e) => this.onHandlePicked("proximity", e)}
                                                     className="form-control" name="Proximity">
                                                     <option value=''>--Select Proximity--</option>
                                                     <option value="3 miles">3 miles</option>
