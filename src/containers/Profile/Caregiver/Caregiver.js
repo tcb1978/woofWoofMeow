@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import Bio from '../../../components/Bio/Bio';
 import Request from '../../../components/Caregiver/Requests/Request';
 import Availability from '../../../components/Caregiver/Availability/Availability';
