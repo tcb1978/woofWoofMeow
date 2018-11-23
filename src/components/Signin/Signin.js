@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Aux from '../../hoc/Aux';
 import { connect } from 'react-redux';
-import { login, getUser } from '../../redux/ducks/reducer';
+import { login } from '../../redux/ducks/reducer';
 import './Signin.css';
 
 class Signin extends Component {
@@ -58,14 +58,14 @@ class Signin extends Component {
                             <input className="form-control" placeholder="password" type="password" onChange={(e) => this.setState({ password: e.target.value })} />
                             </div>
                         </div>
-                        {this.state.showPopup ? 
+                        {this.state.showPopup ?
                             <div className="form-element errorMessage">{ this.state.errorMessage }</div> : null
                         }
 
                         <div className="form-element flex">
                             <button className="form-control btn btn-primary mb-2 login" onClick={this.login}>Log in</button>
                         </div>
-                            
+
                     </div>
                 </div>
             </Aux>

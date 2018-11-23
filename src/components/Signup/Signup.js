@@ -41,7 +41,7 @@ class Signup extends Component {
 
     // when the page loads we put in the users table a record with all
     // fields empty except the title of user("caregiver" or "petowner")
-    // 
+    //
     // when get the response we make default ("6AM - 2PM") availability for the caregiver
     componentDidMount() {
         const url = this.props.match.url
@@ -60,7 +60,6 @@ class Signup extends Component {
             // if the user title is caregiver, default availability data is created
             if (user.data.title === 'caregiver') {
                 // making default values for the availability
-                var day = 1;
                 const time_range = "6AM - 2PM";
                 const begin_time = 6;
                 const end_time = 14;
