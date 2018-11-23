@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class Job extends Component {
     constructor () {
         super();
-        this.state = { 
+        this.state = {
             animals: [],
             isHidden: true
         }
@@ -26,7 +26,7 @@ class Job extends Component {
     }
 
     render() {
-        const { user, job, months, days } = this.props;
+        const { user, job, months } = this.props;
         const { animals, isHidden } = this.state;
         console.log( user, job );
 
@@ -74,7 +74,7 @@ class Job extends Component {
                                 {job.phone}
                             </div>
                         </div> }
-                    </div> 
+                    </div>
                     }
                 </li>
             </Aux>
