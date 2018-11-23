@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import UserUploader from '../../Uploader/UserUploader';
-import Aux from '../../../hoc/Aux';
 import './Popup.css';
 import axios from 'axios';
 import { register } from '../../../redux/ducks/reducer';
@@ -99,9 +98,9 @@ class Popup extends Component {
                 })
                 .catch(error => console.log(error))
         }
-        
+
     }
-    
+
     render() {
         const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
             'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
