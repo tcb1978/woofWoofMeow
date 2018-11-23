@@ -30,7 +30,7 @@ class UpdateMessage extends Component {
        const update_image = updateImageUrl;
        const job_id = job.job_id;
        axios.put('/caregiver/jobs/update/message', {
-           job_id: job.job_id,
+           job_id: job_id,
            update_message,
            update_image
        })
@@ -49,7 +49,7 @@ class UpdateMessage extends Component {
                     <div className="update-petowner-toggle">
                         <h1>Update</h1>
                     </div>
-                    
+
                         <div className="widget">
                             <div className="widget-upper">
                                 <div className="sender">
@@ -73,13 +73,13 @@ class UpdateMessage extends Component {
                             </form>
                             <button type="submit" className="btn btn-primary" onClick={() => this.sendMessage()}>Send</button>
                         </div>
-                    
+
                     <div className="all-rights-reserved"><span>&copy; All rights reserved.</span></div>
-                </div>         
+                </div>
             </Aux>
         )
     }
-    
+
 }
 
 
