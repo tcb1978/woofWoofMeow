@@ -41,7 +41,7 @@ class UpdateMessage extends Component {
    }
 
     render () {
-        const { user, job, updateImageUrl } = this.props;
+        const { user, updateImageUrl } = this.props;
 
         return (
             <Aux>
