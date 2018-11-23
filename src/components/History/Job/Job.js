@@ -28,7 +28,6 @@ class Job extends Component {
     render() {
         const { user, job, months } = this.props;
         const { animals, isHidden } = this.state;
-        console.log( user, job );
 
         return (
             <Aux>
