@@ -6,13 +6,12 @@ import axios from 'axios';
 import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
 import UpdateMessage from '../../UpdateMessage/UpdateMessage';
-import Payment from '../../Payment/Payment';
 import Chat from '../../Chat/Chat'
 
 class Job extends Component {
     constructor () {
         super();
-        this.state = { 
+        this.state = {
             animals: [],
             checkinTime: '',
             checkoutTime: '',
@@ -49,7 +48,7 @@ class Job extends Component {
         if ( !this.state.isCheckedIn ) {
             axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkin`)
             .then( time => {
-                this.setState(prevState => ({ 
+                this.setState(prevState => ({
                     isCheckedIn: !prevState.isCheckedIn,
                     checkinTime: time.data[0].checkin_time
                 }));
@@ -57,7 +56,7 @@ class Job extends Component {
         } else {
             axios.put(`/caregiver/jobs/${this.props.job.job_id}/checkout`)
             .then( time => {
-                this.setState(prevState => ({ 
+                this.setState(prevState => ({
                     isCheckedIn: !prevState.isCheckedIn,
                     checkoutTime: time.data[0].checkout_time,
                     showUpdatePopup: !prevState.showUpdatePopup
@@ -102,7 +101,7 @@ class Job extends Component {
                             </div>
                         </div>
                     ) }
-                    
+
 
                     { user.title === 'petowner' ? (
                         isHidden &&
@@ -124,7 +123,7 @@ class Job extends Component {
                                         allowFullScreen />
                                 </div>
                             </div>
-                            { !job.checkin_time && 
+                            { !job.checkin_time &&
                             <div className="Cancel">
                                 <button className="cancel-btn btn" onClick={ () => this.toggleCancel() }>Cancel</button>
                             </div> }
